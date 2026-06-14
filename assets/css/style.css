@@ -444,3 +444,20 @@ section{position:relative}
 .pvideo-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;background:var(--soot)}
 .pvideo-wrap iframe{position:absolute;inset:0;width:100%;height:100%}
 .pvideo-cap{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:rgba(20,19,16,.55);margin-top:.7rem}
+
+/* ---------- formspree states ---------- */
+.form-success{
+  padding:2rem 0;
+  font-size:clamp(1.1rem,1.8vw,1.4rem);
+  font-family:var(--serif);font-style:italic;
+}
+.form-error{
+  color:var(--rose);font-family:var(--mono);
+  font-size:.72rem;letter-spacing:.1em;padding:.5rem 0;
+}
+.field-error{
+  display:block;color:var(--rose);
+  font-family:var(--mono);font-size:.64rem;
+  letter-spacing:.1em;margin-top:.3rem;
+}
+[data-fs-submit-btn]:disabled{opacity:.5;cursor:not-allowed}
