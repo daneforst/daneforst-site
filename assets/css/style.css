@@ -370,13 +370,13 @@ section{position:relative}
 .pmeta div span{display:block;font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:rgba(20,19,16,.55);margin-bottom:.4rem}
 .pmeta div b{font-weight:700;font-size:.98rem}
 .psec{
-  display:grid;grid-template-columns:minmax(140px,.8fr) 2.2fr;gap:clamp(1.2rem,4vw,4rem);
+  display:block;
   padding:clamp(1.8rem,5vh,3rem) 0;border-bottom:1px solid var(--line);
 }
 .psec:last-of-type{border-bottom:0}
 .psec h2{
   font-family:var(--mono);font-weight:500;font-size:.72rem;text-transform:uppercase;
-  letter-spacing:.18em;color:var(--rose);padding-top:.3rem;
+  letter-spacing:.18em;color:var(--rose);padding-top:.3rem;margin-bottom:1rem;
 }
 .psec p{font-size:clamp(1rem,1.45vw,1.18rem);line-height:1.6;max-width:38em}
 .psec p+p{margin-top:1em}
