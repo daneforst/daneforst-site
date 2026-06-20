@@ -20,8 +20,11 @@ body{
   background:var(--bone);
   color:var(--soot);
   font-family:var(--sans);
-  font-variation-settings:'wdth' 100;
+  font-weight:400;
+  font-stretch:100%;
   -webkit-font-smoothing:antialiased;
+  text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
   overflow-x:hidden;
 }
 ::selection{background:var(--flash);color:var(--bone)}
@@ -488,3 +491,26 @@ section{position:relative}
   letter-spacing:.1em;margin-top:.3rem;
 }
 [data-fs-submit-btn]:disabled{opacity:.5;cursor:not-allowed}
+
+/* ---------- interior page CTA band ---------- */
+.page-cta{
+  background:var(--bone);border-top:1px solid var(--line);
+  text-align:center;
+  padding:clamp(3.2rem,9vh,6rem) clamp(1.2rem,4vw,4rem);
+  display:flex;flex-direction:column;align-items:center;gap:clamp(1.4rem,3.5vh,2.2rem);
+}
+.page-cta h2{
+  font-weight:900;font-variation-settings:'wdth' 66;text-transform:uppercase;
+  font-size:clamp(2.2rem,6.5vw,5rem);line-height:.9;letter-spacing:-.015em;max-width:14em;
+}
+.page-cta h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;background:linear-gradient(100deg,var(--sun),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+.page-cta .cta{align-self:center;color:var(--soot);border-color:var(--soot)}
+
+/* ---------- contact: clear separation between socials and form when stacked ---------- */
+@media(max-width:860px){
+  .contact-grid .cform{
+    margin-top:clamp(2.5rem,8vw,3.5rem);
+    padding-top:clamp(2.5rem,8vw,3.5rem);
+    border-top:1px solid rgba(20,19,16,.18);
+  }
+}
