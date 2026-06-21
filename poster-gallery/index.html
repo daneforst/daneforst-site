@@ -127,8 +127,8 @@ body{
 .detail-figure{display:flex;justify-content:center;align-items:center}
 .detail-figure img{
   display:block;width:auto;height:auto;
-  max-height:min(78vh,720px);max-width:100%;
-  aspect-ratio:2/3;object-fit:cover;background:var(--soot-2);
+  max-height:min(82vh,760px);max-width:100%;
+  object-fit:contain;background:var(--soot-2);
   box-shadow:0 40px 90px rgba(0,0,0,.55),0 2px 0 rgba(228,224,212,.04);
 }
 .detail-meta{max-width:34em}
@@ -266,235 +266,138 @@ body{
    ============================================================================ */
 const posters = [
   {
-    image:'posters/poster-01.jpg',
-    artist:'Velvet Static',
-    support:['The Hollow Coast','Paper Tigers'],
-    venue:'The Crystal Ballroom', city:'Portland, OR', date:'March 14, 2025',
-    note:'A study in afterimage and signal noise, screened on cobalt stock.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2025',
+    image:'posters/tame-impala-2015.jpg',
+    artist:'Tame Impala',
+    venue:'LC Pavilion', city:'Columbus, OH', date:'May 16, 2015',
+    year:'2015',
   },
   {
-    image:'posters/poster-02.jpg',
-    artist:'Marrow Bloom',
-    support:['Slow Tide'],
-    venue:'Mississippi Studios', city:'Portland, OR', date:'April 02, 2025',
-    note:'Botanical line work meets a bruised vermilion wash.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 75', colors:'3 colors', year:'2025',
+    image:'posters/m83.jpg',
+    artist:'M83',
+    note:'Tour poster',
   },
   {
-    image:'posters/poster-03.jpg',
-    artist:'Neon Cathedral',
-    venue:'Roseland Theater', city:'Portland, OR', date:'May 19, 2025',
-    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 150', colors:'2 colors', year:'2025',
+    image:'posters/explosions-in-the-sky-2015.jpg',
+    artist:'Explosions in the Sky',
+    venue:'Circo Voador', city:'Rio de Janeiro, Brazil', date:'November 18, 2015',
+    dimensions:'16 x 20"', year:'2015',
   },
   {
-    image:'posters/poster-04.jpg',
-    artist:'Dust & Dahlia',
-    support:['Cinder Lake','North Channel','Quiet Hours'],
-    venue:'Wonder Ballroom', city:'Portland, OR', date:'June 07, 2025',
-    note:'Three-act lineup folded into a single blooming form.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 120', colors:'5 colors', year:'2025',
+    image:'posters/adema-2026.jpg',
+    artist:'Adema',
+    venue:'The Drac Studio', city:'Los Angeles, CA', date:'April 16, 2026',
+    year:'2026',
   },
   {
-    image:'posters/poster-05.jpg',
-    artist:'Glass Horizon',
-    support:['Atlas Drift'],
-    venue:'Revolution Hall', city:'Portland, OR', date:'July 21, 2025',
-    dimensions:'18 x 24"', technique:'Giclée print', edition:'Edition of 50', colors:'Full color', year:'2025',
+    image:'posters/adema-ready-to-die-2021.jpg',
+    artist:'Adema',
+    support:['Flaw'],
+    note:'Ready to Die Tour',
+    date:'Fall 2021', year:'2021',
   },
   {
-    image:'posters/poster-06.jpg',
-    artist:'The Empty Orchestra',
-    venue:'Aladdin Theater', city:'Portland, OR', date:'August 09, 2025',
-    note:'Hand-lettered marquee type set against a black sun.',
-    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 90', colors:'3 colors', year:'2025',
+    image:'posters/slaves-to-humanity-2021.jpg',
+    artist:'Slaves to Humanity',
+    support:['Whit3 Collr'],
+    venue:'The Observatory', city:'Santa Ana, CA', date:'October 7, 2021',
+    year:'2021',
   },
   {
-    image:'posters/poster-07.jpg',
-    artist:'Saffron Tongue',
-    support:['Low Ceremony','Wax Effigy'],
-    venue:'Doug Fir Lounge', city:'Portland, OR', date:'September 13, 2025',
-    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 110', colors:'2 colors', year:'2025',
+    image:'posters/if-it-kills-you-2017.jpg',
+    artist:'If It Kills You',
+    support:['Modern Wives','Magic Mammoth'],
+    venue:"Sandrini's", city:'Bakersfield, CA', date:'July 29, 2017',
+    note:'A Phantom Stranger production',
+    year:'2017',
   },
   {
-    image:'posters/poster-08.jpg',
-    artist:'Pale Voltage',
-    support:['Signal Hill'],
-    venue:'Polaris Hall', city:'Portland, OR', date:'October 04, 2025',
-    note:'Voltage diagrams rendered as a rose-tinted topography.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 80', colors:'4 colors', year:'2025',
+    image:'posters/harrison-garrison.jpg',
+    artist:'Harrison Garrison',
+    note:'Talk About It Records',
   },
   {
-    image:'posters/poster-09.jpg',
-    artist:'Hymnal Static',
-    venue:'Holocene', city:'Portland, OR', date:'October 26, 2025',
-    dimensions:'18 x 24"', technique:'Letterpress', edition:'Edition of 60', colors:'2 colors', year:'2025',
+    image:'posters/choirs-niner-niner-2016.jpg',
+    artist:'Choirs / Niner Niner',
+    support:['Easter Teeth'],
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'February 6, 2016',
+    note:'Split 7" record release party',
+    year:'2016',
   },
   {
-    image:'posters/poster-10.jpg',
-    artist:'Cobra Verde',
-    support:['The Understudy','Margin Walker'],
-    venue:'Star Theater', city:'Portland, OR', date:'November 08, 2025',
-    note:'A serpentine grid that coils tighter toward the centre.',
-    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 130', colors:'5 colors', year:'2025',
+    image:'posters/choirs-tour-2015.jpg',
+    artist:'Choirs',
+    note:'California tour',
+    date:'May to June 2015', year:'2015',
   },
   {
-    image:'posters/poster-11.jpg',
-    artist:'Lantern Jaw',
-    support:['Even Keel'],
-    venue:'Bunk Bar', city:'Portland, OR', date:'November 22, 2025',
-    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 70', colors:'3 colors', year:'2025',
+    image:'posters/choirs-11-11-11.jpg',
+    artist:'Choirs',
+    support:['Stars at Night','The Volume'],
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'November 11, 2011',
+    year:'2011',
   },
   {
-    image:'posters/poster-12.jpg',
-    artist:'Future Antique',
-    venue:'Crystal Ballroom', city:'Portland, OR', date:'December 06, 2025',
-    note:'Retro-futurist chrome type, aged to a warm patina.',
-    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 45', colors:'Full color', year:'2025',
+    image:'posters/choirs-temblor.jpg',
+    artist:'Choirs',
+    support:['Headphone','In Clouds'],
+    venue:'Temblor Brewing', city:'Bakersfield, CA', date:'June 11, 2016',
+    year:'2016',
   },
   {
-    image:'posters/poster-13.jpg',
-    artist:'Saltwater Choir',
-    support:['Tidal Bore','Harbor Lights'],
-    venue:'Alberta Rose Theatre', city:'Portland, OR', date:'January 17, 2026',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2026',
+    image:'posters/choirs-vinylgraph.jpg',
+    artist:'Choirs',
+    support:['Jesus Christ Muscle Car','Redadare','Vinylgraph'],
+    date:'October 24',
   },
   {
-    image:'posters/poster-14.jpg',
-    artist:'Ember Decline',
-    support:['Nightjar'],
-    venue:'Hawthorne Theatre', city:'Portland, OR', date:'February 08, 2026',
-    note:'A slow burn gradient from soot to ember.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 85', colors:'3 colors', year:'2026',
+    image:'posters/architecture-fishlips-2011.jpg',
+    artist:'The Architecture',
+    support:['Joel Jacob','Shaky Feeling'],
+    venue:'Fishlips', city:'Bakersfield, CA', date:'November 25, 2011',
+    year:'2011',
   },
   {
-    image:'posters/poster-15.jpg',
-    artist:'The Gilded Hours',
-    venue:'Revolution Hall', city:'Portland, OR', date:'March 01, 2026',
-    note:'Gold-foil numerals counting down to midnight.',
-    dimensions:'24 x 36"', technique:'Letterpress + foil', edition:'Edition of 55', colors:'2 colors + foil', year:'2026',
+    image:'posters/architecture-sandrinis-2011.jpg',
+    artist:'The Architecture',
+    support:['Finnigan','Liftonpoole'],
+    venue:"Sandrini's", city:'Bakersfield, CA', date:'April 9, 2011',
+    note:'Free show',
+    year:'2011',
   },
   {
-    image:'posters/poster-16.jpg',
-    artist:'Concrete Garden',
-    support:['Iron Lung','Soft Machine'],
-    venue:'Mississippi Studios', city:'Portland, OR', date:'March 19, 2026',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 95', colors:'4 colors', year:'2026',
+    image:'posters/architecture-choirs-2012.jpg',
+    artist:'The Architecture / Choirs',
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'October 13, 2012',
+    year:'2012',
   },
   {
-    image:'posters/poster-17.jpg',
-    artist:'Midnight Cartographers',
-    venue:'Polaris Hall', city:'Portland, OR', date:'April 04, 2026',
-    note:'Star charts hand-plotted across a midnight field.',
-    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 140', colors:'3 colors', year:'2026',
+    image:'posters/the-volume-2011.jpg',
+    artist:'The Volume',
+    support:['Strong Killings','The Architecture'],
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'June 23, 2011',
+    year:'2011',
   },
   {
-    image:'posters/poster-18.jpg',
-    artist:'Feral Hymn',
-    support:['Bramble'],
-    venue:'Doug Fir Lounge', city:'Portland, OR', date:'April 22, 2026',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 70', colors:'3 colors', year:'2026',
+    image:'posters/lakes-2011.jpg',
+    artist:'Lakes',
+    support:['The Architecture','Liftondools'],
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'April 25, 2011',
+    year:'2011',
   },
   {
-    image:'posters/poster-19.jpg',
-    artist:'The Long Goodbye',
-    support:['Casualties of Cool','Pale Blue Dot'],
-    venue:'Aladdin Theater', city:'Portland, OR', date:'May 09, 2026',
-    note:'A farewell tour rendered as a slow dissolve.',
-    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 40', colors:'Full color', year:'2026',
+    image:'posters/st-pattys-2012.jpg',
+    artist:'Choirs',
+    support:['The Architecture','The Volume','Holy Beast','Buffalo Season'],
+    venue:"Riley's Tavern", city:'Bakersfield, CA', date:'March 17, 2012',
+    note:"St. Patrick's Day show",
+    year:'2012',
   },
   {
-    image:'posters/poster-20.jpg',
-    artist:'Static Garden',
-    venue:'Holocene', city:'Portland, OR', date:'May 24, 2026',
-    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 115', colors:'2 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-21.jpg',
-    artist:'Bonfire Choir',
-    support:['Ash & Oak'],
-    venue:'Wonder Ballroom', city:'Portland, OR', date:'June 06, 2026',
-    note:'Warm grain and ember type for a midsummer night.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 105', colors:'5 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-22.jpg',
-    artist:'Vacant Lot',
-    venue:'Bunk Bar', city:'Portland, OR', date:'June 20, 2026',
-    dimensions:'18 x 24"', technique:'Letterpress', edition:'Edition of 65', colors:'2 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-23.jpg',
-    artist:'Tidal Mechanics',
-    support:['Undertow','Spring Line','Driftwood'],
-    venue:'Revolution Hall', city:'Portland, OR', date:'July 11, 2026',
-    note:'Tide tables translated into a moving grid.',
-    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 125', colors:'4 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-24.jpg',
-    artist:'Golden Hour Theory',
-    support:['Lowlight'],
-    venue:'Crystal Ballroom', city:'Portland, OR', date:'July 25, 2026',
-    note:'A sun-washed gradient caught at the last warm minute.',
-    dimensions:'18 x 24"', technique:'Giclée print', edition:'Edition of 60', colors:'Full color', year:'2026',
-  },
-  {
-    image:'posters/poster-25.jpg',
-    artist:'Paper Moon Riot',
-    support:['The Carousels'],
-    venue:'Hawthorne Theatre', city:'Portland, OR', date:'August 08, 2026',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 90', colors:'3 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-26.jpg',
-    artist:'Slow Architecture',
-    venue:'Revolution Hall', city:'Portland, OR', date:'August 23, 2026',
-    note:'Type built like scaffolding, one beam at a time.',
-    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 130', colors:'2 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-27.jpg',
-    artist:'Wax Wing',
-    support:['Daedalus','Solar Plexus'],
-    venue:'Doug Fir Lounge', city:'Portland, OR', date:'September 05, 2026',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 75', colors:'4 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-28.jpg',
-    artist:'Nocturne 5',
-    venue:'Aladdin Theater', city:'Portland, OR', date:'September 20, 2026',
-    note:'Five movements, scored in soot and rose.',
-    dimensions:'24 x 36"', technique:'Letterpress', edition:'Edition of 50', colors:'2 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-29.jpg',
-    artist:'The Tin Choir',
-    support:['Brass Tacks'],
-    venue:'Polaris Hall', city:'Portland, OR', date:'October 03, 2026',
-    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 110', colors:'3 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-30.jpg',
-    artist:'Drift Season',
-    support:['Northerly','Cold Front'],
-    venue:'Mississippi Studios', city:'Portland, OR', date:'October 17, 2026',
-    note:'A weather map left out in the rain.',
-    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2026',
-  },
-  {
-    image:'posters/poster-31.jpg',
-    artist:'Halcyon Static',
-    venue:'Holocene', city:'Portland, OR', date:'October 31, 2026',
-    note:'A calm signal hiding in the noise floor.',
-    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 45', colors:'Full color', year:'2026',
-  },
-  {
-    image:'posters/poster-32.jpg',
-    artist:'Brass Cathedral',
-    support:['Reverb Theory','Low Mass'],
-    venue:'Crystal Ballroom', city:'Portland, OR', date:'November 14, 2026',
-    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 120', colors:'5 colors', year:'2026',
+    image:'posters/drunks-go-acoustic-2012.jpg',
+    artist:'Dead Frets',
+    support:['Matt Salkeld'],
+    note:'Drunks Go Acoustic Tour',
+    date:'Summer 2012', year:'2012',
   },
 ];
 
@@ -535,9 +438,8 @@ const posters = [
   const posterH = clamp(2*R*Math.tan(Math.min(meanAngle*0.80, 0.62)/2), 2, R*0.8);
   const posterW = posterH * ASPECT;
 
-  // shared geometry; per-poster materials
-  const posterGeo = new THREE.PlaneGeometry(posterW, posterH);
-  const glowGeo = new THREE.PlaneGeometry(posterW*1.42, posterH*1.34);
+  // each poster gets its own geometry so it can be resized to the real image's
+  // aspect ratio once it loads (the actual posters range from ~2:3 to 4:5).
 
   const BASE_OP = 0.9;          // resting poster opacity (hover lifts to 1)
   const accents = [0xff8330, 0xff4d8c];   // sun + rose, alternating glow tints
@@ -568,7 +470,7 @@ const posters = [
     // real image is found at the configured path.
     const made = makePosterTexture(posters[i], i);
     const mat = new THREE.MeshBasicMaterial({map:made.texture, transparent:true, opacity:BASE_OP});
-    const mesh = new THREE.Mesh(posterGeo, mat);
+    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(posterW, posterH), mat);
     mesh.userData = {index:i, group};
     pickMeshes.push(mesh);
 
@@ -577,18 +479,18 @@ const posters = [
       transparent:true, opacity:0, blending:THREE.AdditiveBlending,
       depthWrite:false, depthTest:false,
     });
-    const glow = new THREE.Mesh(glowGeo, glowMat);
+    const glow = new THREE.Mesh(new THREE.PlaneGeometry(posterW*1.42, posterH*1.34), glowMat);
     glow.position.z = -0.04;    // sits just behind the poster, haloing its edge
     glow.renderOrder = -1;
 
     group.add(glow);
     group.add(mesh);
-    group.userData = {index:i, mat, glowMat, baseScale:1};
+    group.userData = {index:i, mat, glowMat, mesh, glow, baseScale:1};
     scene.add(group);
     groups.push(group);
 
     posters[i]._display = made.display;   // src used by the detail <img>
-    upgradeTexture(posters[i], made, mat);
+    upgradeTexture(posters[i], made, mat, group);
   }
   hudIndex.textContent = 'Index 01 / ' + String(N).padStart(2,'0');
 
@@ -715,15 +617,18 @@ const posters = [
       dSupport.innerHTML = '<span class="lead">With</span>' + p.support.join(', ');
       dSupport.style.display='';
     } else dSupport.style.display='none';
-    dVenue.textContent = p.venue || '';
-    dCity.textContent = p.city || '';
-    dDate.textContent = p.date || '';
+    // venue / city / date each render only when present (promo + tour posters
+    // may have none); hide the whole block if all three are empty.
+    setField(dVenue, p.venue); setField(dCity, p.city); setField(dDate, p.date);
+    dVenue.parentElement.style.display = (p.venue || p.city || p.date) ? '' : 'none';
     const credits = [
       ['Format', p.dimensions], ['Process', p.technique],
       ['Run', p.edition], ['Ink', p.colors], ['Year', p.year],
     ].filter(c=>c[1]);
     dCredits.innerHTML = credits.map(c=>`<div><span>${c[0]}</span><b>${c[1]}</b></div>`).join('');
+    dCredits.style.display = credits.length ? '' : 'none';
   }
+  function setField(el, val){ if(val){ el.textContent = val; el.style.display=''; } else el.style.display='none'; }
 
   function openDetail(i){
     if(detailOpen) return;
@@ -975,7 +880,7 @@ const posters = [
   }
 
   // try to load a real image at the configured path; swap it in if present.
-  function upgradeTexture(p, made, mat){
+  function upgradeTexture(p, made, mat, group){
     if(!p.image) return;
     const loader = new THREE.TextureLoader();
     loader.load(p.image, tex=>{
@@ -983,6 +888,12 @@ const posters = [
       tex.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1;
       mat.map = tex; mat.needsUpdate = true;
       made.isReal = true; p._display = p.image;
+      // resize this poster's plane (and its glow) to the real proportions,
+      // keeping a constant height so the dome rows stay even.
+      p._aspect = tex.image.width / tex.image.height;
+      const w = posterH * p._aspect, ud = group.userData;
+      ud.mesh.geometry.dispose(); ud.mesh.geometry = new THREE.PlaneGeometry(w, posterH);
+      ud.glow.geometry.dispose(); ud.glow.geometry = new THREE.PlaneGeometry(w*1.42, posterH*1.34);
     }, undefined, ()=>{ /* no file yet, keep the placeholder */ });
   }
 

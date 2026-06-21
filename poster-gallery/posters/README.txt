@@ -1,22 +1,23 @@
 POSTER IMAGES
 =============
 
-Drop your real show-poster images in this folder.
+These are the real show posters, resized for the web (long edge capped at
+1800px). Each file is referenced by the `image:` path in the `posters` array
+near the top of ../index.html.
 
-Name each file to match the `image:` path in the `posters` array near the
-top of ../index.html, for example:
+Adding or swapping a poster
+---------------------------
+1. Drop the image in this folder. Any vertical proportion works; the gallery
+   reads each image's real aspect ratio and fits the plane to it.
+2. Add (or edit) an object in the `posters` array in index.html with the
+   matching `image:` path and the show details.
 
-  poster-01.jpg
-  poster-02.jpg
-  ...
+What the gallery reads from each entry
+--------------------------------------
+- artist, support[], venue, city, date, note  -> shown on the detail page
+- dimensions, technique, edition, colors, year -> the small mono credit block
 
-Notes
------
-- Use vertical poster proportions, roughly 2:3 (e.g. 1200 x 1800 px).
-- Until a matching file exists here, the gallery draws a generated
-  placeholder in its place, so the page always looks complete.
-- While the files are missing, the browser console will log 404s for them.
-  That is expected and harmless; the placeholders cover for them. Add the
-  real images (or trim the array) before sharing the page publicly.
-- To add or remove a poster, edit the `posters` array in index.html. Each
-  object is one poster; `support` and `note` are optional.
+`support` and `note` are optional. Any credit field left out is simply hidden,
+so a promo poster with just a name still renders cleanly. The print-production
+details (technique, edition, color count, dimensions) are NOT printed on the
+artwork, so fill those in by hand where you want them to show.
