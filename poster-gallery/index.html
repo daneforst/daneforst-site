@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Poster Gallery · Dane Erik Forst</title>
+<meta name="description" content="An interactive 3D gallery of show poster designs, mapped across the inside of a sphere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   BRAND SYSTEM: pulled from daneforst-site/assets/css/style.css
+   so this gallery sits inside the same world as the rest of the site.
+   ============================================================ */
+:root{
+  --soot:#141310;
+  --soot-2:#1c1a16;
+  --bone:#E4E0D4;
+  --bone-2:#DCD7C8;
+  --sun:#ff8330;   /* vermilion */
+  --rose:#ff4d8c;  /* rose */
+  --line-light:rgba(228,224,212,.16);
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Instrument Serif',serif;
+  --sans:'Archivo',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:var(--soot);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-weight:400;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+::selection{background:var(--rose);color:var(--bone)}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+/* ---------- stage ---------- */
+#stage{position:fixed;inset:0;overflow:hidden;background:var(--soot)}
+#scene{
+  position:absolute;inset:0;display:block;
+  touch-action:none;cursor:grab;
+  -webkit-user-select:none;user-select:none;
+  will-change:filter,transform;
+}
+#scene.grabbing{cursor:grabbing}
+#scene.pointing{cursor:pointer}
+/* cinematic vignette so the dome feels lit from the centre */
+#vignette{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:radial-gradient(120% 120% at 50% 46%,
+     rgba(20,19,16,0) 38%,
+     rgba(20,19,16,.42) 78%,
+     rgba(20,19,16,.82) 100%);
+  mix-blend-mode:multiply;
+}
+
+/* ---------- HUD ---------- */
+.hud{
+  position:fixed;top:0;left:0;right:0;z-index:5;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;
+  padding:clamp(1.1rem,3vw,2.2rem);
+  pointer-events:none;
+}
+.hud .mark{
+  font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;
+  color:rgba(228,224,212,.82);line-height:1.5;
+}
+.hud .mark b{font-weight:500}
+.hud .mark .sub{display:block;color:rgba(228,224,212,.45);font-size:.66rem;margin-top:.25rem}
+.hud .hint{
+  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;
+  color:rgba(228,224,212,.5);text-align:right;line-height:1.6;
+}
+.hud .hint .dot{
+  display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--rose);vertical-align:middle;margin-right:.45rem;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ---------- detail view ---------- */
+.detail{
+  position:fixed;inset:0;z-index:20;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(4.5rem,7vh,6rem) clamp(1.2rem,4vw,4rem) clamp(2rem,5vh,4rem);
+  background:rgba(20,19,16,.82);
+  opacity:0;visibility:hidden;
+  overscroll-behavior:contain;
+}
+.detail.open{visibility:visible}
+.detail::before{ /* faint brand wash */
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(125deg,rgba(255,131,48,.06),rgba(255,77,140,.06));
+}
+.detail-bar{
+  position:absolute;top:0;left:0;right:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:clamp(1.1rem,3vw,2.2rem);
+}
+.detail-bar .crumb{
+  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;
+  color:rgba(228,224,212,.5);
+}
+.detail-close{
+  display:inline-flex;align-items:center;gap:.6rem;cursor:pointer;
+  background:transparent;color:var(--bone);
+  border:1px solid var(--line-light);border-radius:999px;
+  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;
+  padding:.6rem 1.05rem;
+  transition:border-color .3s,color .3s,background .3s;
+}
+.detail-close:hover{border-color:var(--rose);color:#fff}
+.detail-close .x{font-size:.95rem;line-height:1;transform:translateY(-1px)}
+
+.detail-inner{
+  position:relative;z-index:2;
+  width:100%;max-width:1180px;
+  display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1fr);
+  gap:clamp(2rem,5vw,5rem);align-items:center;
+}
+.detail-figure{display:flex;justify-content:center;align-items:center}
+.detail-figure img{
+  display:block;width:auto;height:auto;
+  max-height:min(78vh,720px);max-width:100%;
+  aspect-ratio:2/3;object-fit:cover;background:var(--soot-2);
+  box-shadow:0 40px 90px rgba(0,0,0,.55),0 2px 0 rgba(228,224,212,.04);
+}
+.detail-meta{max-width:34em}
+.detail-note{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.05rem,1.8vw,1.45rem);line-height:1.4;
+  color:rgba(228,224,212,.82);margin-bottom:1.2rem;max-width:24em;
+}
+.detail-head{
+  font-family:var(--serif);font-weight:400;line-height:.98;letter-spacing:.002em;
+  font-size:clamp(2.6rem,6vw,5rem);color:var(--bone);
+}
+.detail-support{
+  margin-top:1rem;font-size:clamp(.95rem,1.4vw,1.1rem);line-height:1.5;
+  color:rgba(228,224,212,.78);
+}
+.detail-support .lead{
+  font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.18em;
+  color:var(--sun);margin-right:.6rem;
+}
+.detail-where{
+  margin-top:clamp(1.6rem,3.5vh,2.2rem);
+  display:flex;flex-direction:column;gap:.25rem;
+}
+.detail-venue{font-size:clamp(1.05rem,1.6vw,1.25rem);font-weight:600;letter-spacing:-.005em;color:var(--bone)}
+.detail-city{font-size:clamp(.92rem,1.3vw,1.05rem);color:rgba(228,224,212,.62)}
+.detail-date{
+  font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--sun);margin-top:.45rem;
+}
+.detail-credits{
+  margin-top:clamp(1.8rem,4vh,2.6rem);padding-top:clamp(1.1rem,2.5vh,1.5rem);
+  border-top:1px solid var(--line-light);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:.95rem 1.4rem;
+}
+.detail-credits div span{
+  display:block;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.18em;
+  color:rgba(228,224,212,.42);margin-bottom:.32rem;
+}
+.detail-credits div b{
+  font-family:var(--mono);font-weight:400;font-size:.82rem;letter-spacing:.01em;
+  color:rgba(228,224,212,.86);
+}
+@media(max-width:820px){
+  .detail{align-items:flex-start;overflow-y:auto}
+  .detail-inner{grid-template-columns:1fr;gap:clamp(1.6rem,5vw,2.4rem);align-items:start}
+  .detail-figure img{max-height:52vh}
+  .detail-meta{max-width:none}
+}
+
+/* ---------- loader ---------- */
+#loader{
+  position:fixed;inset:0;z-index:60;background:var(--soot);color:var(--bone);
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:clamp(1.2rem,3vw,2.5rem);
+}
+#loader .word{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(2rem,6vw,3.6rem);line-height:.95;
+}
+#loader .count{font-family:var(--mono);font-size:clamp(.78rem,1.4vw,1rem);letter-spacing:.1em;color:rgba(228,224,212,.6)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="scene"></canvas>
+  <div id="vignette"></div>
+</div>
+
+<header class="hud">
+  <div class="mark">
+    <b>Show Posters</b>
+    <span class="sub" id="hud-index">Index</span>
+  </div>
+  <div class="hint">
+    <span class="dot"></span>Drag to look around<br>Click a poster to open
+  </div>
+</header>
+
+<section class="detail" id="detail" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Poster detail">
+  <div class="detail-bar">
+    <span class="crumb" id="detail-crumb">Poster</span>
+    <button class="detail-close" id="detail-close" type="button" aria-label="Close and return to gallery">
+      <span class="x">&times;</span> Back to gallery
+    </button>
+  </div>
+  <div class="detail-inner">
+    <figure class="detail-figure"><img id="detail-img" alt=""></figure>
+    <div class="detail-meta">
+      <p class="detail-note" id="detail-note"></p>
+      <h1 class="detail-head" id="detail-head"></h1>
+      <p class="detail-support" id="detail-support"></p>
+      <div class="detail-where">
+        <span class="detail-venue" id="detail-venue"></span>
+        <span class="detail-city" id="detail-city"></span>
+        <span class="detail-date" id="detail-date"></span>
+      </div>
+      <div class="detail-credits" id="detail-credits"></div>
+    </div>
+  </div>
+</section>
+
+<div id="loader"><span class="word">Poster Gallery</span><span class="count" id="loader-count">Loading</span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+/* ============================================================================
+   POSTERS: the whole gallery is driven from this one array.
+   Add, remove, or reorder objects here; everything else adapts automatically.
+
+   PLACEHOLDER DATA: the names, venues, dates and print specs below are dummy
+   text and the artwork is generated on the fly. Drop real ~2:3 poster images
+   into  poster-gallery/posters/  (matching each `image` path) and swap the
+   fields for your real shows. `support` and `note` are optional, leave them
+   off and the detail page still renders cleanly.
+
+   {
+     image:   'posters/poster-01.jpg',  // ~2:3 vertical poster
+     artist:  'Headliner Name',
+     support: ['Opener One','Opener Two'],   // optional
+     venue:   'Venue Name',
+     city:    'City, ST',
+     date:    'Month DD, YYYY',
+     note:    'Optional one-line caption about the concept.',  // optional
+     dimensions:'18 x 24"', technique:'Screen print',
+     edition:'Edition of 100', colors:'4 colors', year:'2025',
+   }
+   ============================================================================ */
+const posters = [
+  {
+    image:'posters/poster-01.jpg',
+    artist:'Velvet Static',
+    support:['The Hollow Coast','Paper Tigers'],
+    venue:'The Crystal Ballroom', city:'Portland, OR', date:'March 14, 2025',
+    note:'A study in afterimage and signal noise, screened on cobalt stock.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-02.jpg',
+    artist:'Marrow Bloom',
+    support:['Slow Tide'],
+    venue:'Mississippi Studios', city:'Portland, OR', date:'April 02, 2025',
+    note:'Botanical line work meets a bruised vermilion wash.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 75', colors:'3 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-03.jpg',
+    artist:'Neon Cathedral',
+    venue:'Roseland Theater', city:'Portland, OR', date:'May 19, 2025',
+    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 150', colors:'2 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-04.jpg',
+    artist:'Dust & Dahlia',
+    support:['Cinder Lake','North Channel','Quiet Hours'],
+    venue:'Wonder Ballroom', city:'Portland, OR', date:'June 07, 2025',
+    note:'Three-act lineup folded into a single blooming form.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 120', colors:'5 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-05.jpg',
+    artist:'Glass Horizon',
+    support:['Atlas Drift'],
+    venue:'Revolution Hall', city:'Portland, OR', date:'July 21, 2025',
+    dimensions:'18 x 24"', technique:'Giclée print', edition:'Edition of 50', colors:'Full color', year:'2025',
+  },
+  {
+    image:'posters/poster-06.jpg',
+    artist:'The Empty Orchestra',
+    venue:'Aladdin Theater', city:'Portland, OR', date:'August 09, 2025',
+    note:'Hand-lettered marquee type set against a black sun.',
+    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 90', colors:'3 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-07.jpg',
+    artist:'Saffron Tongue',
+    support:['Low Ceremony','Wax Effigy'],
+    venue:'Doug Fir Lounge', city:'Portland, OR', date:'September 13, 2025',
+    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 110', colors:'2 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-08.jpg',
+    artist:'Pale Voltage',
+    support:['Signal Hill'],
+    venue:'Polaris Hall', city:'Portland, OR', date:'October 04, 2025',
+    note:'Voltage diagrams rendered as a rose-tinted topography.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 80', colors:'4 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-09.jpg',
+    artist:'Hymnal Static',
+    venue:'Holocene', city:'Portland, OR', date:'October 26, 2025',
+    dimensions:'18 x 24"', technique:'Letterpress', edition:'Edition of 60', colors:'2 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-10.jpg',
+    artist:'Cobra Verde',
+    support:['The Understudy','Margin Walker'],
+    venue:'Star Theater', city:'Portland, OR', date:'November 08, 2025',
+    note:'A serpentine grid that coils tighter toward the centre.',
+    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 130', colors:'5 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-11.jpg',
+    artist:'Lantern Jaw',
+    support:['Even Keel'],
+    venue:'Bunk Bar', city:'Portland, OR', date:'November 22, 2025',
+    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 70', colors:'3 colors', year:'2025',
+  },
+  {
+    image:'posters/poster-12.jpg',
+    artist:'Future Antique',
+    venue:'Crystal Ballroom', city:'Portland, OR', date:'December 06, 2025',
+    note:'Retro-futurist chrome type, aged to a warm patina.',
+    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 45', colors:'Full color', year:'2025',
+  },
+  {
+    image:'posters/poster-13.jpg',
+    artist:'Saltwater Choir',
+    support:['Tidal Bore','Harbor Lights'],
+    venue:'Alberta Rose Theatre', city:'Portland, OR', date:'January 17, 2026',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-14.jpg',
+    artist:'Ember Decline',
+    support:['Nightjar'],
+    venue:'Hawthorne Theatre', city:'Portland, OR', date:'February 08, 2026',
+    note:'A slow burn gradient from soot to ember.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 85', colors:'3 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-15.jpg',
+    artist:'The Gilded Hours',
+    venue:'Revolution Hall', city:'Portland, OR', date:'March 01, 2026',
+    note:'Gold-foil numerals counting down to midnight.',
+    dimensions:'24 x 36"', technique:'Letterpress + foil', edition:'Edition of 55', colors:'2 colors + foil', year:'2026',
+  },
+  {
+    image:'posters/poster-16.jpg',
+    artist:'Concrete Garden',
+    support:['Iron Lung','Soft Machine'],
+    venue:'Mississippi Studios', city:'Portland, OR', date:'March 19, 2026',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 95', colors:'4 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-17.jpg',
+    artist:'Midnight Cartographers',
+    venue:'Polaris Hall', city:'Portland, OR', date:'April 04, 2026',
+    note:'Star charts hand-plotted across a midnight field.',
+    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 140', colors:'3 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-18.jpg',
+    artist:'Feral Hymn',
+    support:['Bramble'],
+    venue:'Doug Fir Lounge', city:'Portland, OR', date:'April 22, 2026',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 70', colors:'3 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-19.jpg',
+    artist:'The Long Goodbye',
+    support:['Casualties of Cool','Pale Blue Dot'],
+    venue:'Aladdin Theater', city:'Portland, OR', date:'May 09, 2026',
+    note:'A farewell tour rendered as a slow dissolve.',
+    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 40', colors:'Full color', year:'2026',
+  },
+  {
+    image:'posters/poster-20.jpg',
+    artist:'Static Garden',
+    venue:'Holocene', city:'Portland, OR', date:'May 24, 2026',
+    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 115', colors:'2 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-21.jpg',
+    artist:'Bonfire Choir',
+    support:['Ash & Oak'],
+    venue:'Wonder Ballroom', city:'Portland, OR', date:'June 06, 2026',
+    note:'Warm grain and ember type for a midsummer night.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 105', colors:'5 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-22.jpg',
+    artist:'Vacant Lot',
+    venue:'Bunk Bar', city:'Portland, OR', date:'June 20, 2026',
+    dimensions:'18 x 24"', technique:'Letterpress', edition:'Edition of 65', colors:'2 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-23.jpg',
+    artist:'Tidal Mechanics',
+    support:['Undertow','Spring Line','Driftwood'],
+    venue:'Revolution Hall', city:'Portland, OR', date:'July 11, 2026',
+    note:'Tide tables translated into a moving grid.',
+    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 125', colors:'4 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-24.jpg',
+    artist:'Golden Hour Theory',
+    support:['Lowlight'],
+    venue:'Crystal Ballroom', city:'Portland, OR', date:'July 25, 2026',
+    note:'A sun-washed gradient caught at the last warm minute.',
+    dimensions:'18 x 24"', technique:'Giclée print', edition:'Edition of 60', colors:'Full color', year:'2026',
+  },
+  {
+    image:'posters/poster-25.jpg',
+    artist:'Paper Moon Riot',
+    support:['The Carousels'],
+    venue:'Hawthorne Theatre', city:'Portland, OR', date:'August 08, 2026',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 90', colors:'3 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-26.jpg',
+    artist:'Slow Architecture',
+    venue:'Revolution Hall', city:'Portland, OR', date:'August 23, 2026',
+    note:'Type built like scaffolding, one beam at a time.',
+    dimensions:'24 x 36"', technique:'Risograph', edition:'Edition of 130', colors:'2 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-27.jpg',
+    artist:'Wax Wing',
+    support:['Daedalus','Solar Plexus'],
+    venue:'Doug Fir Lounge', city:'Portland, OR', date:'September 05, 2026',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 75', colors:'4 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-28.jpg',
+    artist:'Nocturne 5',
+    venue:'Aladdin Theater', city:'Portland, OR', date:'September 20, 2026',
+    note:'Five movements, scored in soot and rose.',
+    dimensions:'24 x 36"', technique:'Letterpress', edition:'Edition of 50', colors:'2 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-29.jpg',
+    artist:'The Tin Choir',
+    support:['Brass Tacks'],
+    venue:'Polaris Hall', city:'Portland, OR', date:'October 03, 2026',
+    dimensions:'18 x 24"', technique:'Risograph', edition:'Edition of 110', colors:'3 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-30.jpg',
+    artist:'Drift Season',
+    support:['Northerly','Cold Front'],
+    venue:'Mississippi Studios', city:'Portland, OR', date:'October 17, 2026',
+    note:'A weather map left out in the rain.',
+    dimensions:'18 x 24"', technique:'Screen print', edition:'Edition of 100', colors:'4 colors', year:'2026',
+  },
+  {
+    image:'posters/poster-31.jpg',
+    artist:'Halcyon Static',
+    venue:'Holocene', city:'Portland, OR', date:'October 31, 2026',
+    note:'A calm signal hiding in the noise floor.',
+    dimensions:'24 x 36"', technique:'Giclée print', edition:'Edition of 45', colors:'Full color', year:'2026',
+  },
+  {
+    image:'posters/poster-32.jpg',
+    artist:'Brass Cathedral',
+    support:['Reverb Theory','Low Mass'],
+    venue:'Crystal Ballroom', city:'Portland, OR', date:'November 14, 2026',
+    dimensions:'24 x 36"', technique:'Screen print', edition:'Edition of 120', colors:'5 colors', year:'2026',
+  },
+];
+
+/* ============================================================================
+   GALLERY ENGINE
+   ============================================================================ */
+(function(){
+  const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TAU = Math.PI*2;
+  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+
+  // --- tuning -------------------------------------------------------------
+  const R = 12;                 // sphere radius (camera sits at its centre)
+  const ASPECT = 2/3;           // poster width : height
+  const MAX_LAT = 1.40;         // ~80deg, keeps you from flipping over the poles
+  const EASE = 0.085;           // how quickly the view settles toward its target
+  const FRICTION = 0.94;        // inertial decay after a throw
+  const IDLE_DELAY = 2600;      // ms of stillness before the slow drift begins
+  const IDLE_SPEED = 0.018;     // radians/sec of idle yaw
+
+  const stage = document.getElementById('stage');
+  const canvas = document.getElementById('scene');
+  const hudIndex = document.getElementById('hud-index');
+
+  // --- renderer / scene / camera -----------------------------------------
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+  renderer.setClearColor(0x141310, 1);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(72, 1, 0.1, 100);
+  camera.position.set(0,0,0);
+
+  // poster plane height sized from how densely the sphere is packed,
+  // so the dome stays evenly tiled no matter how many posters you add.
+  const N = posters.length;
+  const meanAngle = Math.sqrt(4*Math.PI / Math.max(N,1));   // avg neighbour spacing
+  const posterH = clamp(2*R*Math.tan(Math.min(meanAngle*0.80, 0.62)/2), 2, R*0.8);
+  const posterW = posterH * ASPECT;
+
+  // shared geometry; per-poster materials
+  const posterGeo = new THREE.PlaneGeometry(posterW, posterH);
+  const glowGeo = new THREE.PlaneGeometry(posterW*1.42, posterH*1.34);
+
+  const BASE_OP = 0.9;          // resting poster opacity (hover lifts to 1)
+  const accents = [0xff8330, 0xff4d8c];   // sun + rose, alternating glow tints
+  const glowTex = makeGlowTexture();
+
+  const groups = [];            // one THREE.Group per poster
+  const pickMeshes = [];        // poster planes for raycasting
+  const _made = [];             // texture refs, so we can redraw once webfonts load
+
+  // Fibonacci sphere distribution: even coverage, no clustering at the poles.
+  const golden = Math.PI*(3 - Math.sqrt(5));
+  for(let i=0;i<N;i++){
+    const y = 1 - ((i+0.5)/N)*2;          // offset keeps posters off the exact poles
+    const rad = Math.sqrt(Math.max(0,1 - y*y));
+    const theta = golden*i;
+    const dir = new THREE.Vector3(Math.cos(theta)*rad, y, Math.sin(theta)*rad);
+    const pos = dir.clone().multiplyScalar(R);
+
+    const group = new THREE.Group();
+    group.position.copy(pos);
+    // face the centre camera; swap the up-vector near the poles so lookAt
+    // doesn't flip/mirror the poster where world-up aligns with the view axis
+    group.up.set(0,1,0);
+    if(Math.abs(dir.y) > 0.9) group.up.set(0,0,1);
+    group.lookAt(0,0,0);        // front face (+Z) turns to the centre camera
+
+    // procedural placeholder texture first (instant + offline), upgraded if a
+    // real image is found at the configured path.
+    const made = makePosterTexture(posters[i], i);
+    const mat = new THREE.MeshBasicMaterial({map:made.texture, transparent:true, opacity:BASE_OP});
+    const mesh = new THREE.Mesh(posterGeo, mat);
+    mesh.userData = {index:i, group};
+    pickMeshes.push(mesh);
+
+    const glowMat = new THREE.MeshBasicMaterial({
+      map:glowTex, color:accents[i%accents.length],
+      transparent:true, opacity:0, blending:THREE.AdditiveBlending,
+      depthWrite:false, depthTest:false,
+    });
+    const glow = new THREE.Mesh(glowGeo, glowMat);
+    glow.position.z = -0.04;    // sits just behind the poster, haloing its edge
+    glow.renderOrder = -1;
+
+    group.add(glow);
+    group.add(mesh);
+    group.userData = {index:i, mat, glowMat, baseScale:1};
+    scene.add(group);
+    groups.push(group);
+
+    posters[i]._display = made.display;   // src used by the detail <img>
+    upgradeTexture(posters[i], made, mat);
+  }
+  hudIndex.textContent = 'Index 01 / ' + String(N).padStart(2,'0');
+
+  // --- view state ---------------------------------------------------------
+  // open aimed at a near-equator poster (densest band) so the first frame is
+  // well composed with neighbours, rather than a random gap in the dome.
+  let _eqi = 0, _eqy = 2;
+  for(let i=0;i<N;i++){ const ay = Math.abs(groups[i].position.y); if(ay < _eqy){ _eqy = ay; _eqi = i; } }
+  const _d0 = groups[_eqi].position.clone().normalize();
+  let lon = Math.atan2(_d0.x, _d0.z) + 0.14, lat = Math.asin(_d0.y);  // eased orientation
+  let tLon = lon, tLat = lat;       // target orientation
+  let vLon = 0, vLat = 0;           // inertial velocity
+  let down = false, dragging = false;
+  let px = 0, py = 0, startX = 0, startY = 0, downTime = 0;
+  let lastInteract = performance.now();
+  let detailOpen = false;
+  let transitioning = false;        // GSAP owns lon/lat during a transition
+  const ndc = new THREE.Vector2(NaN,NaN);
+  const raycaster = new THREE.Raycaster();
+  let hovered = -1;
+
+  function setSize(){
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h;
+    // a wide lens keeps several posters in frame and shows the dome curving away.
+    // tall/portrait screens get more vertical FOV; wide monitors already cover a
+    // lot horizontally, so they need less.
+    camera.fov = clamp(112 - 26*(w/h), 66, 82);
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', setSize);
+  setSize();
+
+  // --- pointer input ------------------------------------------------------
+  function toNDC(e){
+    const r = canvas.getBoundingClientRect();
+    ndc.x = ((e.clientX - r.left)/r.width)*2 - 1;
+    ndc.y = -((e.clientY - r.top)/r.height)*2 + 1;
+  }
+  canvas.addEventListener('pointerdown', e=>{
+    if(detailOpen) return;
+    down = true; dragging = false;
+    px = startX = e.clientX; py = startY = e.clientY;
+    downTime = performance.now();
+    vLon = vLat = 0;
+    canvas.classList.add('grabbing');
+    canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId);
+  });
+  canvas.addEventListener('pointermove', e=>{
+    toNDC(e);
+    if(!down || detailOpen) return;
+    const dx = e.clientX - px, dy = e.clientY - py;
+    if(!dragging && Math.hypot(e.clientX-startX, e.clientY-startY) > 4) dragging = true;
+    if(dragging){
+      const k = 0.0042 * (camera.fov/72);   // drag sensitivity, scaled to lens
+      tLon -= dx * k;
+      tLat += dy * k;
+      tLat = clamp(tLat, -MAX_LAT, MAX_LAT);
+      vLon = -dx * k; vLat = dy * k;
+      lastInteract = performance.now();
+    }
+    px = e.clientX; py = e.clientY;
+  });
+  function endPointer(e){
+    if(!down) return;
+    down = false;
+    canvas.classList.remove('grabbing');
+    const quick = performance.now() - downTime < 350;
+    if(!dragging && quick){
+      // a tap, not a throw: open whatever is under the cursor
+      toNDC(e);
+      const hit = pick();
+      if(hit>=0) openDetail(hit);
+    }
+    lastInteract = performance.now();
+  }
+  canvas.addEventListener('pointerup', endPointer);
+  canvas.addEventListener('pointercancel', ()=>{down=false;canvas.classList.remove('grabbing');});
+  canvas.addEventListener('pointerleave', ()=>{ if(!down) { ndc.set(NaN,NaN); } });
+
+  function pick(){
+    if(Number.isNaN(ndc.x)) return -1;
+    raycaster.setFromCamera(ndc, camera);
+    const hits = raycaster.intersectObjects(pickMeshes, false);
+    return hits.length ? hits[0].object.userData.index : -1;
+  }
+
+  // --- hover --------------------------------------------------------------
+  function setHover(i){
+    if(i === hovered) return;
+    if(hovered >= 0) tweenHover(hovered, false);
+    hovered = i;
+    if(hovered >= 0) tweenHover(hovered, true);
+    canvas.classList.toggle('pointing', hovered >= 0 && !down);
+  }
+  function tweenHover(i, on){
+    const g = groups[i];
+    gsap.to(g.scale, {x:on?1.08:1, y:on?1.08:1, z:on?1.08:1, duration:.5, ease:'power3.out', overwrite:true});
+    gsap.to(g.userData.mat, {opacity:on?1:BASE_OP, duration:.45, ease:'power2.out', overwrite:true});
+    gsap.to(g.userData.glowMat, {opacity:on?0.55:0, duration:.5, ease:'power2.out', overwrite:true});
+  }
+
+  // --- detail open / close ------------------------------------------------
+  const detail = document.getElementById('detail');
+  const dImg = document.getElementById('detail-img');
+  const dNote = document.getElementById('detail-note');
+  const dHead = document.getElementById('detail-head');
+  const dSupport = document.getElementById('detail-support');
+  const dVenue = document.getElementById('detail-venue');
+  const dCity = document.getElementById('detail-city');
+  const dDate = document.getElementById('detail-date');
+  const dCredits = document.getElementById('detail-credits');
+  const dCrumb = document.getElementById('detail-crumb');
+  let saved = {lon:0, lat:0};
+
+  function populate(p, i){
+    dImg.src = p._display; dImg.alt = 'Poster for ' + p.artist;
+    dCrumb.textContent = String(i+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0');
+    dHead.textContent = p.artist || '';
+    if(p.note){ dNote.textContent = p.note; dNote.style.display=''; } else dNote.style.display='none';
+    if(p.support && p.support.length){
+      dSupport.innerHTML = '<span class="lead">With</span>' + p.support.join(', ');
+      dSupport.style.display='';
+    } else dSupport.style.display='none';
+    dVenue.textContent = p.venue || '';
+    dCity.textContent = p.city || '';
+    dDate.textContent = p.date || '';
+    const credits = [
+      ['Format', p.dimensions], ['Process', p.technique],
+      ['Run', p.edition], ['Ink', p.colors], ['Year', p.year],
+    ].filter(c=>c[1]);
+    dCredits.innerHTML = credits.map(c=>`<div><span>${c[0]}</span><b>${c[1]}</b></div>`).join('');
+  }
+
+  function openDetail(i){
+    if(detailOpen) return;
+    detailOpen = true;
+    saved.lon = tLon; saved.lat = tLat;
+    setHover(-1);
+    canvas.classList.remove('pointing');
+    populate(posters[i], i);
+
+    // face the chosen poster, then dim the dome and reveal the editorial layout
+    const dir = groups[i].position.clone().normalize();
+    let faceLon = Math.atan2(dir.x, dir.z);
+    const faceLat = clamp(Math.asin(dir.y), -MAX_LAT, MAX_LAT);
+    faceLon = nearestAngle(lon, faceLon);   // turn the short way
+
+    transitioning = true;
+    detail.classList.add('open');
+    detail.setAttribute('aria-hidden','false');
+
+    const view = {lon, lat};
+    const dur = REDUCED ? 0.01 : 0.85;
+    const tl = gsap.timeline({onComplete:()=>{ transitioning=false; }});
+    tl.to(view, {lon:faceLon, lat:faceLat, duration:dur, ease:'power3.inOut',
+        onUpdate:()=>{ lon=view.lon; lat=view.lat; tLon=view.lon; tLat=view.lat; }}, 0);
+    tl.to(blurProxy, {b:14, dim:0.5, scale:1.06, duration:dur, ease:'power2.inOut', onUpdate:applyCanvasFx}, 0);
+    tl.to('.hud', {opacity:0, duration:REDUCED?0.01:0.35, ease:'power2.out'}, 0);
+    tl.to(detail, {opacity:1, duration:REDUCED?0.01:0.5, ease:'power2.out'}, dur*0.45);
+    if(!REDUCED){
+      tl.fromTo('.detail-figure', {opacity:0, x:-26}, {opacity:1, x:0, duration:.6, ease:'power3.out'}, dur*0.5);
+      tl.fromTo('.detail-meta > *', {opacity:0, y:18}, {opacity:1, y:0, duration:.5, stagger:.06, ease:'power3.out'}, dur*0.58);
+      tl.fromTo('.detail-bar', {opacity:0}, {opacity:1, duration:.4}, dur*0.5);
+    }
+  }
+
+  function closeDetail(){
+    if(!detailOpen) return;
+    const dur = REDUCED ? 0.01 : 0.6;
+    transitioning = true;
+    const back = {lon, lat};
+    const tl = gsap.timeline({onComplete:()=>{
+      detail.classList.remove('open');
+      detail.setAttribute('aria-hidden','true');
+      detailOpen = false; transitioning = false;
+      lastInteract = performance.now();
+    }});
+    tl.to(detail, {opacity:0, duration:REDUCED?0.01:0.4, ease:'power2.in'}, 0);
+    tl.to('.hud', {opacity:1, duration:REDUCED?0.01:0.45, ease:'power2.out'}, dur*0.35);
+    tl.to(blurProxy, {b:0, dim:0, scale:1, duration:dur, ease:'power2.inOut', onUpdate:applyCanvasFx}, 0);
+    tl.to(back, {lon:saved.lon, lat:saved.lat, duration:dur, ease:'power3.inOut',
+        onUpdate:()=>{ lon=back.lon; lat=back.lat; tLon=back.lon; tLat=back.lat; }}, 0);
+  }
+
+  document.getElementById('detail-close').addEventListener('click', closeDetail);
+  detail.addEventListener('click', e=>{ if(e.target === detail) closeDetail(); });
+  window.addEventListener('keydown', e=>{ if(e.key==='Escape' && detailOpen) closeDetail(); });
+
+  // canvas post FX driven by GSAP during transitions
+  const blurProxy = {b:0, dim:0, scale:1};
+  function applyCanvasFx(){
+    canvas.style.filter = blurProxy.b>0.01 ? `blur(${blurProxy.b}px) brightness(${1-blurProxy.dim})` : '';
+    canvas.style.transform = blurProxy.scale!==1 ? `scale(${blurProxy.scale})` : '';
+  }
+
+  function nearestAngle(from, to){
+    let d = (to - from) % TAU;
+    if(d > Math.PI) d -= TAU; else if(d < -Math.PI) d += TAU;
+    return from + d;
+  }
+
+  // --- main loop ----------------------------------------------------------
+  const target = new THREE.Vector3();
+  let last = performance.now();
+  let fpsAccum = 0, fpsFrames = 0;
+  window.__galleryFps = 0;
+
+  function tick(now){
+    const dt = Math.min((now - last)/1000, 0.05); last = now;
+
+    if(!detailOpen && !transitioning){
+      if(!down){
+        tLon += vLon; tLat += vLat;
+        vLon *= FRICTION; vLat *= FRICTION;
+        if(Math.abs(vLon) < 1e-4) vLon = 0;
+        if(Math.abs(vLat) < 1e-4) vLat = 0;
+        tLat = clamp(tLat, -MAX_LAT, MAX_LAT);
+        // idle drift keeps the dome alive when left untouched
+        if(!REDUCED && (now - lastInteract) > IDLE_DELAY && vLon===0 && vLat===0){
+          tLon += IDLE_SPEED * dt;
+          tLat += Math.sin(now*0.00012) * 0.0006;
+          tLat = clamp(tLat, -MAX_LAT, MAX_LAT);
+        }
+      }
+      lon += (tLon - lon) * EASE;
+      lat += (tLat - lat) * EASE;
+    }
+
+    // orient the camera (fixed at centre) toward the eased look direction
+    target.set(
+      Math.sin(lon) * Math.cos(lat),
+      Math.sin(lat),
+      Math.cos(lon) * Math.cos(lat)
+    );
+    camera.lookAt(target);
+
+    if(!detailOpen && !transitioning){
+      setHover(down && !dragging ? hovered : pick());
+    }
+
+    renderer.render(scene, camera);
+
+    // rolling FPS for profiling
+    fpsAccum += dt; fpsFrames++;
+    if(fpsAccum >= 0.5){ window.__galleryFps = Math.round(fpsFrames/fpsAccum); fpsAccum=0; fpsFrames=0; }
+
+    requestAnimationFrame(tick);
+  }
+
+  // --- boot ---------------------------------------------------------------
+  function boot(){
+    setSize();
+    requestAnimationFrame(tick);
+    const loader = document.getElementById('loader');
+    document.getElementById('loader-count').textContent = String(N).padStart(2,'0') + ' posters';
+    gsap.to(loader, {opacity:0, duration:.6, delay:.25, ease:'power2.out',
+      onComplete:()=>{ loader.style.display='none'; }});
+  }
+  if(document.fonts && document.fonts.ready){
+    Promise.race([document.fonts.ready, new Promise(r=>setTimeout(r,1500))]).then(redrawTextures).then(boot);
+  } else boot();
+
+  /* ---------------------------------------------------------------------- *
+   *  Texture helpers
+   * ---------------------------------------------------------------------- */
+  function makeGlowTexture(){
+    const s = 256, c = document.createElement('canvas'); c.width=c.height=s;
+    const ctx = c.getContext('2d');
+    const g = ctx.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+    g.addColorStop(0,'rgba(255,255,255,0.9)');
+    g.addColorStop(0.45,'rgba(255,255,255,0.28)');
+    g.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle = g; ctx.fillRect(0,0,s,s);
+    const t = new THREE.CanvasTexture(c); t.needsUpdate=true; return t;
+  }
+
+  // procedural placeholder artwork so the gallery looks finished before any
+  // real files exist. distinct palette + layout per poster.
+  function drawPoster(p, i){
+    const W=600, H=900, c=document.createElement('canvas'); c.width=W; c.height=H;
+    const ctx=c.getContext('2d');
+    const sun='#ff8330', rose='#ff4d8c', soot='#141310', bone='#E4E0D4';
+    const variant = i % 4;
+    // base
+    const bg = ctx.createLinearGradient(0,0,W,H);
+    bg.addColorStop(0,'#1c1a16'); bg.addColorStop(1,'#0e0d0b');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    // accent shape
+    ctx.save();
+    if(variant===0){
+      const g=ctx.createLinearGradient(0,0,W,H); g.addColorStop(0,sun); g.addColorStop(1,rose);
+      ctx.fillStyle=g; ctx.beginPath(); ctx.arc(W*0.5,H*0.42,W*0.42,0,TAU); ctx.fill();
+      ctx.globalCompositeOperation='destination-out';
+      ctx.beginPath(); ctx.arc(W*0.5,H*0.42,W*0.30,0,TAU); ctx.fill();
+    } else if(variant===1){
+      ctx.fillStyle=sun; ctx.fillRect(0,H*0.18,W,H*0.10);
+      ctx.fillStyle=rose; ctx.fillRect(0,H*0.70,W,H*0.10);
+    } else if(variant===2){
+      const g=ctx.createLinearGradient(0,H,W,0); g.addColorStop(0,rose); g.addColorStop(1,sun);
+      ctx.fillStyle=g; ctx.beginPath();
+      ctx.moveTo(0,H); ctx.lineTo(W,H*0.45); ctx.lineTo(W,H); ctx.closePath(); ctx.fill();
+    } else {
+      ctx.strokeStyle=sun; ctx.lineWidth=3;
+      for(let r=W*0.12;r<W*0.62;r+=22){ ctx.beginPath(); ctx.arc(W*0.5,H*0.4,r,0,TAU); ctx.stroke(); }
+      ctx.fillStyle=rose; ctx.beginPath(); ctx.arc(W*0.5,H*0.4,W*0.1,0,TAU); ctx.fill();
+    }
+    ctx.restore();
+    // frame
+    ctx.strokeStyle='rgba(228,224,212,.35)'; ctx.lineWidth=2;
+    ctx.strokeRect(28,28,W-56,H-56);
+    // index
+    ctx.fillStyle='rgba(228,224,212,.5)'; ctx.font="500 26px 'IBM Plex Mono',monospace";
+    ctx.textBaseline='top';
+    ctx.fillText(String(i+1).padStart(2,'0')+' / '+String(N).padStart(2,'0'), 48, 48);
+    ctx.textAlign='right'; ctx.fillText('LIVE', W-48, 48); ctx.textAlign='left';
+    // artist name (wrapped)
+    ctx.fillStyle=bone;
+    const name=(p.artist||'Untitled').toUpperCase();
+    fitText(ctx, name, W-96, 96, "800", 'Archivo', 0.9);
+    let ty=H*0.58;
+    ty = wrapText(ctx, name, 48, ty, W-96, ctx._lh);
+    // venue / city / date
+    ctx.fillStyle='rgba(228,224,212,.78)'; ctx.font="500 24px 'IBM Plex Mono',monospace";
+    ty += 28;
+    ctx.fillText((p.venue||'').toUpperCase(), 48, ty); ty+=34;
+    ctx.fillStyle='rgba(228,224,212,.55)';
+    ctx.fillText((p.city||'').toUpperCase(), 48, ty); ty+=34;
+    ctx.fillStyle=sun; ctx.fillText((p.date||'').toUpperCase(), 48, ty);
+    // bottom credit
+    ctx.fillStyle='rgba(228,224,212,.4)'; ctx.font="400 20px 'IBM Plex Mono',monospace";
+    ctx.fillText('PLACEHOLDER ARTWORK', 48, H-64);
+    return c;
+  }
+  function fitText(ctx, text, maxW, startPx, weight, family, widthAxis){
+    let size=startPx;
+    do{
+      ctx.font=`${weight} ${size}px '${family}',sans-serif`;
+      var w=widestWord(ctx,text);
+      size-=4;
+    } while(w>maxW && size>34);
+    ctx._lh = size*1.02;
+  }
+  function widestWord(ctx,text){
+    return text.split(' ').reduce((m,w)=>Math.max(m,ctx.measureText(w).width),0);
+  }
+  function wrapText(ctx,text,x,y,maxW,lh){
+    const words=text.split(' '); let line='';
+    for(let n=0;n<words.length;n++){
+      const test=line?line+' '+words[n]:words[n];
+      if(ctx.measureText(test).width>maxW && line){ ctx.fillText(line,x,y); line=words[n]; y+=lh; }
+      else line=test;
+    }
+    if(line){ ctx.fillText(line,x,y); y+=lh; }
+    return y;
+  }
+
+  function makePosterTexture(p, i){
+    const canvas = drawPoster(p, i);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.colorSpace = THREE.SRGBColorSpace || texture.colorSpace;
+    texture.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1;
+    texture.needsUpdate = true;
+    const made = {canvas, texture, isReal:false, display:canvas.toDataURL('image/jpeg',0.9)};
+    _made[i] = made;
+    return made;
+  }
+  function redrawTextures(){
+    for(let i=0;i<N;i++){
+      const m=_made[i]; if(!m || m.isReal) continue;
+      drawPosterInto(m.canvas, posters[i], i);
+      m.texture.needsUpdate = true;
+      m.display = m.canvas.toDataURL('image/jpeg',0.9);
+      posters[i]._display = m.display;
+    }
+  }
+  function drawPosterInto(canvas, p, i){
+    const fresh = drawPoster(p, i);
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(fresh,0,0);
+  }
+
+  // try to load a real image at the configured path; swap it in if present.
+  function upgradeTexture(p, made, mat){
+    if(!p.image) return;
+    const loader = new THREE.TextureLoader();
+    loader.load(p.image, tex=>{
+      tex.colorSpace = THREE.SRGBColorSpace || tex.colorSpace;
+      tex.anisotropy = renderer.capabilities.getMaxAnisotropy ? renderer.capabilities.getMaxAnisotropy() : 1;
+      mat.map = tex; mat.needsUpdate = true;
+      made.isReal = true; p._display = p.image;
+    }, undefined, ()=>{ /* no file yet, keep the placeholder */ });
+  }
+
+  // small public hook: open or close a poster by index from the console or a
+  // deep link, e.g. gallery.open(3). Optional, the gallery works without it.
+  window.gallery = { open:i=>openDetail(i), close:closeDetail, count:N };
+})();
+</script>
+</body>
+</html>
