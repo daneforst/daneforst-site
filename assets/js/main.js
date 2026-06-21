@@ -298,3 +298,21 @@
     document.querySelectorAll('.reveal').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
   }
 })();
+
+/* ---------- lazy autoplay videos (load + play only when scrolled into view) ---------- */
+(function(){
+  const vids = document.querySelectorAll('video.lazyvid');
+  if(!vids.length) return;
+  if(!('IntersectionObserver' in window)){
+    vids.forEach(v=>{ v.play().catch(()=>{}); });
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      const v = e.target;
+      if(e.isIntersecting){ v.play().catch(()=>{}); }
+      else { v.pause(); }
+    });
+  }, {threshold:0.2});
+  vids.forEach(v=>io.observe(v));
+})();
