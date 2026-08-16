@@ -650,3 +650,28 @@ section{position:relative}
 }
 .gt-all:hover{color:var(--rose)}
 @media(max-width:720px){.gt-feature{aspect-ratio:16/11}}
+
+/* ---------- gallery category: interactive flick carousel ----------
+   A draggable "wheel" of artwork (coverflow depth). Drifts when idle,
+   grab to pause and flick with momentum. JS: assets/js/flickwall.js.
+   Default = square cards (album art); .portrait = 2:3 (key art / posters). */
+.flickwall{position:relative;margin:clamp(2rem,5vh,3.5rem) 0 0}
+.fw-viewport{position:relative;height:clamp(300px,46vw,500px);overflow:hidden;perspective:1500px;
+  touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.fw-viewport.dragging{cursor:grabbing}
+.fw-track{position:absolute;inset:0;transform-style:preserve-3d}
+.fw-card{position:absolute;top:50%;left:0;width:clamp(210px,26vw,320px);aspect-ratio:1/1;
+  border-radius:3px;overflow:hidden;background:var(--soot);
+  box-shadow:0 24px 60px rgba(20,19,16,.5);will-change:transform,opacity;backface-visibility:hidden}
+.fw-card img{width:100%;height:100%;object-fit:contain;display:block;background:var(--soot)}
+.flickwall.portrait .fw-viewport{height:clamp(360px,56vw,600px)}
+.flickwall.portrait .fw-card{width:clamp(150px,19vw,250px);aspect-ratio:2/3}
+.fw-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(20,19,16,.55)}
+.fw-hint{display:inline-flex;align-items:center;gap:.55rem}
+.fw-counter{color:var(--rose)}
+.no-js .flickwall{display:none}
+@media(max-width:720px){
+  .fw-viewport{height:clamp(280px,64vw,420px)}
+  .flickwall.portrait .fw-viewport{height:clamp(340px,82vw,520px)}
+}

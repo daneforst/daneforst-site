@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body class="pbody">
 <!-- ============================================================
@@ -83,33 +83,40 @@
     <p>When I get tasked to create a unique and lasting piece of album art I instantly take to wanting to hear the music and find direction that suits the mood of the artist. To me, the magic is in finding the perfect image to represent the feeling of the music. The atmosphere. The authenticity. I aim to give my clients entire worlds to play in with characters that add to the experience in expansive and unexpected ways.</p>
   </div>
 
-  <!-- STACKED REVEAL CLIPS: one <div class="gpiece"> per piece.
-       Autoplay muted on scroll into view (.lazyvid), native controls kept.
-       Add or remove blocks freely; the stack holds any number. -->
-  <div class="gstack">
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/album-art/album-art-01.jpg">
-          <source src="../assets/video/galleries/album-art/album-art-01.webm" type="video/webm">
-          <source src="../assets/video/galleries/album-art/album-art-01.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <!-- INTERACTIVE FLICK CAROUSEL — grab & flick through the artwork.
+       Cards are the images in assets/img/galleries/album-art/pieces/ (add/remove freely). -->
+  <div class="flickwall" data-flickwall aria-label="Album Art — drag to browse">
+    <div class="fw-viewport">
+      <div class="fw-track">
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-01.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-02.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-03.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-04.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-05.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-06.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-07.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-08.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-09.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-10.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-11.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-12.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-13.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-14.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-15.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-16.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-17.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-18.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-19.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-20.jpg" alt="Album cover" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/album-art/pieces/album-art-21.jpg" alt="Album cover" loading="lazy"></figure>
+      </div>
     </div>
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/album-art/album-art-02.jpg">
-          <source src="../assets/video/galleries/album-art/album-art-02.webm" type="video/webm">
-          <source src="../assets/video/galleries/album-art/album-art-02.mp4" type="video/mp4">
-        </video>
-      </figure>
-    </div>
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/album-art/album-art-03.jpg">
-          <source src="../assets/video/galleries/album-art/album-art-03.webm" type="video/webm">
-          <source src="../assets/video/galleries/album-art/album-art-03.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <div class="fw-foot">
+      <span class="fw-hint">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg>
+        Drag or flick to browse
+      </span>
+      <span class="fw-counter">01 / 21</span>
     </div>
   </div>
 </section>
@@ -155,5 +162,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="../assets/js/main.js?v=2"></script>
+<script src="../assets/js/flickwall.js?v=1"></script>
 </body>
 </html>

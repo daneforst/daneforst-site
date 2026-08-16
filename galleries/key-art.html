@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body class="pbody">
 <nav>
@@ -70,25 +70,37 @@
     <p>There have been so many poster artists over the years that have inspired my approach to the artform and I hope to continue the time honored tradition and contribute to the legacy!</p>
   </div>
 
-  <!-- STACKED REVEAL CLIPS: one <div class="gpiece"> per piece.
-       Autoplay muted on scroll into view (.lazyvid), native controls kept.
-       Add or remove blocks freely; the stack holds any number. -->
-  <div class="gstack">
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/key-art/key-art-01.jpg">
-          <source src="../assets/video/galleries/key-art/key-art-01.webm" type="video/webm">
-          <source src="../assets/video/galleries/key-art/key-art-01.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <!-- INTERACTIVE FLICK CAROUSEL — grab & flick through the artwork.
+       Cards are the images in assets/img/galleries/key-art/pieces/ (add/remove freely). -->
+  <div class="flickwall portrait" data-flickwall aria-label="Key Art — drag to browse">
+    <div class="fw-viewport">
+      <div class="fw-track">
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-01.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-02.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-03.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-04.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-05.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-06.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-07.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-08.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-09.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-10.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-11.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-12.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-13.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-14.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-15.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-16.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-17.jpg" alt="Key art" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/key-art/pieces/key-art-18.jpg" alt="Key art" loading="lazy"></figure>
+      </div>
     </div>
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/key-art/key-art-02.jpg">
-          <source src="../assets/video/galleries/key-art/key-art-02.webm" type="video/webm">
-          <source src="../assets/video/galleries/key-art/key-art-02.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <div class="fw-foot">
+      <span class="fw-hint">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg>
+        Drag or flick to browse
+      </span>
+      <span class="fw-counter">01 / 18</span>
     </div>
   </div>
 </section>
@@ -134,5 +146,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="../assets/js/main.js?v=2"></script>
+<script src="../assets/js/flickwall.js?v=1"></script>
 </body>
 </html>

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/style.css?v=2">
 </head>
 <body class="pbody">
 <nav>
@@ -70,25 +70,41 @@
     <p>Together we could create an impactful poster for your next event or concert!</p>
   </div>
 
-  <!-- STACKED REVEAL CLIPS: one <div class="gpiece"> per piece.
-       Autoplay muted on scroll into view (.lazyvid), native controls kept.
-       Add or remove blocks freely; the stack holds any number. -->
-  <div class="gstack">
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/show-posters/show-posters-01.jpg">
-          <source src="../assets/video/galleries/show-posters/show-posters-01.webm" type="video/webm">
-          <source src="../assets/video/galleries/show-posters/show-posters-01.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <!-- INTERACTIVE FLICK CAROUSEL — grab & flick through the artwork.
+       Cards are the images in assets/img/galleries/show-posters/pieces/ (add/remove freely). -->
+  <div class="flickwall portrait" data-flickwall aria-label="Show Posters — drag to browse">
+    <div class="fw-viewport">
+      <div class="fw-track">
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-01.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-02.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-03.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-04.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-05.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-06.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-07.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-08.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-09.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-10.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-11.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-12.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-13.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-14.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-15.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-16.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-17.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-18.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-19.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-20.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-21.jpg" alt="Show poster" loading="lazy"></figure>
+        <figure class="fw-card"><img src="../assets/img/galleries/show-posters/pieces/show-posters-22.jpg" alt="Show poster" loading="lazy"></figure>
+      </div>
     </div>
-    <div class="gpiece wide reveal">
-      <figure>
-        <video class="lazyvid" controls muted loop playsinline preload="none" poster="../assets/img/galleries/show-posters/show-posters-02.jpg">
-          <source src="../assets/video/galleries/show-posters/show-posters-02.webm" type="video/webm">
-          <source src="../assets/video/galleries/show-posters/show-posters-02.mp4" type="video/mp4">
-        </video>
-      </figure>
+    <div class="fw-foot">
+      <span class="fw-hint">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-4 6 4 6M15 6l4 6-4 6"/></svg>
+        Drag or flick to browse
+      </span>
+      <span class="fw-counter">01 / 22</span>
     </div>
   </div>
 </section>
@@ -134,5 +150,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="../assets/js/main.js?v=2"></script>
+<script src="../assets/js/flickwall.js?v=1"></script>
 </body>
 </html>
