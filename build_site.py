@@ -208,9 +208,10 @@ def build_mnav_block(prefix, active_slug=None):
         links += f'<a href="{prefix}work/{p["slug"]}.html"><i>{n:02d}</i>{p["title"].replace(chr(10), " ")}</a>'
     return (
         f'\n<div class="mnav" id="mnav">\n'
+        f'  <a href="{prefix}about.html">About</a>\n'
         f'  <div class="mlabel">Work — Index</div>\n'
         f'  <div class="msub">{links}</div>\n'
-        f'  <a href="{prefix}about.html">About</a>\n'
+        f'  <a href="{prefix}galleries.html">Galleries</a>\n'
         f'  <a href="{prefix}contact.html">Contact</a>\n'
         f'  <div class="m-meta">\n'
         f'    <span class="avail-m"><span class="dot"></span>Open for work</span>\n'
@@ -226,8 +227,9 @@ def build_shared_nav(prefix, active_slug=None):
 <nav>
   <a class="logo" href="{prefix}index.html"><img src="{prefix}assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
   <ul>
-    <li><a class="wd-trigger" href="{prefix}index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
     <li><a href="{prefix}about.html">About</a></li>
+    <li><a class="wd-trigger" href="{prefix}index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="{prefix}galleries.html">Galleries</a></li>
     <li><a href="{prefix}contact.html">Contact</a></li>
   </ul>
   <div class="avail"><span class="dot"></span>Open for work</div>

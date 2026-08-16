@@ -21,24 +21,28 @@
   addEventListener('keydown',e=>{ if(e.key==='Escape'&&mnav.classList.contains('open')) setMenu(false); });
   }
 
-  /* ---------- work dropdown ---------- */
-  const wdTrig=document.querySelector('.wd-trigger');
-  const wd=document.getElementById('wd');
-  if(wdTrig && wd){
+  /* ---------- nav dropdowns (Work + Galleries) ---------- */
+  const navPairs=[...document.querySelectorAll('.wd-trigger')]
+    .map(t=>({trig:t, draw:document.getElementById(t.getAttribute('aria-controls'))}))
+    .filter(p=>p.draw);
+  if(navPairs.length){
     let closeT;
-    const setWd=open=>{
-      wd.classList.toggle('open',open);
-      wdTrig.setAttribute('aria-expanded',open);
-    };
-    const soon=()=>{ closeT=setTimeout(()=>setWd(false),200); };
+    const closeAll=()=>navPairs.forEach(({trig,draw})=>{ draw.classList.remove('open'); trig.setAttribute('aria-expanded','false'); });
+    const openOnly=draw=>navPairs.forEach(({trig,draw:d})=>{ const on=d===draw; d.classList.toggle('open',on); trig.setAttribute('aria-expanded',on?'true':'false'); });
     const hold=()=>clearTimeout(closeT);
-    wdTrig.addEventListener('mouseenter',()=>{hold();setWd(true);});
-    wdTrig.addEventListener('mouseleave',soon);
-    wd.addEventListener('mouseenter',hold);
-    wd.addEventListener('mouseleave',soon);
-    wdTrig.addEventListener('click',e=>{e.preventDefault();setWd(!wd.classList.contains('open'));});
-    addEventListener('keydown',e=>{ if(e.key==='Escape') setWd(false); });
-    document.addEventListener('click',e=>{ if(!wd.contains(e.target)&&e.target!==wdTrig) setWd(false); });
+    const soon=()=>{ closeT=setTimeout(closeAll,200); };
+    navPairs.forEach(({trig,draw})=>{
+      trig.addEventListener('mouseenter',()=>{ hold(); openOnly(draw); });
+      trig.addEventListener('mouseleave',soon);
+      draw.addEventListener('mouseenter',hold);
+      draw.addEventListener('mouseleave',soon);
+      trig.addEventListener('click',e=>{ e.preventDefault(); draw.classList.contains('open')?closeAll():openOnly(draw); });
+    });
+    addEventListener('keydown',e=>{ if(e.key==='Escape') closeAll(); });
+    document.addEventListener('click',e=>{
+      const inside=navPairs.some(({trig,draw})=>trig.contains(e.target)||draw.contains(e.target));
+      if(!inside) closeAll();
+    });
   }
 
   /* ---------- split hero words into letters ---------- */

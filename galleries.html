@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Dane Forst</title>
-<meta name="description" content="Get in touch with Dane Forst — Art Director and Designer, Portland Oregon.">
+<title>Galleries — Dane Forst</title>
+<meta name="description" content="Galleries of moving-image work by Dane Erik Forst — album art, key art, and show posters, presented as animated reveals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -47,48 +47,98 @@
   </div>
 </div>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
-  </linearGradient></defs>
-</svg>
 <section class="pad ipage-head">
-  <div class="kicker">Contact</div>
-  <h1>Say <em>hello.</em></h1>
+  <div class="kicker">Galleries</div>
+  <h1>Work that <em>moves.</em></h1>
 </section>
+
 <section class="pad" style="padding-top:0">
-  <div class="contact-grid">
-    <div class="prose">
-      <p class="reveal">Got an idea?</p>
-      <p class="reveal">I&#8217;m always interested in hearing about ambitious brands, strange projects, interesting collaborations, and the occasional impossible-sounding creative challenge.</p>
-      <p class="reveal">Whether you&#8217;re building a business, launching something new, reviving something old, or simply trying to figure out what comes next, I&#8217;d love to hear about it.</p>
-      <p class="reveal">Tell me what you&#8217;re working on.</p>
-      <p class="reveal"><em>Let&#8217;s see how deep the rabbit hole goes.</em></p>
-      <p class="reveal" style="margin-top:1.4em"><a href="mailto:daneforst@gmail.com" style="font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;border-bottom:1px solid var(--soot)">daneforst@gmail.com</a></p>
-      <div class="reveal" style="margin-top:1.6rem"><div class="socials">
-  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
-    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
-  </a>
-  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
-    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
-  </a>
-  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
-    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
-  </a>
-</div></div>
-    </div>
-    <form id="contact-form" class="cform reveal" action="https://formspree.io/f/xqeowkby" method="POST" style="--line-light:rgba(20,19,16,.25)">
-      <div class="frow">
-        <label><span style="color:rgba(20,19,16,.6)">Name</span><input type="text" name="name" autocomplete="name" required style="color:var(--soot)"></label>
-        <label><span style="color:rgba(20,19,16,.6)">Email</span><input type="email" name="email" autocomplete="email" required style="color:var(--soot)"></label>
+  <p class="project-intro reveal">A running index of the work that lives best in motion. Where the case studies tell the story behind a project, the galleries let the pieces speak for themselves, each one revealed as a short animated loop. Pick a category to step inside.</p>
+
+  <!-- CATEGORY TILES
+       Launch set: Album Art · Key Art · Show Posters.
+       The grid is auto-fill, so Logo and Various Artwork drop in later
+       by copying one .gtile block below (no layout changes needed).
+       Each tile previews with a short looping clip (poster still as fallback). -->
+  <div class="gtiles">
+
+    <a class="gtile reveal" href="galleries/album-art.html" aria-label="Album Art gallery">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/album-art/album-art-teaser.jpg">
+        <source src="assets/video/galleries/album-art/album-art-teaser.webm" type="video/webm">
+        <source src="assets/video/galleries/album-art/album-art-teaser.mp4" type="video/mp4">
+      </video>
+      <div class="gt-in">
+        <span class="gt-idx">01 — Gallery</span>
+        <h2>Album Art</h2>
+        <span class="gt-cue">View gallery
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
       </div>
-      <label><span style="color:rgba(20,19,16,.6)">Message</span><textarea name="message" rows="6" required style="color:var(--soot)"></textarea></label>
-      <button type="submit" class="cta" style="color:var(--soot);border:1px solid var(--soot)">Send it
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
-      </button>
-    </form>
+    </a>
+
+    <a class="gtile reveal" href="galleries/key-art.html" aria-label="Key Art gallery">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/key-art/key-art-teaser.jpg">
+        <source src="assets/video/galleries/key-art/key-art-teaser.webm" type="video/webm">
+        <source src="assets/video/galleries/key-art/key-art-teaser.mp4" type="video/mp4">
+      </video>
+      <div class="gt-in">
+        <span class="gt-idx">02 — Gallery</span>
+        <h2>Key Art</h2>
+        <span class="gt-cue">View gallery
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <a class="gtile reveal" href="galleries/show-posters.html" aria-label="Show Posters gallery">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/show-posters/show-posters-teaser.jpg">
+        <source src="assets/video/galleries/show-posters/show-posters-teaser.webm" type="video/webm">
+        <source src="assets/video/galleries/show-posters/show-posters-teaser.mp4" type="video/mp4">
+      </video>
+      <div class="gt-in">
+        <span class="gt-idx">03 — Gallery</span>
+        <h2>Show Posters</h2>
+        <span class="gt-cue">View gallery
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <!-- FUTURE TILES (uncomment when the clips are ready):
+    <a class="gtile reveal" href="galleries/logo.html" aria-label="Logo gallery">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/logo/logo-teaser.jpg">
+        <source src="assets/video/galleries/logo/logo-teaser.webm" type="video/webm">
+        <source src="assets/video/galleries/logo/logo-teaser.mp4" type="video/mp4">
+      </video>
+      <div class="gt-in">
+        <span class="gt-idx">04 — Gallery</span>
+        <h2>Logo</h2>
+        <span class="gt-cue">View gallery <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </div>
+    </a>
+    <a class="gtile reveal" href="galleries/various-artwork.html" aria-label="Various Artwork gallery">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/various-artwork/various-artwork-teaser.jpg">
+        <source src="assets/video/galleries/various-artwork/various-artwork-teaser.webm" type="video/webm">
+        <source src="assets/video/galleries/various-artwork/various-artwork-teaser.mp4" type="video/mp4">
+      </video>
+      <div class="gt-in">
+        <span class="gt-idx">05 — Gallery</span>
+        <h2>Various Artwork</h2>
+        <span class="gt-cue">View gallery <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </div>
+    </a>
+    -->
+
   </div>
 </section>
+
+<section class="page-cta">
+  <h2>Got an idea?</h2>
+  <a class="cta" href="contact.html">Let's chat!
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+</section>
+
 <footer class="foot-slim">
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
