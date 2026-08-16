@@ -654,24 +654,28 @@ section{position:relative}
 /* ---------- gallery category: interactive flick carousel ----------
    A draggable "wheel" of artwork (coverflow depth). Drifts when idle,
    grab to pause and flick with momentum. JS: assets/js/flickwall.js.
-   Default = square cards (album art); .portrait = 2:3 (key art / posters). */
-.flickwall{position:relative;margin:clamp(2rem,5vh,3.5rem) 0 0}
-.fw-viewport{position:relative;height:clamp(300px,46vw,500px);overflow:hidden;perspective:1500px;
+   Sits on a full-bleed dark band so any letterbox from mixed aspect
+   ratios blends into the background. Default = square (album art);
+   .portrait = 2:3 (key art / posters). Cards run large so they read
+   clearly, especially on phones where there's no zoom. */
+.flickwall{position:relative;background:var(--soot);
+  margin:clamp(2.5rem,6vh,4rem) calc(50% - 50vw) 0;
+  padding:clamp(2.8rem,7vh,5rem) clamp(1.2rem,4vw,3rem)}
+.fw-viewport{position:relative;height:clamp(340px,50vw,560px);overflow:hidden;perspective:1600px;
   touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .fw-viewport.dragging{cursor:grabbing}
 .fw-track{position:absolute;inset:0;transform-style:preserve-3d}
-.fw-card{position:absolute;top:50%;left:0;width:clamp(210px,26vw,320px);aspect-ratio:1/1;
-  border-radius:3px;overflow:hidden;background:var(--soot);
-  box-shadow:0 24px 60px rgba(20,19,16,.5);will-change:transform,opacity;backface-visibility:hidden}
+.fw-card{position:absolute;top:50%;left:0;width:clamp(300px,42vw,480px);aspect-ratio:1/1;
+  overflow:hidden;background:var(--soot);will-change:transform,opacity;backface-visibility:hidden}
 .fw-card img{width:100%;height:100%;object-fit:contain;display:block;background:var(--soot)}
-.flickwall.portrait .fw-viewport{height:clamp(360px,56vw,600px)}
-.flickwall.portrait .fw-card{width:clamp(150px,19vw,250px);aspect-ratio:2/3}
-.fw-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem;
-  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(20,19,16,.55)}
+.flickwall.portrait .fw-viewport{height:clamp(420px,62vw,640px)}
+.flickwall.portrait .fw-card{width:clamp(260px,30vw,380px);aspect-ratio:2/3}
+.fw-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(228,224,212,.6)}
 .fw-hint{display:inline-flex;align-items:center;gap:.55rem}
-.fw-counter{color:var(--rose)}
+.fw-counter{color:var(--sun)}
 .no-js .flickwall{display:none}
 @media(max-width:720px){
-  .fw-viewport{height:clamp(280px,64vw,420px)}
-  .flickwall.portrait .fw-viewport{height:clamp(340px,82vw,520px)}
+  .fw-viewport{height:clamp(320px,88vw,470px)}
+  .flickwall.portrait .fw-viewport{height:clamp(400px,124vw,560px)}
 }
