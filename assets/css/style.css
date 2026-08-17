@@ -679,3 +679,13 @@ section{position:relative}
   .fw-viewport{height:clamp(320px,88vw,470px)}
   .flickwall.portrait .fw-viewport{height:clamp(400px,124vw,560px)}
 }
+
+/* ---------- gallery category pages: all-dark ----------
+   The Galleries category pages run fully dark (soot) with light copy, to
+   set the Galleries apart from the rest of the (light) site. Applied via
+   <body class="pbody gdark">. Hero, carousel band, related nav and footer
+   are already dark; these rules darken the intro copy + CTA band. */
+body.gdark{background:var(--soot);color:var(--bone)}
+.gdark .project-intro,.gdark .psec{border-bottom-color:var(--line-light)}
+.gdark .page-cta{background:var(--soot);border-top-color:var(--line-light)}
+.gdark .page-cta .cta{color:var(--bone);border-color:var(--bone)}
