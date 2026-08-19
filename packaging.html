@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Packaging Design — Dane Forst</title>
+<meta name="description" content="Packaging and label design by Dane Erik Forst. Wine, spirits, and CPG: labels, bottles, boxes, and retail-ready systems, from concept to print-ready files.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=5">
+<style>
+  /* ---- packaging pitch page: masonry image sections + CTA (dark) ---- */
+  .pkg-gal{column-count:2;column-gap:clamp(.8rem,2vw,1.4rem);padding-top:clamp(1.6rem,4vh,2.6rem)}
+  .pkg-gal figure{margin:0 0 clamp(.8rem,2vw,1.4rem);break-inside:avoid}
+  .pkg-gal img{width:100%;height:auto;display:block;border-radius:2px;background:var(--soot-2)}
+  .pkg-gal .wide{column-span:all}
+  @media(max-width:720px){.pkg-gal{column-count:1}}
+  /* pmeta labels/border read on the dark ground */
+  .gdark .pmeta{border-bottom-color:var(--line-light)}
+  .gdark .pmeta div span{color:rgba(228,224,212,.5)}
+  .pkg-cta{background:var(--soot);color:var(--bone);border-top:1px solid var(--line-light);
+    text-align:center;padding:clamp(4rem,11vh,7rem) clamp(1.2rem,4vw,4rem);
+    display:flex;flex-direction:column;align-items:center;gap:clamp(1.3rem,3.4vh,2.1rem)}
+  .pkg-cta h2{font-weight:900;font-variation-settings:'wdth' 66;text-transform:uppercase;
+    font-size:clamp(2.2rem,7vw,5.4rem);line-height:.9;letter-spacing:-.015em;max-width:15em}
+  .pkg-cta h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+    background:linear-gradient(100deg,var(--sun),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pkg-cta .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2vw,1.5rem);color:rgba(228,224,212,.82);max-width:28em}
+  .pkg-cta .cta{align-self:center}
+  .pkg-cta .alt{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(228,224,212,.55)}
+  .pkg-cta .alt a{color:var(--sun)}
+</style>
+</head>
+<body class="pbody gdark">
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D • Sculpture • Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="galleries.html">Galleries</a>
+  <a href="contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+<header class="phero">
+  <img src="assets/img/packaging/packaging-12.jpg" alt="Rabbit Hole Malbec, wine label and bottle packaging design">
+  <div class="ph-in">
+    <span class="idx">Capabilities · Packaging Design</span>
+    <h1>Packaging<br>Design</h1>
+    <p class="tag">The one piece of a brand a customer actually holds.</p>
+  </div>
+</header>
+
+<section class="pad">
+  <div class="pmeta reveal">
+    <div><span>Discipline</span><b>Packaging &amp; Label Design</b></div>
+    <div><span>Focus</span><b>Wine, Spirits &amp; CPG</b></div>
+    <div><span>Studio</span><b>DEF Studios, Portland OR</b></div>
+  </div>
+
+  <p class="project-intro reveal">Am I weird? I will keep packages that are empty just because the design is so good. Empty bottles with killer graphics on them just become part of my home. Packaging gets repurposed and reused because the art speaks to me. That is what I am for in anything that I help create in the realm of packaging design. Something lasting and unforgettable.</p>
+
+  <div class="psec reveal">
+    <h2>Loud or quiet</h2>
+    <p>I want to create something that either screams at you from across the aisle, or whispers sweet nothings into your ear when cradled close. Either way there will be a conversation. What will your branding say?</p>
+  </div>
+
+  <div class="pkg-gal">
+    <figure class="wide"><img src="assets/img/packaging/packaging-04.jpg" alt="Minimalist black wine bottle packaging in a dark, sculptural set" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-17.jpg" alt="Wine bottle packaging mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-16.jpg" alt="Fortitude Cellars wine bottle, dark label design" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-05.jpg" alt="Bottle packaging design" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-06.jpg" alt="Bottle packaging design" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>Story first</h2>
+    <p>Sometimes less is more&hellip; and sometimes more is MORE! It just depends on your story and your audience. I take the time to learn about both before I ever put pencil to paper. A cool illustration or slick graphic means nothing if it isn&#8217;t first tied to a feeling or emotion.</p>
+    <p>From there I work the label, the structure, the type, the illustration, and the finish so the product reads at every distance, from across the store to up close on the counter. Then I carry it all the way to print-ready files, so what gets made matches what got designed.</p>
+  </div>
+
+  <div class="pkg-gal">
+    <figure class="wide"><img src="assets/img/packaging/packaging-13.jpg" alt="Wine bottle packaging render" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-07.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-09.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-11.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-14.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure class="wide"><img src="assets/img/packaging/packaging-19.jpg" alt="Product packaging photographed on location" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>Surface &amp; structure</h2>
+    <p>Labels and bottle systems, cans and jars, boxes and retail-ready lines. Surface and structure. All these minute details come into play, and only experience with a multitude of vendors can ensure a product feels considered, backed by the print production know-how to get it produced cleanly, at scale, without surprises.</p>
+  </div>
+
+  <div class="pkg-gal">
+    <figure class="wide"><img src="assets/img/packaging/packaging-18.jpg" alt="Hot Glitter chili crisp, product and lifestyle photography" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-08.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-10.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-15.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure><img src="assets/img/packaging/packaging-03.jpg" alt="Packaging design mockup" loading="lazy"></figure>
+    <figure class="wide"><img src="assets/img/packaging/packaging-01.jpg" alt="Book cover packaging mockup" loading="lazy"></figure>
+    <figure class="wide"><img src="assets/img/packaging/packaging-02.jpg" alt="Wide packaging design layout" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>Every pixel</h2>
+    <p>Whether it&#8217;s a single hero item or a full line up that needs consideration, you can rest easy that every minute detail will be considered. With an eye for consistency when every pixel makes a difference.</p>
+  </div>
+</section>
+
+<section class="pkg-cta">
+  <h2>Let's put your product<br>in someone's <em>hand.</em></h2>
+  <p class="sub">Together we can explore new and awe-inspiring ways to have a genuine connection to your audience.</p>
+  <a class="cta" href="contact.html">Discuss package design
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+  <p class="alt">or email <a href="mailto:daneforst@gmail.com?subject=Packaging%20design%20inquiry">daneforst@gmail.com</a></p>
+</section>
+
+<footer class="foot-slim">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
+  </linearGradient></defs>
+</svg>
+  <a href="index.html" aria-label="Back to home" style="display:block;width:max-content"><img class="sig" src="assets/img/def-logo.png" alt="Dane Erik Forst signature"></a>
+  <div class="socials">
+  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
+    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+</div>
+  <div class="meta-row" style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.65)">
+    <span>© 2026 DEF Studios</span>
+    <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+    <a href="tel:6613033945">661·303·3945</a>
+    <span>Portland, Oregon</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js?v=2"></script>
+</body>
+</html>
