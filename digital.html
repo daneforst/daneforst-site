@@ -50,7 +50,7 @@
 .dcount b{color:var(--bone);font-weight:500}
 
 /* entries */
-.dlist{padding-bottom:clamp(3rem,8vh,6rem)}
+
 .e{border-top:1px solid var(--line-light);padding:clamp(1.8rem,4.5vh,3.2rem) 0;
   opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.6,0,.2,1),transform .7s cubic-bezier(.6,0,.2,1)}
 .e.in{opacity:1;transform:none}
@@ -100,6 +100,40 @@
 .pv.contain{background:#0d0c09}
 .pv.contain img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:auto;height:92%;max-width:96%;object-fit:contain}
+/* every frame needs room to travel fully out of view, or the last one on a
+   page can never finish its pan */
+.dlist{padding-bottom:clamp(3rem,48vh,560px)}
+.ovend{border-top:1px solid var(--line-light);margin-top:clamp(2rem,5vh,3.5rem);
+  padding-top:clamp(1.6rem,4vh,2.4rem);display:flex;align-items:baseline;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ovend .k{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;
+  letter-spacing:.16em;color:rgba(228,224,212,.35)}
+.ovend button{background:none;border:0;cursor:pointer;color:var(--bone);text-align:right;
+  font-weight:800;font-variation-settings:'wdth' 82;text-transform:uppercase;
+  font-size:clamp(1.2rem,2.6vw,2rem);line-height:1;letter-spacing:-.01em;transition:color .3s}
+.ovend button:hover{color:var(--sun)}
+
+/* TOCA: a working phone you can tap through */
+.sim{display:flex;flex-direction:column;align-items:center;gap:1rem;
+  padding:clamp(1.4rem,4vh,2.6rem) 0}
+.sim-phone{position:relative;width:min(300px,72vw);aspect-ratio:662/1155;border-radius:26px;
+  overflow:hidden;background:#000;border:1px solid rgba(228,224,212,.18);
+  box-shadow:0 30px 70px -20px rgba(0,0,0,.85)}
+.sim-phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .28s ease}
+.sim-phone img.on{opacity:1}
+.sim-tap{position:absolute;inset:0;display:flex;z-index:2}
+.sim-tap button{flex:1;background:none;border:0;cursor:pointer}
+.sim-ui{display:flex;align-items:center;gap:1.1rem;font-family:var(--mono);font-size:.62rem;
+  text-transform:uppercase;letter-spacing:.14em;color:rgba(228,224,212,.45)}
+.sim-ui button{background:none;border:1px solid var(--line-light);border-radius:999px;
+  color:rgba(228,224,212,.7);cursor:pointer;padding:.35rem .7rem;font-family:var(--mono);
+  font-size:.7rem;line-height:1;transition:color .25s,border-color .25s}
+.sim-ui button:hover{color:var(--bone);border-color:rgba(228,224,212,.4)}
+.sim-dots{display:flex;gap:.3rem}
+.sim-dots i{width:5px;height:5px;border-radius:50%;background:rgba(228,224,212,.25);display:block}
+.sim-dots i.on{background:var(--sun)}
+
 .pv.phone{background:#0d0c09;aspect-ratio:16/10}
 .pv.phone .ph-in{position:absolute;left:50%;top:6%;height:88%;width:auto;
   aspect-ratio:400/812;transform:translateX(-50%);overflow:hidden;border-radius:10px;
@@ -194,7 +228,7 @@
   border-bottom:1px solid var(--line-light);padding:clamp(1.2rem,2.5vh,1.8rem) 0;margin-top:clamp(1.6rem,3.5vh,2.4rem)}
 .dovmeta .k{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(228,224,212,.35)}
 .dovmeta .v{margin-top:.45rem;font-size:.9rem;color:var(--bone);line-height:1.45}
-.dovshots{padding:clamp(1.6rem,4vh,2.6rem) 0 clamp(3rem,8vh,5rem);display:flex;flex-direction:column;gap:clamp(1rem,2.5vw,1.8rem)}
+.dovshots{padding:clamp(1.6rem,4vh,2.6rem) 0 clamp(3rem,80vh,900px);display:flex;flex-direction:column;gap:clamp(1rem,2.5vw,1.8rem)}
 .dovshots figure{margin:0}
 .dovshots img{width:100%;height:auto;display:block;border-radius:3px;border:1px solid var(--line-light);background:var(--soot-2)}
 .dovshots.contain img{background:#0d0c09}
@@ -294,7 +328,7 @@ const P = [
         ['suntreat-03.jpg','For our growers','page'],['suntreat-04.jpg','For the trade','page'],
         ['suntreat-01.jpg','About','page']]},
 
-{id:'mellor', n:'Mellor Ranch', c:'Family Vineyard, since 1884', w:'hero', t:'vis',
+{id:'mellor', n:'Mellor Ranch', c:'Family Vineyard, since 1884', w:'major', t:'vis',
  role:'Art Direction, UX/UI, Packaging', disc:['ad','brand','ecom'],
  line:'A family vineyard with a barn for a mark and a sunset down the vine rows. Varietal pages, a farming story, and a store. One of the few here where the labels on the bottles are mine too.',
  hero:'mellor-01.jpg',
@@ -302,14 +336,14 @@ const P = [
         ['mellor-04.jpg','Farming practice','page'],['mellor-06.jpg','The wines','page'],
         ['mellor-02.jpg','A varietal','page'],['mellor-03.jpg','Contact','page']]},
 
-{id:'klassen', n:'Klassen &amp; Smith', c:'Architecture &amp; Construction', w:'major', t:'vis',
+{id:'klassen', n:'Klassen &amp; Smith', c:'Architecture &amp; Construction', w:'standard', t:'vis',
  role:'Art Direction, UX/UI', disc:['ad','ux'],
  line:'Confident and contemporary, built on aerial architectural photography and a blunt promise: do what is right.',
  hero:'klassen-01.jpg',
  pages:[['klassen-01.jpg','Home','page'],['klassen-04.jpg','Project detail','page'],
         ['klassen-05.jpg','Services','page'],['klassen-02.jpg','About','page']]},
 
-{id:'sanluis', n:'San Luis Ambulance', c:'Emergency Response', w:'major', t:'vis',
+{id:'sanluis', n:'San Luis Ambulance', c:'Emergency Response', w:'hero', t:'vis',
  role:'Art Direction, UX/UI', disc:['ux','ia'],
  line:'Eighty years of emergency response, given a calm and trustworthy presence across services, careers, and billing. Bike paramedics and dune-capable ambulances included.',
  hero:'sanluis-01.jpg',
@@ -319,7 +353,7 @@ const P = [
         ['sanluis-08.jpg','Quality committee','page'],['sanluis-06.jpg','FAQ','page'],
         ['sanluis-04.jpg','Contact','page']]},
 
-{id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', w:'major', t:'vis',
+{id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', w:'hero', t:'vis',
  role:'Art Direction, UX/UI, Photography', disc:['ecom','ad','photo'],
  line:'Special-operations kneepads, made since 1996. Olive and tan, with wholesale and cart, and product photography shot in the dirt where it belongs.',
  hero:'dexter-01.jpg',
@@ -327,14 +361,14 @@ const P = [
         ['dexter-03.jpg','How to','page'],['dexter-05.jpg','Wholesale','page'],
         ['dexter-02.jpg','About','page']]},
 
-{id:'palmer', n:'Tim Palmer', c:'Record Producer &amp; Mixer', w:'major', t:'vis',
+{id:'palmer', n:'Tim Palmer', c:'Record Producer &amp; Mixer', w:'standard', t:'vis',
  role:'Art Direction, UX/UI', disc:['ad'],
  line:'A site for the producer and mixer behind Pearl Jam&#8217;s Ten, Bowie, U2, and Ozzy. The wall of album covers does more in two seconds than any layout could, so the design gets out of its way.',
  hero:'palmer-02.jpg',
  pages:[['palmer-02.jpg','Home','page'],['palmer-03.jpg','Discography','page'],
         ['palmer-01.jpg','Contact','page']]},
 
-{id:'camera', n:'Camera Ads', c:'Automotive Marketplace', w:'hero', t:'case',
+{id:'camera', n:'Camera Ads', c:'Automotive Marketplace', w:'major', t:'case',
  role:'Art Direction, UX/UI', disc:['ux','ia','ecom'],
  line:'A print vehicle-classifieds business rebuilt as a real marketplace: faceted search across eight inventory categories, dealer tools, listing and detail templates, and a multi-step flow for listing a vehicle. Desktop and native mobile.',
  hero:'camera-02.jpg',
@@ -342,13 +376,13 @@ const P = [
         ['camera-04.jpg','About','page'],['camera-01.jpg','Mobile app','page'],
         ['camera-03.jpg','Mobile listing detail','page']]},
 
-{id:'toca', n:'TOCA', c:'Football Training App', w:'major', t:'case', device:true,
+{id:'toca', n:'TOCA', c:'Football Training App', w:'standard', t:'case', device:true,
  role:'Art Direction, UX/UI', disc:['ux','ad'],
  line:'A native app that drives a ball-launching machine from your pocket. Players build drills, sync them to the trainer, and run a live session with ball counts, speed, and placement adjusted between reps.',
  hero:'toca-3.jpg',
  seq:['toca-1.jpg','toca-2.jpg','toca-3.jpg','toca-4.jpg','toca-5.jpg','toca-6.jpg'],
- pages:[['toca-01.jpg','Every screen','wide'],['toca-3.jpg','Dashboard','shot'],
-        ['toca-5.jpg','Running a drill','shot'],['toca-4.jpg','Drill list','shot']]},
+ sim:['toca-1.jpg','toca-2.jpg','toca-3.jpg','toca-4.jpg','toca-5.jpg','toca-6.jpg'],
+ pages:[['toca-01.jpg','Every screen','wide']]},
 
 {id:'moto', n:'MotoAuct', c:'Vintage Motorcycle Auction', w:'major', t:'hyb',
  role:'Art Direction, UX/UI, Photography', disc:['ad','ecom','ux','photo'],
@@ -358,7 +392,7 @@ const P = [
         ['moto-02.jpg','Mobile home','mobile'],['moto-05.jpg','Mobile, how it works','mobile'],
         ['moto-06.jpg','Mobile team','mobile']]},
 
-{id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', w:'major', t:'hyb',
+{id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', w:'standard', t:'hyb',
  role:'Digital Art Direction, UX/UI', disc:['ad','ia','brand','ecom'],
  line:'Four businesses in one building: concert hall, restaurant, museum, and box office. Theatrical art direction on top of genuinely complex content, all speaking with one voice.',
  hero:'buck-01.jpg',
@@ -374,7 +408,7 @@ const P = [
         ['ames-05.jpg','Woodworks','page'],['ames-03.jpg','Checkout','page'],
         ['ames-04.jpg','Contact','page']]},
 
-{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'hero', t:'exp',
+{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'standard', t:'exp',
  role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
  line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs and a physical wine holder. And a full arcade game around the bottle mascot: scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
  hero:'beerrunner-01.jpg', strip:true,
@@ -389,18 +423,13 @@ const P = [
  hero:'degrees-01.jpg',
  pages:[['degrees-01.jpg','Home','page'],['degrees-02.jpg','Mobile','mobile']]},
 
-{id:'douglass', n:'Douglass Truck Bodies', c:'Commercial Manufacturing', w:'major', t:'case',
+{id:'douglass', n:'Douglass Truck Bodies', c:'Commercial Manufacturing', w:'hero', t:'case',
  role:'Art Direction, UX/UI', disc:['ia','ux'],
  line:'Deep manufacturing knowledge made legible. Product categories on one rigorous template, with configurable bodies, annotated comparisons, and lead capture for buyers who hunt for an exact configuration.',
  hero:'douglass-01.jpg',
  pages:[['douglass-01.jpg','Home','page'],['douglass-02.jpg','Camper bodies','page'],
         ['douglass-03.jpg','Canopy bodies','page']]},
 
-{id:'louvre', n:'Louvre Fantastique', c:'Concept Site', w:'standard', t:'vis',
- role:'Art Direction, UX/UI', disc:['ad'],
- line:'Pure art direction, start to finish.',
- hero:'louvre-01.jpg',
- pages:[['louvre-01.jpg','The site','page']]},
 
 {id:'moseley', n:'Robert Moseley Design', c:'Interior Design', w:'standard', t:'vis',
  role:'Art Direction, UX/UI', disc:['ad','brand'],
@@ -408,13 +437,12 @@ const P = [
  hero:'moseley-01.jpg',
  pages:[['moseley-01.jpg','Home','page'],['moseley-02.jpg','My story','page']]},
 
-{id:'mody', n:'Mody Pumps', c:'Industrial Manufacturing', w:'standard', t:'vis',
+{id:'mody', n:'Mody Pumps', c:'Industrial Manufacturing', w:'hero', t:'vis',
  role:'Art Direction, UX/UI, Photography', disc:['ia','ux','photo'],
  line:'A global pump manufacturer with a Bakersfield headquarters and offices on four continents. A full catalog and a find-your-pump selector.',
  hero:'mody-02.jpg',
  pages:[['mody-02.jpg','Home','page'],['mody-04.jpg','Products','page'],
-        ['mody-05.jpg','Wastewater','page'],['mody-01.jpg','About','page'],
-        ['mody-03.jpg','Our team','page']]}
+        ['mody-05.jpg','Wastewater','page'],['mody-01.jpg','About','page']]}
 ];
 
 /* ---------------- render ---------------- */
@@ -426,9 +454,8 @@ const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybr
 
 /* Running order, as specified. The last three were not in the list and sit
    at the end until Dane places or cuts them. */
-const ORDER=['suntreat','mellor','klassen','sanluis','dexter','palmer','camera','toca',
-             'moto','buck','ames','beerrunner','degrees','douglass',
-             'louvre','moseley','mody'];
+const ORDER=['suntreat','mellor','klassen','sanluis','palmer','camera','dexter','toca',
+             'moto','buck','douglass','ames','beerrunner','degrees','moseley','mody'];
 P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
 
 
@@ -437,8 +464,8 @@ P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
 
 
 
-/* the one that pans sideways: a real Beer Runner game world */
-const PANX={beerrunner:'br-world.jpg'};
+/* horizontal pans (none active right now) */
+const PANX={};
 
 /* live sites, verified reachable */
 const URLS={
@@ -552,6 +579,10 @@ function updatePans(){
 function onScroll(){ if(!ticking && !REDUCED){ ticking=true; requestAnimationFrame(updatePans); } }
 addEventListener('scroll',onScroll,{passive:true});
 document.addEventListener('scroll',onScroll,{passive:true,capture:true});
+/* Lazy images have no height when first measured, so a frame would report
+   nothing to pan and stay frozen. Re-measure whenever any image finishes. */
+document.addEventListener('load',onScroll,{capture:true});
+addEventListener('load',()=>{collectPans();updatePans();});
 addEventListener('resize',()=>{if(!REDUCED)collectPans();},{passive:true});
 
 /* ---------------- overlay ---------------- */
@@ -583,13 +614,29 @@ function fill(seq,i){
       ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
     <div class="dwrap"><div class="dovshots">
+      ${p.sim?`<div class="sim" data-simroot>
+        <div class="sim-phone">
+          ${p.sim.map((sc,k)=>`<img src="${IMG}${sc}" alt="Screen ${k+1}" class="${k===0?'on':''}">`).join('')}
+          <span class="sim-tap"><button data-sim="-1" aria-label="Previous screen"></button><button data-sim="1" aria-label="Next screen"></button></span>
+        </div>
+        <div class="sim-ui">
+          <button data-sim="-1" aria-label="Previous screen">&#8249;</button>
+          <span class="sim-dots">${p.sim.map((_,k)=>`<i class="${k===0?'on':''}"></i>`).join('')}</span>
+          <button data-sim="1" aria-label="Next screen">&#8250;</button>
+          <span class="sim-lbl">Tap the screen</span>
+        </div>
+      </div>`:''}
       ${(p.pages||[]).map(pg=>{
         const [file,cap,kind]=pg;
-        if(kind==='page')   return `<figure><div class="pv"><img src="${IMG}${file}" alt="${cap}" data-pan loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
-        if(kind==='mobile') return `<figure><div class="pv phone"><span class="ph-in"><img src="${IMG}${file}" alt="${cap}" data-pan loading="lazy"></span></div><figcaption>${cap}</figcaption></figure>`;
-        if(kind==='wide')   return `<figure><div class="pv wideflat"><img src="${IMG}${file}" alt="${cap}" loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
-        return `<figure><div class="pv contain"><img src="${IMG}${file}" alt="${cap}" loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
+        if(kind==='page')   return `<figure><div class="pv"><img src="${IMG}${file}" alt="${cap}" data-pan></div><figcaption>${cap}</figcaption></figure>`;
+        if(kind==='mobile') return `<figure><div class="pv phone"><span class="ph-in"><img src="${IMG}${file}" alt="${cap}" data-pan></span></div><figcaption>${cap}</figcaption></figure>`;
+        if(kind==='wide')   return `<figure><div class="pv wideflat"><img src="${IMG}${file}" alt="${cap}"></div><figcaption>${cap}</figcaption></figure>`;
+        return `<figure><div class="pv contain"><img src="${IMG}${file}" alt="${cap}"></div><figcaption>${cap}</figcaption></figure>`;
       }).join('')}
+      <div class="ovend">
+        <span class="k">Next</span>
+        <button data-nav="${next.id}">${next.n} &rarr;</button>
+      </div>
     </div></div>`;
   if(!REDUCED) requestAnimationFrame(()=>{collectPans();updatePans();});
   const b=$('#ovbody'); b.style.opacity=0;
@@ -608,6 +655,17 @@ $('#list').addEventListener('click',e=>{
   const t=e.target.closest('[data-open]'); if(t) openP(t.dataset.open);
 });
 $('#ov').addEventListener('click',e=>{
+  const sim=e.target.closest('[data-sim]');
+  if(sim){
+    const root=sim.closest('[data-simroot]');
+    const imgs=[...root.querySelectorAll('.sim-phone img')];
+    const dots=[...root.querySelectorAll('.sim-dots i')];
+    let i=imgs.findIndex(x=>x.classList.contains('on'));
+    i=(i+parseInt(sim.dataset.sim,10)+imgs.length)%imgs.length;
+    imgs.forEach((x,k)=>x.classList.toggle('on',k===i));
+    dots.forEach((d,k)=>d.classList.toggle('on',k===i));
+    return;
+  }
   const n=e.target.closest('[data-nav]');
   if(n){const seq=lens==='all'?P:P.filter(p=>p.disc.includes(lens));
     const s2=seq.some(p=>p.id===n.dataset.nav)?seq:P;
