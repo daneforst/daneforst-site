@@ -70,11 +70,22 @@
 
 /* media */
 .emedia{position:relative;display:block;width:100%;border:0;background:none;padding:0;cursor:pointer;text-align:left}
-.eframe{position:relative;overflow:hidden;border-radius:3px;background:var(--soot-2);border:1px solid var(--line-light)}
-.eframe img{width:100%;height:auto;display:block;transition:transform .8s cubic-bezier(.6,0,.2,1),filter .5s}
-.emedia:hover .eframe img{transform:scale(1.025)}
-.e-hero .eframe img{aspect-ratio:21/9;object-fit:cover;object-position:top center}
-.e-hero.e-play .eframe img{object-fit:contain;object-position:center;background:#0d0c09}
+/* the frame is a viewport; the capture pans through it as you scroll */
+.eframe{position:relative;overflow:hidden;border-radius:3px;background:var(--soot-2);
+  border:1px solid var(--line-light);aspect-ratio:16/10}
+.e-hero .eframe{aspect-ratio:16/9}
+.eframe img{position:absolute;top:0;left:0;width:100%;height:auto;display:block;
+  will-change:transform;backface-visibility:hidden}
+.eframe img.px{width:auto;height:100%}
+.eframe::after{content:'';position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 60px rgba(20,19,16,.35);opacity:0;transition:opacity .5s}
+.emedia:hover .eframe::after{opacity:1}
+.epan{position:absolute;right:10px;bottom:10px;z-index:2;font-family:var(--mono);font-size:.53rem;
+  text-transform:uppercase;letter-spacing:.14em;color:rgba(228,224,212,.8);
+  background:rgba(20,19,16,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid rgba(228,224,212,.18);border-radius:999px;padding:.3rem .6rem;
+  opacity:0;transform:translateY(4px);transition:opacity .4s,transform .4s}
+.emedia:hover .epan{opacity:1;transform:none}
 .estrip{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.5rem}
 .estrip img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top center;display:block;
   border-radius:2px;border:1px solid var(--line-light);background:var(--soot-2);opacity:.72;transition:opacity .4s}
@@ -102,13 +113,13 @@
 .e-support .eline{font-size:.9rem;max-width:60ch}
 .e-hero .eline{font-size:clamp(1rem,1.25vw,1.15rem);max-width:56ch}
 
-/* status */
-.estatus{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;font-family:var(--mono);
-  font-size:.6rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.42)}
-.estatus .d{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
-.estatus.live .d{background:#5fbf7a;box-shadow:0 0 0 3px rgba(95,191,122,.16)}
-.estatus.past .d{background:transparent;border:1px solid rgba(228,224,212,.4)}
-.estatus.never .d{background:var(--rose);box-shadow:0 0 0 3px rgba(255,77,140,.15)}
+/* live link */
+.elink{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;font-family:var(--mono);
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.5);
+  border-bottom:1px solid rgba(228,224,212,.2);padding-bottom:.2rem;transition:color .3s,border-color .3s}
+.elink:hover{color:var(--sun);border-color:var(--sun)}
+.elink .d{width:6px;height:6px;border-radius:50%;background:#5fbf7a;
+  box-shadow:0 0 0 3px rgba(95,191,122,.16);flex:0 0 auto}
 
 /* discipline tags + role */
 .etags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
@@ -202,9 +213,9 @@
       <p class="dlede">Sixteen projects across marketplaces, venues, manufacturers, wineries, and brands. Some are deep functional systems. Some are pure art direction. One is a game that never shipped. <b>The range is the point.</b></p>
       <div class="dstats">
         <div class="dstat"><div class="n">16</div><div class="l">Projects</div></div>
-        <div class="dstat"><div class="n">2016<em>&ndash;</em>25</div><div class="l">Span shown</div></div>
         <div class="dstat"><div class="n">14</div><div class="l">Industries</div></div>
-        <div class="dstat"><div class="n">9</div><div class="l">Still live today</div></div>
+        <div class="dstat"><div class="n">7</div><div class="l">Disciplines</div></div>
+        <div class="dstat"><div class="n">Product <em>&harr;</em> Art Dir.</div><div class="l">Full range</div></div>
       </div>
       <p class="dcredit">All work created in conjunction with <b>Fluxar Studios, Inc.</b> My role across these projects is <b>art direction, UX/UI, and graphic design</b>, with photography on several. Development and engineering were handled by Fluxar's team.</p>
     </div>
@@ -291,7 +302,7 @@ const P = [
 {id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', y:'~2016', w:'hero', t:'exp', play:true,
  st:'never', status:'Reached 99%. Never shipped.',
  role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
- line:'Two complete worlds under one brand. A beer and wine delivery service years before the category existed, with subscription clubs, gift cards, and a physical wine holder. And a fully drawn arcade game around the bottle mascot, with worlds, enemies, power-ups, and a full animation system. The developer got it to ninety-nine percent before the whole thing stopped.',
+ line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs, gift cards, and a physical wine holder. And a full arcade game around the bottle mascot: six scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
  hero:'br-start.jpg',
  shots:[['br-start.jpg','The start screen'],['br-level.jpg','A level: platforms, power-up, Hopster'],['br-sprites.jpg','The sixteen-frame run cycle'],['br-logo.jpg','Logo system'],['br-app.jpg','The delivery app and subscription clubs'],['br-holder.jpg','Physical wine holder'],['br-over.jpg','Game over']]},
 
@@ -373,26 +384,50 @@ let lens='all';
 function arrow(){return '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>';}
 const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybrid'],vis:['vis','Visual']};
 
+/* full-page captures that pan vertically inside their frame */
+const TALL={camera:'camera-tall.jpg',buck:'buck-tall.jpg',suntreat:'suntreat-tall.jpg',
+  douglass:'douglass-tall.jpg',klassen:'klassen-tall.jpg',moto:'moto-tall.jpg',
+  mellor:'mellor-tall.jpg',palmer:'palmer-tall.jpg',sanluis:'sanluis-tall.jpg',
+  degrees:'degrees-tall.jpg',moseley:'moseley-tall.jpg',cimulated:'cimulated-tall.jpg',
+  dexter:'dexter-tall.jpg',ames:'ames-tall.jpg',mody:'mody-tall.jpg'};
+/* the one that pans sideways: a real Beer Runner game world */
+const PANX={beerrunner:'br-world.jpg'};
+
+/* live sites, verified reachable */
+const URLS={
+  douglass:'https://douglasstruckbodies.com', suntreat:'https://suntreat.com',
+  mellor:'https://mellorranchwines.com', klassen:'https://klassensmith.com',
+  sanluis:'https://sanluisambulance.com', dexter:'https://dextermeadows.com',
+  palmer:'https://timpalmer.com', moseley:'https://robertmoseleydesign.com'
+};
+
 function entryHTML(p,i){
   const [tc,tl]=TYPE[p.t];
   const strip=p.shots.slice(1,5).map(s=>`<img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy">`).join('');
   const tags=p.disc.map(d=>`<span class="${d===lens?'on':''}">${DISC[d]}</span>`).join('');
-  return `<article class="e e-${p.w} ${p.play?'e-play':''}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
+  const nm=p.n.replace(/&amp;/g,'and');
+  const pan=PANX[p.id]
+    ? `<img class="px" src="${IMG}${PANX[p.id]}" alt="${nm}" data-panx>`
+    : `<img src="${IMG}${TALL[p.id]||p.hero}" alt="${nm}" ${TALL[p.id]?'data-pan':''}>`;
+  const url=URLS[p.id];
+  return `<article class="e e-${p.w}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
     <div class="eshell">
-      <button class="emedia" data-open="${p.id}" aria-label="Open ${p.n.replace(/&amp;/g,'and')}">
-        <div class="eframe"><img src="${IMG}${p.hero}" alt="${p.n.replace(/&amp;/g,'and')}" loading="lazy"></div>
+      <button class="emedia" data-open="${p.id}" aria-label="Open ${nm}">
+        <div class="eframe">${pan}<span class="epan">${p.panx?'The game world':'Scroll to pan'}</span></div>
         ${p.w!=='support'&&strip?`<div class="estrip">${strip}</div>`:''}
       </button>
-      <div class="ebody" data-open="${p.id}">
+      <div class="ebody">
         <div class="etop"><span class="idx">${String(i+1).padStart(2,'0')}</span>
-          <span class="etype ${tc}">${tl}</span><span>${p.y}</span></div>
-        <h2>${p.n}</h2>
+          <span class="etype ${tc}">${tl}</span></div>
+        <h2 data-open="${p.id}">${p.n}</h2>
         <div class="eclient">${p.c}</div>
         <p class="eline">${p.line}</p>
-        <div class="estatus ${p.st}"><span class="d"></span>${p.status}</div>
         <div class="etags">${tags}</div>
         <div class="erole"><b>${p.role}</b><br>with Fluxar Studios, Inc.${p.note?'<br>'+p.note:''}</div>
-        <span class="ecue">Open project ${arrow()}</span>
+        <div style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center">
+          <span class="ecue" data-open="${p.id}">Open project ${arrow()}</span>
+          ${url?`<a class="elink" href="${url}" target="_blank" rel="noopener noreferrer"><span class="d"></span>Visit the site ${arrow()}</a>`:''}
+        </div>
       </div>
     </div>
   </article>`;
@@ -403,6 +438,17 @@ function render(){
   $('#list').innerHTML = list.map(entryHTML).join('');
   $('#count').innerHTML = `<b>${list.length}</b> of ${P.length}`;
   observe();
+  if(!REDUCED){
+    // wait for images to know their height before measuring
+    const imgs=$$('#list [data-pan],#list [data-panx]');
+    let left=imgs.length;
+    if(!left) return collectPans();
+    imgs.forEach(im=>{
+      if(im.complete&&im.naturalHeight) { if(!--left) collectPans(); }
+      else im.addEventListener('load',()=>{ if(!--left) collectPans(); },{once:true});
+    });
+    collectPans();
+  }
 }
 
 function buildLenses(){
@@ -418,6 +464,37 @@ function observe(){
   io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
   $$('.e').forEach((el,i)=>{el.style.transitionDelay=Math.min(i,3)*0.05+'s';io.observe(el);});
 }
+
+/* ---------------- scroll-driven panning ----------------
+   Each frame is a viewport. As an entry travels up the screen the capture
+   slides through it, so scrolling the archive scrolls the sites themselves. */
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let panning=[], ticking=false;
+function collectPans(){
+  panning = $$('[data-pan],[data-panx]').map(img=>({img,frame:img.parentElement,x:img.hasAttribute('data-panx')}));
+  updatePans();
+}
+function updatePans(){
+  const vh=innerHeight;
+  for(const p of panning){
+    const r=p.frame.getBoundingClientRect();
+    if(r.bottom<-200||r.top>vh+200) continue;
+    // 0 when the frame first enters from below, 1 when it has fully left the top
+    let t=(vh-r.top)/(vh+r.height);
+    t=t<0?0:t>1?1:t;
+    if(p.x){
+      const max=p.img.offsetWidth-p.frame.offsetWidth;
+      if(max>0) p.img.style.transform=`translate3d(${-max*t}px,0,0)`;
+    }else{
+      const max=p.img.offsetHeight-p.frame.offsetHeight;
+      if(max>0) p.img.style.transform=`translate3d(0,${-max*t}px,0)`;
+    }
+  }
+  ticking=false;
+}
+function onScroll(){ if(!ticking && !REDUCED){ ticking=true; requestAnimationFrame(updatePans); } }
+addEventListener('scroll',onScroll,{passive:true});
+addEventListener('resize',()=>{if(!REDUCED)collectPans();},{passive:true});
 
 /* ---------------- overlay ---------------- */
 function openP(id){
@@ -440,8 +517,10 @@ function fill(seq,i){
       <div class="dovmeta">
         <div><div class="k">My role</div><div class="v">${p.role}</div></div>
         <div><div class="k">Studio</div><div class="v">Fluxar Studios, Inc.</div></div>
-        <div><div class="k">Status</div><div class="v">${p.status}</div></div>
         <div><div class="k">Disciplines</div><div class="v">${p.disc.map(d=>DISC[d]).join(', ')}</div></div>
+        <div><div class="k">Live site</div><div class="v">${URLS[p.id]
+          ? `<a class="elink" style="margin-top:0" href="${URLS[p.id]}" target="_blank" rel="noopener noreferrer"><span class="d"></span>Visit ${arrow()}</a>`
+          : '<span style="color:rgba(228,224,212,.35)">Archive only</span>'}</div></div>
       </div>
       ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
