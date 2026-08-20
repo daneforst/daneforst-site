@@ -86,6 +86,23 @@
   border:1px solid rgba(228,224,212,.18);border-radius:999px;padding:.3rem .6rem;
   opacity:0;transform:translateY(4px);transition:opacity .4s,transform .4s}
 .emedia:hover .epan{opacity:1;transform:none}
+/* a phone presented inside the same frame, screens stepping as you scroll */
+.eframe.device{background:#0d0c09}
+.eframe.device img{position:absolute;left:50%;top:50%;height:88%;width:auto;
+  transform:translate(-50%,-50%);border-radius:8px;box-shadow:0 18px 50px -14px rgba(0,0,0,.8);
+  opacity:0;transition:opacity .35s ease}
+.eframe.device img.on{opacity:1}
+
+/* project view: page captures pan in their own window */
+.pv{position:relative;overflow:hidden;border-radius:3px;background:var(--soot-2);
+  border:1px solid var(--line-light);aspect-ratio:16/10}
+.pv img{position:absolute;top:0;left:0;width:100%;height:auto;display:block;will-change:transform}
+.pv.contain{background:#0d0c09}
+.pv.contain img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:auto;height:92%;max-width:96%;object-fit:contain}
+.pv.wideflat{aspect-ratio:21/9}
+.pv.wideflat img{top:50%;transform:translateY(-50%)}
+
 .estrip{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.5rem}
 .estrip img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top center;display:block;
   border-radius:2px;border:1px solid var(--line-light);background:var(--soot-2);opacity:.72;transition:opacity .4s}
@@ -210,7 +227,7 @@
     <div class="dwrap">
       <div class="dkick">Web &middot; Product &middot; Interactive</div>
       <h1>A working <em>archive</em> of digital work.</h1>
-      <p class="dlede">Sixteen projects across marketplaces, venues, manufacturers, wineries, and brands. Some are deep functional systems. Some are pure art direction. One is a game that never shipped. <b>The range is the point.</b></p>
+      <p class="dlede">Sixteen projects across marketplaces, venues, manufacturers, wineries, and brands. Some are deep functional systems, some are pure art direction, and one is a fully drawn arcade game. <b>The range is the point.</b></p>
       <div class="dstats">
         <div class="dstat"><div class="n">16</div><div class="l">Projects</div></div>
         <div class="dstat"><div class="n">14</div><div class="l">Industries</div></div>
@@ -269,6 +286,13 @@ const P = [
  line:'A print vehicle-classifieds business rebuilt as a real marketplace: faceted search across eight inventory categories, dealer tools, listing and detail templates, and a four-step list-a-vehicle flow that reconciles print and internet ad limits, photo management, and checkout. Desktop and native mobile.',
  hero:'camera-home.jpg',
  shots:[['camera-home.jpg','The marketplace home'],['camera-flow.jpg','List a vehicle, step one'],['camera-mobile.jpg','Native mobile app'],['camera-print.jpg','The print side it grew out of']]},
+
+{id:'toca', n:'TOCA', c:'Football Training App', w:'major', t:'case', device:true,
+ role:'Art Direction, UX/UI', disc:['ux','ad'],
+ line:'A native app that drives a ball-launching machine from your pocket. Players build drills, sync them to the trainer, and run a live session with ball counts, speed, and vertical and horizontal placement adjusted between reps.',
+ hero:'toca-3.jpg',
+ seq:['toca-1.jpg','toca-2.jpg','toca-3.jpg','toca-4.jpg','toca-5.jpg','toca-6.jpg'],
+ shots:[['toca-all.jpg','The full screen flow'],['toca-3.jpg','Dashboard'],['toca-5.jpg','Running a live drill'],['toca-4.jpg','Drill list']]},
 
 {id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', y:'~2019', w:'hero', t:'hyb',
  st:'past', status:'Launched. Ran for years.',
@@ -348,12 +372,6 @@ const P = [
  hero:'moseley-home.jpg',
  shots:[['moseley-home.jpg','Home'],['moseley-story.jpg','My story']]},
 
-{id:'cimulated', n:'Cimulated', c:'VR &amp; AR Arcade', y:'2023', w:'standard', t:'vis',
- st:'past', status:'Launched. No longer maintained.',
- role:'Logo, Identity, Art Direction', disc:['brand','ad'],
- line:'An immersive VR and AR arcade, and mostly an excuse to build a neon identity that glows in the dark. The mark is the work here; the site carries it.',
- hero:'cimulated-home.jpg',
- shots:[['cimulated-home.jpg','The neon identity'],['cimulated-mock.jpg','Presentation mockup']]},
 
 {id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', y:'2022', w:'support', t:'vis',
  st:'live', status:'Launched. Live today.',
@@ -386,8 +404,8 @@ const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybr
 
 /* Running order, as specified. The last three were not in the list and sit
    at the end until Dane places or cuts them. */
-const ORDER=['suntreat','mellor','klassen','sanluis','dexter','palmer','camera',
-             'moto','buck','ames','cimulated','beerrunner','degrees',
+const ORDER=['suntreat','mellor','klassen','sanluis','dexter','palmer','camera','toca',
+             'moto','buck','ames','beerrunner','degrees',
              'douglass','moseley','mody'];
 P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
 
@@ -395,8 +413,8 @@ P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
    carries the projects Dane ranked highest. */
 const WEIGHT={suntreat:'hero',mellor:'hero',camera:'hero',beerrunner:'hero',
   klassen:'major',sanluis:'major',dexter:'major',palmer:'major',moto:'major',
-  buck:'major',douglass:'major',
-  ames:'standard',cimulated:'standard',degrees:'standard',moseley:'standard',mody:'standard'};
+  buck:'major',douglass:'major',toca:'major',
+  ames:'standard',degrees:'standard',moseley:'standard',mody:'standard'};
 P.forEach(p=>{p.w = WEIGHT[p.id]||p.w;});
 /* Beer Runner is the only entry whose extra assets are a different kind of
    thing rather than another page, so it keeps a strip. */
@@ -406,8 +424,19 @@ P.forEach(p=>{p.strip = p.id==='beerrunner';});
 const TALL={camera:'camera-tall.jpg',buck:'buck-tall.jpg',suntreat:'suntreat-tall.jpg',
   douglass:'douglass-tall.jpg',klassen:'klassen-tall.jpg',moto:'moto-tall.jpg',
   mellor:'mellor-tall.jpg',palmer:'palmer-tall.jpg',sanluis:'sanluis-tall.jpg',
-  degrees:'degrees-tall.jpg',moseley:'moseley-tall.jpg',cimulated:'cimulated-tall.jpg',
+  degrees:'degrees-tall.jpg',moseley:'moseley-tall.jpg',
   dexter:'dexter-tall.jpg',ames:'ames-tall.jpg',mody:'mody-tall.jpg'};
+/* secondary page captures, tall versions for the project view */
+const TALL2={'buck-events.jpg':'buck-events-tall.jpg','buck-menu.jpg':'buck-menu-tall.jpg',
+ 'buck-museum.jpg':'buck-museum-tall.jpg','suntreat-reserve.jpg':'suntreat-reserve-tall.jpg',
+ 'douglass-camper.jpg':'douglass-camper-tall.jpg','klassen-projects.jpg':'klassen-projects-tall.jpg',
+ 'klassen-services.jpg':'klassen-services-tall.jpg','moto-mobile.jpg':'moto-mobile-tall.jpg',
+ 'mellor-story.jpg':'mellor-story-tall.jpg','mellor-cab.jpg':'mellor-cab-tall.jpg',
+ 'mellor-farm.jpg':'mellor-farm-tall.jpg','palmer-disco.jpg':'palmer-disco-tall.jpg',
+ 'sanluis-services.jpg':'sanluis-services-tall.jpg','moseley-story.jpg':'moseley-story-tall.jpg',
+ 'dexter-order.jpg':'dexter-order-tall.jpg','ames-wood.jpg':'ames-wood-tall.jpg',
+ 'mody-products.jpg':'mody-products-tall.jpg'};
+
 /* the one that pans sideways: a real Beer Runner game world */
 const PANX={beerrunner:'br-world.jpg'};
 
@@ -424,14 +453,16 @@ function entryHTML(p,i){
   const strip=p.shots.slice(1,5).map(s=>`<img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy">`).join('');
   const tags=p.disc.map(d=>`<span class="${d===lens?'on':''}">${DISC[d]}</span>`).join('');
   const nm=p.n.replace(/&amp;/g,'and');
-  const pan=PANX[p.id]
-    ? `<img class="px" src="${IMG}${PANX[p.id]}" alt="${nm}" data-panx>`
-    : `<img src="${IMG}${TALL[p.id]||p.hero}" alt="${nm}" ${TALL[p.id]?'data-pan':''}>`;
+  const pan=p.seq
+    ? p.seq.map((sc,k)=>`<img src="${IMG}${sc}" alt="${nm} screen ${k+1}" class="${k===0?'on':''}">`).join('')
+    : PANX[p.id]
+      ? `<img class="px" src="${IMG}${PANX[p.id]}" alt="${nm}" data-panx>`
+      : `<img src="${IMG}${TALL[p.id]||p.hero}" alt="${nm}" ${TALL[p.id]?'data-pan':''}>`;
   const url=URLS[p.id];
   return `<article class="e e-${p.w}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
     <div class="eshell">
       <button class="emedia" data-open="${p.id}" aria-label="Open ${nm}">
-        <div class="eframe">${pan}<span class="epan">${p.panx?'The game world':'Scroll to pan'}</span></div>
+        <div class="eframe${p.seq?' device" data-seq="'+p.seq.length:''}">${pan}<span class="epan">${p.seq?'Scroll to step through':(PANX[p.id]?'The game world':'Scroll to pan')}</span></div>
         ${p.strip&&strip?`<div class="estrip">${strip}</div>`:''}
       </button>
       <div class="ebody">
@@ -490,6 +521,7 @@ const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let panning=[], ticking=false;
 function collectPans(){
   panning = $$('[data-pan],[data-panx]').map(img=>({img,frame:img.parentElement,x:img.hasAttribute('data-panx')}));
+  $$('[data-seq]').forEach(fr=>panning.push({frame:fr,seq:[...fr.querySelectorAll('img')]}));
   updatePans();
 }
 function updatePans(){
@@ -501,6 +533,12 @@ function updatePans(){
     // travels up and out. t=0 the moment the whole frame has arrived.
     let t=((vh-r.height)-r.top)/vh;
     t=t<0?0:t>1?1:t;
+    if(p.seq){
+      const n=p.seq.length;
+      let k=Math.floor(t*n); if(k>n-1) k=n-1;
+      p.seq.forEach((im,j)=>im.classList.toggle('on',j===k));
+      continue;
+    }
     if(p.x){
       const max=p.img.offsetWidth-p.frame.offsetWidth;
       if(max>0) p.img.style.transform=`translate3d(${-max*t}px,0,0)`;
@@ -513,6 +551,7 @@ function updatePans(){
 }
 function onScroll(){ if(!ticking && !REDUCED){ ticking=true; requestAnimationFrame(updatePans); } }
 addEventListener('scroll',onScroll,{passive:true});
+document.addEventListener('scroll',onScroll,{passive:true,capture:true});
 addEventListener('resize',()=>{if(!REDUCED)collectPans();},{passive:true});
 
 /* ---------------- overlay ---------------- */
@@ -544,8 +583,14 @@ function fill(seq,i){
       ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
     <div class="dwrap"><div class="dovshots ${p.play?'contain':''}">
-      ${p.shots.map(s=>`<figure><img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy"><figcaption>${s[1]}</figcaption></figure>`).join('')}
+      ${p.shots.map(sh=>{
+        const tallSrc = (TALL2[sh[0]]) || (sh[0]===p.hero ? TALL[p.id] : null);
+        if(tallSrc) return `<figure><div class="pv"><img src="${IMG}${tallSrc}" alt="${sh[1]}" data-pan loading="lazy"></div><figcaption>${sh[1]}</figcaption></figure>`;
+        const flat = /-all\.jpg$|-mock\.jpg$|br-world/.test(sh[0]);
+        return `<figure><div class="pv ${flat?'wideflat':'contain'}"><img src="${IMG}${sh[0]}" alt="${sh[1]}" loading="lazy"></div><figcaption>${sh[1]}</figcaption></figure>`;
+      }).join('')}
     </div></div>`;
+  if(!REDUCED) requestAnimationFrame(()=>{collectPans();updatePans();});
   const b=$('#ovbody'); b.style.opacity=0;
   requestAnimationFrame(()=>{b.style.transition='opacity .4s';b.style.opacity=1;});
 }
