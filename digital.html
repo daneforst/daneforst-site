@@ -100,6 +100,11 @@
 .pv.contain{background:#0d0c09}
 .pv.contain img{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   width:auto;height:92%;max-width:96%;object-fit:contain}
+.pv.phone{background:#0d0c09;aspect-ratio:16/10}
+.pv.phone .ph-in{position:absolute;left:50%;top:6%;height:88%;width:auto;
+  aspect-ratio:400/812;transform:translateX(-50%);overflow:hidden;border-radius:10px;
+  box-shadow:0 16px 44px -12px rgba(0,0,0,.8);background:#000}
+.pv.phone .ph-in img{position:absolute;top:0;left:0;width:100%;height:auto}
 .pv.wideflat{aspect-ratio:21/9}
 .pv.wideflat img{top:50%;transform:translateY(-50%)}
 
@@ -280,119 +285,136 @@ const DISC = {
 const IMG = 'assets/img/digital/';
 
 const P = [
-{id:'camera', n:'Camera Ads', c:'Automotive Marketplace', y:'2017', w:'hero', t:'case',
- st:'live', status:'Launched. Evolved since.',
+{id:'suntreat', n:'Suntreat', c:'California Citrus', w:'hero', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ad','ux'], note:'Packaging and identity by others.',
+ line:'A California citrus grower speaking to shoppers and the trade at once, anchored by the Sumo Citrus story and photography that makes the fruit the argument.',
+ hero:'suntreat-02.jpg',
+ pages:[['suntreat-02.jpg','Home','page'],['suntreat-07.jpg','Sumo Citrus','page'],
+        ['suntreat-06.jpg','Reserve Citrus','page'],['suntreat-05.jpg','Availability','page'],
+        ['suntreat-03.jpg','For our growers','page'],['suntreat-04.jpg','For the trade','page'],
+        ['suntreat-01.jpg','About','page']]},
+
+{id:'mellor', n:'Mellor Ranch', c:'Family Vineyard, since 1884', w:'hero', t:'vis',
+ role:'Art Direction, UX/UI, Packaging', disc:['ad','brand','ecom'],
+ line:'A family vineyard with a barn for a mark and a sunset down the vine rows. Varietal pages, a farming story, and a store. One of the few here where the labels on the bottles are mine too.',
+ hero:'mellor-01.jpg',
+ pages:[['mellor-01.jpg','Home','page'],['mellor-05.jpg','Our story','page'],
+        ['mellor-04.jpg','Farming practice','page'],['mellor-06.jpg','The wines','page'],
+        ['mellor-02.jpg','A varietal','page'],['mellor-03.jpg','Contact','page']]},
+
+{id:'klassen', n:'Klassen &amp; Smith', c:'Architecture &amp; Construction', w:'major', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ad','ux'],
+ line:'Confident and contemporary, built on aerial architectural photography and a blunt promise: do what is right.',
+ hero:'klassen-01.jpg',
+ pages:[['klassen-01.jpg','Home','page'],['klassen-04.jpg','Project detail','page'],
+        ['klassen-05.jpg','Services','page'],['klassen-02.jpg','About','page']]},
+
+{id:'sanluis', n:'San Luis Ambulance', c:'Emergency Response', w:'major', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ux','ia'],
+ line:'Eighty years of emergency response, given a calm and trustworthy presence across services, careers, and billing. Bike paramedics and dune-capable ambulances included.',
+ hero:'sanluis-01.jpg',
+ pages:[['sanluis-01.jpg','Home','page'],['sanluis-09.jpg','Services','page'],
+        ['sanluis-02.jpg','About','page'],['sanluis-03.jpg','Careers','page'],
+        ['sanluis-07.jpg','Field supervisor','page'],['sanluis-05.jpg','Explorer program','page'],
+        ['sanluis-08.jpg','Quality committee','page'],['sanluis-06.jpg','FAQ','page'],
+        ['sanluis-04.jpg','Contact','page']]},
+
+{id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', w:'major', t:'vis',
+ role:'Art Direction, UX/UI, Photography', disc:['ecom','ad','photo'],
+ line:'Special-operations kneepads, made since 1996. Olive and tan, with wholesale and cart, and product photography shot in the dirt where it belongs.',
+ hero:'dexter-01.jpg',
+ pages:[['dexter-01.jpg','Home','page'],['dexter-04.jpg','Order','page'],
+        ['dexter-03.jpg','How to','page'],['dexter-05.jpg','Wholesale','page'],
+        ['dexter-02.jpg','About','page']]},
+
+{id:'palmer', n:'Tim Palmer', c:'Record Producer &amp; Mixer', w:'major', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ad'],
+ line:'A site for the producer and mixer behind Pearl Jam&#8217;s Ten, Bowie, U2, and Ozzy. The wall of album covers does more in two seconds than any layout could, so the design gets out of its way.',
+ hero:'palmer-02.jpg',
+ pages:[['palmer-02.jpg','Home','page'],['palmer-03.jpg','Discography','page'],
+        ['palmer-01.jpg','Contact','page']]},
+
+{id:'camera', n:'Camera Ads', c:'Automotive Marketplace', w:'hero', t:'case',
  role:'Art Direction, UX/UI', disc:['ux','ia','ecom'],
- line:'A print vehicle-classifieds business rebuilt as a real marketplace: faceted search across eight inventory categories, dealer tools, listing and detail templates, and a four-step list-a-vehicle flow that reconciles print and internet ad limits, photo management, and checkout. Desktop and native mobile.',
- hero:'camera-home.jpg',
- shots:[['camera-home.jpg','The marketplace home'],['camera-flow.jpg','List a vehicle, step one'],['camera-mobile.jpg','Native mobile app'],['camera-print.jpg','The print side it grew out of']]},
+ line:'A print vehicle-classifieds business rebuilt as a real marketplace: faceted search across eight inventory categories, dealer tools, listing and detail templates, and a multi-step flow for listing a vehicle. Desktop and native mobile.',
+ hero:'camera-02.jpg',
+ pages:[['camera-02.jpg','The marketplace','page'],['camera-05.jpg','Listing detail','page'],
+        ['camera-04.jpg','About','page'],['camera-01.jpg','Mobile app','page'],
+        ['camera-03.jpg','Mobile listing detail','page']]},
 
 {id:'toca', n:'TOCA', c:'Football Training App', w:'major', t:'case', device:true,
  role:'Art Direction, UX/UI', disc:['ux','ad'],
- line:'A native app that drives a ball-launching machine from your pocket. Players build drills, sync them to the trainer, and run a live session with ball counts, speed, and vertical and horizontal placement adjusted between reps.',
+ line:'A native app that drives a ball-launching machine from your pocket. Players build drills, sync them to the trainer, and run a live session with ball counts, speed, and placement adjusted between reps.',
  hero:'toca-3.jpg',
  seq:['toca-1.jpg','toca-2.jpg','toca-3.jpg','toca-4.jpg','toca-5.jpg','toca-6.jpg'],
- shots:[['toca-all.jpg','The full screen flow'],['toca-3.jpg','Dashboard'],['toca-5.jpg','Running a live drill'],['toca-4.jpg','Drill list']]},
+ pages:[['toca-01.jpg','Every screen','wide'],['toca-3.jpg','Dashboard','shot'],
+        ['toca-5.jpg','Running a drill','shot'],['toca-4.jpg','Drill list','shot']]},
 
-{id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', y:'~2019', w:'hero', t:'hyb',
- st:'past', status:'Launched. Ran for years.',
- role:'Digital Art Direction, UX/UI', disc:['ad','ia','brand','ecom'],
- line:'Four businesses in one building: concert hall, restaurant, museum, and box office. Theatrical art direction sitting on top of genuinely complex content, with an events calendar, ticketing, reservations, menus, and a museum archive all speaking with one voice.',
- hero:'buck-home.jpg',
- shots:[['buck-home.jpg','The venue home'],['buck-events.jpg','Events and ticketing'],['buck-menu.jpg','The restaurant'],['buck-museum.jpg','The museum archive']]},
-
-{id:'suntreat', n:'Suntreat', c:'California Citrus', y:'~2019', w:'major', t:'vis',
- st:'live', status:'Launched. Live today.',
- role:'Art Direction, UX/UI', disc:['ad','ux'],
- line:'A California citrus grower speaking to consumers and the trade at once, anchored by the Sumo Citrus story and photography that makes the fruit the argument.',
- note:'Packaging and identity by others.',
- hero:'suntreat-sumo.jpg',
- shots:[['suntreat-sumo.jpg','Sumo Citrus'],['suntreat-reserve.jpg','Reserve varieties'],['suntreat-mock.jpg','Presentation mockup']]},
-
-{id:'douglass', n:'Douglass Truck Bodies', c:'Commercial Manufacturing', y:'~2017', w:'major', t:'case',
- st:'live', status:'Launched. Still running today.',
- role:'Art Direction, UX/UI', disc:['ia','ux'],
- line:'Deep manufacturing knowledge made legible. Nine product categories on one rigorous template, with configurable bodies, annotated quality comparisons, galleries, and lead capture for buyers who hunt for an exact configuration.',
- hero:'douglass-service.jpg',
- shots:[['douglass-service.jpg','Service bodies, in full'],['douglass-camper.jpg','The same system, another category'],['douglass-mock.jpg','Presentation mockup']]},
-
-{id:'klassen', n:'Klassen &amp; Smith', c:'Architecture &amp; Construction', y:'Recent', w:'major', t:'vis',
- st:'live', status:'Launched. Live today.',
- role:'Art Direction, UX/UI', disc:['ad','ux'],
- line:'Confident and contemporary, built on aerial architectural photography and a blunt promise: do what is right. Includes a projects index and detail system for showing completed builds.',
- hero:'klassen-home.jpg',
- shots:[['klassen-home.jpg','Home'],['klassen-projects.jpg','Projects index'],['klassen-services.jpg','Services']]},
-
-{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', y:'~2016', w:'hero', t:'exp', play:true,
- st:'never', status:'Reached 99%. Never shipped.',
- role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
- line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs, gift cards, and a physical wine holder. And a full arcade game around the bottle mascot: six scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
- hero:'br-start.jpg',
- shots:[['br-start.jpg','The start screen'],['br-level.jpg','A level: platforms, power-up, Hopster'],['br-sprites.jpg','The sixteen-frame run cycle'],['br-logo.jpg','Logo system'],['br-app.jpg','The delivery app and subscription clubs'],['br-holder.jpg','Physical wine holder'],['br-over.jpg','Game over']]},
-
-{id:'moto', n:'MotoAuct', c:'Vintage Motorcycle Auction', y:'2018', w:'major', t:'hyb',
- st:'past', status:'Launched. Folded a few years later.',
+{id:'moto', n:'MotoAuct', c:'Vintage Motorcycle Auction', w:'major', t:'hyb',
  role:'Art Direction, UX/UI, Photography', disc:['ad','ecom','ux','photo'],
- line:'The world’s only online vintage motorcycle auction, given a red-and-black identity with real transactional mechanics underneath: live bids, countdown timers, a merch store, and a community to keep it warm between sales.',
- hero:'moto-home.jpg',
- shots:[['moto-home.jpg','The auction home'],['moto-mock.jpg','Presentation mockup'],['moto-mobile.jpg','Mobile']]},
+ line:'The world&#8217;s only online vintage motorcycle auction, given a red-and-black identity with real transactional mechanics underneath: live bids, countdown timers, and a merch store.',
+ hero:'moto-01.jpg',
+ pages:[['moto-01.jpg','Home','page'],['moto-03.jpg','Auction detail','page'],
+        ['moto-02.jpg','Mobile home','mobile'],['moto-05.jpg','Mobile, how it works','mobile'],
+        ['moto-06.jpg','Mobile team','mobile']]},
 
-{id:'mellor', n:'Mellor Ranch', c:'Family Vineyard, since 1884', y:'Recent', w:'major', t:'vis',
- st:'live', status:'Launched. Live today.',
- role:'Art Direction, UX/UI, Packaging', disc:['ad','brand','ecom'],
- line:'A family vineyard with a barn for a mark and a sunset down the vine rows. Seven varietal pages, a farming-practice story, and a store. One of the few projects here where the labels on the bottles are mine too.',
- hero:'mellor-home.jpg',
- shots:[['mellor-home.jpg','Home'],['mellor-story.jpg','Our story'],['mellor-cab.jpg','A varietal page'],['mellor-farm.jpg','Farming practice']]},
+{id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', w:'major', t:'hyb',
+ role:'Digital Art Direction, UX/UI', disc:['ad','ia','brand','ecom'],
+ line:'Four businesses in one building: concert hall, restaurant, museum, and box office. Theatrical art direction on top of genuinely complex content, all speaking with one voice.',
+ hero:'buck-01.jpg',
+ pages:[['buck-01.jpg','Home','page'],['buck-06.jpg','Upcoming events','page'],
+        ['buck-04.jpg','The menu','page'],['buck-02.jpg',"Buck's legacy",'page'],
+        ['buck-03.jpg','Media','page'],['buck-05.jpg','Reservations','page']]},
 
-{id:'palmer', n:'Tim Palmer', c:'Record Producer &amp; Mixer', y:'2020', w:'major', t:'vis',
- st:'live', status:'Launched. Still live.',
- role:'Art Direction, UX/UI', disc:['ad'],
- line:'A site for the producer and mixer behind Pearl Jam’s Ten, Bowie, U2, and Ozzy. The wall of album covers does more for credibility in two seconds than any layout could, so the design gets out of its way.',
- hero:'palmer-home.jpg',
- shots:[['palmer-home.jpg','Logo and discography'],['palmer-disco.jpg','The discography wall'],['palmer-ig.jpg','Social']]},
-
-{id:'sanluis', n:'San Luis Ambulance', c:'Emergency Response', y:'2025', w:'standard', t:'vis',
- st:'live', status:'Launched recently. Live today.',
- role:'Art Direction, UX/UI', disc:['ux','ia'],
- line:'Eighty years of emergency response, given a calm and trustworthy presence across services, careers, and billing. Bike paramedics and dune-capable 4x4 ambulances included.',
- hero:'sanluis-home.jpg',
- shots:[['sanluis-home.jpg','Home'],['sanluis-services.jpg','Services']]},
-
-{id:'degrees', n:'800 Degrees', c:'Woodfired Kitchen', y:'~2018', w:'standard', t:'vis',
- st:'past', status:'Launched. The chain no longer exists.',
- role:'UX/UI, Design', disc:['ux','ad'],
- line:'A restaurant chain sold on wood-fired food photography, with a rewards program, catering, locations, and franchising working underneath the appetite.',
- hero:'degrees-home.jpg',
- shots:[['degrees-home.jpg','Home'],['degrees-mock.jpg','Presentation mockup']]},
-
-{id:'moseley', n:'Robert Moseley Design', c:'Interior Design', y:'~2024', w:'standard', t:'vis',
- st:'live', status:'Launched. Live today.',
- role:'Art Direction, UX/UI', disc:['ad','brand'],
- line:'A luxury interior designer carried almost entirely by maximalist photography, held together with green, gold, and a confident script.',
- hero:'moseley-home.jpg',
- shots:[['moseley-home.jpg','Home'],['moseley-story.jpg','My story']]},
-
-
-{id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', y:'2022', w:'support', t:'vis',
- st:'live', status:'Launched. Live today.',
- role:'Art Direction, UX/UI, Photography', disc:['ecom','ad','photo'],
- line:'Special-operations kneepads, made since 1996. Olive and tan, with wholesale and cart, and product photography shot in the dirt where it belongs.',
- hero:'dexter-home.jpg',
- shots:[['dexter-home.jpg','Home'],['dexter-order.jpg','Order']]},
-
-{id:'ames', n:'Ames Woodworks', c:'Handmade Beer &amp; Wine Carriers', y:'2017', w:'support', t:'vis',
- st:'past', status:'Launched. Since changed.',
+{id:'ames', n:'Ames Woodworks', c:'Handmade Beer &amp; Wine Carriers', w:'standard', t:'vis',
  role:'Art Direction, UX/UI, Photography', disc:['brand','ecom','photo'],
  line:'Reclaimed-wood carriers with real brewery clients, shot and art-directed to feel like the shop they came out of.',
- hero:'ames-home.jpg',
- shots:[['ames-home.jpg','Home'],['ames-wood.jpg','The woodwork']]},
+ hero:'ames-01.jpg',
+ pages:[['ames-01.jpg','Home','page'],['ames-02.jpg','The carriers','page'],
+        ['ames-05.jpg','Woodworks','page'],['ames-03.jpg','Checkout','page'],
+        ['ames-04.jpg','Contact','page']]},
 
-{id:'mody', n:'Mody Pumps', c:'Industrial Manufacturing', y:'2025', w:'support', t:'vis',
- st:'never', status:'Designed. Still unreleased.',
+{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'hero', t:'exp',
+ role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
+ line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs and a physical wine holder. And a full arcade game around the bottle mascot: scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
+ hero:'beerrunner-01.jpg', strip:true,
+ pages:[['beerrunner-01.jpg','The game start screen','shot'],['br-level.jpg','A level','shot'],
+        ['br-sprites.jpg','The run cycle','shot'],['br-logo.jpg','Logo system','shot'],
+        ['beerrunner-03.jpg','The delivery app','shot'],['beerrunner-02.jpg','Wine club','shot'],
+        ['beerrunner-05.jpg','Physical wine holder','shot'],['br-over.jpg','Game over','shot']]},
+
+{id:'degrees', n:'800 Degrees', c:'Woodfired Kitchen', w:'standard', t:'vis',
+ role:'UX/UI, Design', disc:['ux','ad'],
+ line:'A restaurant chain sold on wood-fired food photography, with rewards, catering, locations, and franchising working underneath the appetite.',
+ hero:'degrees-01.jpg',
+ pages:[['degrees-01.jpg','Home','page'],['degrees-02.jpg','Mobile','mobile']]},
+
+{id:'douglass', n:'Douglass Truck Bodies', c:'Commercial Manufacturing', w:'major', t:'case',
+ role:'Art Direction, UX/UI', disc:['ia','ux'],
+ line:'Deep manufacturing knowledge made legible. Product categories on one rigorous template, with configurable bodies, annotated comparisons, and lead capture for buyers who hunt for an exact configuration.',
+ hero:'douglass-01.jpg',
+ pages:[['douglass-01.jpg','Home','page'],['douglass-02.jpg','Camper bodies','page'],
+        ['douglass-03.jpg','Canopy bodies','page']]},
+
+{id:'louvre', n:'Louvre Fantastique', c:'Concept Site', w:'standard', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ad'],
+ line:'Pure art direction, start to finish.',
+ hero:'louvre-01.jpg',
+ pages:[['louvre-01.jpg','The site','page']]},
+
+{id:'moseley', n:'Robert Moseley Design', c:'Interior Design', w:'standard', t:'vis',
+ role:'Art Direction, UX/UI', disc:['ad','brand'],
+ line:'A luxury interior designer carried almost entirely by maximalist photography, held together with green, gold, and a confident script.',
+ hero:'moseley-01.jpg',
+ pages:[['moseley-01.jpg','Home','page'],['moseley-02.jpg','My story','page']]},
+
+{id:'mody', n:'Mody Pumps', c:'Industrial Manufacturing', w:'standard', t:'vis',
  role:'Art Direction, UX/UI, Photography', disc:['ia','ux','photo'],
- line:'A global pump manufacturer with a Bakersfield headquarters and offices on four continents. A full catalog and a find-your-pump selector, designed and waiting.',
- hero:'mody-products.jpg',
- shots:[['mody-products.jpg','Product catalog'],['mody-home.jpg','Home']]}
+ line:'A global pump manufacturer with a Bakersfield headquarters and offices on four continents. A full catalog and a find-your-pump selector.',
+ hero:'mody-02.jpg',
+ pages:[['mody-02.jpg','Home','page'],['mody-04.jpg','Products','page'],
+        ['mody-05.jpg','Wastewater','page'],['mody-01.jpg','About','page'],
+        ['mody-03.jpg','Our team','page']]}
 ];
 
 /* ---------------- render ---------------- */
@@ -405,37 +427,15 @@ const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybr
 /* Running order, as specified. The last three were not in the list and sit
    at the end until Dane places or cuts them. */
 const ORDER=['suntreat','mellor','klassen','sanluis','dexter','palmer','camera','toca',
-             'moto','buck','ames','beerrunner','degrees',
-             'douglass','moseley','mody'];
+             'moto','buck','ames','beerrunner','degrees','douglass',
+             'louvre','moseley','mody'];
 P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
 
-/* Weight rebalanced to follow the running order, so the top of the page
-   carries the projects Dane ranked highest. */
-const WEIGHT={suntreat:'hero',mellor:'hero',camera:'hero',beerrunner:'hero',
-  klassen:'major',sanluis:'major',dexter:'major',palmer:'major',moto:'major',
-  buck:'major',douglass:'major',toca:'major',
-  ames:'standard',degrees:'standard',moseley:'standard',mody:'standard'};
-P.forEach(p=>{p.w = WEIGHT[p.id]||p.w;});
-/* Beer Runner is the only entry whose extra assets are a different kind of
-   thing rather than another page, so it keeps a strip. */
-P.forEach(p=>{p.strip = p.id==='beerrunner';});
 
-/* full-page captures that pan vertically inside their frame */
-const TALL={camera:'camera-tall.jpg',buck:'buck-tall.jpg',suntreat:'suntreat-tall.jpg',
-  douglass:'douglass-tall.jpg',klassen:'klassen-tall.jpg',moto:'moto-tall.jpg',
-  mellor:'mellor-tall.jpg',palmer:'palmer-tall.jpg',sanluis:'sanluis-tall.jpg',
-  degrees:'degrees-tall.jpg',moseley:'moseley-tall.jpg',
-  dexter:'dexter-tall.jpg',ames:'ames-tall.jpg',mody:'mody-tall.jpg'};
-/* secondary page captures, tall versions for the project view */
-const TALL2={'buck-events.jpg':'buck-events-tall.jpg','buck-menu.jpg':'buck-menu-tall.jpg',
- 'buck-museum.jpg':'buck-museum-tall.jpg','suntreat-reserve.jpg':'suntreat-reserve-tall.jpg',
- 'douglass-camper.jpg':'douglass-camper-tall.jpg','klassen-projects.jpg':'klassen-projects-tall.jpg',
- 'klassen-services.jpg':'klassen-services-tall.jpg','moto-mobile.jpg':'moto-mobile-tall.jpg',
- 'mellor-story.jpg':'mellor-story-tall.jpg','mellor-cab.jpg':'mellor-cab-tall.jpg',
- 'mellor-farm.jpg':'mellor-farm-tall.jpg','palmer-disco.jpg':'palmer-disco-tall.jpg',
- 'sanluis-services.jpg':'sanluis-services-tall.jpg','moseley-story.jpg':'moseley-story-tall.jpg',
- 'dexter-order.jpg':'dexter-order-tall.jpg','ames-wood.jpg':'ames-wood-tall.jpg',
- 'mody-products.jpg':'mody-products-tall.jpg'};
+
+
+
+
 
 /* the one that pans sideways: a real Beer Runner game world */
 const PANX={beerrunner:'br-world.jpg'};
@@ -450,14 +450,14 @@ const URLS={
 
 function entryHTML(p,i){
   const [tc,tl]=TYPE[p.t];
-  const strip=p.shots.slice(1,5).map(s=>`<img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy">`).join('');
+  const strip=(p.pages||[]).slice(1,5).map(x=>`<img src="${IMG}${x[0]}" alt="${x[1]}" loading="lazy">`).join('');
   const tags=p.disc.map(d=>`<span class="${d===lens?'on':''}">${DISC[d]}</span>`).join('');
   const nm=p.n.replace(/&amp;/g,'and');
   const pan=p.seq
     ? p.seq.map((sc,k)=>`<img src="${IMG}${sc}" alt="${nm} screen ${k+1}" class="${k===0?'on':''}">`).join('')
     : PANX[p.id]
       ? `<img class="px" src="${IMG}${PANX[p.id]}" alt="${nm}" data-panx>`
-      : `<img src="${IMG}${TALL[p.id]||p.hero}" alt="${nm}" ${TALL[p.id]?'data-pan':''}>`;
+      : `<img src="${IMG}${p.hero}" alt="${nm}" data-pan>`;
   const url=URLS[p.id];
   return `<article class="e e-${p.w}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
     <div class="eshell">
@@ -582,12 +582,13 @@ function fill(seq,i){
       </div>
       ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
-    <div class="dwrap"><div class="dovshots ${p.play?'contain':''}">
-      ${p.shots.map(sh=>{
-        const tallSrc = (TALL2[sh[0]]) || (sh[0]===p.hero ? TALL[p.id] : null);
-        if(tallSrc) return `<figure><div class="pv"><img src="${IMG}${tallSrc}" alt="${sh[1]}" data-pan loading="lazy"></div><figcaption>${sh[1]}</figcaption></figure>`;
-        const flat = /-all\.jpg$|-mock\.jpg$|br-world/.test(sh[0]);
-        return `<figure><div class="pv ${flat?'wideflat':'contain'}"><img src="${IMG}${sh[0]}" alt="${sh[1]}" loading="lazy"></div><figcaption>${sh[1]}</figcaption></figure>`;
+    <div class="dwrap"><div class="dovshots">
+      ${(p.pages||[]).map(pg=>{
+        const [file,cap,kind]=pg;
+        if(kind==='page')   return `<figure><div class="pv"><img src="${IMG}${file}" alt="${cap}" data-pan loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
+        if(kind==='mobile') return `<figure><div class="pv phone"><span class="ph-in"><img src="${IMG}${file}" alt="${cap}" data-pan loading="lazy"></span></div><figcaption>${cap}</figcaption></figure>`;
+        if(kind==='wide')   return `<figure><div class="pv wideflat"><img src="${IMG}${file}" alt="${cap}" loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
+        return `<figure><div class="pv contain"><img src="${IMG}${file}" alt="${cap}" loading="lazy"></div><figcaption>${cap}</figcaption></figure>`;
       }).join('')}
     </div></div>`;
   if(!REDUCED) requestAnimationFrame(()=>{collectPans();updatePans();});
