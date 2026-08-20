@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css?v=5">
+<link rel="stylesheet" href="assets/css/style.css?v=6">
 </head>
 <body>
 
@@ -23,6 +23,7 @@
     <li><a href="about.html">About</a></li>
     <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
     <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="avail"><span class="dot"></span>Open for work</div>
@@ -46,6 +47,7 @@
   <div class="mlabel">Work — Index</div>
   <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
   <a href="galleries.html">Galleries</a>
+  <a href="packaging.html">Packaging</a>
   <a href="contact.html">Contact</a>
   <div class="m-meta">
     <span class="avail-m"><span class="dot"></span>Open for work</span>
@@ -224,8 +226,30 @@
   </div>
 </section>
 
+<section class="pad" id="packaging-teaser">
+  <div class="sec-head"><span>03 — Packaging</span><span>On the shelf</span></div>
+  <div class="gt-list">
+    <a class="gt-feature reveal" href="packaging.html" aria-label="Packaging design">
+      <div class="pkg-slide" aria-hidden="true">
+        <img class="on" src="assets/img/packaging/packaging-12.jpg" alt="">
+        <img src="assets/img/packaging/packaging-13.jpg" alt="">
+        <img src="assets/img/packaging/packaging-02.jpg" alt="">
+        <img src="assets/img/packaging/packaging-04.jpg" alt="">
+      </div>
+      <div class="gt-in">
+        <span class="gt-kicker">Packaging</span>
+        <h2>Worth keeping</h2>
+        <p class="gt-sub">Labels, bottles, and boxes worth keeping long after they're empty</p>
+        <span class="gt-cue">See the packaging
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+      </div>
+    </a>
+  </div>
+</section>
+
 <section class="pad" id="galleries-teaser">
-  <div class="sec-head"><span>03 — Galleries</span><span>Moving image</span></div>
+  <div class="sec-head"><span>04 — Galleries</span><span>Moving image</span></div>
   <div class="gt-list">
     <a class="gt-feature reveal" href="galleries/album-art.html" aria-label="Album Art gallery">
       <video autoplay muted loop playsinline poster="assets/img/galleries/album-art/album-art-teaser.jpg">
@@ -281,7 +305,7 @@
     <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
   </linearGradient></defs>
 </svg>
-  <div class="sec-head"><span>04 — Contact</span><span>Reach out</span></div>
+  <div class="sec-head"><span>05 — Contact</span><span>Reach out</span></div>
   <div class="home-banner reveal">
     <img src="assets/img/def-about-01.jpg" alt="Dane Forst out in the city with a camera" loading="lazy">
   </div>
@@ -327,5 +351,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="assets/js/main.js?v=2"></script>
+<script>
+/* home packaging strip: crossfade the hero shots */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('.pkg-slide').forEach(function(slide){
+    var imgs = slide.querySelectorAll('img');
+    if(imgs.length < 2) return;
+    var i = 0;
+    setInterval(function(){
+      imgs[i].classList.remove('on');
+      i = (i + 1) % imgs.length;
+      imgs[i].classList.add('on');
+    }, 4500);
+  });
+})();
+</script>
 </body>
 </html>

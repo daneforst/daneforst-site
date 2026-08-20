@@ -689,3 +689,11 @@ body.gdark{background:var(--soot);color:var(--bone)}
 .gdark .project-intro,.gdark .psec{border-bottom-color:var(--line-light)}
 .gdark .page-cta{background:var(--soot);border-top-color:var(--line-light)}
 .gdark .page-cta .cta{color:var(--bone);border-color:var(--bone)}
+
+/* ---------- home: packaging strip (crossfading hero shots) ----------
+   Reuses .gt-feature; swaps the single video for a set of stills that
+   crossfade, to set the packaging section apart from the video galleries. */
+.pkg-slide{position:absolute;inset:0;z-index:0}
+.pkg-slide img{opacity:0;transition:opacity 1.4s ease, transform .7s cubic-bezier(.7,0,.2,1)}
+.pkg-slide img.on{opacity:1}
+@media(prefers-reduced-motion:reduce){.pkg-slide img{transition:none}}
