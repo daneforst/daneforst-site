@@ -384,6 +384,24 @@ let lens='all';
 function arrow(){return '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>';}
 const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybrid'],vis:['vis','Visual']};
 
+/* Running order, as specified. The last three were not in the list and sit
+   at the end until Dane places or cuts them. */
+const ORDER=['suntreat','mellor','klassen','sanluis','dexter','palmer','camera',
+             'moto','buck','ames','cimulated','beerrunner','degrees',
+             'douglass','moseley','mody'];
+P.sort((a,b)=>ORDER.indexOf(a.id)-ORDER.indexOf(b.id));
+
+/* Weight rebalanced to follow the running order, so the top of the page
+   carries the projects Dane ranked highest. */
+const WEIGHT={suntreat:'hero',mellor:'hero',camera:'hero',beerrunner:'hero',
+  klassen:'major',sanluis:'major',dexter:'major',palmer:'major',moto:'major',
+  buck:'major',douglass:'major',
+  ames:'standard',cimulated:'standard',degrees:'standard',moseley:'standard',mody:'standard'};
+P.forEach(p=>{p.w = WEIGHT[p.id]||p.w;});
+/* Beer Runner is the only entry whose extra assets are a different kind of
+   thing rather than another page, so it keeps a strip. */
+P.forEach(p=>{p.strip = p.id==='beerrunner';});
+
 /* full-page captures that pan vertically inside their frame */
 const TALL={camera:'camera-tall.jpg',buck:'buck-tall.jpg',suntreat:'suntreat-tall.jpg',
   douglass:'douglass-tall.jpg',klassen:'klassen-tall.jpg',moto:'moto-tall.jpg',
@@ -414,7 +432,7 @@ function entryHTML(p,i){
     <div class="eshell">
       <button class="emedia" data-open="${p.id}" aria-label="Open ${nm}">
         <div class="eframe">${pan}<span class="epan">${p.panx?'The game world':'Scroll to pan'}</span></div>
-        ${p.w!=='support'&&strip?`<div class="estrip">${strip}</div>`:''}
+        ${p.strip&&strip?`<div class="estrip">${strip}</div>`:''}
       </button>
       <div class="ebody">
         <div class="etop"><span class="idx">${String(i+1).padStart(2,'0')}</span>
@@ -479,8 +497,9 @@ function updatePans(){
   for(const p of panning){
     const r=p.frame.getBoundingClientRect();
     if(r.bottom<-200||r.top>vh+200) continue;
-    // 0 when the frame first enters from below, 1 when it has fully left the top
-    let t=(vh-r.top)/(vh+r.height);
+    // Hold on the hero until the frame is fully in view, then pan as it
+    // travels up and out. t=0 the moment the whole frame has arrived.
+    let t=((vh-r.height)-r.top)/vh;
     t=t<0?0:t>1?1:t;
     if(p.x){
       const max=p.img.offsetWidth-p.frame.offsetWidth;
