@@ -1,0 +1,5 @@
+.DS_Store
+
+# Local-only working docs, never published to the live site
+archive-map.html
+_archivemap/

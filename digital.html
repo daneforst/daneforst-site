@@ -3,1025 +3,477 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Web, Product & Interactive — Dane Forst</title>
-<meta name="description" content="Selected digital work by Dane Erik Forst: product and UX, digital art direction, complex information architecture, ecommerce, and brand-to-digital systems. From functional platforms to art-directed marketing sites.">
+<title>Web &amp; Interactive — Dane Forst</title>
+<meta name="description" content="A working archive of digital work by Dane Erik Forst: art direction, UX/UI, and design for marketplaces, venues, manufacturers, wineries, and brands. Created with Fluxar Studios, Inc.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=6">
 <style>
-:root{
-  --soot:#141310; --soot-2:#1a1814; --panel:#1e1b16; --panel-2:#26221b;
-  --bone:#E4E0D4; --bone-2:#cfcabb;
-  --muted:rgba(228,224,212,.56); --faint:rgba(228,224,212,.34);
-  --line:rgba(228,224,212,.14); --line-2:rgba(228,224,212,.07);
-  --sun:#ff8330; --rose:#ff4d8c;
-  --mono:'IBM Plex Mono',ui-monospace,monospace;
-  --serif:'Instrument Serif',Georgia,serif;
-  --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
-  --ease:cubic-bezier(.6,0,.2,1);
+/* ---------- digital archive: index view ---------- */
+.dk{background:var(--soot);color:var(--bone);min-height:100vh}
+.dwrap{max-width:1440px;margin:0 auto;padding:0 clamp(1.2rem,3.4vw,3rem)}
+
+/* masthead */
+.dmast{padding:clamp(3.2rem,8vh,6rem) 0 clamp(1.6rem,4vh,2.6rem)}
+.dkick{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.26em;color:var(--sun)}
+.dmast h1{
+  font-weight:850;font-variation-settings:'wdth' 74;text-transform:uppercase;
+  font-size:clamp(2.3rem,7vw,5.8rem);line-height:.92;letter-spacing:-.015em;margin:1rem 0 0;max-width:15ch;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  background:var(--soot);color:var(--bone);font-family:var(--sans);font-weight:400;
-  -webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden;
+.dmast h1 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-variation-settings:normal}
+.dlede{margin-top:clamp(1.3rem,3vh,1.9rem);max-width:52ch;font-size:clamp(1rem,1.3vw,1.15rem);color:rgba(228,224,212,.62);line-height:1.6}
+.dlede b{color:var(--bone);font-weight:600}
+.dstats{display:flex;flex-wrap:wrap;gap:1.4rem clamp(1.8rem,5vw,4rem);margin-top:clamp(1.8rem,4vh,2.8rem);
+  padding-top:clamp(1.4rem,3vh,2rem);border-top:1px solid var(--line-light)}
+.dstat .n{font-weight:800;font-variation-settings:'wdth' 88;font-size:clamp(1.5rem,3vw,2.4rem);line-height:1;letter-spacing:-.02em}
+.dstat .n em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--sun);font-variation-settings:normal}
+.dstat .l{font-family:var(--mono);font-size:.63rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(228,224,212,.4);margin-top:.45rem}
+
+/* credit note */
+.dcredit{margin-top:clamp(1.6rem,3.5vh,2.2rem);border:1px solid var(--line-light);border-left:2px solid var(--sun);
+  border-radius:4px;padding:.9rem 1.1rem;max-width:70ch;font-size:.88rem;color:rgba(228,224,212,.6);line-height:1.55}
+.dcredit b{color:var(--bone);font-weight:600}
+
+/* lenses */
+.dbar{position:sticky;top:0;z-index:30;background:rgba(20,19,16,.92);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-light);margin-top:clamp(1.6rem,4vh,2.4rem)}
+.dbar .row{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;padding:.85rem 0}
+.dlens{display:flex;gap:.45rem;flex-wrap:wrap;flex:1 1 auto}
+.dlens button{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.11em;
+  color:rgba(228,224,212,.6);padding:.48rem .8rem;border:1px solid var(--line-light);border-radius:999px;
+  background:none;cursor:pointer;transition:color .25s,background .25s,border-color .25s;white-space:nowrap}
+.dlens button:hover{color:var(--bone);border-color:rgba(228,224,212,.4)}
+.dlens button[aria-pressed="true"]{background:var(--bone);color:var(--soot);border-color:var(--bone)}
+.dlens button .c{opacity:.45;margin-left:.35em}
+.dcount{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.11em;color:rgba(228,224,212,.4);white-space:nowrap}
+.dcount b{color:var(--bone);font-weight:500}
+
+/* entries */
+.dlist{padding-bottom:clamp(3rem,8vh,6rem)}
+.e{border-top:1px solid var(--line-light);padding:clamp(1.8rem,4.5vh,3.2rem) 0;
+  opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.6,0,.2,1),transform .7s cubic-bezier(.6,0,.2,1)}
+.e.in{opacity:1;transform:none}
+.e[hidden]{display:none}
+.eshell{display:grid;gap:clamp(1.1rem,3vw,2.6rem);align-items:center}
+
+/* weights */
+.e-hero .eshell{grid-template-columns:1fr}
+.e-major .eshell{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.e-standard .eshell{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.e-support .eshell{grid-template-columns:minmax(0,.55fr) minmax(0,1.45fr)}
+/* alternate which side the image sits on, but keep it the dominant column */
+.e-major:nth-of-type(even) .eshell{grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}
+.e-standard:nth-of-type(even) .eshell{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.e-support:nth-of-type(even) .eshell{grid-template-columns:minmax(0,1.45fr) minmax(0,.55fr)}
+.e-major:nth-of-type(even) .emedia,.e-standard:nth-of-type(even) .emedia,.e-support:nth-of-type(even) .emedia{order:2}
+
+/* media */
+.emedia{position:relative;display:block;width:100%;border:0;background:none;padding:0;cursor:pointer;text-align:left}
+.eframe{position:relative;overflow:hidden;border-radius:3px;background:var(--soot-2);border:1px solid var(--line-light)}
+.eframe img{width:100%;height:auto;display:block;transition:transform .8s cubic-bezier(.6,0,.2,1),filter .5s}
+.emedia:hover .eframe img{transform:scale(1.025)}
+.e-hero .eframe img{aspect-ratio:21/9;object-fit:cover;object-position:top center}
+.e-hero.e-play .eframe img{object-fit:contain;object-position:center;background:#0d0c09}
+.estrip{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-top:.5rem}
+.estrip img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top center;display:block;
+  border-radius:2px;border:1px solid var(--line-light);background:var(--soot-2);opacity:.72;transition:opacity .4s}
+.emedia:hover .estrip img{opacity:1}
+.e-play .estrip img{object-fit:contain;background:#0d0c09}
+
+/* body */
+.etop{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;font-family:var(--mono);font-size:.63rem;
+  text-transform:uppercase;letter-spacing:.14em;color:rgba(228,224,212,.38)}
+.etop .idx{color:var(--sun)}
+.etype{border:1px solid currentColor;border-radius:3px;padding:.2rem .45rem;font-size:.56rem;letter-spacing:.1em}
+.etype.exp{color:var(--rose)}
+.etype.case{color:var(--sun)}
+.etype.hyb{color:rgba(228,224,212,.75)}
+.etype.vis{color:rgba(228,224,212,.45)}
+.e h2{font-weight:800;font-variation-settings:'wdth' 82;text-transform:uppercase;letter-spacing:-.01em;
+  line-height:.98;margin:.75rem 0 0}
+.e-hero h2{font-size:clamp(2rem,4.6vw,3.6rem)}
+.e-major h2{font-size:clamp(1.5rem,3vw,2.4rem)}
+.e-standard h2{font-size:clamp(1.3rem,2.4vw,1.9rem)}
+.e-support h2{font-size:clamp(1.1rem,2vw,1.5rem)}
+.eclient{font-family:var(--serif);font-style:italic;color:rgba(228,224,212,.55);margin-top:.3rem;
+  font-size:clamp(.95rem,1.4vw,1.15rem)}
+.eline{margin-top:.9rem;color:rgba(228,224,212,.66);line-height:1.6;max-width:52ch;font-size:clamp(.92rem,1.1vw,1.02rem)}
+.e-support .eline{font-size:.9rem;max-width:60ch}
+.e-hero .eline{font-size:clamp(1rem,1.25vw,1.15rem);max-width:56ch}
+
+/* status */
+.estatus{display:inline-flex;align-items:center;gap:.45rem;margin-top:1rem;font-family:var(--mono);
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.42)}
+.estatus .d{width:6px;height:6px;border-radius:50%;flex:0 0 auto}
+.estatus.live .d{background:#5fbf7a;box-shadow:0 0 0 3px rgba(95,191,122,.16)}
+.estatus.past .d{background:transparent;border:1px solid rgba(228,224,212,.4)}
+.estatus.never .d{background:var(--rose);box-shadow:0 0 0 3px rgba(255,77,140,.15)}
+
+/* discipline tags + role */
+.etags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
+.etags span{font-family:var(--mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.09em;
+  color:rgba(228,224,212,.5);border:1px solid var(--line-light);border-radius:2px;padding:.24rem .45rem}
+.etags span.on{color:var(--sun);border-color:rgba(255,131,48,.45)}
+.erole{margin-top:.85rem;font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(228,224,212,.34);line-height:1.7}
+.erole b{color:rgba(228,224,212,.6);font-weight:500}
+.ecue{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.1rem;font-family:var(--mono);
+  font-size:.64rem;text-transform:uppercase;letter-spacing:.15em;color:var(--bone);transition:color .3s}
+.ecue svg{transition:transform .3s cubic-bezier(.6,0,.2,1)}
+.emedia:hover ~ .ebody .ecue,.ebody:hover .ecue{color:var(--sun)}
+.ebody:hover .ecue svg{transform:translate(3px,-3px)}
+.ebody{cursor:pointer}
+
+/* footer */
+.dfoot{border-top:1px solid var(--line-light);padding:clamp(2.6rem,7vh,4.5rem) 0 clamp(3rem,8vh,5rem)}
+.dfoot h3{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,3.2vw,2.6rem);line-height:1.2;max-width:22ch}
+.dfoot .fc{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.5rem;font-family:var(--mono);
+  font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--soot);background:var(--bone);
+  border-radius:999px;padding:.85rem 1.5rem;transition:background .3s}
+.dfoot .fc:hover{background:var(--sun)}
+.dfoot .fm{margin-top:2.2rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;
+  letter-spacing:.13em;color:rgba(228,224,212,.35);display:flex;gap:1.3rem;flex-wrap:wrap}
+
+/* overlay */
+.dov{position:fixed;inset:0;z-index:120;background:var(--soot);opacity:0;visibility:hidden;
+  transition:opacity .4s cubic-bezier(.6,0,.2,1),visibility .4s;overflow-y:auto;overscroll-behavior:contain}
+.dov.open{opacity:1;visibility:visible}
+.dovbar{position:sticky;top:0;z-index:5;background:rgba(20,19,16,.9);backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-light)}
+.dovbar .row{display:flex;align-items:center;justify-content:space-between;height:56px;gap:1rem}
+.dovbar .lf{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(228,224,212,.4)}
+.dovnav{display:flex;gap:.4rem}
+.dovnav button{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;
+  color:rgba(228,224,212,.6);padding:.45rem .75rem;border:1px solid var(--line-light);border-radius:999px;
+  background:none;cursor:pointer;transition:color .25s,border-color .25s,background .25s}
+.dovnav button:hover{color:var(--bone);border-color:rgba(228,224,212,.4)}
+.dovnav .cl{color:var(--bone);border-color:rgba(228,224,212,.4)}
+.dovnav .cl:hover{background:var(--rose);border-color:var(--rose)}
+.dovhead{padding:clamp(2.2rem,5vh,4rem) 0 clamp(1.4rem,3vh,2.2rem)}
+.dovhead .ctx{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.2em;color:var(--sun)}
+.dovhead h2{font-weight:850;font-variation-settings:'wdth' 78;text-transform:uppercase;
+  font-size:clamp(2rem,5.6vw,4.6rem);line-height:.94;letter-spacing:-.015em;margin:.7rem 0 0}
+.dovhead .cl2{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.9vw,1.5rem);color:rgba(228,224,212,.55);margin-top:.5rem}
+.dovhead .ld{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.7rem);line-height:1.4;
+  color:rgba(228,224,212,.82);max-width:34ch;margin-top:clamp(1.2rem,2.5vh,1.8rem)}
+.dovmeta{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;border-top:1px solid var(--line-light);
+  border-bottom:1px solid var(--line-light);padding:clamp(1.2rem,2.5vh,1.8rem) 0;margin-top:clamp(1.6rem,3.5vh,2.4rem)}
+.dovmeta .k{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(228,224,212,.35)}
+.dovmeta .v{margin-top:.45rem;font-size:.9rem;color:var(--bone);line-height:1.45}
+.dovshots{padding:clamp(1.6rem,4vh,2.6rem) 0 clamp(3rem,8vh,5rem);display:flex;flex-direction:column;gap:clamp(1rem,2.5vw,1.8rem)}
+.dovshots figure{margin:0}
+.dovshots img{width:100%;height:auto;display:block;border-radius:3px;border:1px solid var(--line-light);background:var(--soot-2)}
+.dovshots.contain img{background:#0d0c09}
+.dovshots figcaption{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;
+  color:rgba(228,224,212,.35);margin-top:.55rem}
+
+@media(max-width:880px){
+  .e-major .eshell,.e-standard .eshell,.e-support .eshell{grid-template-columns:1fr}
+  .e-major:nth-of-type(even) .emedia,.e-standard:nth-of-type(even) .emedia,.e-support:nth-of-type(even) .emedia{order:0}
+  .dovmeta{grid-template-columns:1fr 1fr}
+  .estrip{grid-template-columns:repeat(4,1fr)}
 }
-body.lock{overflow:hidden}
-a{color:inherit;text-decoration:none}
-::selection{background:var(--rose);color:var(--bone)}
-button{font-family:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--sun);outline-offset:3px}
-.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(1.2rem,3.4vw,3rem)}
-.mono{font-family:var(--mono)}
-.serif{font-family:var(--serif)}
-
-/* ---------- top bar ---------- */
-.top{
-  position:sticky;top:0;z-index:40;background:rgba(20,19,16,.82);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--line-2);
-}
-.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.top .logo img{height:26px;width:auto;display:block}
-.top .rt{display:flex;align-items:center;gap:clamp(1rem,2.4vw,1.8rem);font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em}
-.top .rt .tag{color:var(--faint)}
-.top .rt a.back{color:var(--muted);transition:color .3s}
-.top .rt a.back:hover{color:var(--bone)}
-.top .rt a.back span{color:var(--sun)}
-
-/* ---------- masthead ---------- */
-.mast{padding:clamp(3.4rem,8vh,6.5rem) 0 clamp(2.2rem,5vh,3.4rem)}
-.eyebrow{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.28em;color:var(--sun)}
-.mast h1{
-  font-weight:840;font-variation-settings:'wdth' 74;text-transform:uppercase;
-  font-size:clamp(2.4rem,7.4vw,6.2rem);line-height:.92;letter-spacing:-.015em;
-  margin:1.1rem 0 0;max-width:16ch;
-}
-.mast h1 em{
-  font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;
-  letter-spacing:0;font-variation-settings:normal;color:var(--bone);
-}
-.mast .lede{
-  margin-top:clamp(1.4rem,3vh,2rem);max-width:46ch;font-size:clamp(1rem,1.35vw,1.18rem);
-  color:var(--muted);line-height:1.6;
-}
-.mast .lede b{color:var(--bone);font-weight:600}
-.stats{
-  display:flex;flex-wrap:wrap;gap:clamp(1.6rem,5vw,4rem);margin-top:clamp(2rem,4.5vh,3.2rem);
-  padding-top:clamp(1.6rem,3.5vh,2.2rem);border-top:1px solid var(--line);
-}
-.stat .n{font-weight:800;font-variation-settings:'wdth' 90;font-size:clamp(1.8rem,3.4vw,2.9rem);line-height:1;letter-spacing:-.02em}
-.stat .n em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--sun)}
-.stat .l{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;color:var(--faint);margin-top:.5rem}
-
-/* ---------- controls ---------- */
-.controls{position:sticky;top:60px;z-index:30;background:rgba(20,19,16,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line-2);border-bottom:1px solid var(--line)}
-.controls .wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:.9rem;padding-bottom:.9rem}
-.lenses{display:flex;gap:.5rem;flex-wrap:wrap;flex:1 1 auto}
-.lens{
-  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.12em;
-  color:var(--muted);padding:.5rem .85rem;border:1px solid var(--line);border-radius:999px;
-  transition:color .28s,border-color .28s,background .28s;white-space:nowrap;
-}
-.lens:hover{color:var(--bone);border-color:var(--faint)}
-.lens[aria-pressed="true"]{color:var(--soot);background:var(--bone);border-color:var(--bone)}
-.lens .c{opacity:.5;margin-left:.4em}
-.rtset{display:flex;align-items:center;gap:1.1rem;margin-left:auto}
-.count{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;white-space:nowrap}
-.count b{color:var(--bone);font-weight:500}
-.toggle{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.toggle button{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);padding:.5rem .95rem;transition:color .25s,background .25s}
-.toggle button[aria-pressed="true"]{color:var(--soot);background:var(--sun)}
-
-/* ---------- framing line ---------- */
-.framing{padding:clamp(1.6rem,4vh,2.6rem) 0 .6rem}
-.framing p{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.1vw,1.7rem);line-height:1.35;max-width:34ch;color:var(--bone-2)}
-.framing p .k{color:var(--sun);font-style:normal;font-family:var(--sans);font-weight:600;font-size:.86em}
-
-/* ---------- index view ---------- */
-#indexView{padding-bottom:clamp(3rem,8vh,6rem)}
-.prow{
-  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(1.4rem,4vw,3.4rem);
-  align-items:center;padding:clamp(1.8rem,4vh,3rem) 0;border-top:1px solid var(--line);
-  opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);
-}
-.prow.in{opacity:1;transform:none}
-.prow:last-child{border-bottom:1px solid var(--line)}
-.prow .media{order:0}
-.prow .body{order:1}
-.prow:nth-child(even) .media{order:1}
-.prow:nth-child(even) .body{order:0}
-.pr-top{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;color:var(--faint);display:flex;gap:.8rem;align-items:center}
-.pr-top .idx{color:var(--sun)}
-.pr-top .dot{width:3px;height:3px;border-radius:50%;background:var(--faint)}
-.pr-top .deep{color:var(--rose);border:1px solid rgba(255,77,140,.4);border-radius:999px;padding:.1rem .5rem;font-size:.58rem}
-.prow h2{
-  font-weight:800;font-variation-settings:'wdth' 82;text-transform:uppercase;letter-spacing:-.01em;
-  font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:.98;margin:.7rem 0 0;
-}
-.prow .client{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:clamp(1rem,1.5vw,1.2rem);margin-top:.35rem}
-.prow .line{margin-top:1rem;color:var(--muted);font-size:clamp(.95rem,1.15vw,1.05rem);line-height:1.55;max-width:44ch}
-.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem}
-.tag{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border:1px solid var(--line);border-radius:3px;padding:.28rem .5rem;transition:color .25s,border-color .25s}
-.tag.hot{color:var(--sun);border-color:rgba(255,131,48,.5)}
-.pr-actions{display:flex;align-items:center;gap:1.2rem;margin-top:1.4rem}
-.cue{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--bone);transition:gap .3s,color .3s}
-.cue svg{transition:transform .3s var(--ease)}
-.open-btn:hover .cue{color:var(--sun)}
-.open-btn:hover .cue svg{transform:translate(3px,-3px)}
-.pin-btn{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);display:inline-flex;align-items:center;gap:.4rem;transition:color .25s}
-.pin-btn:hover{color:var(--bone)}
-.pin-btn.on{color:var(--rose)}
-.pin-btn .box{width:13px;height:13px;border:1px solid currentColor;border-radius:3px;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem;line-height:1}
-
-/* media / device frames */
-.open-btn{display:block;width:100%;text-align:left}
-.frame{position:relative;border-radius:9px;overflow:hidden;background:#0c0b09;border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(0,0,0,.8);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
-.open-btn:hover .frame{transform:translateY(-4px);box-shadow:0 40px 90px -30px rgba(0,0,0,.9)}
-.frame.desktop{aspect-ratio:16/10}
-.chrome{height:26px;display:flex;align-items:center;gap:6px;padding:0 10px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.06)}
-.chrome i{width:8px;height:8px;border-radius:50%;background:rgba(228,224,212,.22)}
-.chrome .url{margin-left:8px;height:12px;flex:1;max-width:200px;border-radius:3px;background:rgba(228,224,212,.08)}
-.screen{position:absolute;inset:26px 0 0 0;overflow:hidden}
-.frame.desktop .screen{font-size:clamp(6px,.85vw,10px)}
-
-/* ---------- field view ---------- */
-#fieldView{padding:clamp(1rem,3vh,2rem) 0 clamp(3rem,8vh,6rem);display:none}
-.field-hint{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.13em;color:var(--faint);margin-bottom:1.2rem;display:flex;gap:1.4rem;flex-wrap:wrap}
-.field-hint b{color:var(--muted);font-weight:400}
-.plot-outer{position:relative;padding:34px 30px 30px}
-.plot{position:relative;width:100%;aspect-ratio:16/9;min-height:420px;border:1px solid var(--line);border-radius:6px;background:
-  radial-gradient(120% 120% at 50% 0%,rgba(255,131,48,.05),transparent 60%),var(--soot-2);overflow:hidden}
-.plot .axis{position:absolute;background:var(--line)}
-.plot .axis.x{left:0;right:0;top:50%;height:1px}
-.plot .axis.y{top:0;bottom:0;left:50%;width:1px}
-.plot .grid{position:absolute;background:var(--line-2)}
-.axl{position:absolute;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.13em;color:var(--faint);pointer-events:none}
-.axl.left{left:12px;top:50%;transform:translateY(-50%)}
-.axl.right{right:12px;top:50%;transform:translateY(-50%);text-align:right}
-.axl.top{top:10px;left:50%;transform:translateX(-50%)}
-.axl.bottom{bottom:10px;left:50%;transform:translateX(-50%)}
-.axl.corner{color:rgba(228,224,212,.2);font-style:normal}
-.dot{position:absolute;transform:translate(-50%,-50%);z-index:2;cursor:pointer;transition:opacity .4s,filter .4s}
-.dot .pt{width:11px;height:11px;border-radius:50%;background:var(--bone);border:2px solid var(--soot);box-shadow:0 0 0 1px var(--faint);transition:transform .3s var(--ease),background .3s,box-shadow .3s;margin:0 auto}
-.dot .lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--muted);white-space:nowrap;margin-top:5px;text-align:center;transition:color .3s;text-transform:uppercase}
-.dot:hover{z-index:6}
-.dot:hover .pt{transform:scale(1.5);background:var(--sun);box-shadow:0 0 0 6px rgba(255,131,48,.16)}
-.dot:hover .lbl{color:var(--bone)}
-.dot.match .pt{background:var(--sun);box-shadow:0 0 0 5px rgba(255,131,48,.14)}
-.dot.dim{opacity:.24;filter:saturate(0)}
-.dot.dim .lbl{color:var(--faint)}
-.dot .card{position:absolute;bottom:130%;left:50%;transform:translateX(-50%) translateY(6px);width:210px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:.8rem .9rem;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:8;box-shadow:0 20px 50px -20px rgba(0,0,0,.8)}
-.dot:hover .card{opacity:1;transform:translateX(-50%) translateY(0)}
-.dot .card .cc{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
-.dot .card .cn{font-weight:700;font-variation-settings:'wdth' 88;text-transform:uppercase;font-size:.95rem;margin:.2rem 0 .4rem;letter-spacing:0}
-.dot .card .cl{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:.82rem;line-height:1.35}
-
-/* ---------- compare tray ---------- */
-.tray{position:fixed;left:0;right:0;bottom:0;z-index:50;transform:translateY(120%);transition:transform .5s var(--ease)}
-.tray.up{transform:none}
-.tray .inner{margin:0 auto;max-width:1360px;background:var(--panel);border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;box-shadow:0 -20px 60px -20px rgba(0,0,0,.7);display:flex;align-items:center;gap:1rem;padding:.85rem clamp(1rem,3vw,1.6rem)}
-.tray .th{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);white-space:nowrap}
-.tray .chips{display:flex;gap:.6rem;flex:1;overflow-x:auto}
-.trchip{display:flex;align-items:center;gap:.5rem;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;padding:.4rem .6rem;white-space:nowrap}
-.trchip .n{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.08em}
-.trchip .x{color:var(--faint);font-size:.9rem;line-height:1;transition:color .2s}
-.trchip .x:hover{color:var(--rose)}
-.tray .cmp{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.14em;color:var(--soot);background:var(--sun);border-radius:999px;padding:.6rem 1.1rem;white-space:nowrap;transition:opacity .25s}
-.tray .cmp[disabled]{opacity:.4;cursor:not-allowed}
-.tray .clr{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);white-space:nowrap;transition:color .2s}
-.tray .clr:hover{color:var(--bone)}
-
-/* ---------- overlay (project reader + compare) ---------- */
-.overlay{position:fixed;inset:0;z-index:100;background:var(--soot);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s;overflow-y:auto;overscroll-behavior:contain}
-.overlay.open{opacity:1;visibility:visible}
-.ov-inner{opacity:0;transform:translateY(30px);transition:opacity .5s var(--ease) .06s,transform .5s var(--ease) .06s}
-.overlay.open .ov-inner{opacity:1;transform:none}
-.ov-bar{position:sticky;top:0;z-index:5;background:rgba(20,19,16,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line-2)}
-.ov-bar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
-.ov-bar .lft{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.16em;color:var(--faint)}
-.ov-nav{display:flex;align-items:center;gap:.4rem}
-.ov-nav button{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.13em;color:var(--muted);padding:.5rem .8rem;border:1px solid var(--line);border-radius:999px;transition:color .25s,border-color .25s}
-.ov-nav button:hover{color:var(--bone);border-color:var(--faint)}
-.ov-nav .close{color:var(--bone);border-color:var(--faint)}
-.ov-nav .close:hover{background:var(--rose);border-color:var(--rose);color:var(--bone)}
-
-.ov-hero{padding:clamp(2.4rem,6vh,5rem) 0 clamp(1.6rem,4vh,2.6rem)}
-.ov-hero .ctx{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.2em;color:var(--sun)}
-.ov-hero h2{font-weight:840;font-variation-settings:'wdth' 78;text-transform:uppercase;font-size:clamp(2.4rem,6.6vw,5.6rem);line-height:.92;letter-spacing:-.015em;margin:.8rem 0 0}
-.ov-hero .cl{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2vw,1.6rem);color:var(--muted);margin-top:.6rem}
-.ov-hero .lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.4;color:var(--bone-2);max-width:30ch;margin-top:clamp(1.4rem,3vh,2rem)}
-.ov-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:clamp(1.4rem,3vh,2rem) 0;margin-top:clamp(1.8rem,4vh,2.6rem)}
-.ov-meta .m .k{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;letter-spacing:.16em;color:var(--faint)}
-.ov-meta .m .v{margin-top:.5rem;font-size:.94rem;color:var(--bone);line-height:1.4}
-.ov-meta .m .v.tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.ov-body{padding:clamp(2rem,5vh,3.4rem) 0 clamp(3rem,8vh,6rem)}
-.ov-hero-frame{margin-top:clamp(1.8rem,4vh,2.6rem)}
-.ov-section{margin-top:clamp(2.6rem,6vh,4.4rem)}
-.ov-section .sh{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.18em;color:var(--sun);margin-bottom:1rem}
-.ov-section p{max-width:52ch;color:var(--muted);font-size:clamp(1rem,1.3vw,1.15rem);line-height:1.65}
-.ov-section p + p{margin-top:1rem}
-.screens{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,1.8rem);margin-top:clamp(1.8rem,4vh,2.6rem);align-items:start}
-.screens .sfull{grid-column:1/-1}
-.screens figure{margin:0}
-.screens figcaption{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin-top:.7rem}
-.frame.phone{aspect-ratio:1/2;max-width:280px;margin:0 auto;border-radius:26px;padding:8px;background:#0c0b09}
-.frame.phone .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:70px;height:5px;border-radius:3px;background:rgba(228,224,212,.2);z-index:3}
-.frame.phone .screen{inset:8px;border-radius:20px;font-size:clamp(7px,1vw,9px)}
-.ov-cta{border-top:1px solid var(--line);margin-top:clamp(2.6rem,6vh,4rem);padding-top:clamp(1.8rem,4vh,2.6rem);display:flex;flex-wrap:wrap;gap:1.4rem;align-items:center;justify-content:space-between}
-.ov-cta .pin-big{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.13em;color:var(--bone);border:1px solid var(--faint);border-radius:999px;padding:.7rem 1.2rem;display:inline-flex;gap:.6rem;align-items:center;transition:background .25s,color .25s,border-color .25s}
-.ov-cta .pin-big:hover{border-color:var(--rose)}
-.ov-cta .pin-big.on{background:var(--rose);border-color:var(--rose)}
-
-/* compare grid */
-.cmp-grid{display:grid;gap:clamp(1rem,2vw,1.6rem);padding:clamp(1.6rem,4vh,2.6rem) 0 4rem}
-.cmp-col{border:1px solid var(--line);border-radius:8px;padding:clamp(1rem,2vw,1.4rem);background:var(--soot-2)}
-.cmp-col h3{font-weight:800;font-variation-settings:'wdth' 84;text-transform:uppercase;font-size:clamp(1.2rem,2vw,1.6rem);line-height:1;margin:.9rem 0 .2rem}
-.cmp-col .cl{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:.95rem}
-.cmp-col .row{border-top:1px solid var(--line-2);padding:.7rem 0;font-size:.86rem;color:var(--muted)}
-.cmp-col .row .k{font-family:var(--mono);font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);display:block;margin-bottom:.3rem}
-.cmp-spec{position:relative;height:8px;border-radius:4px;background:var(--panel-2);margin-top:.5rem}
-.cmp-spec i{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;background:var(--sun);transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(255,131,48,.15)}
-.cmp-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.54rem;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-top:.3rem}
-
-/* ---------- generic mockup styles (palette-driven) ---------- */
-.screen{background:var(--mk-bg,#111);color:var(--mk-ink,#eee)}
-.mk{position:absolute;inset:0;padding:0;display:flex;flex-direction:column;font-family:var(--sans);line-height:1.25}
-.mk *{box-sizing:border-box}
-.mk-bar{display:flex;align-items:center;gap:1em;padding:1.1em 1.4em;border-bottom:1px solid var(--mk-line,rgba(0,0,0,.08));flex:0 0 auto}
-.mk-brand{font-weight:800;font-variation-settings:'wdth' 88;letter-spacing:.02em;text-transform:uppercase;font-size:1.15em}
-.mk-brand.sr{font-family:var(--serif);font-weight:400;text-transform:none;font-style:italic;letter-spacing:0;font-size:1.5em}
-.mk-nav{display:flex;gap:1.1em;margin-left:auto;color:var(--mk-muted,rgba(0,0,0,.5));font-size:.95em}
-.mk-search{flex:1;max-width:60%;background:var(--mk-soft,rgba(0,0,0,.05));border:1px solid var(--mk-line,rgba(0,0,0,.08));border-radius:999px;padding:.6em 1em;color:var(--mk-muted,rgba(0,0,0,.5));font-size:.95em}
-.mk-btn{background:var(--mk-accent,#e11);color:var(--mk-on,#fff);border-radius:999px;padding:.55em 1.1em;font-size:.9em;font-weight:600;white-space:nowrap}
-.mk-btn.ghost{background:transparent;color:var(--mk-ink,#111);border:1px solid var(--mk-line,rgba(0,0,0,.2))}
-.mk-chips{display:flex;gap:.6em;padding:.9em 1.4em;flex-wrap:wrap;flex:0 0 auto;border-bottom:1px solid var(--mk-line,rgba(0,0,0,.06))}
-.mk-chip{font-size:.85em;padding:.35em .8em;border-radius:999px;background:var(--mk-soft,rgba(0,0,0,.05));color:var(--mk-muted,rgba(0,0,0,.6))}
-.mk-chip.on{background:var(--mk-accent,#e11);color:var(--mk-on,#fff)}
-.mk-body{flex:1;overflow:hidden;padding:1.3em 1.4em}
-.mk-grid{display:grid;gap:1em;height:100%}
-.mk-grid.g3{grid-template-columns:repeat(3,1fr)}
-.mk-grid.g4{grid-template-columns:repeat(4,1fr)}
-.mk-card{background:var(--mk-soft,rgba(0,0,0,.04));border:1px solid var(--mk-line,rgba(0,0,0,.06));border-radius:.6em;overflow:hidden;display:flex;flex-direction:column}
-.mk-thumb{aspect-ratio:16/11;background:var(--mk-th,linear-gradient(135deg,#888,#444))}
-.mk-cardb{padding:.7em .8em}
-.mk-strong{font-weight:700;font-size:.95em}
-.mk-mut{color:var(--mk-muted,rgba(0,0,0,.5));font-size:.82em;margin-top:.25em}
-.mk-price{color:var(--mk-accent,#e11);font-weight:800;font-size:1em;margin-top:.4em}
-.mk-line-el{height:.55em;border-radius:3px;background:var(--mk-soft,rgba(0,0,0,.09))}
-.mk-hero{flex:1;display:grid;grid-template-columns:1.1fr .9fr;gap:1.4em}
-.mk-hero.solo{grid-template-columns:1fr}
-.mk-stage{border-radius:.7em;background:var(--mk-th,linear-gradient(135deg,#555,#222));position:relative;overflow:hidden}
-.mk-badge{position:absolute;top:1em;left:1em;background:var(--mk-accent,#e11);color:var(--mk-on,#fff);font-size:.78em;font-weight:600;padding:.3em .7em;border-radius:999px}
-.mk-side{display:flex;flex-direction:column;gap:.7em;justify-content:center}
-.mk-kick{font-family:var(--mono);font-size:.78em;letter-spacing:.16em;text-transform:uppercase;color:var(--mk-accent,#e11)}
-.mk-h{font-weight:840;font-variation-settings:'wdth' 80;text-transform:uppercase;font-size:2.4em;line-height:.95;letter-spacing:-.02em}
-.mk-h.sr{font-family:var(--serif);font-weight:400;text-transform:none;font-style:italic;letter-spacing:0;line-height:1;font-size:2.9em}
-.mk-optrow{display:flex;align-items:center;gap:.5em;margin-top:.2em}
-.mk-optrow .ol{font-size:.8em;color:var(--mk-muted,rgba(0,0,0,.5));width:5.5em;font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em}
-.mk-pill{font-size:.82em;padding:.3em .7em;border-radius:999px;border:1px solid var(--mk-line,rgba(0,0,0,.15));color:var(--mk-ink)}
-.mk-pill.on{background:var(--mk-accent,#e11);color:var(--mk-on,#fff);border-color:transparent}
-.mk-spec{margin-top:.4em;border-top:1px solid var(--mk-line,rgba(0,0,0,.1))}
-.mk-spec .sr2{display:flex;justify-content:space-between;padding:.4em 0;border-bottom:1px solid var(--mk-line,rgba(0,0,0,.06));font-size:.82em;color:var(--mk-muted,rgba(0,0,0,.6))}
-.mk-list{display:flex;flex-direction:column}
-.mk-li{display:flex;align-items:center;gap:1em;padding:.75em 0;border-bottom:1px solid var(--mk-line,rgba(0,0,0,.08))}
-.mk-li .dte{font-family:var(--mono);font-size:.85em;color:var(--mk-accent,#e11);width:4em}
-.mk-li .who{font-weight:700;font-size:1em;flex:1}
-.mk-li .who small{display:block;font-weight:400;color:var(--mk-muted,rgba(0,0,0,.5));font-size:.82em}
-.mk-full{flex:1;position:relative;border-radius:.7em;overflow:hidden;background:var(--mk-th);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.4em}
-.mk-glow{position:absolute;width:60%;height:60%;border-radius:50%;filter:blur(50px);opacity:.55}
-.mk-portal{display:flex;flex:1;overflow:hidden}
-.mk-aside{width:26%;border-right:1px solid var(--mk-line,rgba(0,0,0,.08));padding:1.2em 1em;display:flex;flex-direction:column;gap:.55em;background:var(--mk-soft,rgba(0,0,0,.03))}
-.mk-aitem{font-size:.85em;color:var(--mk-muted,rgba(0,0,0,.55));padding:.4em .5em;border-radius:.4em}
-.mk-aitem.on{background:var(--mk-accent,#e11);color:var(--mk-on,#fff)}
-.mk-main{flex:1;padding:1.2em 1.3em;overflow:hidden}
-.mk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8em;margin-bottom:1.1em}
-.mk-statc{border:1px solid var(--mk-line,rgba(0,0,0,.08));border-radius:.5em;padding:.7em .8em}
-.mk-statc .sv{font-weight:800;font-size:1.5em;letter-spacing:-.02em}
-.mk-statc .sl{font-size:.72em;color:var(--mk-muted,rgba(0,0,0,.5));font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-top:.2em}
-.mk-table{border:1px solid var(--mk-line,rgba(0,0,0,.08));border-radius:.5em;overflow:hidden}
-.mk-tr{display:grid;grid-template-columns:1.6fr 1fr 1fr .7fr;gap:.8em;padding:.6em .9em;border-bottom:1px solid var(--mk-line,rgba(0,0,0,.06));font-size:.82em;align-items:center}
-.mk-tr.h{background:var(--mk-soft,rgba(0,0,0,.04));color:var(--mk-muted,rgba(0,0,0,.6));font-family:var(--mono);text-transform:uppercase;letter-spacing:.06em;font-size:.7em}
-.mk-tag{display:inline-block;padding:.15em .5em;border-radius:999px;font-size:.85em;background:var(--mk-soft);color:var(--mk-accent)}
-.mk-edi{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.7em}
-.mk-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:1em;margin-top:.6em}
-.mk-col .cimg{aspect-ratio:4/5;border-radius:.5em;background:var(--mk-th)}
-.mk-col p{font-size:.8em;color:var(--mk-muted);margin-top:.5em;line-height:1.4}
-
-/* phone specific */
-.mkp{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--mk-bg);color:var(--mk-ink);font-family:var(--sans)}
-.mkp-bar{display:flex;align-items:center;justify-content:space-between;padding:2.4em 1.3em .9em;flex:0 0 auto}
-.mkp-burger{display:flex;flex-direction:column;gap:3px}.mkp-burger i{width:16px;height:2px;background:var(--mk-ink);display:block}
-.mkp-hero{margin:0 1.1em;border-radius:.8em;background:var(--mk-th);aspect-ratio:1/1;position:relative;overflow:hidden;flex:0 0 auto;display:flex;align-items:flex-end;padding:1em}
-.mkp-hk{font-family:var(--mono);font-size:.85em;text-transform:uppercase;letter-spacing:.12em;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-.mkp-body{padding:1em 1.1em;overflow:hidden;flex:1}
-.mkp-h{font-weight:820;font-variation-settings:'wdth' 82;text-transform:uppercase;font-size:1.7em;line-height:.98;letter-spacing:-.02em}
-.mkp-h.sr{font-family:var(--serif);font-weight:400;text-transform:none;font-style:italic;font-size:2em}
-.mkp-cards{display:flex;flex-direction:column;gap:.7em;margin-top:.9em}
-.mkp-c{display:flex;gap:.7em;align-items:center}
-.mkp-c .th{width:3.4em;height:3.4em;border-radius:.5em;background:var(--mk-th);flex:0 0 auto}
-.mkp-c .tx{flex:1}
-.mkp-c .tx b{font-size:.95em}
-.mkp-c .tx small{display:block;color:var(--mk-muted);font-size:.82em;margin-top:.15em}
-.mkp-c .pr{color:var(--mk-accent);font-weight:800;font-size:.95em}
-.mkp-tabs{display:flex;justify-content:space-around;padding:.9em 0 1.2em;border-top:1px solid var(--mk-line);flex:0 0 auto;color:var(--mk-muted);font-size:1.2em}
-.mkp-tabs i.on{color:var(--mk-accent)}
-.mkp-cta{margin:1em 1.1em 0;background:var(--mk-accent);color:var(--mk-on);text-align:center;border-radius:999px;padding:.85em;font-weight:600;font-size:.95em}
-
-/* ---------- footer ---------- */
-.foot{border-top:1px solid var(--line);padding:clamp(2.6rem,7vh,5rem) 0 clamp(3rem,8vh,5rem)}
-.foot h3{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.4vw,2.8rem);line-height:1.2;max-width:20ch}
-.foot .fcta{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;color:var(--soot);background:var(--bone);border-radius:999px;padding:.85rem 1.5rem;transition:background .3s,color .3s}
-.foot .fcta:hover{background:var(--sun)}
-.foot .fmeta{margin-top:2.4rem;font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.14em;color:var(--faint);display:flex;gap:1.4rem;flex-wrap:wrap}
-
-/* ---------- responsive ---------- */
-@media(max-width:860px){
-  .prow{grid-template-columns:1fr;gap:1.4rem}
-  .prow .media,.prow .body,.prow:nth-child(even) .media,.prow:nth-child(even) .body{order:0}
-  .prow .media{order:-1}
-  .ov-meta{grid-template-columns:1fr 1fr;gap:1.2rem}
-  .screens{grid-template-columns:1fr}
-  .dot .lbl{display:none}
-  .plot{min-height:340px}
-}
-@media(max-width:560px){
-  .controls .wrap{padding-top:.7rem;padding-bottom:.7rem}
-  .rtset{width:100%;justify-content:space-between;margin-left:0}
-  .mast h1{font-size:2.5rem}
-  .field-hint{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *{transition-duration:.001ms!important;animation-duration:.001ms!important}
-  .prow{opacity:1;transform:none}
-}
+@media(prefers-reduced-motion:reduce){.e{opacity:1;transform:none}*{transition-duration:.01ms!important}}
 </style>
 </head>
-<body>
+<body class="dk">
 
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="Dane Erik Forst"></a>
-    <div class="rt">
-      <span class="tag">Web · Product · Interactive</span>
-      <a class="back" href="index.html"><span>&larr;</span> Portfolio</a>
-    </div>
-  </div>
-</header>
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
 <main>
-  <section class="mast">
-    <div class="wrap">
-      <div class="eyebrow">Selected Digital Work</div>
-      <h1>Complex systems.<br><em>Expressive</em> surfaces.</h1>
-      <p class="lede">Eighteen years of digital work, from automotive marketplaces and manufacturing platforms to art-directed venues and immersive brand worlds. <b>The same hands on the flow and the feeling.</b></p>
-      <div class="stats">
-        <div class="stat"><div class="n">18<em>+</em></div><div class="l">Years designing</div></div>
-        <div class="stat"><div class="n">40<em>+</em></div><div class="l">Digital projects</div></div>
-        <div class="stat"><div class="n">7</div><div class="l">Core disciplines</div></div>
-        <div class="stat"><div class="n">Product <em>&harr;</em> Art Dir.</div><div class="l">Full range</div></div>
+  <section class="dmast">
+    <div class="dwrap">
+      <div class="dkick">Web &middot; Product &middot; Interactive</div>
+      <h1>A working <em>archive</em> of digital work.</h1>
+      <p class="dlede">Sixteen projects across marketplaces, venues, manufacturers, wineries, and brands. Some are deep functional systems. Some are pure art direction. One is a game that never shipped. <b>The range is the point.</b></p>
+      <div class="dstats">
+        <div class="dstat"><div class="n">16</div><div class="l">Projects</div></div>
+        <div class="dstat"><div class="n">2016<em>&ndash;</em>25</div><div class="l">Span shown</div></div>
+        <div class="dstat"><div class="n">14</div><div class="l">Industries</div></div>
+        <div class="dstat"><div class="n">9</div><div class="l">Still live today</div></div>
       </div>
+      <p class="dcredit">All work created in conjunction with <b>Fluxar Studios, Inc.</b> My role across these projects is <b>art direction, UX/UI, and graphic design</b>, with photography on several. Development and engineering were handled by Fluxar's team.</p>
     </div>
   </section>
 
-  <div class="controls">
-    <div class="wrap">
-      <div class="lenses" id="lenses"></div>
-      <div class="rtset">
-        <div class="count" id="count"></div>
-        <div class="toggle" id="toggle">
-          <button data-view="index" aria-pressed="true">Index</button>
-          <button data-view="field" aria-pressed="false">Field</button>
-        </div>
+  <div class="dbar">
+    <div class="dwrap">
+      <div class="row">
+        <div class="dlens" id="lenses"></div>
+        <div class="dcount" id="count"></div>
       </div>
     </div>
   </div>
 
-  <div class="wrap">
-    <div class="framing"><p id="framing"></p></div>
+  <div class="dwrap">
+    <section class="dlist" id="list"></section>
   </div>
 
-  <div class="wrap">
-    <section id="indexView"></section>
-    <section id="fieldView">
-      <div class="field-hint">
-        <span><b>How to read this:</b> every project plotted by nature and by type.</span>
-        <span>Left &rarr; right: <b>expressive</b> to <b>functional</b>.</span>
-        <span>Bottom &rarr; top: <b>marketing</b> to <b>product</b>.</span>
-      </div>
-      <div class="plot-outer">
-        <div class="plot" id="plot">
-          <div class="axis x"></div><div class="axis y"></div>
-          <span class="axl left">Expressive<br>Art-Directed</span>
-          <span class="axl right">Functional<br>Systematic</span>
-          <span class="axl top">Product · Platform</span>
-          <span class="axl bottom">Brand · Marketing</span>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer class="foot">
-    <div class="wrap">
-      <div class="eyebrow" style="margin-bottom:1.2rem">The short version</div>
+  <footer class="dfoot">
+    <div class="dwrap">
+      <div class="dkick" style="margin-bottom:1.1rem">The short version</div>
       <h3>Broad enough to cover the whole system, senior enough to own any part of it.</h3>
-      <a class="fcta" href="contact.html">Start a conversation
+      <a class="fc" href="contact.html">Start a conversation
         <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
       </a>
-      <div class="fmeta"><span>Dane Erik Forst</span><span>Art Director · Multidisciplinary Designer</span><span>Portland, Oregon</span></div>
+      <div class="fm"><span>Dane Erik Forst</span><span>Art Director &middot; Multidisciplinary Designer</span><span>With Fluxar Studios, Inc.</span><span>Portland, Oregon</span></div>
     </div>
   </footer>
 </main>
 
-<!-- compare tray -->
-<div class="tray" id="tray" aria-hidden="true">
-  <div class="inner">
-    <span class="th">Compare</span>
-    <div class="chips" id="trayChips"></div>
-    <button class="cmp" id="cmpBtn">Compare</button>
-    <button class="clr" id="clrBtn">Clear</button>
-  </div>
-</div>
-
-<!-- overlay -->
-<div class="overlay" id="overlay" aria-hidden="true" role="dialog" aria-modal="true">
-  <div class="ov-bar">
-    <div class="wrap">
-      <div class="lft" id="ovLft"></div>
-      <div class="ov-nav" id="ovNav"></div>
-    </div>
-  </div>
-  <div class="ov-inner" id="ovInner"></div>
+<div class="dov" id="ov" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="dovbar"><div class="dwrap"><div class="row">
+    <div class="lf" id="ovlf"></div>
+    <div class="dovnav" id="ovnav"></div>
+  </div></div></div>
+  <div id="ovbody"></div>
 </div>
 
 <script>
-/* ============================ DATA ============================ */
-const DISC = [
-  ['product','Product & UX'],
-  ['artdir','Digital Art Direction'],
-  ['ia','Complex IA'],
-  ['commerce','Ecommerce / Transactional'],
-  ['responsive','Responsive Design'],
-  ['brand','Brand-to-Digital'],
-  ['web','Web Design'],
-];
-const DLABEL = Object.fromEntries(DISC);
-
-/* framing copy per lens */
-const FRAME = {
-  all:['Selected', 'A working archive across product, brand, and art direction. The same designer at both ends of the spectrum.'],
-  product:['Product & UX','Turning dense, complex workflows into interfaces people can actually move through, on every screen size.'],
-  artdir:['Digital Art Direction','Giving a site a point of view. Type, motion, and imagery working as one expressive system.'],
-  ia:['Complex IA','Making large, sprawling content sets feel navigable, findable, and calm to move through.'],
-  commerce:['Ecommerce / Transactional','Checkout, ticketing, configuration, and billing designed to be trusted and finished.'],
-  responsive:['Responsive Design','One experience that holds its intent from a wall-sized display down to a thumb.'],
-  brand:['Brand-to-Digital','Translating an identity into a living digital system, not just a set of pages.'],
-  web:['Web Design','Marketing sites and platforms built to look considered and behave better.'],
+/* ---------------- data ---------------- */
+const DISC = {
+  ux:'Product & UX', ad:'Art Direction', brand:'Brand & Identity', ia:'Complex IA',
+  ecom:'Ecommerce', illo:'Illustration & Motion', photo:'Photography'
 };
-
-/* palettes: bg / ink / accent / on(accent text) / muted / soft / line / thumb gradient */
-function pal(o){return o}
-const PAL = {
-  camera: pal({bg:'#f5f6f8',ink:'#141821',accent:'#2f6bff',on:'#fff',muted:'rgba(20,24,33,.55)',soft:'rgba(20,24,33,.05)',line:'rgba(20,24,33,.1)',th:'linear-gradient(135deg,#b9c2d0,#6b7688)'}),
-  steel: pal({bg:'#eceef1',ink:'#191b1e',accent:'#f2762e',on:'#fff',muted:'rgba(25,27,30,.55)',soft:'rgba(25,27,30,.05)',line:'rgba(25,27,30,.1)',th:'linear-gradient(135deg,#9aa2ab,#43484f)'}),
-  venue: pal({bg:'#20100f',ink:'#f3e6cf',accent:'#e6b24a',on:'#20100f',muted:'rgba(243,230,207,.55)',soft:'rgba(243,230,207,.07)',line:'rgba(243,230,207,.14)',th:'linear-gradient(135deg,#7a2f2a,#3a1414)'}),
-  immersive: pal({bg:'#07070d',ink:'#eef0ff',accent:'#4fe6d2',on:'#07070d',muted:'rgba(238,240,255,.5)',soft:'rgba(238,240,255,.06)',line:'rgba(238,240,255,.12)',th:'linear-gradient(135deg,#5b34d8,#0a0a1f)'}),
-  health: pal({bg:'#ffffff',ink:'#132b2a',accent:'#12a594',on:'#fff',muted:'rgba(19,43,42,.5)',soft:'rgba(19,43,42,.045)',line:'rgba(19,43,42,.09)',th:'linear-gradient(135deg,#bfe6df,#7fc2b8)'}),
-  dtc: pal({bg:'#f4efe7',ink:'#241d16',accent:'#c25a3a',on:'#fff',muted:'rgba(36,29,22,.52)',soft:'rgba(36,29,22,.05)',line:'rgba(36,29,22,.1)',th:'linear-gradient(135deg,#d8c3ab,#a07d5c)'}),
-  saas: pal({bg:'#0d1017',ink:'#e7ebf5',accent:'#6c8cff',on:'#0d1017',muted:'rgba(231,235,245,.5)',soft:'rgba(231,235,245,.05)',line:'rgba(231,235,245,.1)',th:'linear-gradient(135deg,#2a3350,#111524)'}),
-  festival: pal({bg:'#0b0b0b',ink:'#f2f2ea',accent:'#c6ff3d',on:'#0b0b0b',muted:'rgba(242,242,234,.5)',soft:'rgba(242,242,234,.06)',line:'rgba(242,242,234,.12)',th:'linear-gradient(135deg,#ff2d78,#3a0a5c)'}),
-  restaurant: pal({bg:'#f3ede2',ink:'#22271f',accent:'#4a5d3a',on:'#fff',muted:'rgba(34,39,31,.52)',soft:'rgba(34,39,31,.05)',line:'rgba(34,39,31,.1)',th:'linear-gradient(135deg,#c9c1a8,#8f9670)'}),
-  industrial: pal({bg:'#f0f1f2',ink:'#1b1d20',accent:'#c8860a',on:'#fff',muted:'rgba(27,29,32,.52)',soft:'rgba(27,29,32,.05)',line:'rgba(27,29,32,.1)',th:'linear-gradient(135deg,#a7adb3,#4c5157)'}),
-  fintech: pal({bg:'#0a0f0d',ink:'#e6f5ee',accent:'#3ce88f',on:'#0a0f0d',muted:'rgba(230,245,238,.5)',soft:'rgba(230,245,238,.05)',line:'rgba(230,245,238,.1)',th:'linear-gradient(135deg,#123d2c,#08130f)'}),
-  arts: pal({bg:'#f6f4ef',ink:'#16130f',accent:'#b5462f',on:'#fff',muted:'rgba(22,19,15,.5)',soft:'rgba(22,19,15,.045)',line:'rgba(22,19,15,.1)',th:'linear-gradient(135deg,#cbb9a0,#7d6b52)'}),
-  wellness: pal({bg:'#eef1ec',ink:'#20291f',accent:'#7a9b6e',on:'#fff',muted:'rgba(32,41,31,.5)',soft:'rgba(32,41,31,.05)',line:'rgba(32,41,31,.09)',th:'linear-gradient(135deg,#c3d3ba,#8fae86)'}),
-  realestate: pal({bg:'#fbfaf8',ink:'#1c2321',accent:'#1f6f5c',on:'#fff',muted:'rgba(28,35,33,.5)',soft:'rgba(28,35,33,.045)',line:'rgba(28,35,33,.09)',th:'linear-gradient(135deg,#c4cfc9,#7d908a)'}),
-};
+const IMG = 'assets/img/digital/';
 
 const P = [
-  {id:'camera',name:'Camera Ads',client:'Automotive Marketplace',ctx:'Automotive · Marketplace',year:'2019',real:true,
-   disc:['product','ia','commerce','responsive'],x:82,y:72,depth:'deep',arch:'marketplace',pal:'camera',
-   role:'Product & UX Lead',scope:'IA · UX · UI · Design System · Responsive',
-   line:'Designed the end-to-end marketplace: search, listings, vehicle detail pages, dealer tools, and a tiered self-serve ad flow across desktop and mobile.',
-   sum:['A vehicle marketplace lives or dies on how fast a buyer can go from a vague idea to the right listing, and how easily a seller can post one. I owned that whole path.',
-        'Search and filtering, listing and detail templates, dealer profiles, and a tiered ad-submission and checkout flow all had to feel like one product while serving very different users, on very different screens.'],
-   screens:[{a:'marketplace',d:'desk',cap:'Search results and faceted filtering'},{a:'marketplace',d:'phone',cap:'Mobile listing browse'},{a:'detail',d:'desk',cap:'Vehicle detail page'}]},
+{id:'camera', n:'Camera Ads', c:'Automotive Marketplace', y:'2017', w:'hero', t:'case',
+ st:'live', status:'Launched. Evolved since.',
+ role:'Art Direction, UX/UI', disc:['ux','ia','ecom'],
+ line:'A print vehicle-classifieds business rebuilt as a real marketplace: faceted search across eight inventory categories, dealer tools, listing and detail templates, and a four-step list-a-vehicle flow that reconciles print and internet ad limits, photo management, and checkout. Desktop and native mobile.',
+ hero:'camera-home.jpg',
+ shots:[['camera-home.jpg','The marketplace home'],['camera-flow.jpg','List a vehicle, step one'],['camera-mobile.jpg','Native mobile app'],['camera-print.jpg','The print side it grew out of']]},
 
-  {id:'douglass',name:'Douglass Truck Bodies',client:'Commercial Manufacturing',ctx:'Manufacturing · B2B',year:'2018',real:true,
-   disc:['ia','web','product','responsive'],x:76,y:60,depth:'deep',arch:'configurator',pal:'steel',
-   role:'Design Lead',scope:'IA · UX · UI · Content Architecture',
-   line:'Architected a deep manufacturing catalog with configurable truck bodies, spec-driven product pages, and lead capture across hundreds of SKUs.',
-   sum:['Industrial manufacturers usually have enormous product knowledge trapped in PDFs and sales reps. The job was to make that legible on the web without dumbing it down.',
-        'I built an information architecture that let a fleet buyer move from category, to configurable body, to exact spec and a quote request, with galleries and equipment cross-linked throughout.'],
-   screens:[{a:'configurator',d:'desk',cap:'Configurable body, spec-driven'},{a:'catalog',d:'desk',cap:'Product category library'},{a:'configurator',d:'phone',cap:'Mobile configuration'}]},
+{id:'buck', n:"Buck Owens' Crystal Palace", c:'Entertainment &amp; Hospitality', y:'~2019', w:'hero', t:'hyb',
+ st:'past', status:'Launched. Ran for years.',
+ role:'Digital Art Direction, UX/UI', disc:['ad','ia','brand','ecom'],
+ line:'Four businesses in one building: concert hall, restaurant, museum, and box office. Theatrical art direction sitting on top of genuinely complex content, with an events calendar, ticketing, reservations, menus, and a museum archive all speaking with one voice.',
+ hero:'buck-home.jpg',
+ shots:[['buck-home.jpg','The venue home'],['buck-events.jpg','Events and ticketing'],['buck-menu.jpg','The restaurant'],['buck-museum.jpg','The museum archive']]},
 
-  {id:'buck',name:"Buck Owens' Crystal Palace",client:'Entertainment & Hospitality',ctx:'Entertainment · Hospitality',year:'2021',real:true,
-   disc:['artdir','web','brand','commerce'],x:24,y:56,depth:'deep',arch:'venue',pal:'venue',
-   role:'Digital Art Director',scope:'Art Direction · UX · UI · Brand-to-Digital',
-   line:'Art-directed a living venue site tying together events, ticketing, reservations, menus, and a museum archive under one theatrical identity.',
-   sum:['A legendary venue is a lot of businesses at once: a concert hall, a restaurant, a museum, a bar, a gift shop. The site had to feel like the room, and still get you a ticket and a table.',
-        'I set a warm, theatrical art direction over a genuinely complex content model, so events, ticketing, reservations, menus, and archive material all felt like one place with one voice.'],
-   screens:[{a:'venue',d:'desk',cap:'Home, event forward'},{a:'venue',d:'phone',cap:'Mobile, tickets in reach'},{a:'editorial',d:'desk',cap:'Museum archive section'}]},
+{id:'suntreat', n:'Suntreat', c:'California Citrus', y:'~2019', w:'major', t:'vis',
+ st:'live', status:'Launched. Live today.',
+ role:'Art Direction, UX/UI', disc:['ad','ux'],
+ line:'A California citrus grower speaking to consumers and the trade at once, anchored by the Sumo Citrus story and photography that makes the fruit the argument.',
+ note:'Packaging and identity by others.',
+ hero:'suntreat-sumo.jpg',
+ shots:[['suntreat-sumo.jpg','Sumo Citrus'],['suntreat-reserve.jpg','Reserve varieties'],['suntreat-mock.jpg','Presentation mockup']]},
 
-  {id:'cimulated',name:'Cimulated',client:'Immersive VR/AR Brand',ctx:'Entertainment · Immersive',year:'2022',real:true,
-   disc:['artdir','brand','web','responsive'],x:14,y:30,depth:'deep',arch:'immersive',pal:'immersive',
-   role:'Digital Art Director',scope:'Brand-to-Digital · Art Direction · Motion · Responsive',
-   line:'Built the digital identity for an immersive VR/AR brand: an expressive, motion-led responsive site that behaves like the product it sells.',
-   sum:['An immersive entertainment brand can not have a flat, ordinary website. The site itself had to feel like stepping into the experience.',
-        'I developed a custom identity and translated it into a motion-led, responsive site: expressive type, depth, and light doing the storytelling, without sacrificing clarity or performance.'],
-   screens:[{a:'immersive',d:'desk',cap:'Immersive landing'},{a:'immersive',d:'phone',cap:'Responsive, motion intact'},{a:'editorial',d:'desk',cap:'Experience detail'}]},
+{id:'douglass', n:'Douglass Truck Bodies', c:'Commercial Manufacturing', y:'~2017', w:'major', t:'case',
+ st:'live', status:'Launched. Still running today.',
+ role:'Art Direction, UX/UI', disc:['ia','ux'],
+ line:'Deep manufacturing knowledge made legible. Nine product categories on one rigorous template, with configurable bodies, annotated quality comparisons, galleries, and lead capture for buyers who hunt for an exact configuration.',
+ hero:'douglass-service.jpg',
+ shots:[['douglass-service.jpg','Service bodies, in full'],['douglass-camper.jpg','The same system, another category'],['douglass-mock.jpg','Presentation mockup']]},
 
-  {id:'meridian',name:'Meridian Health',client:'Patient Platform',ctx:'Healthcare · Product',year:'2020',
-   disc:['product','ia','responsive'],x:80,y:82,depth:'concise',arch:'portal',pal:'health',
-   role:'UX Lead',scope:'UX · IA · UI · Accessibility',
-   line:'Led UX for a patient platform, turning dense clinical workflows into calm, accessible, mobile-first journeys.',
-   sum:['Health products carry real stakes and real anxiety. Calm, legible, and accessible are not nice-to-haves, they are the brief. I shaped scheduling, records, and messaging into journeys a stressed person could actually complete.'],
-   screens:[{a:'portal',d:'desk',cap:'Patient dashboard'},{a:'portal',d:'phone',cap:'Mobile care journey'}]},
+{id:'klassen', n:'Klassen &amp; Smith', c:'Architecture &amp; Construction', y:'Recent', w:'major', t:'vis',
+ st:'live', status:'Launched. Live today.',
+ role:'Art Direction, UX/UI', disc:['ad','ux'],
+ line:'Confident and contemporary, built on aerial architectural photography and a blunt promise: do what is right. Includes a projects index and detail system for showing completed builds.',
+ hero:'klassen-home.jpg',
+ shots:[['klassen-home.jpg','Home'],['klassen-projects.jpg','Projects index'],['klassen-services.jpg','Services']]},
 
-  {id:'foundry',name:'Foundry & Field',client:'Direct-to-Consumer',ctx:'Ecommerce · DTC',year:'2021',
-   disc:['commerce','web','brand','responsive'],x:48,y:44,depth:'concise',arch:'commerce',pal:'dtc',
-   role:'Design Director',scope:'Brand-to-Digital · UI · Ecommerce',
-   line:'Shaped a direct-to-consumer store from brand system to checkout, balancing editorial storytelling with conversion.',
-   sum:['A good DTC store is a magazine and a vending machine at the same time. I balanced editorial storytelling with a purchase path that stays out of the way, from landing to a checkout that closes.'],
-   screens:[{a:'commerce',d:'desk',cap:'Editorial storefront'},{a:'commerce',d:'phone',cap:'Mobile shop and cart'}]},
+{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', y:'~2016', w:'hero', t:'exp', play:true,
+ st:'never', status:'Reached 99%. Never shipped.',
+ role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
+ line:'Two complete worlds under one brand. A beer and wine delivery service years before the category existed, with subscription clubs, gift cards, and a physical wine holder. And a fully drawn arcade game around the bottle mascot, with worlds, enemies, power-ups, and a full animation system. The developer got it to ninety-nine percent before the whole thing stopped.',
+ hero:'br-start.jpg',
+ shots:[['br-start.jpg','The start screen'],['br-level.jpg','A level: platforms, power-up, Hopster'],['br-sprites.jpg','The sixteen-frame run cycle'],['br-logo.jpg','Logo system'],['br-app.jpg','The delivery app and subscription clubs'],['br-holder.jpg','Physical wine holder'],['br-over.jpg','Game over']]},
 
-  {id:'arcline',name:'Arcline',client:'B2B SaaS',ctx:'Software · B2B',year:'2022',
-   disc:['web','brand','ia','product'],x:66,y:74,depth:'concise',arch:'saas',pal:'saas',
-   role:'Design Lead',scope:'Web Design · Brand-to-Digital · Product Marketing',
-   line:'Designed a B2B product marketing site and dashboard, translating a complex platform into a clear, credible narrative.',
-   sum:['Enterprise buyers need to trust that a product is both powerful and comprehensible. I gave a dense platform a clear marketing narrative and a product surface that felt like the same company.'],
-   screens:[{a:'saas',d:'desk',cap:'Product marketing home'},{a:'portal',d:'desk',cap:'In-product dashboard'}]},
+{id:'moto', n:'MotoAuct', c:'Vintage Motorcycle Auction', y:'2018', w:'major', t:'hyb',
+ st:'past', status:'Launched. Folded a few years later.',
+ role:'Art Direction, UX/UI, Photography', disc:['ad','ecom','ux','photo'],
+ line:'The world’s only online vintage motorcycle auction, given a red-and-black identity with real transactional mechanics underneath: live bids, countdown timers, a merch store, and a community to keep it warm between sales.',
+ hero:'moto-home.jpg',
+ shots:[['moto-home.jpg','The auction home'],['moto-mock.jpg','Presentation mockup'],['moto-mobile.jpg','Mobile']]},
 
-  {id:'staticbloom',name:'Static Bloom',client:'Music Festival',ctx:'Music · Events',year:'2023',
-   disc:['artdir','web','responsive'],x:20,y:18,depth:'concise',arch:'festival',pal:'festival',
-   role:'Digital Art Director',scope:'Art Direction · Motion · Responsive · Ticketing',
-   line:'Directed the visual world for a music festival: a bold, kinetic site running from lineup to live ticketing.',
-   sum:['A festival site has about two seconds to make you feel something and buy in. I built a loud, kinetic visual world that still handled the unglamorous parts: lineup, schedule, and a ticket flow under load.'],
-   screens:[{a:'festival',d:'desk',cap:'Lineup landing'},{a:'festival',d:'phone',cap:'Mobile schedule and tickets'}]},
+{id:'mellor', n:'Mellor Ranch', c:'Family Vineyard, since 1884', y:'Recent', w:'major', t:'vis',
+ st:'live', status:'Launched. Live today.',
+ role:'Art Direction, UX/UI, Packaging', disc:['ad','brand','ecom'],
+ line:'A family vineyard with a barn for a mark and a sunset down the vine rows. Seven varietal pages, a farming-practice story, and a store. One of the few projects here where the labels on the bottles are mine too.',
+ hero:'mellor-home.jpg',
+ shots:[['mellor-home.jpg','Home'],['mellor-story.jpg','Our story'],['mellor-cab.jpg','A varietal page'],['mellor-farm.jpg','Farming practice']]},
 
-  {id:'alder',name:'Alder & Ash',client:'Restaurant Group',ctx:'Hospitality · Food',year:'2020',
-   disc:['web','brand','artdir'],x:34,y:28,depth:'concise',arch:'restaurant',pal:'restaurant',
-   role:'Art Director',scope:'Brand-to-Digital · Web Design · Art Direction',
-   line:'Brought a restaurant group online with a warm, art-directed site spanning locations, menus, and reservations.',
-   sum:['A restaurant group needs to feel like a table you want to sit at, across several locations with different menus. I set one warm art direction that flexed per venue and made reservations effortless.'],
-   screens:[{a:'restaurant',d:'desk',cap:'Group and locations'},{a:'restaurant',d:'phone',cap:'Menu and reservations'}]},
+{id:'palmer', n:'Tim Palmer', c:'Record Producer &amp; Mixer', y:'2020', w:'major', t:'vis',
+ st:'live', status:'Launched. Still live.',
+ role:'Art Direction, UX/UI', disc:['ad'],
+ line:'A site for the producer and mixer behind Pearl Jam’s Ten, Bowie, U2, and Ozzy. The wall of album covers does more for credibility in two seconds than any layout could, so the design gets out of its way.',
+ hero:'palmer-home.jpg',
+ shots:[['palmer-home.jpg','Logo and discography'],['palmer-disco.jpg','The discography wall'],['palmer-ig.jpg','Social']]},
 
-  {id:'cascade',name:'Cascade Fabrication',client:'Industrial Catalog',ctx:'Industrial · B2B',year:'2019',
-   disc:['ia','web','responsive'],x:70,y:50,depth:'concise',arch:'catalog',pal:'industrial',
-   role:'Design Lead',scope:'IA · Web Design · Responsive',
-   line:'Organized a sprawling industrial catalog into a navigable, filterable product library for specifiers and buyers.',
-   sum:['Specifiers do not browse, they hunt for an exact part. I turned a sprawling industrial catalog into a filterable, well-labeled library that respected how technical buyers actually search.'],
-   screens:[{a:'catalog',d:'desk',cap:'Filterable product library'},{a:'detail',d:'desk',cap:'Product spec page'}]},
+{id:'sanluis', n:'San Luis Ambulance', c:'Emergency Response', y:'2025', w:'standard', t:'vis',
+ st:'live', status:'Launched recently. Live today.',
+ role:'Art Direction, UX/UI', disc:['ux','ia'],
+ line:'Eighty years of emergency response, given a calm and trustworthy presence across services, careers, and billing. Bike paramedics and dune-capable 4x4 ambulances included.',
+ hero:'sanluis-home.jpg',
+ shots:[['sanluis-home.jpg','Home'],['sanluis-services.jpg','Services']]},
 
-  {id:'tender',name:'Tender',client:'Membership & Payments',ctx:'Fintech · Product',year:'2023',
-   disc:['product','commerce','ia'],x:74,y:86,depth:'concise',arch:'fintech',pal:'fintech',
-   role:'Product Designer',scope:'Product · UX · Transactional · Design System',
-   line:'Designed a membership and payments experience, from onboarding to recurring billing, as a trustworthy product system.',
-   sum:['Money products need to feel calm and certain at every step. I designed onboarding, membership, and recurring billing as one trustworthy system, where nothing about a transaction is ever a surprise.'],
-   screens:[{a:'fintech',d:'desk',cap:'Membership and billing'},{a:'fintech',d:'phone',cap:'Mobile wallet'}]},
+{id:'degrees', n:'800 Degrees', c:'Woodfired Kitchen', y:'~2018', w:'standard', t:'vis',
+ st:'past', status:'Launched. The chain no longer exists.',
+ role:'UX/UI, Design', disc:['ux','ad'],
+ line:'A restaurant chain sold on wood-fired food photography, with a rewards program, catering, locations, and franchising working underneath the appetite.',
+ hero:'degrees-home.jpg',
+ shots:[['degrees-home.jpg','Home'],['degrees-mock.jpg','Presentation mockup']]},
 
-  {id:'fathom',name:'Fathom',client:'Arts Institution',ctx:'Culture · Archive',year:'2021',
-   disc:['artdir','ia','web'],x:40,y:46,depth:'deep',arch:'arts',pal:'arts',
-   role:'Digital Art Director',scope:'Art Direction · IA · Web Design',
-   line:'Designed an archive-driven site for an arts institution, making a deep collection feel browsable and alive.',
-   sum:['Cultural archives are usually deep and nearly unbrowsable. The challenge was to make scholarship feel like an invitation, not a filing cabinet.',
-        'I paired a restrained, gallery-like art direction with an information architecture that let visitors wander a large collection by theme, era, or medium, and always find their way back.'],
-   screens:[{a:'arts',d:'desk',cap:'Collection landing'},{a:'editorial',d:'desk',cap:'Curated feature'},{a:'arts',d:'phone',cap:'Mobile browse'}]},
+{id:'moseley', n:'Robert Moseley Design', c:'Interior Design', y:'~2024', w:'standard', t:'vis',
+ st:'live', status:'Launched. Live today.',
+ role:'Art Direction, UX/UI', disc:['ad','brand'],
+ line:'A luxury interior designer carried almost entirely by maximalist photography, held together with green, gold, and a confident script.',
+ hero:'moseley-home.jpg',
+ shots:[['moseley-home.jpg','Home'],['moseley-story.jpg','My story']]},
 
-  {id:'halcyon',name:'Halcyon',client:'Wellness DTC',ctx:'Wellness · Ecommerce',year:'2022',
-   disc:['commerce','artdir','brand'],x:44,y:36,depth:'concise',arch:'commerce',pal:'wellness',
-   role:'Art Director',scope:'Brand-to-Digital · Art Direction · Ecommerce',
-   line:'Crafted a wellness DTC experience where an expressive brand and a frictionless purchase path reinforce each other.',
-   sum:['Wellness brands trade on feeling. I made the expressive, calming brand and the frictionless purchase path work as one, so the mood and the checkout never fought each other.'],
-   screens:[{a:'commerce',d:'desk',cap:'Brand-led storefront'},{a:'commerce',d:'phone',cap:'Mobile product and cart'}]},
+{id:'cimulated', n:'Cimulated', c:'VR &amp; AR Arcade', y:'2023', w:'standard', t:'vis',
+ st:'past', status:'Launched. No longer maintained.',
+ role:'Logo, Identity, Art Direction', disc:['brand','ad'],
+ line:'An immersive VR and AR arcade, and mostly an excuse to build a neon identity that glows in the dark. The mark is the work here; the site carries it.',
+ hero:'cimulated-home.jpg',
+ shots:[['cimulated-home.jpg','The neon identity'],['cimulated-mock.jpg','Presentation mockup']]},
 
-  {id:'parcel',name:'Parcel',client:'Real Estate Platform',ctx:'Real Estate · Product',year:'2023',
-   disc:['product','ia','responsive','web'],x:72,y:70,depth:'concise',arch:'marketplace',pal:'realestate',
-   role:'Product & UX Lead',scope:'Product · UX · IA · Responsive',
-   line:'Designed a property search platform: map, listings, saved views, and inquiry flows for buyers and agents.',
-   sum:['Property search is a marketplace with a map bolted on. I designed listings, map interplay, saved views, and inquiry flows that worked for anxious buyers and busy agents alike.'],
-   screens:[{a:'marketplace',d:'desk',cap:'Map and listings'},{a:'marketplace',d:'phone',cap:'Mobile property search'}]},
+{id:'dexter', n:'Dexter Meadows', c:'Tactical Gear', y:'2022', w:'support', t:'vis',
+ st:'live', status:'Launched. Live today.',
+ role:'Art Direction, UX/UI, Photography', disc:['ecom','ad','photo'],
+ line:'Special-operations kneepads, made since 1996. Olive and tan, with wholesale and cart, and product photography shot in the dirt where it belongs.',
+ hero:'dexter-home.jpg',
+ shots:[['dexter-home.jpg','Home'],['dexter-order.jpg','Order']]},
+
+{id:'ames', n:'Ames Woodworks', c:'Handmade Beer &amp; Wine Carriers', y:'2017', w:'support', t:'vis',
+ st:'past', status:'Launched. Since changed.',
+ role:'Art Direction, UX/UI, Photography', disc:['brand','ecom','photo'],
+ line:'Reclaimed-wood carriers with real brewery clients, shot and art-directed to feel like the shop they came out of.',
+ hero:'ames-home.jpg',
+ shots:[['ames-home.jpg','Home'],['ames-wood.jpg','The woodwork']]},
+
+{id:'mody', n:'Mody Pumps', c:'Industrial Manufacturing', y:'2025', w:'support', t:'vis',
+ st:'never', status:'Designed. Still unreleased.',
+ role:'Art Direction, UX/UI, Photography', disc:['ia','ux','photo'],
+ line:'A global pump manufacturer with a Bakersfield headquarters and offices on four continents. A full catalog and a find-your-pump selector, designed and waiting.',
+ hero:'mody-products.jpg',
+ shots:[['mody-products.jpg','Product catalog'],['mody-home.jpg','Home']]}
 ];
 
-/* ============================ MOCKUP RENDER ============================ */
-function palVars(pkey){
-  const p = PAL[pkey] || PAL.saas;
-  return `--mk-bg:${p.bg};--mk-ink:${p.ink};--mk-accent:${p.accent};--mk-on:${p.on};--mk-muted:${p.muted};--mk-soft:${p.soft};--mk-line:${p.line};--mk-th:${p.th}`;
-}
-function th(pkey,i){ /* per-item thumb variety */
-  const p = PAL[pkey]||PAL.saas;
-  const angles=[135,120,160,110,145];
-  return p.th.replace('135deg', angles[i%angles.length]+'deg');
-}
-const R = {}; /* archetype -> html(pkey, proj) */
+/* ---------------- render ---------------- */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+let lens='all';
 
-R.marketplace = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand">${pr.id==='parcel'?'PARCEL':'CAMERA ADS'}</span>
-      <span class="mk-search">Search make, model, price, ZIP</span>
-      <span class="mk-btn ghost">Sign in</span><span class="mk-btn">Post ad</span></div>
-    <div class="mk-chips"><span class="mk-chip on">All</span><span class="mk-chip">Body</span><span class="mk-chip">Price</span><span class="mk-chip">Miles</span><span class="mk-chip">Year</span><span class="mk-chip">Fuel</span><span class="mk-chip">Dealer</span></div>
-    <div class="mk-body"><div class="mk-grid g3">${[0,1,2,3,4,5].map(i=>`
-      <div class="mk-card"><div class="mk-thumb" style="background:${th(pk,i)}"></div>
-        <div class="mk-cardb"><div class="mk-strong">${['2021 Tacoma','2020 F-150','2022 Model 3','2019 4Runner','2021 Bronco','2020 Sierra'][i]}</div>
-        <div class="mk-mut">${['38k mi · TRD','52k mi · XLT','21k mi · LR','44k mi · SR5','12k mi · Big Bend','30k mi · AT4'][i]}</div>
-        <div class="mk-price">$${['31,400','34,900','38,250','29,700','44,100','41,500'][i]}</div></div></div>`).join('')}</div></div>
-  </div>`;
+function arrow(){return '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>';}
+const TYPE={case:['case','Case Study'],exp:['exp','Experiment'],hyb:['hyb','Hybrid'],vis:['vis','Visual']};
 
-R.detail = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand">${pr.id==='cascade'?'CASCADE':'CAMERA ADS'}</span><span class="mk-nav">Overview&nbsp;·&nbsp;Specs&nbsp;·&nbsp;Dealer</span><span class="mk-btn">Contact</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-stage" style="background:${th(pk,0)}"><span class="mk-badge">Featured</span></div>
-      <div class="mk-side"><span class="mk-kick">${pr.ctx.split(' ')[0]}</span>
-        <div class="mk-h">${pr.id==='cascade'?'Model FX-9':'2021 Tacoma'}</div>
-        <div class="mk-price" style="font-size:1.4em">$${pr.id==='cascade'?'—':'31,400'}</div>
-        <div class="mk-spec">${['Engine','Drivetrain','Warranty','Location'].map((k,i)=>`<div class="sr2"><span>${k}</span><span>${['3.5L V6','4WD','Certified','Portland, OR'][i]}</span></div>`).join('')}</div>
-        <span class="mk-btn" style="margin-top:.4em;text-align:center">Request details</span></div>
-    </div></div>
-  </div>`;
-
-R.configurator = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand">DOUGLASS</span><span class="mk-nav">Bodies&nbsp;·&nbsp;Equipment&nbsp;·&nbsp;Galleries&nbsp;·&nbsp;About</span><span class="mk-btn">Get a quote</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-stage" style="background:${th(pk,0)}"><span class="mk-badge">Configurable</span></div>
-      <div class="mk-side"><span class="mk-kick">Service Body</span><div class="mk-h">11 ft Steel</div>
-        <div class="mk-optrow"><span class="ol">Length</span><span class="mk-pill">9ft</span><span class="mk-pill on">11ft</span><span class="mk-pill">14ft</span></div>
-        <div class="mk-optrow"><span class="ol">Material</span><span class="mk-pill on">Steel</span><span class="mk-pill">Aluminum</span></div>
-        <div class="mk-optrow"><span class="ol">Comp.</span><span class="mk-pill">4</span><span class="mk-pill on">6</span><span class="mk-pill">8</span></div>
-        <div class="mk-spec">${['Payload','Compartments','Lighting','Lead time'].map((k,i)=>`<div class="sr2"><span>${k}</span><span>${['4,200 lb','6 locking','LED','3 wks'][i]}</span></div>`).join('')}</div>
-        <span class="mk-btn" style="text-align:center">Request this build</span></div>
-    </div></div>
-  </div>`;
-
-R.catalog = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand">${pr.id==='douglass'?'DOUGLASS':'CASCADE'}</span><span class="mk-nav">Catalog&nbsp;·&nbsp;Industries&nbsp;·&nbsp;Support</span><span class="mk-btn ghost">Quote</span></div>
-    <div class="mk-chips"><span class="mk-chip on">All</span><span class="mk-chip">Material</span><span class="mk-chip">Load</span><span class="mk-chip">Class</span><span class="mk-chip">Finish</span></div>
-    <div class="mk-body"><div class="mk-grid g4">${[0,1,2,3,4,5,6,7].map(i=>`
-      <div class="mk-card"><div class="mk-thumb" style="aspect-ratio:1;background:${th(pk,i)}"></div>
-      <div class="mk-cardb"><div class="mk-strong" style="font-size:.85em">Series ${['A','B','C','D','E','F','G','H'][i]}-${100+i*7}</div>
-      <div class="mk-mut">In stock</div></div></div>`).join('')}</div></div>
-  </div>`;
-
-R.venue = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand sr">Crystal Palace</span><span class="mk-nav">Events&nbsp;·&nbsp;Dine&nbsp;·&nbsp;Museum&nbsp;·&nbsp;Visit</span><span class="mk-btn">Tickets</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-stage" style="background:${th(pk,0)}"><span class="mk-badge">This Friday</span>
-        <div style="position:absolute;bottom:1em;left:1em;right:1em"><div class="mk-h sr" style="color:#f3e6cf">Dwight Yoakam</div><div style="font-family:var(--mono);font-size:.8em;letter-spacing:.1em;color:#f3e6cf;opacity:.8">DOORS 7PM · BAKERSFIELD</div></div></div>
-      <div class="mk-side"><span class="mk-kick">Upcoming</span><div class="mk-list">
-        ${[['FRI','Dwight Yoakam','Live in concert'],['SAT','Buckaroo Night','Dance hall'],['SUN','Sunday Brunch','Reservations open'],['WED','Museum Tour','Free with dinner']].map(r=>`<div class="mk-li"><span class="dte">${r[0]}</span><span class="who">${r[1]}<small>${r[2]}</small></span><span class="mk-pill on">Book</span></div>`).join('')}</div></div>
-    </div></div>
-  </div>`;
-
-R.immersive = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar" style="border-color:var(--mk-line)"><span class="mk-brand" style="letter-spacing:.28em">CIMULATED</span><span class="mk-nav">Experience&nbsp;·&nbsp;Tech&nbsp;·&nbsp;About</span><span class="mk-btn">Enter</span></div>
-    <div class="mk-body" style="padding:0"><div class="mk-full" style="background:${th(pk,0)}">
-      <div class="mk-glow" style="background:#4fe6d2;top:10%;left:14%"></div><div class="mk-glow" style="background:#7b5cff;bottom:6%;right:12%"></div>
-      <div style="position:relative;z-index:2"><div class="mk-kick" style="justify-self:center">Immersive VR / AR</div>
-        <div class="mk-h" style="font-size:3.4em;color:#eef0ff">STEP<br>INSIDE</div>
-        <div style="color:rgba(238,240,255,.7);font-size:.95em;margin-top:.6em">A world that responds to you</div>
-        <span class="mk-btn" style="margin-top:1em;display:inline-block">Launch experience</span></div>
-    </div></div>
-  </div>`;
-
-R.portal = (pk,pr)=>{
-  const brand = pr.id==='tender'?'TENDER':pr.id==='arcline'?'ARCLINE':'MERIDIAN';
-  return `
-  <div class="mk">
-    <div class="mk-portal">
-      <div class="mk-aside"><span class="mk-brand" style="font-size:1em;margin-bottom:.4em">${brand}</span>
-        ${['Overview','Records','Schedule','Messages','Billing'].map((n,i)=>`<span class="mk-aitem ${i===0?'on':''}">${n}</span>`).join('')}</div>
-      <div class="mk-main"><div class="mk-bar" style="padding:0 0 1em;border:0"><span class="mk-strong">Good morning, Dana</span><span class="mk-btn" style="margin-left:auto">New</span></div>
-        <div class="mk-stats">${[['3','Upcoming'],['12','Messages'],['98%','On track']].map(s=>`<div class="mk-statc"><div class="sv">${s[0]}</div><div class="sl">${s[1]}</div></div>`).join('')}</div>
-        <div class="mk-table"><div class="mk-tr h"><span>Item</span><span>Date</span><span>Status</span><span></span></div>
-        ${[['Annual visit','Aug 22','Confirmed'],['Lab results','Aug 18','Ready'],['Prescription','Aug 15','Sent'],['Follow-up','Sep 02','Pending']].map(r=>`<div class="mk-tr"><span>${r[0]}</span><span>${r[1]}</span><span class="mk-tag">${r[2]}</span><span style="text-align:right;color:var(--mk-muted)">›</span></div>`).join('')}</div>
+function entryHTML(p,i){
+  const [tc,tl]=TYPE[p.t];
+  const strip=p.shots.slice(1,5).map(s=>`<img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy">`).join('');
+  const tags=p.disc.map(d=>`<span class="${d===lens?'on':''}">${DISC[d]}</span>`).join('');
+  return `<article class="e e-${p.w} ${p.play?'e-play':''}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
+    <div class="eshell">
+      <button class="emedia" data-open="${p.id}" aria-label="Open ${p.n.replace(/&amp;/g,'and')}">
+        <div class="eframe"><img src="${IMG}${p.hero}" alt="${p.n.replace(/&amp;/g,'and')}" loading="lazy"></div>
+        ${p.w!=='support'&&strip?`<div class="estrip">${strip}</div>`:''}
+      </button>
+      <div class="ebody" data-open="${p.id}">
+        <div class="etop"><span class="idx">${String(i+1).padStart(2,'0')}</span>
+          <span class="etype ${tc}">${tl}</span><span>${p.y}</span></div>
+        <h2>${p.n}</h2>
+        <div class="eclient">${p.c}</div>
+        <p class="eline">${p.line}</p>
+        <div class="estatus ${p.st}"><span class="d"></span>${p.status}</div>
+        <div class="etags">${tags}</div>
+        <div class="erole"><b>${p.role}</b><br>with Fluxar Studios, Inc.${p.note?'<br>'+p.note:''}</div>
+        <span class="ecue">Open project ${arrow()}</span>
       </div>
     </div>
-  </div>`;
-};
-
-R.saas = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand">ARCLINE</span><span class="mk-nav">Platform&nbsp;·&nbsp;Solutions&nbsp;·&nbsp;Pricing&nbsp;·&nbsp;Docs</span><span class="mk-btn ghost">Log in</span><span class="mk-btn">Book demo</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-side"><span class="mk-kick">Operations, unified</span><div class="mk-h" style="font-size:2.6em">Run the whole pipeline in one place</div>
-        <div class="mk-mut" style="font-size:1em">Connect data, automate handoffs, and see every stage without a spreadsheet.</div>
-        <div style="display:flex;gap:.6em;margin-top:.4em"><span class="mk-btn">Start free</span><span class="mk-btn ghost">Watch tour</span></div></div>
-      <div class="mk-stage" style="background:${th(pk,0)}"><span class="mk-badge">Live</span></div>
-    </div></div>
-  </div>`;
-
-R.commerce = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand sr">${pr.id==='halcyon'?'Halcyon':'Foundry &amp; Field'}</span><span class="mk-nav">Shop&nbsp;·&nbsp;Story&nbsp;·&nbsp;Journal</span><span class="mk-btn ghost">Cart · 2</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-stage" style="background:${th(pk,0)}"></div>
-      <div class="mk-side"><span class="mk-kick">New Season</span><div class="mk-h sr">Made to be kept</div>
-        <div class="mk-mut" style="font-size:1em">Small-batch goods, built honestly and shipped carbon-neutral.</div>
-        <div class="mk-price" style="font-size:1.3em">$68</div>
-        <span class="mk-btn" style="text-align:center">Add to cart</span></div>
-    </div>
-    <div class="mk-grid g4" style="height:auto;margin-top:1em">${[0,1,2,3].map(i=>`<div class="mk-card"><div class="mk-thumb" style="aspect-ratio:4/5;background:${th(pk,i)}"></div><div class="mk-cardb"><div class="mk-mut">Item 0${i+1}</div><div class="mk-price" style="font-size:.9em">$${[42,68,54,90][i]}</div></div></div>`).join('')}</div></div>
-  </div>`;
-
-R.festival = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar" style="border-color:var(--mk-line)"><span class="mk-brand" style="letter-spacing:.14em">STATIC BLOOM</span><span class="mk-nav">Lineup&nbsp;·&nbsp;Schedule&nbsp;·&nbsp;Info</span><span class="mk-btn">Tickets</span></div>
-    <div class="mk-body" style="padding:0"><div class="mk-full" style="background:${th(pk,0)};justify-content:space-between;align-items:stretch;padding:1.4em">
-      <div class="mk-kick" style="color:#c6ff3d">Aug 14–16 · High Desert</div>
-      <div class="mk-h" style="font-size:3.2em;color:#f2f2ea;text-align:left">STATIC<br>BLOOM<br><span style="color:#c6ff3d">2024</span></div>
-      <div style="display:flex;flex-wrap:wrap;gap:.4em;font-family:var(--mono);font-size:.78em;letter-spacing:.06em;color:rgba(242,242,234,.85)">
-        ${'JAMIE XX · KAYTRANADA · ROMY · OVERMONO · JPEGMAFIA · YAEJI'.split(' · ').map(a=>`<span>${a} ·</span>`).join('')}</div>
-    </div></div>
-  </div>`;
-
-R.restaurant = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand sr">Alder &amp; Ash</span><span class="mk-nav">Menus&nbsp;·&nbsp;Locations&nbsp;·&nbsp;Private&nbsp;Events</span><span class="mk-btn">Reserve</span></div>
-    <div class="mk-body"><div class="mk-hero">
-      <div class="mk-stage" style="background:${th(pk,0)}"></div>
-      <div class="mk-side"><span class="mk-kick">Wood-fired · Portland</span><div class="mk-h sr">A table<br>worth the wait</div>
-        <div class="mk-mut" style="font-size:1em">Seasonal plates, natural wine, and a room that hums.</div>
-        <div style="display:flex;gap:.5em"><span class="mk-btn">Book a table</span><span class="mk-btn ghost">View menu</span></div></div>
-    </div></div>
-  </div>`;
-
-R.arts = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand sr">Fathom</span><span class="mk-nav">Collection&nbsp;·&nbsp;Exhibitions&nbsp;·&nbsp;Visit&nbsp;·&nbsp;Search</span></div>
-    <div class="mk-chips"><span class="mk-chip on">All</span><span class="mk-chip">Era</span><span class="mk-chip">Medium</span><span class="mk-chip">Theme</span><span class="mk-chip">Region</span></div>
-    <div class="mk-body"><div class="mk-grid g4">${[0,1,2,3,4,5,6,7].map(i=>`
-      <div class="mk-card" style="background:transparent;border:0"><div class="mk-thumb" style="aspect-ratio:${i%3===0?'3/4':'1'};background:${th(pk,i)}"></div>
-      <div class="mk-cardb" style="padding:.5em 0"><div class="mk-mut" style="font-size:.8em">Untitled, ${1920+i*11}</div></div></div>`).join('')}</div></div>
-  </div>`;
-
-R.editorial = (pk,pr)=>`
-  <div class="mk">
-    <div class="mk-bar"><span class="mk-brand sr">${pr.name.split(' ')[0]}</span><span class="mk-nav">Read&nbsp;·&nbsp;Watch&nbsp;·&nbsp;Index</span></div>
-    <div class="mk-body"><div class="mk-edi">
-      <span class="mk-kick">Feature</span>
-      <div class="mk-h sr" style="font-size:2.6em">${pr.id==='buck'?'Fifty years on the dance floor':pr.id==='fathom'?'A century, one room at a time':'Inside the experience'}</div>
-      <div class="mk-cols">${[0,1,2].map(i=>`<div class="mk-col"><div class="cimg" style="background:${th(pk,i)}"></div><p>${['A short standfirst introducing the piece and its subject.','Pull quotes and imagery carry the reader down the page.','Every spread is art-directed to its own content.'][i]}</p></div>`).join('')}</div>
-    </div></div>
-  </div>`;
-
-R.fintech = (pk,pr)=> R.portal(pk,pr);
-
-/* phone renderer (generic, palette + archetype tinted) */
-function phone(pr){
-  const pk = pr.pal;
-  const kick = pr.ctx.toUpperCase();
-  const commerceLike = ['commerce','marketplace','catalog'].includes(pr.arch);
-  const cards = commerceLike
-    ? [['','Search result','from listings','$—'],['','Nearby','matches','$—'],['','Saved','for later','$—']]
-    : [['','Section one','details',''],['','Section two','details',''],['','Section three','details','']];
-  const labels = {marketplace:['Featured','2021 Tacoma','38k mi · TRD','$31,400'],commerce:['New in','Made to be kept','small batch','$68'],venue:['This Friday','Dwight Yoakam','Doors 7PM',''],immersive:['Immersive','Step inside','a living world',''],portal:['Today','Upcoming visit','Aug 22',''],fintech:['Balance','$2,480.00','+ 2 pending',''],festival:['Aug 14–16','Static Bloom','High Desert',''],restaurant:['Portland','Alder & Ash','Reserve tonight',''],arts:['Collection','Fathom','browse by theme',''],catalog:['Catalog','Series A-100','In stock',''],saas:['Platform','Arcline','one pipeline',''],detail:['Featured','2021 Tacoma','$31,400','']};
-  const L = labels[pr.arch]||['Featured',pr.name,pr.client,''];
-  return `<div class="mkp" style="${palVars(pk)}">
-    <div class="mkp-bar"><span class="mk-brand" style="font-size:.95em">${pr.name.split(' ')[0].toUpperCase()}</span><span class="mkp-burger"><i></i><i></i><i></i></span></div>
-    <div class="mkp-hero" style="background:${th(pk,0)}"><span class="mkp-hk">${L[0]}</span></div>
-    <div class="mkp-body"><div class="mkp-h ${commerceLike?'':'sr'}">${L[1]}</div>
-      <div class="mkp-cards">${[0,1,2].map(i=>`<div class="mkp-c"><span class="th" style="background:${th(pk,i+1)}"></span><span class="tx"><b>${['Option A','Option B','Option C'][i]}</b><small>${L[2]}</small></span>${L[3]?`<span class="pr">${L[3]}</span>`:'<span class="pr">›</span>'}</div>`).join('')}</div>
-      <div class="mkp-cta">${commerceLike?'Add to cart':pr.arch==='venue'||pr.arch==='festival'?'Get tickets':pr.arch==='restaurant'?'Reserve':'Continue'}</div>
-    </div>
-    <div class="mkp-tabs"><i class="on">◧</i><i>◔</i><i>♡</i><i>☰</i></div>
-  </div>`;
+  </article>`;
 }
 
-function renderScreen(a,d,pr){
-  if(d==='phone') return `<div class="frame phone" style="${palVars(pr.pal)}"><div class="notch"></div><div class="screen">${phone(pr)}</div></div>`;
-  const fn = R[a]||R.editorial;
-  return `<div class="frame desktop" style="${palVars(pr.pal)}"><div class="chrome"><i></i><i></i><i></i><span class="url"></span></div><div class="screen">${fn(pr.pal,pr)}</div></div>`;
+function render(){
+  const list = lens==='all'?P:P.filter(p=>p.disc.includes(lens));
+  $('#list').innerHTML = list.map(entryHTML).join('');
+  $('#count').innerHTML = `<b>${list.length}</b> of ${P.length}`;
+  observe();
 }
 
-/* ============================ STATE + VIEWS ============================ */
-const state = {lens:'all', view:'index', pins:[]};
-const $ = s=>document.querySelector(s);
-const $$ = s=>[...document.querySelectorAll(s)];
-
-function filtered(){ return state.lens==='all'?P:P.filter(p=>p.disc.includes(state.lens)); }
-
-/* lenses */
 function buildLenses(){
-  const el = $('#lenses');
-  const chips = [['all','All']].concat(DISC.map(d=>[d[0], DLABEL[d[0]]]));
-  el.innerHTML = chips.map(([id,label])=>{
-    const n = id==='all'?P.length:P.filter(p=>p.disc.includes(id)).length;
-    return `<button class="lens" data-lens="${id}" aria-pressed="${id==='all'}">${label}<span class="c">${n}</span></button>`;
-  }).join('');
-  el.addEventListener('click',e=>{ const b=e.target.closest('.lens'); if(!b)return; setLens(b.dataset.lens); });
-}
-function setLens(id){
-  state.lens=id;
-  $$('.lens').forEach(b=>b.setAttribute('aria-pressed', b.dataset.lens===id));
-  const [k,copy]=FRAME[id];
-  $('#framing').innerHTML = `<span class="k">${k}.</span> ${copy}`;
-  const list=filtered();
-  $('#count').innerHTML = `<b>${list.length}</b> ${list.length===1?'project':'projects'}`;
-  if(state.view==='index') renderIndex(list); else markField();
+  const counts = k=>P.filter(p=>p.disc.includes(k)).length;
+  const items = [['all','All',P.length]].concat(Object.keys(DISC).map(k=>[k,DISC[k],counts(k)]));
+  $('#lenses').innerHTML = items.map(([k,l,n])=>
+    `<button data-lens="${k}" aria-pressed="${k==='all'}">${l}<span class="c">${n}</span></button>`).join('');
 }
 
-/* index */
-function tagHTML(pr){ return pr.disc.map(d=>`<span class="tag ${d===state.lens?'hot':''}">${DLABEL[d]}</span>`).join(''); }
-function renderIndex(list){
-  const wrap = $('#indexView');
-  wrap.innerHTML = list.map((pr,i)=>`
-    <article class="prow" data-id="${pr.id}">
-      <div class="media"><button class="open-btn" data-open="${pr.id}" aria-label="Open ${pr.name}">
-        ${renderScreen(pr.arch,'desk',pr)}</button></div>
-      <div class="body">
-        <div class="pr-top"><span class="idx">${String(i+1).padStart(2,'0')}</span><span class="dot"></span><span>${pr.year}</span><span class="dot"></span><span>${pr.ctx}</span>${pr.depth==='deep'?'<span class="deep">Case study</span>':''}</div>
-        <button class="open-btn" data-open="${pr.id}"><h2>${pr.name}</h2></button>
-        <div class="client">${pr.client}</div>
-        <p class="line">${pr.line}</p>
-        <div class="tags">${tagHTML(pr)}</div>
-        <div class="pr-actions">
-          <button class="open-btn" data-open="${pr.id}"><span class="cue">${pr.depth==='deep'?'Open case study':'Open project'} <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span></button>
-          <button class="pin-btn ${state.pins.includes(pr.id)?'on':''}" data-pin="${pr.id}"><span class="box">${state.pins.includes(pr.id)?'✓':'+'}</span> Compare</button>
-        </div>
-      </div>
-    </article>`).join('');
-  observeRows();
-}
-
-/* field */
-function buildField(){
-  const plot = $('#plot');
-  plot.querySelectorAll('.dot').forEach(d=>d.remove());
-  P.forEach(pr=>{
-    const dot=document.createElement('div');
-    dot.className='dot'; dot.dataset.id=pr.id;
-    dot.style.left=pr.x+'%'; dot.style.top=(100-pr.y)+'%';
-    dot.innerHTML=`<div class="pt"></div><div class="lbl">${pr.name}</div>
-      <div class="card"><div class="cc">${pr.ctx}</div><div class="cn">${pr.name}</div><div class="cl">${pr.line}</div></div>`;
-    dot.addEventListener('click',()=>openProject(pr.id));
-    plot.appendChild(dot);
-  });
-}
-function markField(){
-  $$('#plot .dot').forEach(d=>{
-    const pr=P.find(p=>p.id===d.dataset.id);
-    const match = state.lens==='all' || pr.disc.includes(state.lens);
-    d.classList.toggle('match', match && state.lens!=='all');
-    d.classList.toggle('dim', !match);
-  });
-}
-
-/* view toggle */
-function setView(v){
-  state.view=v;
-  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.view===v));
-  $('#indexView').style.display = v==='index'?'block':'none';
-  $('#fieldView').style.display = v==='field'?'block':'none';
-  if(v==='index') renderIndex(filtered()); else markField();
-}
-
-/* reveal */
 let io;
-function observeRows(){
+function observe(){
   if(io) io.disconnect();
-  io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);}}),{threshold:.12});
-  $$('.prow').forEach((r,i)=>{ r.style.transitionDelay=(Math.min(i,4)*0.06)+'s'; io.observe(r); });
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
+  $$('.e').forEach((el,i)=>{el.style.transitionDelay=Math.min(i,3)*0.05+'s';io.observe(el);});
 }
 
-/* ============================ OVERLAY ============================ */
-function openProject(id){
-  const list=filtered(); let idx=list.findIndex(p=>p.id===id);
-  if(idx<0){ idx=P.findIndex(p=>p.id===id); }
-  const pr = (idx>=0?list[idx]:P.find(p=>p.id===id)) || P.find(p=>p.id===id);
-  fillOverlay(pr);
-  const ov=$('#overlay'); ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
-  document.body.classList.add('lock'); ov.scrollTop=0;
+/* ---------------- overlay ---------------- */
+function openP(id){
+  const list = lens==='all'?P:P.filter(p=>p.disc.includes(lens));
+  const seq = list.some(p=>p.id===id)?list:P;
+  fill(seq, seq.findIndex(p=>p.id===id));
+  const ov=$('#ov'); ov.classList.add('open'); ov.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden'; ov.scrollTop=0;
 }
-function fillOverlay(pr){
-  const list=filtered(); const inList=list.some(p=>p.id===pr.id);
-  const seq = inList?list:P; const i=seq.findIndex(p=>p.id===pr.id);
-  const prev=seq[(i-1+seq.length)%seq.length], next=seq[(i+1)%seq.length];
-  $('#ovLft').innerHTML = `${String(i+1).padStart(2,'0')} / ${String(seq.length).padStart(2,'0')} &nbsp;·&nbsp; ${state.lens==='all'?'All work':DLABEL[state.lens]}`;
-  $('#ovNav').innerHTML = `<button data-nav="${prev.id}" aria-label="Previous">&larr; Prev</button><button data-nav="${next.id}" aria-label="Next">Next &rarr;</button><button class="close" data-close aria-label="Close">Close ✕</button>`;
-
-  const screens = pr.screens.map((s,ix)=>{
-    const full = s.d==='desk' && (ix===0 || pr.screens.filter(x=>x.d==='desk').length<=2);
-    return `<figure class="${full && ix===0?'sfull':''}">${renderScreen(s.a,s.d,pr)}<figcaption>${s.cap}</figcaption></figure>`;
-  });
-  const heroScreen = pr.screens[0];
-  const deepExtra = pr.depth==='deep' ? `
-    <div class="ov-section"><div class="sh">The challenge</div><p>${pr.sum[0]}</p></div>
-    <div class="ov-section"><div class="sh">The approach</div><p>${pr.sum[1]||''}</p></div>` :
-    `<div class="ov-section"><div class="sh">The work</div><p>${pr.sum[0]}</p></div>`;
-
-  $('#ovInner').innerHTML = `
-    <div class="ov-hero"><div class="wrap">
-      <div class="ctx">${pr.ctx}${pr.real?'':' · Representative'}</div>
-      <h2>${pr.name}</h2>
-      <div class="cl">${pr.client}</div>
-      <div class="lead">${pr.line}</div>
-      <div class="ov-meta">
-        <div class="m"><div class="k">Role</div><div class="v">${pr.role}</div></div>
-        <div class="m"><div class="k">Scope</div><div class="v">${pr.scope}</div></div>
-        <div class="m"><div class="k">Year</div><div class="v">${pr.year}</div></div>
-        <div class="m"><div class="k">Disciplines</div><div class="v tags">${pr.disc.map(d=>`<span class="tag">${DLABEL[d]}</span>`).join('')}</div></div>
+function fill(seq,i){
+  const p=seq[i], prev=seq[(i-1+seq.length)%seq.length], next=seq[(i+1)%seq.length];
+  $('#ovlf').innerHTML = `${String(i+1).padStart(2,'0')} / ${String(seq.length).padStart(2,'0')} &nbsp;&middot;&nbsp; ${lens==='all'?'All work':DISC[lens]}`;
+  $('#ovnav').innerHTML = `<button data-nav="${prev.id}">&larr; Prev</button><button data-nav="${next.id}">Next &rarr;</button><button class="cl" data-close>Close &#10005;</button>`;
+  $('#ovbody').innerHTML = `
+    <div class="dovhead"><div class="dwrap">
+      <div class="ctx">${p.c} &middot; ${p.y}</div>
+      <h2>${p.n}</h2>
+      <div class="cl2">${TYPE[p.t][1]}</div>
+      <p class="ld">${p.line}</p>
+      <div class="dovmeta">
+        <div><div class="k">My role</div><div class="v">${p.role}</div></div>
+        <div><div class="k">Studio</div><div class="v">Fluxar Studios, Inc.</div></div>
+        <div><div class="k">Status</div><div class="v">${p.status}</div></div>
+        <div><div class="k">Disciplines</div><div class="v">${p.disc.map(d=>DISC[d]).join(', ')}</div></div>
       </div>
+      ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
-    <div class="ov-body"><div class="wrap">
-      <div class="ov-hero-frame">${renderScreen(heroScreen.a,heroScreen.d,pr)}</div>
-      ${deepExtra}
-      <div class="ov-section"><div class="sh">Selected screens</div>
-        <div class="screens">${screens.join('')}</div></div>
-      <div class="ov-cta">
-        <button class="pin-big ${state.pins.includes(pr.id)?'on':''}" data-pin="${pr.id}"><span class="box" style="width:14px;height:14px;border:1px solid currentColor;border-radius:3px;display:inline-flex;align-items:center;justify-content:center">${state.pins.includes(pr.id)?'✓':'+'}</span> ${state.pins.includes(pr.id)?'Added to compare':'Add to compare'}</button>
-        <a class="pin-big" href="contact.html" style="border-color:var(--sun);color:var(--sun)">Discuss a project like this &rarr;</a>
-      </div>
+    <div class="dwrap"><div class="dovshots ${p.play?'contain':''}">
+      ${p.shots.map(s=>`<figure><img src="${IMG}${s[0]}" alt="${s[1]}" loading="lazy"><figcaption>${s[1]}</figcaption></figure>`).join('')}
     </div></div>`;
-  const inner=$('#ovInner'); inner.style.opacity=0; inner.style.transform='translateY(24px)';
-  requestAnimationFrame(()=>{ inner.style.transition='opacity .45s var(--ease),transform .45s var(--ease)'; inner.style.opacity=1; inner.style.transform='none'; });
+  const b=$('#ovbody'); b.style.opacity=0;
+  requestAnimationFrame(()=>{b.style.transition='opacity .4s';b.style.opacity=1;});
 }
-function closeOverlay(){ const ov=$('#overlay'); ov.classList.remove('open'); ov.setAttribute('aria-hidden','true'); document.body.classList.remove('lock'); }
+function closeP(){const ov=$('#ov');ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.style.overflow='';}
 
-/* overlay events (delegated) */
-$('#overlay').addEventListener('click',e=>{
-  const nav=e.target.closest('[data-nav]'); if(nav){ fillOverlay(P.find(p=>p.id===nav.dataset.nav)); $('#overlay').scrollTop=0; return; }
-  if(e.target.closest('[data-close]')){ closeOverlay(); return; }
-  const pin=e.target.closest('[data-pin]'); if(pin){ togglePin(pin.dataset.pin); return; }
+/* ---------------- events ---------------- */
+$('#lenses').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  lens=b.dataset.lens;
+  $$('#lenses button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.lens===lens));
+  render();
 });
-
-/* ============================ COMPARE ============================ */
-function togglePin(id){
-  const i=state.pins.indexOf(id);
-  if(i>=0) state.pins.splice(i,1);
-  else { if(state.pins.length>=3){ state.pins.shift(); } state.pins.push(id); }
-  syncPins();
-}
-function syncPins(){
-  $$('[data-pin]').forEach(b=>{
-    const on=state.pins.includes(b.dataset.pin);
-    b.classList.toggle('on',on);
-    const box=b.querySelector('.box'); if(box) box.textContent=on?'✓':'+';
-    if(b.classList.contains('pin-big')) b.childNodes[b.childNodes.length-1].textContent = on?' Added to compare':' Add to compare';
-  });
-  const tray=$('#tray');
-  tray.classList.toggle('up', state.pins.length>0);
-  tray.setAttribute('aria-hidden', state.pins.length===0);
-  $('#trayChips').innerHTML = state.pins.map(id=>{ const p=P.find(x=>x.id===id);
-    return `<span class="trchip"><span class="n">${p.name}</span><button class="x" data-untray="${id}" aria-label="Remove">✕</button></span>`;}).join('');
-  $('#cmpBtn').disabled = state.pins.length<2;
-  $('#cmpBtn').textContent = `Compare${state.pins.length>=2?' ('+state.pins.length+')':''}`;
-}
-$('#tray').addEventListener('click',e=>{
-  const un=e.target.closest('[data-untray]'); if(un){ togglePin(un.dataset.untray); return; }
-  if(e.target.id==='clrBtn'){ state.pins=[]; syncPins(); return; }
-  if(e.target.id==='cmpBtn' && !e.target.disabled){ openCompare(); }
+$('#list').addEventListener('click',e=>{
+  const t=e.target.closest('[data-open]'); if(t) openP(t.dataset.open);
 });
-function specHTML(pr){
-  return `<div class="row"><span class="k">Nature</span>
-    <div class="cmp-spec"><i style="left:${pr.x}%"></i></div>
-    <div class="cmp-scale"><span>Expressive</span><span>Functional</span></div></div>
-    <div class="row"><span class="k">Type</span>
-    <div class="cmp-spec"><i style="left:${pr.y}%"></i></div>
-    <div class="cmp-scale"><span>Marketing</span><span>Product</span></div></div>`;
-}
-function openCompare(){
-  const cols = state.pins.map(id=>P.find(p=>p.id===id));
-  $('#ovLft').innerHTML = `Compare &nbsp;·&nbsp; ${cols.length} projects`;
-  $('#ovNav').innerHTML = `<button class="close" data-close aria-label="Close">Close ✕</button>`;
-  $('#ovInner').innerHTML = `
-    <div class="ov-hero"><div class="wrap">
-      <div class="ctx">Compare</div>
-      <h2>Same hands,<br>different problems.</h2>
-      <div class="lead">How one designer meets projects at opposite ends of the spectrum.</div>
-    </div></div>
-    <div class="wrap"><div class="cmp-grid" style="grid-template-columns:repeat(${cols.length},1fr)">
-      ${cols.map(pr=>`<div class="cmp-col">
-        ${renderScreen(pr.arch,'desk',pr)}
-        <h3>${pr.name}</h3><div class="cl">${pr.client}</div>
-        <div class="row"><span class="k">Contribution</span>${pr.line}</div>
-        <div class="row"><span class="k">Role</span>${pr.role}</div>
-        <div class="row"><span class="k">Disciplines</span><div class="v tags" style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.3rem">${pr.disc.map(d=>`<span class="tag">${DLABEL[d]}</span>`).join('')}</div></div>
-        ${specHTML(pr)}
-      </div>`).join('')}
-    </div></div>`;
-  const ov=$('#overlay'); ov.classList.add('open'); ov.setAttribute('aria-hidden','false'); document.body.classList.add('lock'); ov.scrollTop=0;
-  const inner=$('#ovInner'); inner.style.opacity=0; requestAnimationFrame(()=>{inner.style.transition='opacity .45s';inner.style.opacity=1;});
-}
-
-/* ============================ GLOBAL EVENTS ============================ */
-document.addEventListener('click',e=>{
-  const o=e.target.closest('[data-open]'); if(o && !e.target.closest('.overlay')){ openProject(o.dataset.open); }
-  const p=e.target.closest('[data-pin]'); if(p && !e.target.closest('.overlay')){ togglePin(p.dataset.pin); }
+$('#ov').addEventListener('click',e=>{
+  const n=e.target.closest('[data-nav]');
+  if(n){const seq=lens==='all'?P:P.filter(p=>p.disc.includes(lens));
+    const s2=seq.some(p=>p.id===n.dataset.nav)?seq:P;
+    fill(s2,s2.findIndex(p=>p.id===n.dataset.nav)); $('#ov').scrollTop=0; return;}
+  if(e.target.closest('[data-close]')) closeP();
 });
-$('#toggle').addEventListener('click',e=>{ const b=e.target.closest('button'); if(b) setView(b.dataset.view); });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape' && $('#overlay').classList.contains('open')) closeOverlay(); });
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#ov').classList.contains('open'))closeP();});
 
-/* ============================ INIT ============================ */
-buildLenses();
-buildField();
-setLens('all');
-setView('index');
-syncPins();
+buildLenses(); render();
 </script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>
