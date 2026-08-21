@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beer Runner: The Game · Dane Forst</title>
+<meta name="description" content="Beer Runner: The Game. A playable build of the arcade runner designed around the Beer Runner bottle mascot, using the original run cycle, world, and screens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+<style>
+/* ---------------- Beer Runner, the game ---------------- */
+.br-wrap{padding:clamp(6rem,14vh,9rem) clamp(1rem,3vw,2.5rem) clamp(3rem,8vh,5rem)}
+.br-stage{
+  position:relative;width:100%;max-width:1100px;margin:0 auto;
+  aspect-ratio:880/548;background:#9dc0c8;border-radius:6px;overflow:hidden;
+  box-shadow:0 26px 70px rgba(20,19,16,.34);
+  --u:1px;--v:1px;
+  user-select:none;-webkit-user-select:none;touch-action:manipulation;
+}
+.br-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;outline:none}
+
+/* the two original screens, live text laid back over them */
+.br-screen{position:absolute;inset:0;background-size:100% 100%;background-position:center;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.br-title{background-image:url('assets/img/game/title.jpg')}
+.br-over{background-image:url('assets/img/game/gameover.jpg');background-size:cover}
+.br-stage.is-title .br-title,.br-stage.is-over .br-over{opacity:1;pointer-events:auto}
+
+.br-t-label{
+  position:absolute;left:0;right:0;top:calc(289*var(--u));text-align:center;
+  font-family:var(--sans);font-weight:700;font-stretch:76%;
+  font-size:calc(19*var(--u));letter-spacing:.15em;line-height:1;
+  color:rgba(255,255,255,.92);text-transform:uppercase;
+}
+.br-t-score{
+  position:absolute;left:0;right:0;top:calc(306*var(--u));text-align:center;
+  font-family:var(--sans);font-weight:300;font-stretch:62%;
+  font-size:calc(60*var(--u));line-height:1;letter-spacing:.01em;
+  color:#a8e6a0;text-shadow:0 calc(2*var(--u)) 0 rgba(47,51,99,.14);
+}
+.br-t-btn{
+  position:absolute;left:calc(372*var(--u));top:calc(338*var(--u));
+  width:calc(135*var(--u));height:calc(135*var(--u));border-radius:50%;
+  background:transparent;border:0;cursor:pointer;padding:0;
+  box-shadow:0 0 0 0 rgba(255,255,255,0);transition:box-shadow .2s ease,transform .2s ease;
+}
+.br-t-btn:hover,.br-t-btn:focus-visible{box-shadow:0 0 0 calc(6*var(--u)) rgba(255,255,255,.5);transform:scale(1.04);outline:none}
+.br-t-touch{
+  position:absolute;left:27%;right:27%;bottom:calc(8*var(--u));height:calc(46*var(--u));
+  display:none;align-items:center;justify-content:center;text-align:center;
+  background:rgba(47,51,99,.9);border-radius:calc(6*var(--u));
+  font-family:var(--sans);font-weight:700;font-stretch:82%;
+  font-size:calc(12*var(--u));letter-spacing:.13em;line-height:1.4;
+  text-transform:uppercase;color:#fff;
+}
+.br-o-label{
+  position:absolute;left:0;right:0;top:calc(505*var(--v));text-align:center;
+  font-family:var(--sans);font-weight:600;font-stretch:62%;
+  font-size:calc(32*var(--v));letter-spacing:.22em;line-height:1;
+  color:rgba(255,255,255,.94);text-transform:uppercase;
+}
+.br-o-score{
+  position:absolute;left:0;right:0;top:calc(531*var(--v));text-align:center;
+  font-family:var(--sans);font-weight:300;font-stretch:62%;
+  font-size:calc(136*var(--v));line-height:1;
+  color:#a8e6a0;text-shadow:0 calc(3*var(--v)) 0 rgba(47,51,99,.14);
+}
+.br-o-best{
+  position:absolute;left:0;right:0;top:calc(818*var(--v));text-align:center;
+  font-family:var(--mono);font-size:calc(15*var(--v));letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.72);
+}
+.br-o-btn{
+  position:absolute;left:calc(613*var(--v));top:calc(620*var(--v));
+  width:calc(177*var(--v));height:calc(176*var(--v));border-radius:50%;
+  background:transparent;border:0;cursor:pointer;padding:0;
+  transition:box-shadow .2s ease,transform .2s ease;
+}
+.br-o-btn:hover,.br-o-btn:focus-visible{box-shadow:0 0 0 calc(7*var(--v)) rgba(255,255,255,.45);transform:scale(1.03);outline:none}
+
+/* chrome */
+.br-sound{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;background:transparent;color:rgba(20,19,16,.6);
+  border:1px solid var(--line);border-radius:2rem;padding:.35rem .9rem;cursor:pointer;
+  transition:color .2s,border-color .2s
+}
+.br-sound:hover{color:var(--soot);border-color:rgba(20,19,16,.45)}
+.br-load{
+  position:absolute;inset:0;display:grid;place-items:center;z-index:6;
+  background:#9dc0c8;font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(47,51,99,.7);transition:opacity .4s ease
+}
+.br-stage.is-ready .br-load{opacity:0;pointer-events:none}
+
+.br-pads{position:absolute;left:0;right:0;bottom:calc(14*var(--u));display:none;justify-content:space-between;padding:0 calc(20*var(--u));z-index:4;pointer-events:none}
+.br-pad{
+  pointer-events:auto;width:calc(86*var(--u));height:calc(86*var(--u));border-radius:50%;
+  background:rgba(47,51,99,.8);color:#fff;border:0;cursor:pointer;
+  font-family:var(--sans);font-weight:800;font-stretch:88%;font-size:calc(14*var(--u));
+  letter-spacing:.08em;text-transform:uppercase;-webkit-tap-highlight-color:transparent
+}
+.br-pad:active{transform:scale(.94)}
+@media (hover:none),(pointer:coarse){
+  .br-stage.is-play .br-pads{display:flex}
+  .br-t-touch{display:block}
+}
+
+.br-head{max-width:1100px;margin:0 auto 1.6rem;display:flex;flex-direction:column;gap:.45rem}
+.br-back{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(20,19,16,.55);width:max-content}
+.br-back:hover{color:var(--sun)}
+.br-eyebrow{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sun);margin-top:.6rem}
+.br-head h1{font-size:clamp(1.7rem,3.4vw,2.7rem);font-weight:800;font-stretch:88%;line-height:1.02;letter-spacing:-.01em}
+.br-head p{font-family:var(--serif);font-style:italic;font-size:clamp(1rem,1.6vw,1.28rem);color:rgba(20,19,16,.62)}
+.br-stage:fullscreen{
+  width:min(100vw,calc(100vh * 880 / 548));height:auto;max-width:none;
+  margin:auto;border-radius:0;box-shadow:none
+}
+.br-stage:fullscreen::backdrop{background:#141310}
+.br-full{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;
+  text-transform:uppercase;background:transparent;color:rgba(20,19,16,.6);
+  border:1px solid var(--line);border-radius:2rem;padding:.35rem .9rem;cursor:pointer;
+  transition:color .2s,border-color .2s
+}
+.br-full:hover{color:var(--soot);border-color:rgba(20,19,16,.45)}
+.br-legend{
+  max-width:1100px;margin:1.4rem auto 0;display:flex;flex-wrap:wrap;gap:1.4rem 2.4rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:rgba(20,19,16,.6)
+}
+.br-legend b{font-weight:500;color:var(--soot)}
+.br-legend-sp{flex:1 1 auto}
+.br-note{max-width:52em;margin:2.6rem auto 0;font-size:1rem;line-height:1.6;color:rgba(20,19,16,.78)}
+</style>
+</head>
+<body class="pbody">
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="branding.html">Branding</a></li>
+    <li><a href="web.html">Web</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D • Sculpture • Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="branding.html">Branding</a>
+  <a href="web.html">Web</a>
+  <a href="packaging.html">Packaging</a>
+  <a href="galleries.html">Galleries</a>
+  <a href="contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+<section class="br-wrap">
+
+  <header class="br-head">
+    <a class="br-back" href="web.html">← Web</a>
+    <span class="br-eyebrow">Beer Runner · Playable</span>
+    <h1>Beer Runner: The Game</h1>
+    <p>The arcade runner that was designed around the bottle, built and playable for the first time.</p>
+  </header>
+
+  <div class="br-stage" id="br-game">
+    <canvas tabindex="0" aria-label="Beer Runner, a playable arcade runner"></canvas>
+
+    <div class="br-screen br-title">
+      <div class="br-t-label">High Score</div>
+      <div class="br-t-score" data-hi-title>0</div>
+      <button class="br-t-btn" data-start aria-label="Start runnin'"></button>
+      <div class="br-t-touch">Tap to jump<br>CAP button to throw</div>
+    </div>
+
+    <div class="br-screen br-over">
+      <div class="br-o-label">Your Score</div>
+      <div class="br-o-score" data-score-over>0</div>
+      <div class="br-o-best">High score <span data-hi-over>0</span></div>
+      <button class="br-o-btn" data-start aria-label="Try again"></button>
+    </div>
+
+    <div class="br-pads">
+      <button class="br-pad br-pad-jump" aria-label="Jump">Jump</button>
+      <button class="br-pad br-pad-cap" aria-label="Throw a cap">Cap</button>
+    </div>
+
+    <div class="br-load">Loading the delivery…</div>
+  </div>
+
+  <div class="br-legend">
+    <span><b>Space / tap</b> &nbsp;jump</span>
+    <span><b>J</b> &nbsp;pop a cap</span>
+    <span><b>Esc</b> &nbsp;pause</span>
+    <span><b>Bubbles</b> &nbsp;keep the carbonation up</span>
+    <span><b>Swirl</b> &nbsp;10 seconds of immunity</span>
+    <span class="br-legend-sp"></span>
+    <button class="br-full" type="button">Full screen</button>
+    <button class="br-sound" aria-pressed="true">Sound on</button>
+  </div>
+
+  <p class="br-note">Built from the original Beer Runner files: the hand-drawn sixteen-frame run cycle, the city
+  world strip, the level furniture, and the start and game over screens exactly as they were comped. The rules
+  are the ones printed on that start screen. You need carbonation to run, so grab bubbles, avoid the Hopsters,
+  and hit J to pop a cap in their ass.</p>
+
+</section>
+
+<script src="assets/js/beer-runner.js?v=1"></script>
+<script src="assets/js/main.js?v=3"></script>
+</body>
+</html>

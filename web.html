@@ -459,7 +459,7 @@ const P = [
 {id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'standard', t:'exp',
  role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
  line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs and a physical wine holder. And a full arcade game around the bottle mascot: scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
- hero:'beerrunner-01.jpg', strip:true,
+ hero:'beerrunner-01.jpg', strip:true, play:'beer-runner.html',
  pages:[['beerrunner-01.jpg','The game start screen','shot'],['br-level.jpg','A level','shot'],
         ['br-sprites.jpg','The run cycle','shot'],['br-logo.jpg','Logo system','shot'],
         ['beerrunner-03.jpg','The delivery app','shot'],['beerrunner-02.jpg','Wine club','shot'],
@@ -546,6 +546,7 @@ function entryHTML(p,i){
         <div style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center">
           <span class="ecue" data-open="${p.id}">Open project ${arrow()}</span>
           ${url?`<a class="elink" href="${url}" target="_blank" rel="noopener noreferrer"><span class="d"></span>Visit the site ${arrow()}</a>`:''}
+          ${p.play?`<a class="elink" href="${p.play}"><span class="d"></span>Play the game ${arrow()}</a>`:''}
         </div>
       </div>
     </div>
