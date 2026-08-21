@@ -51,7 +51,21 @@ nav{
   display:flex;align-items:center;justify-content:space-between;
   padding:1rem clamp(1.2rem,3vw,2.5rem);
   mix-blend-mode:difference;color:#fff;
+  border-bottom:1px solid transparent;
+  transition:background .35s ease,border-color .35s ease,backdrop-filter .35s ease;
 }
+/* Once the page scrolls, give the nav a scrim so it stops fighting whatever
+   passes beneath it. Blend mode has to go, since it cannot coexist with a
+   background, but at the top of the page it still floats over the hero. */
+nav.scrolled{
+  mix-blend-mode:normal;color:var(--bone);
+  background:rgba(20,19,16,.72);
+  backdrop-filter:blur(14px) saturate(1.08);
+  -webkit-backdrop-filter:blur(14px) saturate(1.08);
+  border-bottom-color:var(--line-light);
+}
+nav.scrolled ul a::after{background:var(--bone)}
+nav.scrolled .burger span{background:var(--bone)}
 nav .logo img{height:34px;width:auto;display:block}
 nav ul{display:flex;gap:clamp(1rem,2.5vw,2.2rem);list-style:none}
 nav ul a{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.14em;position:relative}

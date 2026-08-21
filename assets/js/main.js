@@ -21,6 +21,19 @@
   addEventListener('keydown',e=>{ if(e.key==='Escape'&&mnav.classList.contains('open')) setMenu(false); });
   }
 
+  /* ---------- nav scrim on scroll ---------- */
+  const navEl=document.querySelector('nav');
+  if(navEl){
+    let navTick=false;
+    const syncNav=()=>{
+      const y=window.scrollY||document.documentElement.scrollTop||0;
+      navEl.classList.toggle('scrolled', y>24);
+      navTick=false;
+    };
+    addEventListener('scroll',()=>{ if(!navTick){navTick=true;requestAnimationFrame(syncNav);} },{passive:true});
+    syncNav();
+  }
+
   /* ---------- nav dropdowns (Work + Galleries) ---------- */
   const navPairs=[...document.querySelectorAll('.wd-trigger')]
     .map(t=>({trig:t, draw:document.getElementById(t.getAttribute('aria-controls'))}))
