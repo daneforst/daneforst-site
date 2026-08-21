@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Identity &amp; Logo Design — Dane Forst</title>
+<meta name="description" content="Logo and brand identity design by Dane Erik Forst. Marks, wordmarks, monograms, and identity systems for food, drink, music, property, and service brands. Portland, Oregon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+<style>
+  /* ---- branding pitch page: a grid of marks on their own fields (dark) ---- */
+  .logo-gal{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:clamp(180px,22vw,320px);
+    gap:clamp(.7rem,1.6vw,1.2rem);padding-top:clamp(1.6rem,4vh,2.6rem);
+  }
+  .logo-gal figure{
+    margin:0;position:relative;overflow:hidden;border-radius:2px;
+    background:var(--soot-2);
+  }
+  .logo-gal .feat{grid-column:1 / span 2;grid-row:span 2}
+  .logo-gal .feat.right{grid-column:2 / span 2}
+  .logo-gal img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    --s:1;transform:scale(var(--s));
+    transition:transform .6s cubic-bezier(.7,0,.2,1);
+  }
+  /* Flat marks sit on their own field rather than being cropped. Contain
+     letterboxes them, so they read small: scale back up until the mark fills
+     the cell. Only the field bleeds off the edge, and it matches the card. */
+  .logo-gal img.fit{object-fit:contain;padding:clamp(.4rem,1vw,.8rem);--s:1}
+  .logo-gal figure:hover img{--s:1.04}
+  /* per-mark scale: each flat mark grows until its own edges would clip */
+  .logo-gal img.fit[src$="hills-market.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="summit.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="vallum.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="ashwood.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="grego-co.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="homes-on-chain.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="homes-on-chain-mark.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="2b-farming.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="big-sky-dwellings.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="cimulated.jpg"]{--s:1.16}
+  .logo-gal img.fit[src$="terra-tempo.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="terra-tempo-book.jpg"]{--s:1.23}
+  .logo-gal img.fit[src$="magnus-law.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="highgroove.jpg"]{--s:1.23}
+  .logo-gal img.fit[src$="landmark.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="willtone.jpg"]{--s:1.32}
+  .logo-gal img.fit[src$="space-cats.jpg"]{--s:1.23}
+  .logo-gal img.fit[src$="space-cats-letters.jpg"]{--s:1.32}
+  .logo-gal figure:hover img.fit[src$="hills-market.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="summit.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="vallum.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="ashwood.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="grego-co.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="homes-on-chain.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="homes-on-chain-mark.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="2b-farming.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="big-sky-dwellings.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="cimulated.jpg"]{--s:1.22}
+  .logo-gal figure:hover img.fit[src$="terra-tempo.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="terra-tempo-book.jpg"]{--s:1.29}
+  .logo-gal figure:hover img.fit[src$="magnus-law.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="highgroove.jpg"]{--s:1.29}
+  .logo-gal figure:hover img.fit[src$="landmark.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="willtone.jpg"]{--s:1.39}
+  .logo-gal figure:hover img.fit[src$="space-cats.jpg"]{--s:1.29}
+  .logo-gal figure:hover img.fit[src$="space-cats-letters.jpg"]{--s:1.39}
+  @media(max-width:860px){
+    .logo-gal{grid-template-columns:repeat(2,1fr)}
+    .logo-gal .feat,.logo-gal .feat.right{grid-column:1 / span 2}
+  }
+  @media(max-width:520px){
+    .logo-gal{grid-template-columns:1fr;grid-auto-rows:clamp(200px,58vw,300px)}
+    .logo-gal .feat,.logo-gal .feat.right{grid-column:1;grid-row:span 1}
+  }
+  /* pmeta labels/border read on the dark ground */
+  .gdark .pmeta{border-bottom-color:var(--line-light)}
+  .gdark .pmeta div span{color:rgba(228,224,212,.5)}
+  .pkg-cta{background:var(--soot);color:var(--bone);border-top:1px solid var(--line-light);
+    text-align:center;padding:clamp(4rem,11vh,7rem) clamp(1.2rem,4vw,4rem);
+    display:flex;flex-direction:column;align-items:center;gap:clamp(1.3rem,3.4vh,2.1rem)}
+  .pkg-cta h2{font-weight:900;font-variation-settings:'wdth' 66;text-transform:uppercase;
+    font-size:clamp(2.2rem,7vw,5.4rem);line-height:.9;letter-spacing:-.015em;max-width:15em}
+  .pkg-cta h2 em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+    background:linear-gradient(100deg,var(--sun),var(--rose));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .pkg-cta .sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2vw,1.5rem);color:rgba(228,224,212,.82);max-width:28em}
+  .pkg-cta .cta{align-self:center}
+  .pkg-cta .alt{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(228,224,212,.55)}
+  .pkg-cta .alt a{color:var(--sun)}
+</style>
+</head>
+<body class="pbody gdark">
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="branding.html">Branding</a></li>
+    <li><a href="web.html">Web</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D • Sculpture • Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="branding.html">Branding</a>
+  <a href="web.html">Web</a>
+  <a href="packaging.html">Packaging</a>
+  <a href="galleries.html">Galleries</a>
+  <a href="contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+
+<header class="phero">
+  <img src="assets/img/branding/branding-hero.jpg" alt="A wall of logo marks designed by Dane Erik Forst">
+  <div class="ph-in">
+    <span class="idx">Capabilities · Logo &amp; Identity Design</span>
+    <h1>Brand<br>Identity</h1>
+    <p class="tag">The smallest thing a brand owns, and the hardest working.</p>
+  </div>
+</header>
+
+<section class="pad">
+  <div class="pmeta reveal">
+    <div><span>Discipline</span><b>Logo &amp; Identity Design</b></div>
+    <div><span>Focus</span><b>Marks, Wordmarks &amp; Systems</b></div>
+    <div><span>Studio</span><b>DEF Studios, Portland OR</b></div>
+  </div>
+
+  <p class="project-intro reveal">Anyone can make a logo. A mark is the smallest thing a brand owns and the one that works the hardest: on a bottle, on a sign, stitched into a hat, etched into glass, and twelve pixels wide in somebody&#8217;s browser tab. These are the ones I keep coming back to.</p>
+
+  <div class="psec reveal">
+    <h2>Simple on purpose</h2>
+    <p>A mark earns its keep by surviving. Shrunk to a favicon, blown up on a building, embroidered, foiled, sandblasted, or faxed by somebody&#8217;s uncle. If it only works at full size in full color, it is an illustration, not an identity.</p>
+  </div>
+
+  <div class="logo-gal">
+    <figure class="feat"><img src="assets/img/branding/two-goats-header.jpg" alt="Two Goats and the Goose logo in context" width="1600" height="1084" loading="lazy"></figure>
+    <figure style="background:#0047bb"><img class="fit" src="assets/img/branding/hills-market.jpg" alt="Hills Market Plus logo, shield monogram in Pantone blue" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#feffff"><img class="fit" src="assets/img/branding/summit.jpg" alt="Summit logo, cyan mountain range mark" width="800" height="437" loading="lazy"></figure>
+    <figure><img src="assets/img/branding/casquatch.jpg" alt="Casquatch logo in neon on a brick wall" width="800" height="600" loading="lazy"></figure>
+    <figure><img src="assets/img/branding/fortitude-cellars.jpg" alt="Fortitude Cellars logo, serif wordmark with wine glass mark" width="800" height="696" loading="lazy"></figure>
+    <figure style="background:#f7a687"><img class="fit" src="assets/img/branding/life-bytes.jpg" alt="Life Bytes Podcast logo, bubble lettering" width="800" height="450" loading="lazy"></figure>
+    <figure style="background:#fffaf4"><img class="fit" src="assets/img/branding/haystack.jpg" alt="Haystack Wines monogram in gold" width="800" height="853" loading="lazy"></figure>
+    <figure class="feat right"><img src="assets/img/branding/lecave-pressed.jpg" alt="LeCave logo pressed into a textured surface" width="1600" height="1066" loading="lazy"></figure>
+    <figure style="background:#201816"><img class="fit" src="assets/img/branding/texas-28.jpg" alt="Texas 28 athletic mark" width="800" height="623" loading="lazy"></figure>
+    <figure style="background:#18162d"><img class="fit" src="assets/img/branding/vallum.jpg" alt="Vallum logo, geometric monogram" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#8e8f91"><img class="fit" src="assets/img/branding/dead-comics-society.jpg" alt="Dead Comics Society circular emblem" width="800" height="476" loading="lazy"></figure>
+    <figure style="background:#827a7a"><img class="fit" src="assets/img/branding/ashwood.jpg" alt="Ashwood Tattoo Studio wordmark and crossed-axe mark" width="800" height="598" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>A mark, then a system</h2>
+    <p>The logo is the door. Behind it sit the color, the type, the patterns, the photography, and the rules for how they behave together. That is the part that makes a brand feel like one thing across a shelf, a site, a truck, and a business card.</p>
+    <p>So most of these did not stop at a mark. They kept going into palettes, secondary marks, patterns, and the packaging and web work that carries them.</p>
+  </div>
+
+  <div class="logo-gal">
+    <figure class="feat"><img src="assets/img/branding/grego-patterns.jpg" alt="Grego and Co pattern system" width="1600" height="827" loading="lazy"></figure>
+    <figure style="background:#1c384d"><img class="fit" src="assets/img/branding/grego-co.jpg" alt="Grego and Co logo, circular monogram on navy" width="800" height="751" loading="lazy"></figure>
+    <figure style="background:#222d33"><img class="fit" src="assets/img/branding/homes-on-chain.jpg" alt="Homes on Chain logo in mint on charcoal" width="800" height="491" loading="lazy"></figure>
+    <figure style="background:#ffffff"><img class="fit" src="assets/img/branding/homes-on-chain-mark.jpg" alt="Homes on Chain mark, outlined house and link" width="800" height="486" loading="lazy"></figure>
+    <figure style="background:#1e251d"><img class="fit" src="assets/img/branding/2b-farming.jpg" alt="2B Farming logo, gold wordmark on deep green" width="800" height="472" loading="lazy"></figure>
+    <figure style="background:#fefefe"><img class="fit" src="assets/img/branding/big-sky-dwellings.jpg" alt="Big Sky Dwellings logo, line-drawn cabin mark" width="800" height="545" loading="lazy"></figure>
+    <figure style="background:#000000"><img class="fit" src="assets/img/branding/cimulated.jpg" alt="Cimulated logo, neon sign treatment" width="800" height="800" loading="lazy"></figure>
+    <figure class="feat right"><img src="assets/img/branding/terra-tempo-paper.jpg" alt="Terra Tempo logo foiled on paper" width="1600" height="1066" loading="lazy"></figure>
+    <figure style="background:#2a251f"><img class="fit" src="assets/img/branding/terra-tempo.jpg" alt="Terra Tempo wordmark with compass mark" width="800" height="550" loading="lazy"></figure>
+    <figure style="background:#2d1f17"><img class="fit" src="assets/img/branding/terra-tempo-book.jpg" alt="Terra Tempo logo on a book cover" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#0d2833"><img class="fit" src="assets/img/branding/magnus-law.jpg" alt="Magnus Law logo, gold column monogram" width="800" height="485" loading="lazy"></figure>
+    <figure style="background:#4c3255"><img class="fit" src="assets/img/branding/highgroove.jpg" alt="Highgroove Guitar script logo" width="800" height="633" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>Made to be used</h2>
+    <p>Every mark leaves here as real files. Vector originals, one-color and reversed versions, clear-space and minimum-size rules, and the formats your printer, your sign shop, and your developer will actually ask for. No surprises six months later.</p>
+  </div>
+
+  <div class="logo-gal">
+    <figure class="feat"><img src="assets/img/branding/landmark-sign.jpg" alt="The Landmark Agency mark on exterior building signage" width="1600" height="1072" loading="lazy"></figure>
+    <figure style="background:#141414"><img class="fit" src="assets/img/branding/landmark.jpg" alt="The Landmark Agency monogram" width="800" height="1035" loading="lazy"></figure>
+    <figure style="background:#141517"><img class="fit" src="assets/img/branding/willtone.jpg" alt="Willtone Guitars logo, gold script monogram" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#f16362"><img class="fit" src="assets/img/branding/motoauct.jpg" alt="MotoAuct logo, red block wordmark" width="800" height="345" loading="lazy"></figure>
+    <figure style="background:#fdfcfd"><img class="fit" src="assets/img/branding/space-cats.jpg" alt="Space Cats circular emblem" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#979a9b"><img class="fit" src="assets/img/branding/van-van.jpg" alt="Van Van brand mark on a hand-drawn card" width="800" height="800" loading="lazy"></figure>
+    <figure style="background:#182f34"><img class="fit" src="assets/img/branding/two-goats.jpg" alt="Two Goats and the Goose emblem" width="800" height="1067" loading="lazy"></figure>
+    <figure class="feat right"><img src="assets/img/branding/weathered-wood.jpg" alt="Weathered Wood logo on a timber surface" width="1600" height="1066" loading="lazy"></figure>
+    <figure style="background:#171414"><img class="fit" src="assets/img/branding/space-cats-letters.jpg" alt="Space Cats lettering study" width="800" height="599" loading="lazy"></figure>
+  </div>
+
+  <div class="psec reveal">
+    <h2>How deep does your brand go?</h2>
+    <p>Anyone can make a logo. I am interested in building the stories, symbols, worlds, and experiences people carry with them. If that is the kind of thing you are after, we should talk.</p>
+  </div>
+</section>
+
+<section class="pkg-cta">
+  <h2>Let's give it<br>a <em>mark.</em></h2>
+  <p class="sub">Bring me the business, the story, and the audience. I will bring you something they remember.</p>
+  <a class="cta" href="contact.html">Discuss brand identity
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+  <p class="alt">or email <a href="mailto:daneforst@gmail.com?subject=Brand%20identity%20inquiry">daneforst@gmail.com</a></p>
+</section>
+
+<footer class="foot-slim">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
+  </linearGradient></defs>
+</svg>
+  <a href="index.html" aria-label="Back to home" style="display:block;width:max-content"><img class="sig" src="assets/img/def-logo.png" alt="Dane Erik Forst signature"></a>
+  <div class="socials">
+  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
+    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+</div>
+  <div class="meta-row" style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.65)">
+    <span>© 2026 DEF Studios</span>
+    <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+    <a href="tel:6613033945">661·303·3945</a>
+    <span>Portland, Oregon</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js?v=3"></script>
+</body>
+</html>
