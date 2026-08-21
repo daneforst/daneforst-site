@@ -70,9 +70,13 @@ nav ul a:hover::after{width:100%}
   position:fixed;inset:0;z-index:99;background:var(--soot);color:var(--bone);
   display:flex;flex-direction:column;justify-content:center;gap:.4rem;
   padding:clamp(1.2rem,6vw,2.5rem);
-  transform:translateY(-102%);transition:transform .55s cubic-bezier(.7,0,.2,1);
+  transform:translateY(-102%);
+  transition:transform .55s cubic-bezier(.7,0,.2,1),visibility .55s;
+  /* Hide it outright when closed. On short screens the bottom meta row was
+     peeking in above the fold. */
+  visibility:hidden;overflow-y:auto;
 }
-.mnav.open{transform:none}
+.mnav.open{transform:none;visibility:visible}
 .mnav>a{
   font-weight:900;font-variation-settings:'wdth' 68;text-transform:uppercase;
   font-size:clamp(2.6rem,13vw,4.5rem);line-height:1.1;letter-spacing:-.01em;
