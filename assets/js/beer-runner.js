@@ -11,14 +11,18 @@
   var WSCALE = H / WORLD_H;
   var WORLD_DRAW = WORLD_W * WSCALE;
   var GROUND = 546 * WSCALE;             // the road line in the original art
-  var RUNH;                              // bubble line you can grab without jumping
-
+  var CAM0 = 340 * WSCALE;               // start just past the doorway, so the
+                                         // bottle painted outside HQ is behind you
   var FW = 226, FH = 300, FRAMES = 16;   // runner sheet cell
   var PH = 173, PW = FW / FH * PH;       // drawn player size
   var FOOT = 275 / FH * PH;              // feet sit this far below the frame top
   var ANCHOR = 0.381;                    // bottle centre across the frame
 
-  var GRACE = 2600;                      // no hopsters until you are this far in
+  // two bubble lines: one you can run straight through, one that costs a jump
+  var RUNH = GROUND - PH * 0.62;
+  var HOPH = GROUND - PH * 1.18;
+
+  var GRACE = CAM0 + 3600;               // ~8s of clean road to find the jump first
 
   var PLAT_SRC_W = 307, PLAT_SRC_H = 37, PLAT_CAP = 100;
   var PLAT_H = 34, PLAT_S = PLAT_H / PLAT_SRC_H;
@@ -28,12 +32,10 @@
   var HOP_SRC_W = 83, HOP_SRC_H = 123;
   var HOP_H = 112, HOP_W = HOP_SRC_W / HOP_SRC_H * HOP_H;
 
-  var BUB_R = 19, CAP_R = 16, SWIRL_R = 34, BUB_GRAB = 61;
-
-  RUNH = GROUND - PH * 0.55;             // level with the bottle's middle
+  var BUB_R = 19, CAP_R = 16, SWIRL_R = 34, BUB_GRAB = 52;
 
   /* ---------------- tuning ---------------- */
-  var GRAV = 2600, JUMP_V = -1150, CUT = 0.42;
+  var GRAV = 3900, JUMP_V = -1410, CUT = 0.42;   // ~255px apex in 0.72s
   var SPEED0 = 430, SPEED_RAMP = 4, SPEED_MAX = 780;
   var COYOTE = 0.09, BUFFER = 0.12;
   var FIZZ_MAX = 100, FIZZ_DRAIN = 10, FIZZ_BUBBLE = 9;
@@ -109,16 +111,16 @@
 
   function reset() {
     S = {
-      t: 0, camX: 0, speed: SPEED0, score: 0, fizz: FIZZ_MAX,
-      px: 300, py: GROUND, vy: 0, onGround: true, frame: 0, fclock: 0,
+      t: 0, camX: CAM0, speed: SPEED0, score: 0, fizz: FIZZ_MAX,
+      px: CAM0 + 300, py: GROUND, vy: 0, onGround: true, frame: 0, fclock: 0,
       coyote: 0, buffer: 0, jumpHeld: false, immune: 0, cooldown: 0,
       dead: false, deathT: 0, tilt: 0,
       plats: [], bubbles: [], hops: [], caps: [], swirls: [], bits: [],
-      spawnX: 1500, lastKind: -1, popped: 0, collected: 0
+      spawnX: CAM0 + 1500, lastKind: -1, lastHopX: -1e9, popped: 0, collected: 0
     };
     // a friendly opening stretch: nothing to dodge until you have your legs
-    chunkBubbles(760, RUNH, 5);
-    chunkBubbles(1180, RUNH, 4, true);
+    chunkBubbles(CAM0 + 560, RUNH, 5);
+    chunkBubbles(CAM0 + 980, RUNH, 4, true);
   }
 
   /* ---------------- level generation ---------------- */
@@ -128,6 +130,14 @@
   function addPlat(x, y, w) { S.plats.push({ x: x, y: y, w: Math.max(184, w) }); }
   function addBubble(x, y) { S.bubbles.push({ x: x, y: y, ph: Math.random() * 6.28, got: false }); }
   function addHop(x, y, plat) {
+    // Ground Hopsters get a hard minimum spacing, whichever chunk asked for them:
+    // always at least one jump's reach plus a beat to land and set up the next.
+    // They get pushed apart rather than dropped, so the crowd thins without thinning out.
+    if (!plat) {
+      var gap = Math.max(480, S.speed * 0.72 + 150);
+      if (x - S.lastHopX < gap) x = S.lastHopX + gap;
+      S.lastHopX = x;
+    }
     S.hops.push({ x: x, y: y, ph: Math.random() * 6.28, dead: false, plat: plat || null, dir: -1, t: 0 });
   }
   function addSwirl(x, y) { S.swirls.push({ x: x, y: y, ph: 0, got: false }); }
@@ -153,7 +163,9 @@
     S.lastKind = kind;
 
     if (kind === 'bubbles') {
-      x = chunkBubbles(x, RUNH, 5 + ((Math.random() * 3) | 0), Math.random() < 0.6);
+      var arc = Math.random() < 0.6;
+      x = chunkBubbles(x, (arc || Math.random() < 0.5) ? RUNH : HOPH,
+                       5 + ((Math.random() * 3) | 0), arc);
 
     } else if (kind === 'plats') {
       var n = 2 + ((Math.random() * 2) | 0);
@@ -172,7 +184,7 @@
         addHop(x, GROUND, null);
         chunkBubbles(x - 150, RUNH, 3, true);
         // never closer together than a single jump can clear
-        x += Math.max(rnd(430, 700) - diff * 90, S.speed * 1.05);
+        x += Math.max(rnd(430, 700) - diff * 90, S.speed * 0.8);
       }
       x += 200;
 
@@ -290,7 +302,7 @@
   }
   function die(cause) {
     if (S.dead) return;
-    S.dead = true; S.deathT = 0; S.vy = -520;
+    S.dead = true; S.deathT = 0; S.vy = -640;
     burst(S.px, S.py - PH * 0.5, PAL.gold, 18);
     blip(340, 70, 0.5, 'sawtooth', 0.07);
     if (S.score > hi) { hi = Math.round(S.score); localStorage.setItem('br-hiscore', String(hi)); }
