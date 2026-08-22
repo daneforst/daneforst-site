@@ -46,58 +46,13 @@
   --scrim:     rgba(8,7,6,.74);
 }
 
-/* ==========================================================================
-   BOLD PANEL
-   The panel itself is the loud object: a solid rose field with soot type.
-   Scoped to .dq-panel rather than .dq-scope on purpose, so the floating
-   launcher and the footer link keep their rose-on-dark treatment.
+/* The panel keeps the bone scheme. The reversed section it sits in is what
+   sets the estimate apart from the form above it, so the panel itself does
+   not need to shout, and long-form scoping copy stays easy to read.
 
-   Every accent has to move too. On a rose ground the rose accent would
-   vanish, so --crimson becomes soot and the three tier colors become a dark
-   ramp that still reads as a progression against the rose.
-   ========================================================================== */
-
-.dq-panel{
-  --paper:     var(--rose, #ff4d8c);
-  --ink:       var(--soot, #141310);
-
-  --crimson:   var(--soot, #141310);   /* accent: borders, tabs, headings */
-  --crimson-2: #33101F;                /* tier 2 */
-  --crimson-3: #52142E;                /* tier 3 */
-
-  --rule:      rgba(20,19,16,.30);
-  --rule-soft: rgba(20,19,16,.15);
-  --bot-bg:    rgba(20,19,16,.12);
-}
-
-/* Tier tiles sit dark on the rose field. They inherit color:var(--paper),
-   which is now rose, so give them bone instead: rose on near-black is too
-   tight for 10px list copy. */
-.dq-panel .dq-verdict,
-.dq-panel .dq-pcard{ color: var(--bone, #E4E0D4); }
-
-/* The composer sits on rose, so its divider and placeholder need more weight
-   than the translucent defaults carry on a saturated ground. */
-.dq-panel .dq-composer{ border-top-color: rgba(20,19,16,.30); }
-.dq-panel .dq-composer input::placeholder{ color: rgba(20,19,16,.62); }
-
-/* The default dimmed states were tuned for soot-on-bone. At the same opacity
-   on a saturated rose they turn to mush, so everything muted gets weight back. */
-.dq-panel .dq-tab{ opacity:.62; }
-.dq-panel .dq-tab:hover{ opacity:.85; }
-.dq-panel .dq-send{ opacity:.55; }
-.dq-panel .dq-send.live{ opacity:1; }
-.dq-panel .dq-status{ opacity:.78; }
-.dq-panel .dq-browse-note{ opacity:.78; }
-.dq-panel .dq-acc-from{ opacity:.72; }
-.dq-panel .dq-acc-desc{ opacity:.76; }
-
-/* Hairline so the rose block reads as a deliberate object on the dark
-   section rather than a swatch that bled. */
-.dq-panel.inline{ border-color: rgba(20,19,16,.35); }
-
-/* 720px of flat rose reads as dead space before the conversation fills it.
-   Shorter keeps the block confident rather than empty. */
+   Slightly shorter than the 720px default: a light block on a dark section
+   shows its empty space, and 620 stays confident before the conversation
+   fills it. */
 .quote-section .dq-panel.inline{ height: 620px; }
 
 .dq-scope *,.dq-scope *::before,.dq-scope *::after{ box-sizing: border-box; }
