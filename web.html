@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/def-quote.css?v=1">
 <style>
 /* ---------- digital archive: index view ---------- */
 .dk{background:var(--soot);color:var(--bone);min-height:100vh}
@@ -345,6 +346,7 @@
       <a class="fc" href="contact.html">Start a conversation
         <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
       </a>
+      <a class="dq-foot-link" href="contact.html" data-def-quote-open>Need a project quote?<svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
       <div class="fm"><span>Dane Erik Forst</span><span>Art Director &middot; Multidisciplinary Designer</span><span>With Fluxar Studios, Inc.</span><span>Portland, Oregon</span></div>
     </div>
   </footer>
@@ -721,5 +723,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#ov').classList.
 buildLenses(); render();
 </script>
 <script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/def-quote.js?v=1" data-launcher></script>
 </body>
 </html>

@@ -1,0 +1,482 @@
+/* ==========================================================================
+   DEF QUOTE — integrated shell
+   One drop-in file. Three placements from the same code:
+
+     1. INLINE   <div data-def-quote-inline></div>
+     2. MODAL    <button data-def-quote-open>Get a quote</button>
+     3. LAUNCHER floating tab, on by default, set LAUNCHER:false to disable
+
+   Everything is scoped under .dq-scope so it will not touch site CSS.
+   ========================================================================== */
+
+.dq-scope{
+  /* Mapped onto the site tokens in assets/css/style.css so the panel reads as
+     part of the page, not a widget dropped on top of it. The fallbacks after
+     each comma keep this file working standalone. */
+  --paper:     var(--bone, #E4E0D4);
+  --ink:       var(--soot, #141310);
+  --crimson:   var(--rose, #ff4d8c);
+  --crimson-2: #e03a76;
+  --crimson-3: #a82657;
+  --ember:     var(--sun, #ff8330);
+  --rule:      rgba(20,19,16,.18);
+  --rule-soft: rgba(20,19,16,.09);
+  --bot-bg:    rgba(20,19,16,.055);
+  --scrim:     rgba(20,19,16,.62);
+
+  --display: var(--sans, 'Archivo','Helvetica Neue',sans-serif);
+  --mono:    'IBM Plex Mono',ui-monospace,monospace;
+
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* On the dark footer the same panel has to flip, or the launcher and the
+   footer link sit on soot with soot-colored type. */
+.foot-slim .dq-scope,
+.dq-scope.dq-on-dark{
+  --paper:     var(--soot, #141310);
+  --ink:       var(--bone, #E4E0D4);
+  --rule:      rgba(228,224,212,.20);
+  --rule-soft: rgba(228,224,212,.09);
+  --bot-bg:    rgba(228,224,212,.06);
+  --scrim:     rgba(8,7,6,.74);
+}
+
+.dq-scope *,.dq-scope *::before,.dq-scope *::after{ box-sizing: border-box; }
+.dq-scope button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; text-align:left; }
+.dq-scope :focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
+
+/* ---------- floating launcher ---------- */
+
+.dq-launcher{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9998;
+  display: flex;
+  align-items: stretch;
+  background: var(--crimson);
+  color: var(--paper);
+  box-shadow: 0 10px 30px rgba(42,10,24,.3);
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform .5s cubic-bezier(.2,.8,.3,1), opacity .4s ease;
+}
+.dq-launcher.up{ transform:none; opacity:1; }
+
+.dq-launcher-main{
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 18px;
+  transition: background .22s ease;
+}
+.dq-launcher-main:hover{ background: var(--crimson-2); }
+
+.dq-launcher-txt{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* the small pulsing dot: reads as "someone is here" without being a chat bubble */
+.dq-dot{
+  width: 7px; height: 7px;
+  background: var(--paper);
+  border-radius: 50%;
+  flex: none;
+  position: relative;
+}
+.dq-dot::after{
+  content:""; position:absolute; inset:0;
+  border-radius:50%; background: var(--paper);
+  animation: dq-ping 2.4s ease-out infinite;
+}
+@keyframes dq-ping{
+  0%{ transform:scale(1); opacity:.7; }
+  70%,100%{ transform:scale(3.4); opacity:0; }
+}
+
+.dq-launcher-x{
+  padding: 0 13px;
+  display: grid;
+  place-items: center;
+  border-left: 1px solid rgba(233,229,196,.32);
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1;
+  opacity: .72;
+  transition: opacity .2s ease, background .2s ease;
+}
+.dq-launcher-x:hover{ opacity:1; background: var(--crimson-2); }
+
+@media (max-width: 560px){
+  .dq-launcher{ right:14px; bottom:14px; }
+  .dq-launcher-main{ padding:13px 15px; }
+  .dq-launcher-txt{ font-size:10px; letter-spacing:.13em; }
+}
+
+/* ---------- modal ---------- */
+
+.dq-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--scrim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .32s ease;
+  backdrop-filter: blur(3px);
+}
+.dq-overlay.open{ opacity:1; pointer-events:auto; }
+
+.dq-modal{
+  width: 100%;
+  max-width: 740px;
+  height: 100%;
+  max-height: 820px;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  transform: translateY(22px) scale(.985);
+  transition: transform .38s cubic-bezier(.2,.8,.3,1);
+  overflow: hidden;
+}
+.dq-overlay.open .dq-modal{ transform:none; }
+
+@media (max-width: 620px){
+  .dq-overlay{ padding:0; }
+  .dq-modal{ max-height:none; }
+}
+
+/* ---------- panel: shared by modal and inline ---------- */
+
+.dq-panel{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+.dq-panel.inline{
+  border: 1px solid var(--rule);
+  height: 720px;
+  max-height: 86vh;
+}
+
+/* ---------- header + tabs ---------- */
+
+.dq-head{
+  flex: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+.dq-head-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 15px 20px 13px;
+}
+
+.dq-id{ display:flex; align-items:center; gap:12px; }
+
+.dq-mark{ width:36px; height:36px; border:1.5px solid var(--crimson); position:relative; flex:none; }
+.dq-mark::after{ content:""; position:absolute; inset:3px -3px -3px 3px; border:1.5px solid var(--crimson-2); }
+.dq-mark span{
+  position:absolute; inset:0; display:grid; place-items:center;
+  font-family:var(--display); font-weight:900; font-stretch:62%;
+  font-size:14px; color:var(--crimson); z-index:1;
+}
+
+.dq-who{
+  font-family:var(--display); font-weight:900; font-stretch:62%;
+  text-transform:uppercase; font-size:18px; line-height:1; color:var(--crimson);
+}
+.dq-status{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; opacity:.6; margin-top:4px;
+}
+
+.dq-head-right{ display:flex; align-items:center; gap:16px; }
+
+.dq-tally{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.14em;
+  text-transform:uppercase; text-align:right; opacity:0;
+  transition:opacity .4s ease;
+}
+.dq-tally.on{ opacity:1; }
+.dq-tally b{
+  display:block; font-family:var(--display); font-weight:900; font-stretch:62%;
+  font-size:21px; letter-spacing:0; color:var(--crimson); margin-top:2px;
+}
+
+.dq-close{
+  font-family:var(--mono); font-size:17px; line-height:1;
+  opacity:.5; padding:6px; transition:opacity .2s ease, color .2s ease;
+}
+.dq-close:hover{ opacity:1; color:var(--crimson); }
+
+.dq-tabs{ display:flex; gap:0; padding:0 20px; }
+
+.dq-tab{
+  font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+  text-transform:uppercase; padding:9px 0 11px; margin-right:24px;
+  opacity:.45; border-bottom:2px solid transparent;
+  transition:opacity .22s ease, border-color .22s ease, color .22s ease;
+}
+.dq-tab:hover{ opacity:.8; }
+.dq-tab.on{ opacity:1; color:var(--crimson); border-bottom-color:var(--crimson); }
+
+/* ---------- views ---------- */
+
+.dq-view{ flex:1; display:none; flex-direction:column; min-height:0; }
+.dq-view.on{ display:flex; }
+
+/* ---------- transcript ---------- */
+
+.dq-log{
+  flex:1; overflow-y:auto; padding:24px 20px 8px;
+  display:flex; flex-direction:column; gap:13px; scroll-behavior:smooth;
+}
+.dq-log::-webkit-scrollbar{ width:8px; }
+.dq-log::-webkit-scrollbar-thumb{ background:var(--rule); }
+
+.dq-row{ display:flex; }
+.dq-row.me{ justify-content:flex-end; }
+
+.dq-msg{
+  max-width:84%; padding:12px 16px; font-size:14.5px; line-height:1.5;
+  animation:dq-pop .32s cubic-bezier(.2,.7,.3,1) both;
+}
+.dq-row.bot .dq-msg{ background:var(--bot-bg); border-left:2px solid var(--crimson); }
+.dq-row.me .dq-msg{ background:var(--crimson); color:var(--paper); font-weight:600; }
+
+@keyframes dq-pop{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:none;} }
+
+/* ---------- verdict ---------- */
+
+.dq-verdict{ width:100%; border-radius:18px; color:var(--paper); overflow:hidden; animation:dq-pop .38s cubic-bezier(.2,.7,.3,1) both; }
+.dq-verdict[data-t="0"]{ background:var(--crimson); }
+.dq-verdict[data-t="1"]{ background:var(--crimson-2); }
+.dq-verdict[data-t="2"]{ background:var(--crimson-3); }
+
+.dq-v-top{ padding:20px 20px 16px; }
+.dq-v-kicker{ font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.72; }
+.dq-v-line{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-top:8px; }
+.dq-v-tier{ font-family:var(--display); font-weight:900; font-stretch:62%; text-transform:uppercase; font-size:26px; line-height:1; letter-spacing:.03em; }
+.dq-v-price{ font-family:var(--display); font-weight:900; font-stretch:62%; font-size:40px; line-height:.9; }
+.dq-v-price sup{ font-size:.4em; vertical-align:.95em; }
+.dq-v-name{ font-weight:800; text-transform:uppercase; font-size:13px; letter-spacing:.03em; margin-top:10px; opacity:.95; }
+
+.dq-v-why{ background:rgba(20,5,12,.24); padding:15px 20px 16px; }
+.dq-v-why-h{ font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.7; margin-bottom:9px; }
+.dq-v-why ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.dq-v-why li{ font-size:12px; line-height:1.4; padding-left:15px; position:relative; opacity:.95; }
+.dq-v-why li::before{ content:"→"; position:absolute; left:0; top:0; font-size:11px; opacity:.8; }
+
+.dq-v-incl{ padding:15px 20px 18px; }
+.dq-v-incl-h{ font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.7; margin-bottom:9px; }
+.dq-v-incl ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; }
+.dq-v-incl li{ font-size:11.5px; line-height:1.35; text-transform:uppercase; letter-spacing:.015em; padding-left:12px; position:relative; opacity:.92; }
+.dq-v-incl li::before{ content:"·"; position:absolute; left:2px; top:-1px; font-weight:700; }
+.dq-v-note{ font-size:9px; text-transform:uppercase; letter-spacing:.06em; line-height:1.5; opacity:.66; margin-top:12px; }
+
+/* ---------- cut explainer + receipt ---------- */
+
+.dq-cut{ width:100%; border:1px solid var(--rule); padding:15px 17px; animation:dq-pop .32s cubic-bezier(.2,.7,.3,1) both; }
+.dq-cut-h{ font-family:var(--mono); font-size:9px; letter-spacing:.2em; text-transform:uppercase; opacity:.6; margin-bottom:10px; }
+.dq-cut ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.dq-cut li{ font-size:12px; line-height:1.4; text-transform:uppercase; letter-spacing:.02em; padding-left:15px; position:relative; opacity:.78; }
+.dq-cut li::before{ content:"×"; position:absolute; left:1px; top:-1px; color:var(--crimson); font-weight:700; }
+
+.dq-receipt{ width:100%; border:1px solid var(--rule); padding:16px 18px; animation:dq-pop .32s cubic-bezier(.2,.7,.3,1) both; }
+.dq-receipt-h{ font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; opacity:.6; padding-bottom:10px; border-bottom:1px solid var(--rule-soft); }
+.dq-receipt-line{ display:flex; justify-content:space-between; gap:14px; padding:11px 0; border-bottom:1px solid var(--rule-soft); font-size:12.5px; }
+.dq-receipt-line span:first-child{ text-transform:uppercase; letter-spacing:.02em; }
+.dq-receipt-line span:last-child{ font-family:var(--display); font-weight:900; font-stretch:62%; white-space:nowrap; }
+.dq-receipt-total{ display:flex; justify-content:space-between; align-items:baseline; padding-top:13px; }
+.dq-receipt-total span{ font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; opacity:.6; }
+.dq-receipt-total b{ font-family:var(--display); font-weight:900; font-stretch:62%; font-size:36px; line-height:.9; color:var(--crimson); }
+.dq-receipt-total b sup{ font-size:.4em; vertical-align:.95em; }
+
+/* ---------- typing ---------- */
+
+.dq-typing{ display:inline-flex; gap:4px; padding:14px 16px; background:var(--bot-bg); border-left:2px solid var(--crimson); }
+.dq-typing i{ width:5px; height:5px; background:var(--crimson); border-radius:50%; display:block; animation:dq-blink 1.15s infinite ease-in-out; }
+.dq-typing i:nth-child(2){ animation-delay:.16s; }
+.dq-typing i:nth-child(3){ animation-delay:.32s; }
+@keyframes dq-blink{ 0%,60%,100%{opacity:.22; transform:translateY(0);} 30%{opacity:1; transform:translateY(-3px);} }
+
+/* ---------- chips + progress + composer ---------- */
+
+.dq-chips{ flex:none; padding:12px 20px 0; display:flex; flex-wrap:wrap; gap:8px; }
+
+.dq-chip{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.11em; text-transform:uppercase;
+  padding:10px 15px; border:1px solid var(--crimson); color:var(--crimson); max-width:100%;
+  transition:background .2s ease, color .2s ease, transform .2s ease;
+  animation:dq-pop .28s cubic-bezier(.2,.7,.3,1) both;
+}
+.dq-chip:hover{ background:var(--crimson); color:var(--paper); }
+.dq-chip:active{ transform:translateY(1px); }
+.dq-chip.quiet{ border-color:var(--rule); color:var(--ink); opacity:.66; }
+.dq-chip.quiet:hover{ background:transparent; border-color:var(--crimson); color:var(--crimson); opacity:1; }
+
+.dq-prog{ flex:none; display:flex; gap:2px; padding:0 20px; margin-top:12px; height:2px; }
+.dq-prog i{ flex:1; background:var(--rule-soft); transition:background .4s ease; }
+.dq-prog i.on{ background:var(--crimson); }
+
+.dq-composer{
+  flex:none; display:flex; align-items:center; gap:12px;
+  padding:15px 20px; margin-top:10px; border-top:1px solid var(--rule);
+}
+.dq-composer input{ flex:1; font-family:inherit; font-size:14.5px; color:var(--ink); background:transparent; border:0; padding:6px 0; }
+.dq-composer input::placeholder{ color:var(--ink); opacity:.38; }
+.dq-composer input:focus{ outline:none; }
+.dq-composer input:disabled{ cursor:not-allowed; }
+
+.dq-send{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--crimson); padding:9px 0; opacity:.35; pointer-events:none; transition:opacity .25s ease;
+}
+.dq-send.live{ opacity:1; pointer-events:auto; }
+
+/* ---------- pricing browser ---------- */
+
+.dq-browse{ flex:1; overflow-y:auto; padding:0 0 20px; }
+.dq-browse::-webkit-scrollbar{ width:8px; }
+.dq-browse::-webkit-scrollbar-thumb{ background:var(--rule); }
+
+.dq-browse-note{
+  font-family:var(--mono); font-size:10px; letter-spacing:.13em;
+  text-transform:uppercase; line-height:1.7; opacity:.62;
+  padding:18px 20px 4px;
+}
+
+.dq-acc{ border-bottom:1px solid var(--rule-soft); }
+
+.dq-acc-btn{
+  width:100%; display:flex; align-items:baseline; justify-content:space-between;
+  gap:14px; padding:16px 20px; transition:background .2s ease;
+}
+.dq-acc-btn:hover{ background:var(--bot-bg); }
+
+.dq-acc-name{
+  font-family:var(--display); font-weight:900; font-stretch:62%;
+  text-transform:uppercase; font-size:21px; line-height:1; color:var(--crimson);
+}
+.dq-acc-from{
+  font-family:var(--mono); font-size:10px; letter-spacing:.13em;
+  text-transform:uppercase; opacity:.55; white-space:nowrap;
+}
+
+.dq-acc-body{ display:none; padding:0 20px 20px; }
+.dq-acc.open .dq-acc-body{ display:block; animation:dq-pop .3s cubic-bezier(.2,.7,.3,1) both; }
+
+.dq-acc-desc{
+  font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+  text-transform:uppercase; line-height:1.7; opacity:.6; margin-bottom:14px;
+}
+
+.dq-pcards{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+@media (max-width:700px){ .dq-pcards{ grid-template-columns:1fr; } }
+
+.dq-pcard{ border-radius:16px; padding:17px 16px 15px; color:var(--paper); display:flex; flex-direction:column; }
+.dq-pcard[data-t="0"]{ background:var(--crimson); }
+.dq-pcard[data-t="1"]{ background:var(--crimson-2); }
+.dq-pcard[data-t="2"]{ background:var(--crimson-3); }
+
+.dq-pcard-top{ display:flex; align-items:baseline; justify-content:space-between; gap:10px; padding-bottom:10px; border-bottom:1px solid rgba(233,229,196,.3); }
+.dq-pcard-no{ font-family:var(--display); font-weight:900; font-stretch:62%; text-transform:uppercase; font-size:16px; line-height:1; letter-spacing:.03em; }
+.dq-pcard-price{ font-family:var(--display); font-weight:900; font-stretch:62%; font-size:25px; line-height:1; }
+.dq-pcard-price sup{ font-size:.42em; vertical-align:.9em; }
+.dq-pcard-name{ font-weight:800; text-transform:uppercase; font-size:12px; letter-spacing:.02em; margin:10px 0 4px; }
+.dq-pcard-best{ font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; line-height:1.4; opacity:.86; }
+.dq-pcard ul{ list-style:none; margin:11px 0 0; padding:0; display:flex; flex-direction:column; gap:4px; flex:1; }
+.dq-pcard li{ font-size:10.5px; line-height:1.35; text-transform:uppercase; letter-spacing:.015em; padding-left:11px; position:relative; opacity:.9; }
+.dq-pcard li::before{ content:"·"; position:absolute; left:2px; top:-1px; font-weight:700; }
+.dq-pcard-note{ font-size:8.5px; text-transform:uppercase; letter-spacing:.05em; line-height:1.5; opacity:.62; margin-top:10px; }
+
+.dq-scopethis{
+  margin-top:22px; width:100%;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+  border:1px solid var(--crimson); color:var(--crimson);
+  padding:13px 16px; text-align:center;
+  transition:background .2s ease, color .2s ease;
+}
+.dq-scopethis:hover{ background:var(--crimson); color:var(--paper); }
+
+.dq-browse-foot{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.12em;
+  text-transform:uppercase; line-height:1.7; opacity:.55;
+  padding:20px 20px 0; border-top:1px solid var(--rule-soft); margin-top:4px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .dq-scope *, .dq-overlay, .dq-modal, .dq-launcher{ animation:none !important; transition:none !important; }
+  .dq-log{ scroll-behavior:auto; }
+}
+
+/* ==========================================================================
+   FOOTER LINK
+   Sits in the dark site footer as a quiet invitation. It is a real link to
+   contact.html, so if JS never loads it still goes somewhere useful; the
+   module intercepts the click and opens the modal instead.
+   ========================================================================== */
+
+.dq-foot-link{
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: 1.4rem;
+  padding-bottom: .3rem;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--bone, #E4E0D4);
+  border-bottom: 1px solid rgba(228,224,212,.32);
+  transition: color .25s ease, border-color .25s ease, gap .25s ease;
+}
+.dq-foot-link:hover{
+  color: var(--rose, #ff4d8c);
+  border-bottom-color: var(--rose, #ff4d8c);
+  gap: .85rem;
+}
+.dq-foot-link svg{ flex: none; }
+
+/* web.html's footer is the one light-on-dark exception that already has a CTA
+   next to it, so the quote link sits as a sibling and matches its scale. */
+.dfoot .dq-foot-link{ margin-top: 1.1rem; margin-left: 1.4rem; }
+
+@media (max-width: 620px){
+  .dfoot .dq-foot-link{ margin-left: 0; display: flex; width: max-content; }
+}
+
+/* Contact page intro copy above the inline panel. .pad and h2 are already
+   styled by style.css; this only sizes the lede and gives the panel air. */
+.quote-section .quote-lede{
+  max-width: 58ch;
+  margin-top: .9rem;
+  line-height: 1.65;
+  opacity: .82;
+}
+/* The site's sections run full-bleed inside .pad. A chat panel stretched to
+   2400px reads badly, so the estimate block gets a reading width of its own
+   while keeping the section's normal left edge. */
+.quote-section [data-def-quote-inline]{
+  margin-top: 2.2rem;
+  max-width: 1040px;
+}
