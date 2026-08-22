@@ -46,6 +46,60 @@
   --scrim:     rgba(8,7,6,.74);
 }
 
+/* ==========================================================================
+   BOLD PANEL
+   The panel itself is the loud object: a solid rose field with soot type.
+   Scoped to .dq-panel rather than .dq-scope on purpose, so the floating
+   launcher and the footer link keep their rose-on-dark treatment.
+
+   Every accent has to move too. On a rose ground the rose accent would
+   vanish, so --crimson becomes soot and the three tier colors become a dark
+   ramp that still reads as a progression against the rose.
+   ========================================================================== */
+
+.dq-panel{
+  --paper:     var(--rose, #ff4d8c);
+  --ink:       var(--soot, #141310);
+
+  --crimson:   var(--soot, #141310);   /* accent: borders, tabs, headings */
+  --crimson-2: #33101F;                /* tier 2 */
+  --crimson-3: #52142E;                /* tier 3 */
+
+  --rule:      rgba(20,19,16,.30);
+  --rule-soft: rgba(20,19,16,.15);
+  --bot-bg:    rgba(20,19,16,.12);
+}
+
+/* Tier tiles sit dark on the rose field. They inherit color:var(--paper),
+   which is now rose, so give them bone instead: rose on near-black is too
+   tight for 10px list copy. */
+.dq-panel .dq-verdict,
+.dq-panel .dq-pcard{ color: var(--bone, #E4E0D4); }
+
+/* The composer sits on rose, so its divider and placeholder need more weight
+   than the translucent defaults carry on a saturated ground. */
+.dq-panel .dq-composer{ border-top-color: rgba(20,19,16,.30); }
+.dq-panel .dq-composer input::placeholder{ color: rgba(20,19,16,.62); }
+
+/* The default dimmed states were tuned for soot-on-bone. At the same opacity
+   on a saturated rose they turn to mush, so everything muted gets weight back. */
+.dq-panel .dq-tab{ opacity:.62; }
+.dq-panel .dq-tab:hover{ opacity:.85; }
+.dq-panel .dq-send{ opacity:.55; }
+.dq-panel .dq-send.live{ opacity:1; }
+.dq-panel .dq-status{ opacity:.78; }
+.dq-panel .dq-browse-note{ opacity:.78; }
+.dq-panel .dq-acc-from{ opacity:.72; }
+.dq-panel .dq-acc-desc{ opacity:.76; }
+
+/* Hairline so the rose block reads as a deliberate object on the dark
+   section rather than a swatch that bled. */
+.dq-panel.inline{ border-color: rgba(20,19,16,.35); }
+
+/* 720px of flat rose reads as dead space before the conversation fills it.
+   Shorter keeps the block confident rather than empty. */
+.quote-section .dq-panel.inline{ height: 620px; }
+
 .dq-scope *,.dq-scope *::before,.dq-scope *::after{ box-sizing: border-box; }
 .dq-scope button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; text-align:left; }
 .dq-scope :focus-visible{ outline:2px solid var(--crimson); outline-offset:2px; }
@@ -184,29 +238,23 @@
 
 .dq-head-top{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
-  padding: 15px 20px 13px;
+  padding: 22px 20px 18px;
 }
 
 .dq-id{ display:flex; align-items:center; gap:12px; }
 
-.dq-mark{ width:36px; height:36px; border:1.5px solid var(--crimson); position:relative; flex:none; }
-.dq-mark::after{ content:""; position:absolute; inset:3px -3px -3px 3px; border:1.5px solid var(--crimson-2); }
-.dq-mark span{
-  position:absolute; inset:0; display:grid; place-items:center;
-  font-family:var(--display); font-weight:900; font-stretch:62%;
-  font-size:14px; color:var(--crimson); z-index:1;
-}
-
 .dq-who{
   font-family:var(--display); font-weight:900; font-stretch:62%;
-  text-transform:uppercase; font-size:18px; line-height:1; color:var(--crimson);
+  text-transform:uppercase; line-height:.92; color:var(--crimson);
+  font-size:clamp(26px,3.4vw,38px);
+  letter-spacing:-.005em;
 }
 .dq-status{
-  font-family:var(--mono); font-size:9.5px; letter-spacing:.16em;
-  text-transform:uppercase; opacity:.6; margin-top:4px;
+  font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; opacity:.72; margin-top:7px;
 }
 
 .dq-head-right{ display:flex; align-items:center; gap:16px; }
@@ -465,18 +513,60 @@
   .dfoot .dq-foot-link{ margin-left: 0; display: flex; width: max-content; }
 }
 
-/* Contact page intro copy above the inline panel. .pad and h2 are already
-   styled by style.css; this only sizes the lede and gives the panel air. */
+/* ==========================================================================
+   CONTACT PAGE: THE SECOND PATH
+   The form above and the estimate below are two different ways in, so the
+   page reverses to soot here. The hard edge is the point: it should be
+   obvious at a glance that a second option starts.
+   ========================================================================== */
+
+.quote-section{
+  background: var(--soot, #141310);
+  color: var(--bone, #E4E0D4);
+}
+
+/* Matches .ipage-head so "Or scope it yourself." carries the same weight as
+   "Say hello." at the top of the page. Kept as an h2: the visual treatment
+   is the h1's, but the page should not have two h1s. */
+.quote-section .kicker{
+  font-family: var(--mono);
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--rose, #ff4d8c);
+  margin-bottom: 1rem;
+}
+.quote-section h2{
+  font-weight: 900;
+  font-variation-settings: 'wdth' 66;
+  text-transform: uppercase;
+  font-size: clamp(2.8rem, 9vw, 7.5rem);
+  line-height: .88;
+  letter-spacing: -.015em;
+}
+.quote-section h2 em{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  background: linear-gradient(100deg, var(--sun, #ff8330), var(--rose, #ff4d8c));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .quote-section .quote-lede{
   max-width: 58ch;
-  margin-top: .9rem;
+  margin-top: 1.6rem;
   line-height: 1.65;
-  opacity: .82;
+  opacity: .78;
 }
+
 /* The site's sections run full-bleed inside .pad. A chat panel stretched to
    2400px reads badly, so the estimate block gets a reading width of its own
    while keeping the section's normal left edge. */
 .quote-section [data-def-quote-inline]{
-  margin-top: 2.2rem;
+  margin-top: 2.6rem;
   max-width: 1040px;
 }

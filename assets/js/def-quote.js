@@ -353,7 +353,6 @@
       '<div class="dq-head">'
     +   '<div class="dq-head-top">'
     +     '<div class="dq-id">'
-    +       '<div class="dq-mark"><span>DEF</span></div>'
     +       '<div>'
     +         '<div class="dq-who">Scoping Desk</div>'
     +         '<div class="dq-status">Dane Erik Forst · Portland, OR</div>'
