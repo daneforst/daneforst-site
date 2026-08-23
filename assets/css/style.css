@@ -719,3 +719,262 @@ body.gdark{background:var(--soot);color:var(--bone)}
 .pkg-slide img{opacity:0;transition:opacity 1.4s ease, transform .7s cubic-bezier(.7,0,.2,1)}
 .pkg-slide img.on{opacity:1}
 @media(prefers-reduced-motion:reduce){.pkg-slide img{transition:none}}
+
+/* ============================================================
+   HOME ARRIVAL — four ways in
+   The opening of the homepage: a statement band, then a spread of
+   full-bleed routes (Web, Packaging, Art + Culture, Brand) that let
+   a visitor self-select before Featured Work begins. Scale carries
+   the hierarchy, so there are no cards and no buttons here.
+   ============================================================ */
+
+/* ---- the statement (bone) ---- */
+.ar-top{padding:clamp(3.4rem,8vh,6rem) clamp(1.2rem,3vw,2.5rem) clamp(2.4rem,6vh,3.6rem)}
+.ar-say{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:end}
+.ar-say h2{
+  font-weight:850;font-variation-settings:'wdth' 70;text-transform:uppercase;
+  font-size:clamp(2.6rem,6.5vw,5.6rem);line-height:.92;letter-spacing:-.01em;
+}
+.ar-say h2 em{
+  font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+  background:linear-gradient(100deg,var(--sun),var(--rose));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.ar-lede p{font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.55;max-width:34em}
+.ar-lede .ar-note{
+  margin-top:1.4em;padding-top:1.1em;border-top:1px solid var(--line);
+  font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,1.7vw,1.35rem);
+  line-height:1.4;color:rgba(20,19,16,.72);
+}
+@media(max-width:860px){.ar-say{grid-template-columns:1fr;gap:clamp(1.6rem,4vh,2.4rem)}}
+
+/* ---- the spread: one screen, four unequal panels ----
+   Web runs the full left column. Packaging and Art stack on the right.
+   Brand runs as a short full-width band underneath. The AI panel sits
+   dark until .ar-spread gets the class "ai-on", which splits that band. */
+.ar-spread{
+  display:grid;
+  grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);
+  grid-template-rows:1.05fr .95fr minmax(178px,.6fr);
+  gap:3px;background:var(--soot);
+  height:min(100svh,1120px);min-height:700px;
+}
+.route{
+  position:relative;display:block;overflow:hidden;isolation:isolate;
+  background:var(--soot-2);color:var(--bone);
+  transition:opacity .45s ease;
+}
+.route-web{grid-column:1;grid-row:1 / span 2}
+.route-pack{grid-column:2;grid-row:1}
+.route-art{grid-column:2;grid-row:2}
+.route-brand{grid-column:1 / -1;grid-row:3}
+.route-ai{display:none}
+.ar-spread.ai-on .route-brand{grid-column:1 / 2}
+.ar-spread.ai-on .route-ai{display:block;grid-column:2 / -1;grid-row:3}
+
+.route::after{
+  content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.3),rgba(20,19,16,.12) 30%,rgba(20,19,16,.48) 60%,rgba(20,19,16,.95)),
+    linear-gradient(to top right,rgba(20,19,16,.75),rgba(20,19,16,0) 58%),
+    linear-gradient(115deg,rgba(255,131,48,0),rgba(255,77,140,0));
+  transition:background .5s ease;
+}
+.route:hover::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.06) 30%,rgba(20,19,16,.44) 60%,rgba(20,19,16,.94)),
+    linear-gradient(to top right,rgba(20,19,16,.72),rgba(20,19,16,0) 58%),
+    linear-gradient(115deg,rgba(255,131,48,.2),rgba(255,77,140,.2));
+}
+
+/* the wall of screens is busy, so the digital panel carries a heavier scrim
+   and only opens up on hover */
+.route-web::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.32),rgba(20,19,16,.14) 20%,rgba(20,19,16,.3) 46%,rgba(20,19,16,.82) 72%,rgba(20,19,16,.99)),
+    linear-gradient(to top right,rgba(20,19,16,.93),rgba(20,19,16,.45) 46%,rgba(20,19,16,0) 74%),
+    linear-gradient(90deg,rgba(20,19,16,.5),rgba(20,19,16,.12) 34%,rgba(20,19,16,0) 52%),
+    linear-gradient(115deg,rgba(255,131,48,0),rgba(255,77,140,0));
+}
+.route-web:hover::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.22),rgba(20,19,16,.04) 20%,rgba(20,19,16,.22) 46%,rgba(20,19,16,.8) 72%,rgba(20,19,16,.99)),
+    linear-gradient(to top right,rgba(20,19,16,.91),rgba(20,19,16,.4) 46%,rgba(20,19,16,0) 74%),
+    linear-gradient(90deg,rgba(20,19,16,.44),rgba(20,19,16,.08) 34%,rgba(20,19,16,0) 52%),
+    linear-gradient(115deg,rgba(255,131,48,.14),rgba(255,77,140,.14));
+}
+
+.route-art::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.3),rgba(20,19,16,.14) 26%,rgba(20,19,16,.5) 56%,rgba(20,19,16,.96)),
+    linear-gradient(to top right,rgba(20,19,16,.93),rgba(20,19,16,.42) 44%,rgba(20,19,16,0) 70%),
+    linear-gradient(115deg,rgba(255,131,48,0),rgba(255,77,140,0));
+}
+.route-art:hover::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.08) 26%,rgba(20,19,16,.46) 56%,rgba(20,19,16,.95)),
+    linear-gradient(to top right,rgba(20,19,16,.9),rgba(20,19,16,.36) 44%,rgba(20,19,16,0) 70%),
+    linear-gradient(115deg,rgba(255,131,48,.2),rgba(255,77,140,.2));
+}
+
+/* self-select: hovering one lets the other two recede */
+@media(hover:hover) and (min-width:861px){
+  .ar-spread:hover .route{opacity:.55}
+  .ar-spread .route:hover{opacity:1}
+}
+
+.ar-face{
+  position:absolute;inset:0;z-index:3;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  gap:.5rem;padding:clamp(1.3rem,2.6vw,2.6rem);
+}
+.ar-kick{
+  font-family:var(--mono);font-size:clamp(.6rem,.85vw,.7rem);
+  text-transform:uppercase;letter-spacing:.18em;color:var(--sun);
+  margin-bottom:.15rem;
+}
+.route h3{
+  font-weight:900;font-variation-settings:'wdth' 66;text-transform:uppercase;
+  line-height:.85;letter-spacing:-.015em;
+  text-shadow:0 2px 40px rgba(20,19,16,.5);
+  transition:font-variation-settings .55s cubic-bezier(.7,0,.2,1);
+}
+.route:hover h3{font-variation-settings:'wdth' 92}
+.route h3 em{
+  font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+  background:linear-gradient(100deg,var(--sun),var(--rose));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.route-web h3{font-size:clamp(2.6rem,5.4vw,5.6rem)}
+.route-pack h3,.route-art h3{font-size:clamp(2rem,3.3vw,3.4rem)}
+.route-brand h3,.route-ai h3{font-size:clamp(1.7rem,2.6vw,2.7rem)}
+.ar-sub{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1rem,1.35vw,1.28rem);line-height:1.35;
+  color:rgba(228,224,212,.88);max-width:26em;margin-top:.15rem;
+}
+.route-web .ar-sub{max-width:22em;font-size:clamp(1.05rem,1.6vw,1.5rem)}
+.ar-meta{
+  font-family:var(--mono);font-size:clamp(.6rem,.85vw,.68rem);
+  text-transform:uppercase;letter-spacing:.14em;color:rgba(228,224,212,.62);margin-top:.35rem;
+}
+.ar-cue{
+  display:inline-flex;align-items:center;gap:.55rem;margin-top:.55rem;
+  font-family:var(--mono);font-size:clamp(.62rem,.9vw,.7rem);
+  text-transform:uppercase;letter-spacing:.16em;color:rgba(228,224,212,.8);
+  transition:color .3s,gap .3s;
+}
+.route:hover .ar-cue{color:var(--sun);gap:.85rem}
+
+/* the substance signal on the digital panel */
+.ar-stats{
+  display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3vw,2.6rem);
+  list-style:none;margin-top:.9rem;padding-top:.9rem;
+  border-top:1px solid var(--line-light);
+}
+.ar-stats li{display:flex;flex-direction:column;gap:.15rem}
+.ar-stats b{
+  font-weight:850;font-variation-settings:'wdth' 78;
+  font-size:clamp(1.5rem,2.6vw,2.4rem);line-height:1;letter-spacing:-.01em;
+}
+.ar-stats span{
+  font-family:var(--mono);font-size:clamp(.58rem,.8vw,.66rem);
+  text-transform:uppercase;letter-spacing:.16em;color:rgba(228,224,212,.6);
+}
+
+/* ---- media: the wall of live screens (digital) ---- */
+.ar-wall{
+  position:absolute;inset:0;z-index:1;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px;
+  filter:saturate(.92) brightness(1);transition:filter .7s ease;
+}
+.route-web:hover .ar-wall{filter:saturate(1.08) brightness(1.05)}
+.ar-col{display:flex;flex-direction:column;will-change:transform;animation:ar-up 68s linear infinite}
+.ar-col:nth-child(2){animation:ar-down 84s linear infinite}
+.ar-col:nth-child(3){animation:ar-up 96s linear infinite;animation-delay:-30s}
+.ar-col:nth-child(4){animation:ar-down 76s linear infinite;animation-delay:-18s}
+.ar-col img{width:100%;height:auto;display:block;margin-bottom:12px;background:var(--soot-2)}
+@keyframes ar-up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes ar-down{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+
+/* ---- media: crossfading stills (brand) ---- */
+.ar-fade{position:absolute;inset:0;z-index:1}
+.ar-fade img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.02);transition:opacity 1.6s ease;
+}
+.ar-fade img.on{opacity:1;animation:ar-drift 10s ease-out forwards}
+@keyframes ar-drift{from{transform:scale(1.02)}to{transform:scale(1.09)}}
+
+/* ---- media: drifting picture rail (art) ---- */
+.ar-rail{
+  position:absolute;inset:0;z-index:1;
+  display:flex;flex-direction:column;justify-content:center;gap:12px;
+}
+.ar-row{display:flex;width:max-content;will-change:transform;animation:ar-left 72s linear infinite}
+.ar-row-b{animation:ar-right 92s linear infinite}
+.ar-row img{
+  height:clamp(112px,15vw,196px);width:auto;display:block;margin-right:12px;background:var(--soot-2);
+}
+@keyframes ar-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ar-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ---- media: a shelf of marks drifting past the title (brand) ---- */
+.ar-marks{position:absolute;inset:0;z-index:1;display:flex;align-items:center}
+.ar-mrow{display:flex;width:max-content;will-change:transform;animation:ar-left 88s linear infinite}
+.ar-mrow img{
+  height:clamp(96px,11vw,148px);width:auto;display:block;margin-right:12px;
+  background:var(--soot-2);object-fit:cover;
+}
+
+/* the brand band is short and wide, so its type sits left of the shelf */
+.route-brand .ar-face{justify-content:center;gap:.4rem;max-width:min(46%,620px)}
+.route-brand::after{
+  background:
+    linear-gradient(90deg,rgba(20,19,16,.97),rgba(20,19,16,.9) 34%,rgba(20,19,16,.34) 58%,rgba(20,19,16,.2)),
+    linear-gradient(180deg,rgba(20,19,16,.3),rgba(20,19,16,.22));
+}
+.route-brand:hover::after{
+  background:
+    linear-gradient(90deg,rgba(20,19,16,.96),rgba(20,19,16,.88) 34%,rgba(20,19,16,.26) 58%,rgba(20,19,16,.1)),
+    linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.14)),
+    linear-gradient(115deg,rgba(255,131,48,.12),rgba(255,77,140,.12));
+}
+.route-brand .ar-sub,.route-ai .ar-sub{font-size:clamp(.95rem,1.2vw,1.15rem)}
+
+/* ---- the closing line ---- */
+.ar-foot{
+  background:var(--soot);color:rgba(228,224,212,.6);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  padding:1.15rem clamp(1.2rem,3vw,2.5rem);
+  font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;
+  border-top:1px solid var(--line-light);
+}
+.ar-foot a{display:inline-flex;align-items:center;gap:.55rem;color:var(--bone);transition:color .3s}
+.ar-foot a:hover{color:var(--sun)}
+
+/* ---- stacking ---- */
+@media(max-width:860px){
+  .ar-spread{
+    grid-template-columns:1fr;grid-template-rows:none;
+    height:auto;min-height:0;
+  }
+  .route-web,.route-pack,.route-art,.route-brand,.route-ai{grid-column:1;grid-row:auto}
+  .ar-spread.ai-on .route-brand,.ar-spread.ai-on .route-ai{grid-column:1}
+  .route-web{height:72svh;min-height:520px}
+  .route-pack{height:52svh;min-height:380px}
+  .route-art{height:44svh;min-height:320px}
+  .route-brand,.ar-spread.ai-on .route-ai{height:40svh;min-height:300px}
+  .route-brand .ar-face{max-width:none;justify-content:flex-end}
+  .route-brand::after{
+    background:
+      linear-gradient(180deg,rgba(20,19,16,.34),rgba(20,19,16,.2) 34%,rgba(20,19,16,.72) 62%,rgba(20,19,16,.97)),
+      linear-gradient(to top right,rgba(20,19,16,.9),rgba(20,19,16,.3) 52%,rgba(20,19,16,0) 76%);
+  }
+  .ar-wall{grid-template-columns:repeat(2,1fr)}
+  .ar-wall .ar-col:nth-child(3){display:none}
+}
+@media(max-width:520px){
+  .ar-wall{grid-template-columns:repeat(2,1fr);gap:8px;padding:8px}
+  .ar-foot{flex-direction:column;align-items:flex-start}
+}
