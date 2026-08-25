@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hinterberg · The Lab · Dane Erik Forst</title>
+<meta name="description" content="A cybernetic snake, and a descent that gets away from everyone.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=10">
+<link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
+<link rel="stylesheet" href="../assets/css/lab.css?v=1">
+</head>
+<body class="labbody pbody">
+<!-- ============================================================
+     LAB DOSSIER TEMPLATE: Hinterberg
+     To add another experiment: copy this file, then update
+       1. <title>, meta description, .phero (idx / h1 / tag)
+       2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
+       3. the .mosaic, one <figure class="mo-item"> per clip
+          span:   m-full / m-two / m-half / m-third / m-quarter / m-bleed
+          shape:  ar-wide / ar-tall / ar-square / ar-native
+       4. the .related prev-next links at the bottom
+       5. add a .spec-row for it on lab.html
+     Clips are encoded by tools/lab-encode.sh. Every <video> carries
+     data-src rather than src so lab.js can load it on approach.
+     ============================================================ -->
+<nav>
+  <a class="logo" href="../index.html"><img src="../assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Lab</span></a>
+  <ul>
+    <li><a href="../about.html">About</a></li>
+    <li><a class="wd-trigger" href="../index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="../branding.html">Branding</a></li>
+    <li><a href="../web.html">Web</a></li>
+    <li><a href="../packaging.html">Packaging</a></li>
+    <li><a class="wd-trigger" href="../galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="../contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="../work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="../work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="../work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="../work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="../work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="../work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="../work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="../work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="../work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D • Sculpture • Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="../galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="../galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="../galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="../galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="../about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="../work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="../work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="../work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="../work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="../work/2b-farming.html"><i>05</i>2B Farming</a><a href="../work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="../work/tame-impala.html"><i>07</i>Tame Impala</a><a href="../work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="../work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="../branding.html">Branding</a>
+  <a href="../web.html">Web</a>
+  <a href="../packaging.html">Packaging</a>
+  <a href="../galleries.html">Galleries</a>
+  <a href="../contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+<header class="phero">
+  <video class="labvid" data-src="../assets/video/lab/features/hinterberg-loop.mp4" poster="../assets/img/lab/features/hinterberg.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <div class="ph-in">
+    <span class="idx">The Lab · 04 / Hinterberg</span>
+    <h1>Hinterberg</h1>
+    <p class="tag">A cybernetic snake, and a descent that gets away from everyone.</p>
+  </div>
+</header>
+
+<section class="pad">
+  <a class="back-lab" href="../lab.html">
+    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 1L1 13M1 13h9M1 13V4" stroke="currentColor" stroke-width="1.5"/></svg>
+    All experiments</a>
+  <p class="project-intro reveal">A short built around a cybernetic terminator snake, made to feature character design. Real footage and photography married with special effects, and then it descends into a Willy Wonka style trip into the unknown. The clips below are moments pulled from the finished short.</p>
+
+  <div class="pmeta reveal" style="margin-top:clamp(1.8rem,4vh,2.8rem)">
+    <div><span>Role</span><b>Character Design, Direction, Effects</b></div>
+    <div><span>Starts as</span><b>Live footage, photography</b></div>
+    <div><span>Output</span><b>Short film</b></div>
+    <div><span>Specimens</span><b>6 moments</b></div>
+  </div>
+
+  <div class="psec reveal">
+    <h2>Process</h2>
+    <p>The snake had to read as machinery that was once alive, which is a design problem before it is a technical one. Once that was settled the film could go somewhere much stranger without losing the audience.</p>
+  </div>
+  <div class="psec reveal">
+    <h2>Note</h2>
+    <p>The full short runs under three minutes and is best watched in one sitting rather than sampled.</p>
+  </div>
+
+  <div class="dossier-tags reveal"><span class="dossier-tag">Character design</span><span class="dossier-tag">Creature</span><span class="dossier-tag">Short film</span><span class="dossier-tag">Effects</span></div>
+</section>
+
+<div class="feat-band">
+  <article class="feat-card">
+    <video class="labvid" data-src="../assets/video/lab/features/hinterberg-loop.mp4" poster="../assets/img/lab/features/hinterberg.jpg" muted loop playsinline preload="none" aria-label="Hinterberg, excerpt"></video>
+    <div class="fc-in">
+      <span class="fc-idx">The film</span>
+      <h3 class="fc-title">Hinterberg</h3>
+      <p class="fc-note">A cybernetic snake, and a descent into somewhere much stranger.</p>
+      <div class="fc-row">
+        <span class="fc-pending">Full film on YouTube, link pending</span>
+        <!-- TO ENABLE: paste the YouTube id into data-yt, then delete the span above and this wrapper.
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Hinterberg"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <span class="fc-meta">2:50 &nbsp;/&nbsp; Excerpt looping above</span>
+      </div>
+    </div>
+  </article>
+</div>
+
+<section class="pad" style="padding-top:0">
+  <div class="lab-kicker">Specimens · 6 clips</div>
+  <div class="mosaic">
+    <figure class="mo-item m-third ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-01.mp4" poster="../assets/img/lab/hinterberg/hinterberg-01.jpg" muted loop playsinline preload="none" aria-label="HB specimen 01"></video>
+      <figcaption class="mo-cap"><span class="n">HB-01</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-two ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-02.mp4" poster="../assets/img/lab/hinterberg/hinterberg-02.jpg" muted loop playsinline preload="none" aria-label="HB specimen 02"></video>
+      <figcaption class="mo-cap"><span class="n">HB-02</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-two ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-03.mp4" poster="../assets/img/lab/hinterberg/hinterberg-03.jpg" muted loop playsinline preload="none" aria-label="HB specimen 03"></video>
+      <figcaption class="mo-cap"><span class="n">HB-03</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-04.mp4" poster="../assets/img/lab/hinterberg/hinterberg-04.jpg" muted loop playsinline preload="none" aria-label="HB specimen 04"></video>
+      <figcaption class="mo-cap"><span class="n">HB-04</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-05.mp4" poster="../assets/img/lab/hinterberg/hinterberg-05.jpg" muted loop playsinline preload="none" aria-label="HB specimen 05"></video>
+      <figcaption class="mo-cap"><span class="n">HB-05</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-two ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/hinterberg/hinterberg-06.mp4" poster="../assets/img/lab/hinterberg/hinterberg-06.jpg" muted loop playsinline preload="none" aria-label="HB specimen 06"></video>
+      <figcaption class="mo-cap"><span class="n">HB-06</span><span>5.0s</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="related" role="navigation" aria-label="More experiments">
+  <a href="rahul.html"><span class="dir">← Previous</span><span class="rt">Rahul</span></a>
+  <a href="the-witch.html"><span class="dir">Next →</span><span class="rt">The Witch</span></a>
+</div>
+
+<section class="page-cta">
+  <h2>Something strange in mind?</h2>
+  <a class="cta" href="../contact.html">Let&#8217;s make it
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+</section>
+
+<footer class="foot-slim">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
+  </linearGradient></defs>
+</svg>
+  <a href="../index.html" aria-label="Back to home" style="display:block;width:max-content"><img class="sig" src="../assets/img/def-logo.png" alt="Dane Erik Forst signature"></a>
+  <div class="socials">
+  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
+    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+</div>
+  <a class="dq-foot-link" href="../contact.html" data-def-quote-open>Need a project quote?<svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  <div class="meta-row" style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.65)">
+    <span>© 2026 DEF Studios</span>
+    <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+    <a href="tel:6613033945">661·303·3945</a>
+    <span>Portland, Oregon</span>
+  </div>
+</footer>
+
+<div class="lab-grain" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/def-quote.js?v=1"></script>
+<script src="../assets/js/lab.js?v=1"></script>
+</body>
+</html>
