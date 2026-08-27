@@ -133,9 +133,20 @@
 .br-legend b{font-weight:500;color:var(--soot)}
 .br-legend-sp{flex:1 1 auto}
 .br-note{max-width:52em;margin:2.6rem auto 0;font-size:1rem;line-height:1.6;color:rgba(20,19,16,.78)}
+
+/* embed mode: the same page with the site chrome off, sized to fill its frame.
+   Used by the playable panel inside the Web project view. */
+.br-embed,.br-embed body{height:100%;overflow:hidden}
+.br-embed nav,.br-embed .wd,.br-embed .mnav,.br-embed .br-head,.br-embed .br-note{display:none!important}
+.br-embed .br-wrap{padding:clamp(.5rem,1.6vh,1rem);height:100%;display:flex;
+  flex-direction:column;justify-content:center;gap:clamp(.5rem,1.4vh,.9rem)}
+.br-embed .br-stage{margin:0 auto;border-radius:3px;box-shadow:none;
+  max-width:min(100%,calc((100vh - 5.2rem) * 880 / 548))}
+.br-embed .br-legend{margin:0 auto;justify-content:center;gap:.6rem 1.3rem;font-size:.6rem}
 </style>
 </head>
 <body class="pbody">
+<script>if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add('br-embed');</script>
 <nav>
   <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
   <ul>

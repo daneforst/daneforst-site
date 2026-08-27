@@ -178,6 +178,48 @@
 .elink .d{width:6px;height:6px;border-radius:50%;background:#5fbf7a;
   box-shadow:0 0 0 3px rgba(95,191,122,.16);flex:0 0 auto}
 
+/* the one entry in the archive you can actually play */
+.eflag{display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(168,230,160,.45);
+  border-radius:3px;padding:.2rem .45rem;font-size:.56rem;letter-spacing:.1em;color:#a8e6a0}
+.eflag i{width:5px;height:5px;border-radius:50%;background:#a8e6a0;flex:0 0 auto;
+  animation:eflag 2.6s ease-in-out infinite}
+@keyframes eflag{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+
+.eplay{display:inline-flex;align-items:center;gap:.55rem;margin-top:1rem;font-family:var(--mono);
+  font-size:.62rem;text-transform:uppercase;letter-spacing:.14em;font-weight:500;color:var(--soot);
+  background:linear-gradient(100deg,var(--sun),var(--rose));border-radius:999px;padding:.62rem 1.1rem;
+  transition:transform .3s cubic-bezier(.6,0,.2,1),box-shadow .3s cubic-bezier(.6,0,.2,1)}
+.eplay:hover,.eplay:focus-visible{transform:translateY(-2px);box-shadow:0 12px 28px -10px rgba(255,131,48,.6)}
+.eplay svg{transition:transform .3s cubic-bezier(.6,0,.2,1)}
+.eplay:hover svg{transform:translate(3px,-3px)}
+
+/* he runs the length of the frame while you are looking at it, on a strip of
+   road that drops in so he reads against the start screen behind him */
+.eroad{position:absolute;left:0;right:0;bottom:0;height:92px;z-index:2;pointer-events:none;
+  background:linear-gradient(rgba(20,19,16,0),rgba(20,19,16,.62) 42%,rgba(20,19,16,.78));
+  opacity:0;transition:opacity .45s cubic-bezier(.6,0,.2,1)}
+.eroad::after{content:'';position:absolute;left:0;right:0;bottom:13px;height:1px;
+  background:repeating-linear-gradient(90deg,rgba(228,224,212,.34) 0 16px,transparent 16px 34px)}
+.erun{position:absolute;left:-14%;bottom:15px;width:58px;height:77px;
+  background:url('assets/img/game/runner.png') no-repeat 0 0/928px 77px}
+.emedia:hover .eroad{opacity:1}
+.eroad+.epan{bottom:100px}
+.emedia:hover .erun{animation:erun-legs .6s steps(16) infinite,erun-cross 4.4s linear infinite}
+@keyframes erun-legs{from{background-position-x:0}to{background-position-x:-928px}}
+@keyframes erun-cross{from{left:-14%}to{left:108%}}
+@media (prefers-reduced-motion:reduce){
+  .eflag i{animation:none}
+  .emedia:hover .erun{animation:none;left:6%}
+  .eroad,.emedia:hover .eroad{transition:none}
+}
+
+/* the game, running inside the project view */
+.playbox{margin-bottom:.4rem}
+.playframe{position:relative;width:100%;aspect-ratio:16/10.6;border-radius:3px;overflow:hidden;
+  border:1px solid var(--line-light);background:#9dc0c8}
+.playframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+@media(max-width:760px){.playframe{aspect-ratio:16/12.4}}
+
 /* discipline tags + role */
 .etags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem}
 .etags span{font-family:var(--mono);font-size:.57rem;text-transform:uppercase;letter-spacing:.09em;
@@ -458,7 +500,7 @@ const P = [
         ['ames-05.jpg','Woodworks','page'],['ames-03.jpg','Checkout','page'],
         ['ames-04.jpg','Contact','page']]},
 
-{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'standard', t:'exp',
+{id:'beerrunner', n:'Beer Runner', c:'Beer &amp; Wine Delivery', w:'major', t:'exp',
  role:'Art Direction, Character Design, UX/UI', disc:['brand','illo','ux','ecom'],
  line:'Two complete worlds under one brand. A beer and wine delivery service built before the category existed, with subscription clubs and a physical wine holder. And a full arcade game around the bottle mascot: scrolling worlds, an enemy cast, power-ups, and hand-drawn animation for every move he makes.',
  hero:'beerrunner-01.jpg', strip:true, play:'beer-runner.html',
@@ -534,21 +576,22 @@ function entryHTML(p,i){
   return `<article class="e e-${p.w}" data-id="${p.id}" data-disc="${p.disc.join(' ')}">
     <div class="eshell">
       <button class="emedia" data-open="${p.id}" aria-label="Open ${nm}">
-        <div class="eframe${p.seq?' device" data-seq="'+p.seq.length:''}">${pan}<span class="epan">${p.seq?'Scroll to step through':(PANX[p.id]?'The game world':'Scroll to pan')}</span></div>
+        <div class="eframe${p.seq?' device" data-seq="'+p.seq.length:''}">${pan}${p.play?'<span class="eroad" aria-hidden="true"><span class="erun"></span></span>':''}<span class="epan">${p.seq?'Scroll to step through':(PANX[p.id]?'The game world':'Scroll to pan')}</span></div>
         ${p.strip&&strip?`<div class="estrip">${strip}</div>`:''}
       </button>
       <div class="ebody">
         <div class="etop"><span class="idx">${String(i+1).padStart(2,'0')}</span>
-          <span class="etype ${tc}">${tl}</span></div>
+          <span class="etype ${tc}">${tl}</span>
+          ${p.play?'<span class="eflag"><i></i>Playable</span>':''}</div>
         <h2 data-open="${p.id}">${p.n}</h2>
         <div class="eclient">${p.c}</div>
         <p class="eline">${p.line}</p>
         <div class="etags">${tags}</div>
         <div class="erole"><b>${p.role}</b><br>with Fluxar Studios, Inc.${p.note?'<br>'+p.note:''}</div>
         <div style="display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center">
+          ${p.play?`<a class="eplay" href="${p.play}">Play the game ${arrow()}</a>`:''}
           <span class="ecue" data-open="${p.id}">Open project ${arrow()}</span>
           ${url?`<a class="elink" href="${url}" target="_blank" rel="noopener noreferrer"><span class="d"></span>Visit the site ${arrow()}</a>`:''}
-          ${p.play?`<a class="elink" href="${p.play}"><span class="d"></span>Play the game ${arrow()}</a>`:''}
         </div>
       </div>
     </div>
@@ -631,6 +674,26 @@ document.addEventListener('load',onScroll,{capture:true});
 addEventListener('load',()=>{collectPans();updatePans();});
 addEventListener('resize',()=>{if(!REDUCED)collectPans();},{passive:true});
 
+/* ---------------- routing ----------------
+   Every project has its own address, so a single project can be sent to
+   someone directly: web.html#beerrunner opens straight into that view.
+   The hash is the single source of truth; back and forward walk the trail. */
+const BASE = () => location.pathname + location.search;
+const hashId = () => decodeURIComponent((location.hash || '').replace(/^#/, ''));
+const known = id => P.some(p => p.id === id);
+
+function go(id, replace){
+  const url = id ? BASE() + '#' + id : BASE();
+  try{ history[replace?'replaceState':'pushState']({p:id||null}, '', url); }
+  catch(e){ location.hash = id || ''; }
+}
+/* render whatever the address says, without touching history */
+function route(){
+  const id = hashId();
+  if(id && known(id)) openP(id); else closeP();
+}
+addEventListener('popstate', route);
+
 /* ---------------- overlay ---------------- */
 function openP(id){
   const list = lens==='all'?P:P.filter(p=>p.disc.includes(lens));
@@ -642,10 +705,10 @@ function openP(id){
 function fill(seq,i){
   const p=seq[i], prev=seq[(i-1+seq.length)%seq.length], next=seq[(i+1)%seq.length];
   $('#ovlf').innerHTML = `${String(i+1).padStart(2,'0')} / ${String(seq.length).padStart(2,'0')} &nbsp;&middot;&nbsp; ${lens==='all'?'All work':DISC[lens]}`;
-  $('#ovnav').innerHTML = `<button data-nav="${prev.id}">&larr; Prev</button><button data-nav="${next.id}">Next &rarr;</button><button class="cl" data-close>Close &#10005;</button>`;
+  $('#ovnav').innerHTML = `<button data-nav="${prev.id}">&larr; Prev</button><button data-nav="${next.id}">Next &rarr;</button><button data-copy>Copy link</button><button class="cl" data-close>Close &#10005;</button>`;
   $('#ovbody').innerHTML = `
     <div class="dovhead"><div class="dwrap">
-      <div class="ctx">${p.c} &middot; ${p.y}</div>
+      <div class="ctx">${p.c}${p.y?' &middot; '+p.y:''}</div>
       <h2>${p.n}</h2>
       <div class="cl2">${TYPE[p.t][1]}</div>
       <p class="ld">${p.line}</p>
@@ -660,6 +723,10 @@ function fill(seq,i){
       ${p.note?`<p style="margin-top:1rem;font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(228,224,212,.35)">${p.note}</p>`:''}
     </div></div>
     <div class="dwrap"><div class="dovshots">
+      ${p.play?`<figure class="playbox"><div class="playframe">
+        <iframe src="${p.play}?embed=1" title="Beer Runner, playable" loading="lazy"
+                allow="fullscreen" allowfullscreen></iframe>
+      </div><figcaption>Playable right here. Space to jump, J to pop a cap.</figcaption></figure>`:''}
       ${p.sim?`<div class="sim" data-simroot>
         <div class="sim-phone">
           ${p.sim.map((sc,k)=>`<img src="${IMG}${sc}" alt="Screen ${k+1}" class="${k===0?'on':''}">`).join('')}
@@ -698,7 +765,8 @@ $('#lenses').addEventListener('click',e=>{
   render();
 });
 $('#list').addEventListener('click',e=>{
-  const t=e.target.closest('[data-open]'); if(t) openP(t.dataset.open);
+  const t=e.target.closest('[data-open]'); if(!t) return;
+  go(t.dataset.open); openP(t.dataset.open);
 });
 $('#ov').addEventListener('click',e=>{
   const sim=e.target.closest('[data-sim]');
@@ -712,15 +780,36 @@ $('#ov').addEventListener('click',e=>{
     dots.forEach((d,k)=>d.classList.toggle('on',k===i));
     return;
   }
+  const cp=e.target.closest('[data-copy]');
+  if(cp){
+    const flash=msg=>{cp.textContent=msg;setTimeout(()=>{cp.textContent='Copy link';},1700);};
+    const legacy=()=>{
+      const t=document.createElement('textarea');
+      t.value=location.href;t.setAttribute('readonly','');
+      t.style.cssText='position:fixed;top:0;left:-9999px';
+      document.body.appendChild(t);t.select();t.setSelectionRange(0,t.value.length);
+      let ok=false; try{ok=document.execCommand('copy');}catch(err){}
+      t.remove(); flash(ok?'Link copied':'Press \u2318C to copy');
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(location.href).then(()=>flash('Link copied'),legacy);
+    }else legacy();
+    return;
+  }
   const n=e.target.closest('[data-nav]');
   if(n){const seq=lens==='all'?P:P.filter(p=>p.disc.includes(lens));
     const s2=seq.some(p=>p.id===n.dataset.nav)?seq:P;
+    go(n.dataset.nav);
     fill(s2,s2.findIndex(p=>p.id===n.dataset.nav)); $('#ov').scrollTop=0; return;}
-  if(e.target.closest('[data-close]')) closeP();
+  if(e.target.closest('[data-close]')){ go(null); closeP(); }
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#ov').classList.contains('open'))closeP();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&$('#ov').classList.contains('open')){ go(null); closeP(); }
+});
 
 buildLenses(); render();
+/* land straight on a project if the address names one */
+if(hashId() && known(hashId())) openP(hashId()); else if(location.hash) go(null,true);
 </script>
 <script src="assets/js/main.js?v=3"></script>
 <script src="assets/js/def-quote.js?v=1" data-launcher></script>
