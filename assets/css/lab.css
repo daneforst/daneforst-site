@@ -512,6 +512,11 @@ body.labbody .pmeta div span{color:rgba(228,224,212,.5)}
 body.labbody .page-cta{background:var(--soot);border-top-color:var(--line-light)}
 body.labbody .page-cta .cta{color:var(--bone);border-color:var(--bone)}
 body.labbody .psec h2{color:var(--rose)}
+/* The orange eyebrow disappears on a bright warm hero (Baron Costume's
+   sunset, Space Cats' white jacket). Scoped to the Lab so the main site's
+   case-study heroes are untouched. */
+body.labbody .phero .idx{text-shadow:0 1px 12px rgba(20,19,16,.9),0 0 4px rgba(20,19,16,.75)}
+body.labbody .phero .tag{text-shadow:0 1px 14px rgba(20,19,16,.7)}
 
 .dossier-tag{
   display:inline-flex;align-items:center;gap:.55rem;
