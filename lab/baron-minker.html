@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Baron Minker · The Lab · Dane Erik Forst</title>
+<title>Baron Minker Trailer · The Lab · Dane Erik Forst</title>
 <meta name="description" content="A live action proof of concept that refuses to stay in one medium.">
 <meta name="robots" content="noindex, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
 </head>
 <body class="labbody pbody">
 <!-- ============================================================
-     LAB DOSSIER TEMPLATE: Baron Minker
+     LAB DOSSIER TEMPLATE: Baron Minker Trailer
      To add another experiment: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
@@ -23,9 +23,10 @@
           span:   m-full / m-two / m-half / m-third / m-quarter / m-bleed
           shape:  ar-wide / ar-tall / ar-square / ar-native
        4. the .related prev-next links at the bottom
-       5. add a .spec-row for it on lab.html
+       5. add a .feat-card and a .spec-row on lab.html
      Clips are encoded by tools/lab-encode.sh. Every <video> carries
      data-src rather than src so lab.js can load it on approach.
+     Clip order here is hand-set for variety, not filename order.
      ============================================================ -->
 <nav>
   <a class="logo" href="../index.html"><img src="../assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Lab</span></a>
@@ -70,10 +71,10 @@
 </div>
 
 <header class="phero">
-  <video class="labvid" data-src="../assets/video/lab/features/minker-intro-loop.mp4" poster="../assets/img/lab/features/minker-intro.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <video class="labvid" data-src="../assets/video/lab/features/minker-trailer-loop.mp4" poster="../assets/img/lab/features/minker-trailer.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">The Lab · 01 / Baron Minker</span>
-    <h1>Baron Minker</h1>
+    <span class="idx">The Lab · 01 / Baron Minker Trailer</span>
+    <h1>Baron Minker Trailer</h1>
     <p class="tag">A live action proof of concept that refuses to stay in one medium.</p>
   </div>
 </header>
@@ -82,48 +83,35 @@
   <a class="back-lab" href="../lab.html">
     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 1L1 13M1 13h9M1 13V4" stroke="currentColor" stroke-width="1.5"/></svg>
     All experiments</a>
-  <p class="project-intro reveal">This one has the most volume, and it covers the most ground. The Baron Minker proof of concept was built from real props, real costumes and real models, then pushed into a mix of media that blurs the line between worlds. Everything you see started as an object on a table.</p>
+  <p class="project-intro reveal">This one has the most volume, and it covers the most ground. The Baron Minker proof of concept was built from real props and real models, then pushed into a mix of media that blurs the line between worlds. Everything you see started as an object on a table.</p>
 
   <div class="pmeta reveal" style="margin-top:clamp(1.8rem,4vh,2.8rem)">
     <div><span>Role</span><b>Art Direction, Character Design</b></div>
-    <div><span>Starts as</span><b>Props, costume, practical models</b></div>
+    <div><span>Starts as</span><b>Props, practical models</b></div>
     <div><span>Output</span><b>Trailer, proof of concept</b></div>
     <div><span>Specimens</span><b>54 clips</b></div>
   </div>
 
   <div class="psec reveal">
     <h2>Process</h2>
-    <p>The practical build came first and it stayed in charge. Once the suit, the props and the models existed, generative tools became a way to put them somewhere a camera could not follow. The trailer is the assembly of all of it.</p>
+    <p>The practical build came first and it stayed in charge. Once the props and the models existed, generative tools became a way to put them somewhere a camera could not follow. The trailer is the assembly of all of it.</p>
   </div>
   <div class="psec reveal">
     <h2>Why it matters</h2>
     <p>A proof of concept has one job, which is to make people believe the world is already real. Mixed media does that better than any single medium, because the eye keeps finding something it recognizes and then losing it again.</p>
   </div>
 
-  <div class="dossier-tags reveal"><span class="dossier-tag">Character design</span><span class="dossier-tag">Costume</span><span class="dossier-tag">Practical models</span><span class="dossier-tag">Mixed media</span><span class="dossier-tag">Trailer</span></div>
+  <div class="dossier-tags reveal"><span class="dossier-tag">Character design</span><span class="dossier-tag">Practical models</span><span class="dossier-tag">Mixed media</span><span class="dossier-tag">Trailer</span></div>
+  <p style="margin-top:1.4rem"><a class="inline-link" href="baron-costume.html">The suit itself lives in Baron Costume →</a></p>
 </section>
 
 <div class="feat-band">
-  <article class="feat-card">
-    <video class="labvid" data-src="../assets/video/lab/features/minker-intro-loop.mp4" poster="../assets/img/lab/features/minker-intro.jpg" muted loop playsinline preload="none" aria-label="Minker Intro, excerpt"></video>
-    <div class="fc-in">
-      <span class="fc-idx">The film</span>
-      <h3 class="fc-title">Minker Intro</h3>
-      <p class="fc-note">The opening of the Baron Minker proof of concept.</p>
-      <div class="fc-row">
-        <span class="fc-pending">Full film on YouTube, link pending</span>
-        <!-- TO ENABLE: paste the YouTube id into data-yt, then delete the span above and this wrapper.
-        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Minker Intro"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
-        <span class="fc-meta">2:39 &nbsp;/&nbsp; Excerpt looping above</span>
-      </div>
-    </div>
-  </article>
-  <article class="feat-card">
+  <article class="feat-card full">
     <video class="labvid" data-src="../assets/video/lab/features/minker-trailer-loop.mp4" poster="../assets/img/lab/features/minker-trailer.jpg" muted loop playsinline preload="none" aria-label="Baron Minker Trailer, excerpt"></video>
     <div class="fc-in">
       <span class="fc-idx">The film</span>
       <h3 class="fc-title">Baron Minker Trailer</h3>
-      <p class="fc-note">The full trailer. Props, costume and models, then everything else on top.</p>
+      <p class="fc-note">The full trailer. Props and models, then everything else on top.</p>
       <div class="fc-row">
         <span class="fc-pending">Full film on YouTube, link pending</span>
         <!-- TO ENABLE: paste the YouTube id into data-yt, then delete the span above and this wrapper.
@@ -137,10 +125,7 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Finished pieces</div>
   <figure class="mo-piece reveal">
-    <button class="sound-btn" type="button" data-sound="pc-woods-peek" aria-pressed="false">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L3 4H1v4h2l3 3V1z" fill="currentColor"/><path d="M8.5 4.2a2.5 2.5 0 0 1 0 3.6" stroke="currentColor" stroke-width="1.1"/></svg>
-      <span class="sb-t">Sound</span>
-    </button>
+    <button class="sound-btn" type="button" data-sound="pc-woods-peek" aria-pressed="false"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L3 4H1v4h2l3 3V1z" fill="currentColor"/><path d="M8.5 4.2a2.5 2.5 0 0 1 0 3.6" stroke="currentColor" stroke-width="1.1"/></svg><span class="sb-t">Sound</span></button>
     <video id="pc-woods-peek" class="labvid" data-src="../assets/video/lab/baron-minker/woods-peek.mp4" poster="../assets/img/lab/baron-minker/woods-peek.jpg" muted loop playsinline preload="none"></video>
     <figcaption><span class="pc-label">Woods Peek</span><span class="pc-note">A short look into the woods. Practical build, extended.</span></figcaption>
   </figure>

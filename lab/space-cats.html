@@ -23,9 +23,10 @@
           span:   m-full / m-two / m-half / m-third / m-quarter / m-bleed
           shape:  ar-wide / ar-tall / ar-square / ar-native
        4. the .related prev-next links at the bottom
-       5. add a .spec-row for it on lab.html
+       5. add a .feat-card and a .spec-row on lab.html
      Clips are encoded by tools/lab-encode.sh. Every <video> carries
      data-src rather than src so lab.js can load it on approach.
+     Clip order here is hand-set for variety, not filename order.
      ============================================================ -->
 <nav>
   <a class="logo" href="../index.html"><img src="../assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Lab</span></a>
@@ -70,7 +71,7 @@
 </div>
 
 <header class="phero">
-  <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-01.mp4" poster="../assets/img/lab/space-cats/space-cats-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-04.mp4" poster="../assets/img/lab/space-cats/space-cats-04.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
     <span class="idx">The Lab · 02 / Space Cats</span>
     <h1>Space Cats</h1>
@@ -106,16 +107,12 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Finished pieces</div>
   <figure class="mo-piece portrait reveal">
-    <button class="sound-btn" type="button" data-sound="pc-space-cats-intro" aria-pressed="false">
-      <svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L3 4H1v4h2l3 3V1z" fill="currentColor"/><path d="M8.5 4.2a2.5 2.5 0 0 1 0 3.6" stroke="currentColor" stroke-width="1.1"/></svg>
-      <span class="sb-t">Sound</span>
-    </button>
+    <button class="sound-btn" type="button" data-sound="pc-space-cats-intro" aria-pressed="false"><svg width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1L3 4H1v4h2l3 3V1z" fill="currentColor"/><path d="M8.5 4.2a2.5 2.5 0 0 1 0 3.6" stroke="currentColor" stroke-width="1.1"/></svg><span class="sb-t">Sound</span></button>
     <video id="pc-space-cats-intro" class="labvid" data-src="../assets/video/lab/space-cats/space-cats-intro.mp4" poster="../assets/img/lab/space-cats/space-cats-intro.jpg" muted loop playsinline preload="none"></video>
     <figcaption><span class="pc-label">Series Intro</span><span class="pc-note">The opener. Puppets that exist, somewhere they do not.</span></figcaption>
   </figure>
-  <!-- No sound control here: this source has no audio track, so the
-       button would be a dead control. Add one back if you re-export
-       this cut with audio. -->
+  <!-- No sound control: this source has no audio track, so the
+       button would be dead. Add one back if you re-export with audio. -->
   <figure class="mo-piece reveal">
     <video id="pc-space-cats-cut" class="labvid" data-src="../assets/video/lab/space-cats/space-cats-cut.mp4" poster="../assets/img/lab/space-cats/space-cats-cut.jpg" muted loop playsinline preload="none"></video>
     <figcaption><span class="pc-label">Series Cut</span><span class="pc-note">A second pass at the opening, wider frame.</span></figcaption>
@@ -125,127 +122,127 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Specimens · 29 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-01.mp4" poster="../assets/img/lab/space-cats/space-cats-01.jpg" muted loop playsinline preload="none" aria-label="SC specimen 01"></video>
-      <figcaption class="mo-cap"><span class="n">SC-01</span><span>7.1s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-02.mp4" poster="../assets/img/lab/space-cats/space-cats-02.jpg" muted loop playsinline preload="none" aria-label="SC specimen 02"></video>
-      <figcaption class="mo-cap"><span class="n">SC-02</span><span>7.1s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-03.mp4" poster="../assets/img/lab/space-cats/space-cats-03.jpg" muted loop playsinline preload="none" aria-label="SC specimen 03"></video>
-      <figcaption class="mo-cap"><span class="n">SC-03</span><span>9.1s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-full ar-wide reveal">
+    <figure class="mo-item m-third ar-wide reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-04.mp4" poster="../assets/img/lab/space-cats/space-cats-04.jpg" muted loop playsinline preload="none" aria-label="SC specimen 04"></video>
       <figcaption class="mo-cap"><span class="n">SC-04</span><span>8.0s</span></figcaption>
     </figure>
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-05.mp4" poster="../assets/img/lab/space-cats/space-cats-05.jpg" muted loop playsinline preload="none" aria-label="SC specimen 05"></video>
-      <figcaption class="mo-cap"><span class="n">SC-05</span><span>8.0s</span></figcaption>
+    <figure class="mo-item m-third ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-10.mp4" poster="../assets/img/lab/space-cats/space-cats-10.jpg" muted loop playsinline preload="none" aria-label="SC specimen 10"></video>
+      <figcaption class="mo-cap"><span class="n">SC-10</span><span>6.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-06.mp4" poster="../assets/img/lab/space-cats/space-cats-06.jpg" muted loop playsinline preload="none" aria-label="SC specimen 06"></video>
-      <figcaption class="mo-cap"><span class="n">SC-06</span><span>8.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-22.mp4" poster="../assets/img/lab/space-cats/space-cats-22.jpg" muted loop playsinline preload="none" aria-label="SC specimen 22"></video>
+      <figcaption class="mo-cap"><span class="n">SC-22</span><span>4.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-full ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-13.mp4" poster="../assets/img/lab/space-cats/space-cats-13.jpg" muted loop playsinline preload="none" aria-label="SC specimen 13"></video>
+      <figcaption class="mo-cap"><span class="n">SC-13</span><span>8.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-quarter ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-02.mp4" poster="../assets/img/lab/space-cats/space-cats-02.jpg" muted loop playsinline preload="none" aria-label="SC specimen 02"></video>
+      <figcaption class="mo-cap"><span class="n">SC-02</span><span>7.1s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-16.mp4" poster="../assets/img/lab/space-cats/space-cats-16.jpg" muted loop playsinline preload="none" aria-label="SC specimen 16"></video>
+      <figcaption class="mo-cap"><span class="n">SC-16</span><span>5.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-half ar-tall reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-07.mp4" poster="../assets/img/lab/space-cats/space-cats-07.jpg" muted loop playsinline preload="none" aria-label="SC specimen 07"></video>
       <figcaption class="mo-cap"><span class="n">SC-07</span><span>5.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-08.mp4" poster="../assets/img/lab/space-cats/space-cats-08.jpg" muted loop playsinline preload="none" aria-label="SC specimen 08"></video>
-      <figcaption class="mo-cap"><span class="n">SC-08</span><span>5.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-27.mp4" poster="../assets/img/lab/space-cats/space-cats-27.jpg" muted loop playsinline preload="none" aria-label="SC specimen 27"></video>
+      <figcaption class="mo-cap"><span class="n">SC-27</span><span>3.0s</span></figcaption>
     </figure>
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-09.mp4" poster="../assets/img/lab/space-cats/space-cats-09.jpg" muted loop playsinline preload="none" aria-label="SC specimen 09"></video>
-      <figcaption class="mo-cap"><span class="n">SC-09</span><span>7.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-10.mp4" poster="../assets/img/lab/space-cats/space-cats-10.jpg" muted loop playsinline preload="none" aria-label="SC specimen 10"></video>
-      <figcaption class="mo-cap"><span class="n">SC-10</span><span>6.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-11.mp4" poster="../assets/img/lab/space-cats/space-cats-11.jpg" muted loop playsinline preload="none" aria-label="SC specimen 11"></video>
-      <figcaption class="mo-cap"><span class="n">SC-11</span><span>6.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-wide reveal">
+    <figure class="mo-item m-two ar-wide reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-12.mp4" poster="../assets/img/lab/space-cats/space-cats-12.jpg" muted loop playsinline preload="none" aria-label="SC specimen 12"></video>
       <figcaption class="mo-cap"><span class="n">SC-12</span><span>7.0s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-13.mp4" poster="../assets/img/lab/space-cats/space-cats-13.jpg" muted loop playsinline preload="none" aria-label="SC specimen 13"></video>
-      <figcaption class="mo-cap"><span class="n">SC-13</span><span>8.0s</span></figcaption>
-    </figure>
     <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-14.mp4" poster="../assets/img/lab/space-cats/space-cats-14.jpg" muted loop playsinline preload="none" aria-label="SC specimen 14"></video>
-      <figcaption class="mo-cap"><span class="n">SC-14</span><span>8.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-19.mp4" poster="../assets/img/lab/space-cats/space-cats-19.jpg" muted loop playsinline preload="none" aria-label="SC specimen 19"></video>
+      <figcaption class="mo-cap"><span class="n">SC-19</span><span>7.0s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-15.mp4" poster="../assets/img/lab/space-cats/space-cats-15.jpg" muted loop playsinline preload="none" aria-label="SC specimen 15"></video>
-      <figcaption class="mo-cap"><span class="n">SC-15</span><span>12.0s</span></figcaption>
+    <figure class="mo-item m-quarter ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-08.mp4" poster="../assets/img/lab/space-cats/space-cats-08.jpg" muted loop playsinline preload="none" aria-label="SC specimen 08"></video>
+      <figcaption class="mo-cap"><span class="n">SC-08</span><span>5.0s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-16.mp4" poster="../assets/img/lab/space-cats/space-cats-16.jpg" muted loop playsinline preload="none" aria-label="SC specimen 16"></video>
-      <figcaption class="mo-cap"><span class="n">SC-16</span><span>5.0s</span></figcaption>
+    <figure class="mo-item m-half ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-25.mp4" poster="../assets/img/lab/space-cats/space-cats-25.jpg" muted loop playsinline preload="none" aria-label="SC specimen 25"></video>
+      <figcaption class="mo-cap"><span class="n">SC-25</span><span>10.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-quarter ar-tall reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-17.mp4" poster="../assets/img/lab/space-cats/space-cats-17.jpg" muted loop playsinline preload="none" aria-label="SC specimen 17"></video>
       <figcaption class="mo-cap"><span class="n">SC-17</span><span>5.0s</span></figcaption>
     </figure>
+    <figure class="mo-item m-third ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-01.mp4" poster="../assets/img/lab/space-cats/space-cats-01.jpg" muted loop playsinline preload="none" aria-label="SC specimen 01"></video>
+      <figcaption class="mo-cap"><span class="n">SC-01</span><span>7.1s</span></figcaption>
+    </figure>
     <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-18.mp4" poster="../assets/img/lab/space-cats/space-cats-18.jpg" muted loop playsinline preload="none" aria-label="SC specimen 18"></video>
-      <figcaption class="mo-cap"><span class="n">SC-18</span><span>5.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-23.mp4" poster="../assets/img/lab/space-cats/space-cats-23.jpg" muted loop playsinline preload="none" aria-label="SC specimen 23"></video>
+      <figcaption class="mo-cap"><span class="n">SC-23</span><span>4.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-05.mp4" poster="../assets/img/lab/space-cats/space-cats-05.jpg" muted loop playsinline preload="none" aria-label="SC specimen 05"></video>
+      <figcaption class="mo-cap"><span class="n">SC-05</span><span>8.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-19.mp4" poster="../assets/img/lab/space-cats/space-cats-19.jpg" muted loop playsinline preload="none" aria-label="SC specimen 19"></video>
-      <figcaption class="mo-cap"><span class="n">SC-19</span><span>7.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-29.mp4" poster="../assets/img/lab/space-cats/space-cats-29.jpg" muted loop playsinline preload="none" aria-label="SC specimen 29"></video>
+      <figcaption class="mo-cap"><span class="n">SC-29</span><span>9.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-half ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-14.mp4" poster="../assets/img/lab/space-cats/space-cats-14.jpg" muted loop playsinline preload="none" aria-label="SC specimen 14"></video>
+      <figcaption class="mo-cap"><span class="n">SC-14</span><span>8.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-quarter ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-03.mp4" poster="../assets/img/lab/space-cats/space-cats-03.jpg" muted loop playsinline preload="none" aria-label="SC specimen 03"></video>
+      <figcaption class="mo-cap"><span class="n">SC-03</span><span>9.1s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-tall reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-20.mp4" poster="../assets/img/lab/space-cats/space-cats-20.jpg" muted loop playsinline preload="none" aria-label="SC specimen 20"></video>
       <figcaption class="mo-cap"><span class="n">SC-20</span><span>3.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-21.mp4" poster="../assets/img/lab/space-cats/space-cats-21.jpg" muted loop playsinline preload="none" aria-label="SC specimen 21"></video>
-      <figcaption class="mo-cap"><span class="n">SC-21</span><span>3.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-22.mp4" poster="../assets/img/lab/space-cats/space-cats-22.jpg" muted loop playsinline preload="none" aria-label="SC specimen 22"></video>
-      <figcaption class="mo-cap"><span class="n">SC-22</span><span>4.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-23.mp4" poster="../assets/img/lab/space-cats/space-cats-23.jpg" muted loop playsinline preload="none" aria-label="SC specimen 23"></video>
-      <figcaption class="mo-cap"><span class="n">SC-23</span><span>4.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-24.mp4" poster="../assets/img/lab/space-cats/space-cats-24.jpg" muted loop playsinline preload="none" aria-label="SC specimen 24"></video>
-      <figcaption class="mo-cap"><span class="n">SC-24</span><span>4.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-quarter ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-25.mp4" poster="../assets/img/lab/space-cats/space-cats-25.jpg" muted loop playsinline preload="none" aria-label="SC specimen 25"></video>
-      <figcaption class="mo-cap"><span class="n">SC-25</span><span>10.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-09.mp4" poster="../assets/img/lab/space-cats/space-cats-09.jpg" muted loop playsinline preload="none" aria-label="SC specimen 09"></video>
+      <figcaption class="mo-cap"><span class="n">SC-09</span><span>7.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-tall reveal">
       <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-26.mp4" poster="../assets/img/lab/space-cats/space-cats-26.jpg" muted loop playsinline preload="none" aria-label="SC specimen 26"></video>
       <figcaption class="mo-cap"><span class="n">SC-26</span><span>3.0s</span></figcaption>
     </figure>
+    <figure class="mo-item m-quarter ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-11.mp4" poster="../assets/img/lab/space-cats/space-cats-11.jpg" muted loop playsinline preload="none" aria-label="SC specimen 11"></video>
+      <figcaption class="mo-cap"><span class="n">SC-11</span><span>6.0s</span></figcaption>
+    </figure>
     <figure class="mo-item m-half ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-27.mp4" poster="../assets/img/lab/space-cats/space-cats-27.jpg" muted loop playsinline preload="none" aria-label="SC specimen 27"></video>
-      <figcaption class="mo-cap"><span class="n">SC-27</span><span>3.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-18.mp4" poster="../assets/img/lab/space-cats/space-cats-18.jpg" muted loop playsinline preload="none" aria-label="SC specimen 18"></video>
+      <figcaption class="mo-cap"><span class="n">SC-18</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-quarter ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-24.mp4" poster="../assets/img/lab/space-cats/space-cats-24.jpg" muted loop playsinline preload="none" aria-label="SC specimen 24"></video>
+      <figcaption class="mo-cap"><span class="n">SC-24</span><span>4.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-28.mp4" poster="../assets/img/lab/space-cats/space-cats-28.jpg" muted loop playsinline preload="none" aria-label="SC specimen 28"></video>
-      <figcaption class="mo-cap"><span class="n">SC-28</span><span>3.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-06.mp4" poster="../assets/img/lab/space-cats/space-cats-06.jpg" muted loop playsinline preload="none" aria-label="SC specimen 06"></video>
+      <figcaption class="mo-cap"><span class="n">SC-06</span><span>8.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-half ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-21.mp4" poster="../assets/img/lab/space-cats/space-cats-21.jpg" muted loop playsinline preload="none" aria-label="SC specimen 21"></video>
+      <figcaption class="mo-cap"><span class="n">SC-21</span><span>3.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-tall reveal">
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-15.mp4" poster="../assets/img/lab/space-cats/space-cats-15.jpg" muted loop playsinline preload="none" aria-label="SC specimen 15"></video>
+      <figcaption class="mo-cap"><span class="n">SC-15</span><span>12.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-two ar-tall reveal">
-      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-29.mp4" poster="../assets/img/lab/space-cats/space-cats-29.jpg" muted loop playsinline preload="none" aria-label="SC specimen 29"></video>
-      <figcaption class="mo-cap"><span class="n">SC-29</span><span>9.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/space-cats/space-cats-28.mp4" poster="../assets/img/lab/space-cats/space-cats-28.jpg" muted loop playsinline preload="none" aria-label="SC specimen 28"></video>
+      <figcaption class="mo-cap"><span class="n">SC-28</span><span>3.0s</span></figcaption>
     </figure>
   </div>
 </section>
 
 <div class="related" role="navigation" aria-label="More experiments">
-  <a href="baron-minker.html"><span class="dir">← Previous</span><span class="rt">Baron Minker</span></a>
+  <a href="baron-minker.html"><span class="dir">← Previous</span><span class="rt">Baron Minker Trailer</span></a>
   <a href="rahul.html"><span class="dir">Next →</span><span class="rt">Rahul</span></a>
 </div>
 

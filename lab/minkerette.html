@@ -23,9 +23,10 @@
           span:   m-full / m-two / m-half / m-third / m-quarter / m-bleed
           shape:  ar-wide / ar-tall / ar-square / ar-native
        4. the .related prev-next links at the bottom
-       5. add a .spec-row for it on lab.html
+       5. add a .feat-card and a .spec-row on lab.html
      Clips are encoded by tools/lab-encode.sh. Every <video> carries
      data-src rather than src so lab.js can load it on approach.
+     Clip order here is hand-set for variety, not filename order.
      ============================================================ -->
 <nav>
   <a class="logo" href="../index.html"><img src="../assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Lab</span></a>
@@ -70,7 +71,7 @@
 </div>
 
 <header class="phero">
-  <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-01.mp4" poster="../assets/img/lab/minkerette/minkerette-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+  <video class="labvid" data-src="../assets/video/lab/features/warlock-loop.mp4" poster="../assets/img/lab/features/warlock.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
     <span class="idx">The Lab · 06 / Minkerette</span>
     <h1>Minkerette</h1>
@@ -87,8 +88,8 @@
   <div class="pmeta reveal" style="margin-top:clamp(1.8rem,4vh,2.8rem)">
     <div><span>Role</span><b>Character Design, Costume, Art Direction</b></div>
     <div><span>Starts as</span><b>Practical costume and props</b></div>
-    <div><span>Output</span><b>Character study</b></div>
-    <div><span>Specimens</span><b>10 clips</b></div>
+    <div><span>Output</span><b>Character study, film</b></div>
+    <div><span>Specimens</span><b>11 clips</b></div>
   </div>
 
   <div class="psec reveal">
@@ -100,51 +101,68 @@
     <p>She belongs to the Baron Minker world. The trailer is where she first appears.</p>
   </div>
 
-  <div class="dossier-tags reveal"><span class="dossier-tag">Character design</span><span class="dossier-tag">Costume</span><span class="dossier-tag">Props</span></div>
+  <div class="dossier-tags reveal"><span class="dossier-tag">Character design</span><span class="dossier-tag">Costume</span><span class="dossier-tag">Props</span><span class="dossier-tag">Film</span></div>
 </section>
+
+<div class="feat-band">
+  <article class="feat-card full">
+    <video class="labvid" data-src="../assets/video/lab/features/warlock-loop.mp4" poster="../assets/img/lab/features/warlock.jpg" muted loop playsinline preload="none" aria-label="Lose My Number, excerpt"></video>
+    <div class="fc-in">
+      <span class="fc-idx">The film</span>
+      <h3 class="fc-title">Lose My Number</h3>
+      <p class="fc-note">The warlock cut. Practical costume, pushed as far as it goes.</p>
+      <div class="fc-row">
+        <span class="fc-pending">Full film on YouTube, link pending</span>
+        <!-- TO ENABLE: paste the YouTube id into data-yt, then delete the span above and this wrapper.
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Lose My Number"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <span class="fc-meta">2:03 &nbsp;/&nbsp; Excerpt looping above</span>
+      </div>
+    </div>
+  </article>
+</div>
 
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Specimens · 10 clips</div>
   <div class="mosaic">
     <figure class="mo-item m-third ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-01.mp4" poster="../assets/img/lab/minkerette/minkerette-01.jpg" muted loop playsinline preload="none" aria-label="MK specimen 01"></video>
-      <figcaption class="mo-cap"><span class="n">MK-01</span><span>5.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-07.mp4" poster="../assets/img/lab/minkerette/minkerette-07.jpg" muted loop playsinline preload="none" aria-label="MK specimen 07"></video>
+      <figcaption class="mo-cap"><span class="n">MK-07</span><span>5.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-two ar-wide reveal">
       <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-02.mp4" poster="../assets/img/lab/minkerette/minkerette-02.jpg" muted loop playsinline preload="none" aria-label="MK specimen 02"></video>
       <figcaption class="mo-cap"><span class="n">MK-02</span><span>5.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-two ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-03.mp4" poster="../assets/img/lab/minkerette/minkerette-03.jpg" muted loop playsinline preload="none" aria-label="MK specimen 03"></video>
-      <figcaption class="mo-cap"><span class="n">MK-03</span><span>5.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-04.mp4" poster="../assets/img/lab/minkerette/minkerette-04.jpg" muted loop playsinline preload="none" aria-label="MK specimen 04"></video>
-      <figcaption class="mo-cap"><span class="n">MK-04</span><span>5.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-08.mp4" poster="../assets/img/lab/minkerette/minkerette-08.jpg" muted loop playsinline preload="none" aria-label="MK specimen 08"></video>
+      <figcaption class="mo-cap"><span class="n">MK-08</span><span>8.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-third ar-wide reveal">
       <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-05.mp4" poster="../assets/img/lab/minkerette/minkerette-05.jpg" muted loop playsinline preload="none" aria-label="MK specimen 05"></video>
       <figcaption class="mo-cap"><span class="n">MK-05</span><span>5.1s</span></figcaption>
     </figure>
+    <figure class="mo-item m-third ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-10.mp4" poster="../assets/img/lab/minkerette/minkerette-10.jpg" muted loop playsinline preload="none" aria-label="MK specimen 10"></video>
+      <figcaption class="mo-cap"><span class="n">MK-10</span><span>5.0s</span></figcaption>
+    </figure>
     <figure class="mo-item m-two ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-03.mp4" poster="../assets/img/lab/minkerette/minkerette-03.jpg" muted loop playsinline preload="none" aria-label="MK specimen 03"></video>
+      <figcaption class="mo-cap"><span class="n">MK-03</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-two ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-09.mp4" poster="../assets/img/lab/minkerette/minkerette-09.jpg" muted loop playsinline preload="none" aria-label="MK specimen 09"></video>
+      <figcaption class="mo-cap"><span class="n">MK-09</span><span>7.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-wide reveal">
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-01.mp4" poster="../assets/img/lab/minkerette/minkerette-01.jpg" muted loop playsinline preload="none" aria-label="MK specimen 01"></video>
+      <figcaption class="mo-cap"><span class="n">MK-01</span><span>5.0s</span></figcaption>
+    </figure>
+    <figure class="mo-item m-third ar-wide reveal">
       <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-06.mp4" poster="../assets/img/lab/minkerette/minkerette-06.jpg" muted loop playsinline preload="none" aria-label="MK specimen 06"></video>
       <figcaption class="mo-cap"><span class="n">MK-06</span><span>5.0s</span></figcaption>
     </figure>
     <figure class="mo-item m-two ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-07.mp4" poster="../assets/img/lab/minkerette/minkerette-07.jpg" muted loop playsinline preload="none" aria-label="MK specimen 07"></video>
-      <figcaption class="mo-cap"><span class="n">MK-07</span><span>5.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-08.mp4" poster="../assets/img/lab/minkerette/minkerette-08.jpg" muted loop playsinline preload="none" aria-label="MK specimen 08"></video>
-      <figcaption class="mo-cap"><span class="n">MK-08</span><span>8.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-09.mp4" poster="../assets/img/lab/minkerette/minkerette-09.jpg" muted loop playsinline preload="none" aria-label="MK specimen 09"></video>
-      <figcaption class="mo-cap"><span class="n">MK-09</span><span>7.0s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-wide reveal">
-      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-10.mp4" poster="../assets/img/lab/minkerette/minkerette-10.jpg" muted loop playsinline preload="none" aria-label="MK specimen 10"></video>
-      <figcaption class="mo-cap"><span class="n">MK-10</span><span>5.0s</span></figcaption>
+      <video class="labvid" data-src="../assets/video/lab/minkerette/minkerette-04.mp4" poster="../assets/img/lab/minkerette/minkerette-04.jpg" muted loop playsinline preload="none" aria-label="MK specimen 04"></video>
+      <figcaption class="mo-cap"><span class="n">MK-04</span><span>5.0s</span></figcaption>
     </figure>
   </div>
 </section>

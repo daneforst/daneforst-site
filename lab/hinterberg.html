@@ -23,9 +23,10 @@
           span:   m-full / m-two / m-half / m-third / m-quarter / m-bleed
           shape:  ar-wide / ar-tall / ar-square / ar-native
        4. the .related prev-next links at the bottom
-       5. add a .spec-row for it on lab.html
+       5. add a .feat-card and a .spec-row on lab.html
      Clips are encoded by tools/lab-encode.sh. Every <video> carries
      data-src rather than src so lab.js can load it on approach.
+     Clip order here is hand-set for variety, not filename order.
      ============================================================ -->
 <nav>
   <a class="logo" href="../index.html"><img src="../assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Lab</span></a>
@@ -104,7 +105,7 @@
 </section>
 
 <div class="feat-band">
-  <article class="feat-card">
+  <article class="feat-card full">
     <video class="labvid" data-src="../assets/video/lab/features/hinterberg-loop.mp4" poster="../assets/img/lab/features/hinterberg.jpg" muted loop playsinline preload="none" aria-label="Hinterberg, excerpt"></video>
     <div class="fc-in">
       <span class="fc-idx">The film</span>

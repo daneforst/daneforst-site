@@ -22,9 +22,11 @@
      TO ADD A NEW EXPERIMENT:
        1. Drop the clips in a folder and run tools/lab-encode.sh
        2. Copy any lab/<slug>.html as your starting point
-       3. Add one .spec-row to the index below
-     TO PUT A FILM ON YOUTUBE: find the commented .fc-play button in
-     the featured band and paste the video id into data-yt.
+       3. Add a .feat-card below AND a .spec-row further down
+     The card band runs full / pair / full / pair, so every dossier
+     gets a picture. Give the single-card rows class "full".
+     TO PUT A FILM ON YOUTUBE: find the commented .fc-play button and
+     paste the video id into data-yt.
      ============================================================ -->
 <div id="loader"><span class="count">00</span><span class="word">The <em>Lab</em></span></div>
 
@@ -71,7 +73,7 @@
 </div>
 
 <header class="lab-hero">
-  <div class="lh-stage" data-clips='["assets/video/lab/features/minker-trailer-loop.mp4", "assets/video/lab/features/hinterberg-loop.mp4", "assets/video/lab/features/rahul-short-loop.mp4", "assets/video/lab/features/warlock-loop.mp4", "assets/video/lab/features/minker-intro-loop.mp4"]'>
+  <div class="lh-stage" data-clips='["assets/video/lab/features/minker-trailer-loop.mp4", "assets/video/lab/features/rahul-short-loop.mp4", "assets/video/lab/features/hinterberg-loop.mp4", "assets/video/lab/features/warlock-loop.mp4", "assets/video/lab/features/minker-intro-loop.mp4"]'>
     <video class="a" muted loop playsinline preload="none" poster="assets/img/lab/features/minker-trailer.jpg" aria-hidden="true"></video>
     <video class="b" muted loop playsinline preload="none" aria-hidden="true"></video>
   </div>
@@ -106,118 +108,162 @@
 </section>
 
 <section class="lab-sec tight">
-  <div class="lab-kicker">02 · Featured films</div>
+  <div class="lab-kicker">02 · The work</div>
+  <p class="lab-lede" style="max-width:24em">Ten sets of experiments. Some earned an explanation. <em>Some are just good.</em></p>
 </section>
 <div class="feat-band">
-  <article class="feat-card">
-    <video class="labvid" data-src="assets/video/lab/features/minker-intro-loop.mp4" poster="assets/img/lab/features/minker-intro.jpg" muted loop playsinline preload="none" aria-label="Minker Intro, excerpt"></video>
+  <article class="feat-card full">
+    <video class="labvid" data-src="assets/video/lab/features/minker-trailer-loop.mp4" poster="assets/img/lab/features/minker-trailer.jpg" muted loop playsinline preload="none" aria-label="Baron Minker Trailer"></video>
     <div class="fc-in">
-      <span class="fc-idx">Film 01</span>
-      <h3 class="fc-title">Minker Intro</h3>
-      <p class="fc-note">The opening of the Baron Minker proof of concept.</p>
-      <div class="fc-row">
-        <a class="fc-play" href="lab/baron-minker.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
-        <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
-         <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Minker Intro"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
-        <span class="fc-meta">2:39 &nbsp;/&nbsp; Excerpt looping</span>
-      </div>
-    </div>
-  </article>
-  <article class="feat-card">
-    <video class="labvid" data-src="assets/video/lab/features/minker-trailer-loop.mp4" poster="assets/img/lab/features/minker-trailer.jpg" muted loop playsinline preload="none" aria-label="Baron Minker Trailer, excerpt"></video>
-    <div class="fc-in">
-      <span class="fc-idx">Film 02</span>
+      <span class="fc-idx">01 &nbsp;/&nbsp; Trailer &amp; World Building</span>
       <h3 class="fc-title">Baron Minker Trailer</h3>
-      <p class="fc-note">The full trailer. Props, costume and models, then everything else on top.</p>
+      <p class="fc-note">A live action proof of concept that refuses to stay in one medium.</p>
       <div class="fc-row">
-        <a class="fc-play" href="lab/baron-minker.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="fc-play" href="lab/baron-minker.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
         <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
-         <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Baron Minker Trailer"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Baron Minker Trailer"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
         <span class="fc-meta">4:54 &nbsp;/&nbsp; Excerpt looping</span>
       </div>
     </div>
   </article>
   <article class="feat-card">
-    <video class="labvid" data-src="assets/video/lab/features/rahul-short-loop.mp4" poster="assets/img/lab/features/rahul-short.jpg" muted loop playsinline preload="none" aria-label="Rahul, excerpt"></video>
+    <video class="labvid" data-src="assets/video/lab/space-cats/space-cats-04.mp4" poster="assets/img/lab/space-cats/space-cats-04.jpg" muted loop playsinline preload="none" aria-label="Space Cats"></video>
     <div class="fc-in">
-      <span class="fc-idx">Film 03</span>
-      <h3 class="fc-title">Rahul</h3>
-      <p class="fc-note">A hand built puppet, loose in footage that was already real.</p>
+      <span class="fc-idx">02 &nbsp;/&nbsp; Series &amp; Visual Storytelling</span>
+      <h3 class="fc-title">Space Cats</h3>
+      <p class="fc-note">A vertical series, built out of puppets that already existed.</p>
       <div class="fc-row">
-        <a class="fc-play" href="lab/rahul.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
-        <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
-         <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Rahul"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
-        <span class="fc-meta">2:43 &nbsp;/&nbsp; Excerpt looping</span>
+        <a class="fc-play" href="lab/space-cats.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        
+        <span class="fc-meta">31 clips</span>
       </div>
     </div>
   </article>
   <article class="feat-card">
-    <video class="labvid" data-src="assets/video/lab/features/hinterberg-loop.mp4" poster="assets/img/lab/features/hinterberg.jpg" muted loop playsinline preload="none" aria-label="Hinterberg, excerpt"></video>
+    <video class="labvid" data-src="assets/video/lab/features/rahul-short-loop.mp4" poster="assets/img/lab/features/rahul-short.jpg" muted loop playsinline preload="none" aria-label="Rahul"></video>
     <div class="fc-in">
-      <span class="fc-idx">Film 04</span>
-      <h3 class="fc-title">Hinterberg</h3>
-      <p class="fc-note">A cybernetic snake, and a descent into somewhere much stranger.</p>
+      <span class="fc-idx">03 &nbsp;/&nbsp; Character &amp; Visual Effects</span>
+      <h3 class="fc-title">Rahul</h3>
+      <p class="fc-note">A puppet I made, dropped into footage that was already real.</p>
       <div class="fc-row">
-        <a class="fc-play" href="lab/hinterberg.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="fc-play" href="lab/rahul.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
         <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
-         <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Hinterberg"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Rahul"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <span class="fc-meta">2:43 &nbsp;/&nbsp; Excerpt looping</span>
+      </div>
+    </div>
+  </article>
+  <article class="feat-card full">
+    <video class="labvid" data-src="assets/video/lab/features/hinterberg-loop.mp4" poster="assets/img/lab/features/hinterberg.jpg" muted loop playsinline preload="none" aria-label="Hinterberg"></video>
+    <div class="fc-in">
+      <span class="fc-idx">04 &nbsp;/&nbsp; Character Design &amp; Short Film</span>
+      <h3 class="fc-title">Hinterberg</h3>
+      <p class="fc-note">A cybernetic snake, and a descent that gets away from everyone.</p>
+      <div class="fc-row">
+        <a class="fc-play" href="lab/hinterberg.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Hinterberg"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
         <span class="fc-meta">2:50 &nbsp;/&nbsp; Excerpt looping</span>
       </div>
     </div>
   </article>
   <article class="feat-card">
-    <video class="labvid" data-src="assets/video/lab/features/warlock-loop.mp4" poster="assets/img/lab/features/warlock.jpg" muted loop playsinline preload="none" aria-label="Lose My Number, excerpt"></video>
+    <video class="labvid" data-src="assets/video/lab/the-witch/the-witch-01.mp4" poster="assets/img/lab/the-witch/the-witch-01.jpg" muted loop playsinline preload="none" aria-label="The Witch"></video>
     <div class="fc-in">
-      <span class="fc-idx">Film 05</span>
-      <h3 class="fc-title">Lose My Number</h3>
-      <p class="fc-note">The warlock cut. Practical costume, pushed as far as it goes.</p>
+      <span class="fc-idx">05 &nbsp;/&nbsp; Costume &amp; Iteration</span>
+      <h3 class="fc-title">The Witch</h3>
+      <p class="fc-note">A headpiece built from scratch, then run through every version of itself.</p>
       <div class="fc-row">
-        <a class="fc-play" href="lab/the-witch.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a class="fc-play" href="lab/the-witch.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        
+        <span class="fc-meta">9 clips</span>
+      </div>
+    </div>
+  </article>
+  <article class="feat-card">
+    <video class="labvid" data-src="assets/video/lab/features/warlock-loop.mp4" poster="assets/img/lab/features/warlock.jpg" muted loop playsinline preload="none" aria-label="Minkerette"></video>
+    <div class="fc-in">
+      <span class="fc-idx">06 &nbsp;/&nbsp; Character Study</span>
+      <h3 class="fc-title">Minkerette</h3>
+      <p class="fc-note">One character, given her own room.</p>
+      <div class="fc-row">
+        <a class="fc-play" href="lab/minkerette.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
         <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
-         <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Lose My Number"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Lose My Number"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
         <span class="fc-meta">2:03 &nbsp;/&nbsp; Excerpt looping</span>
       </div>
     </div>
   </article>
-  <article class="feat-card portrait">
-    <video class="labvid" data-src="assets/video/lab/space-cats/space-cats-intro.mp4" poster="assets/img/lab/space-cats/space-cats-intro.jpg" muted loop playsinline preload="none" aria-label="Space Cats Intro, excerpt"></video>
+  <article class="feat-card full">
+    <video class="labvid" data-src="assets/video/lab/features/minker-intro-loop.mp4" poster="assets/img/lab/features/minker-intro.jpg" muted loop playsinline preload="none" aria-label="Baron Costume"></video>
     <div class="fc-in">
-      <span class="fc-idx">Film 06</span>
-      <h3 class="fc-title">Space Cats Intro</h3>
-      <p class="fc-note">The series opener. Puppets that exist, somewhere they do not.</p>
+      <span class="fc-idx">07 &nbsp;/&nbsp; Costume &amp; Puppetry</span>
+      <h3 class="fc-title">Baron Costume</h3>
+      <p class="fc-note">Part costume. Part puppet. All shocking.</p>
       <div class="fc-row">
-        <a class="fc-play" href="lab/space-cats.html">Open the dossier
-          <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
-        <button class="fc-play" type="button" data-play data-full="assets/video/lab/space-cats/space-cats-intro.mp4" data-poster="assets/img/lab/space-cats/space-cats-intro.jpg" data-orient="portrait" data-title="Space Cats Intro">
-          <svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>
-          Play with sound</button>
-        <span class="fc-meta">0:40 &nbsp;/&nbsp; Vertical</span>
+        <a class="fc-play" href="lab/baron-costume.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <!-- TO ENABLE: paste the YouTube id into data-yt and delete this comment wrapper.
+        <button class="fc-play" type="button" data-play data-yt="PASTE_ID_HERE" data-title="Minker Intro"><svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M11 6L0 12V0z"/></svg>Watch the full film</button> -->
+        <span class="fc-meta">2:39 &nbsp;/&nbsp; Excerpt looping</span>
+      </div>
+    </div>
+  </article>
+  <article class="feat-card">
+    <video class="labvid" data-src="assets/video/lab/minker-toys/minker-toys-09.mp4" poster="assets/img/lab/minker-toys/minker-toys-09.jpg" muted loop playsinline preload="none" aria-label="Minker Toys"></video>
+    <div class="fc-in">
+      <span class="fc-idx">08 &nbsp;/&nbsp; Product &amp; Packaging</span>
+      <h3 class="fc-title">Minker Toys</h3>
+      <p class="fc-note">3D prints, real packaging, and what happens after.</p>
+      <div class="fc-row">
+        <a class="fc-play" href="lab/minker-toys.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        
+        <span class="fc-meta">10 clips</span>
+      </div>
+    </div>
+  </article>
+  <article class="feat-card portrait">
+    <video class="labvid" data-src="assets/video/lab/all-climate-air/aca-van-v3.mp4" poster="assets/img/lab/all-climate-air/aca-van-v3.jpg" muted loop playsinline preload="none" aria-label="All Climate Air"></video>
+    <div class="fc-in">
+      <span class="fc-idx">09 &nbsp;/&nbsp; Advertising &amp; Short Form</span>
+      <h3 class="fc-title">All Climate Air</h3>
+      <p class="fc-note">A vertical spot that sells a feeling more than a service.</p>
+      <div class="fc-row">
+        <a class="fc-play" href="lab/all-climate-air.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        
+        <span class="fc-meta">16 clips</span>
+      </div>
+    </div>
+  </article>
+  <article class="feat-card full">
+    <video class="labvid" data-src="assets/video/lab/dead-comics/dcs-drinks-v1.mp4" poster="assets/img/lab/dead-comics/dcs-drinks-v1.jpg" muted loop playsinline preload="none" aria-label="Dead Comics Society"></video>
+    <div class="fc-in">
+      <span class="fc-idx">10 &nbsp;/&nbsp; Advertising &amp; Brand Extension</span>
+      <h3 class="fc-title">Dead Comics Society</h3>
+      <p class="fc-note">Commercials that ran before the show started.</p>
+      <div class="fc-row">
+        <a class="fc-play" href="lab/dead-comics.html">Open the dossier <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        
+        <span class="fc-meta">3 clips</span>
       </div>
     </div>
   </article>
 </div>
 
 <section class="lab-sec tight">
-  <div class="lab-kicker">03 · The work</div>
-  <p class="lab-lede" style="max-width:24em">Ten sets of experiments. Some earned an explanation. <em>Some are just good.</em></p>
+  <div class="lab-kicker">03 · Index</div>
 </section>
 <div class="spec-index">
-  <a class="spec-row" href="lab/baron-minker.html" data-peek="assets/video/lab/baron-minker/baron-minker-01.mp4" data-peek-tag="BM · Baron Minker">
+  <a class="spec-row" href="lab/baron-minker.html" data-peek="assets/video/lab/baron-minker/baron-minker-01.mp4" data-peek-tag="BM · Baron Minker Trailer">
     <span class="spec-n">01</span>
-    <span class="spec-t">Baron Minker</span>
-    <span class="spec-c">Character &amp; World Building</span>
+    <span class="spec-t">Baron Minker Trailer</span>
+    <span class="spec-c">Trailer &amp; World Building</span>
   </a>
-  <a class="spec-row" href="lab/space-cats.html" data-peek="assets/video/lab/space-cats/space-cats-01.mp4" data-peek-tag="SC · Space Cats">
+  <a class="spec-row" href="lab/space-cats.html" data-peek="assets/video/lab/space-cats/space-cats-04.mp4" data-peek-tag="SC · Space Cats">
     <span class="spec-n">02</span>
     <span class="spec-t">Space Cats</span>
     <span class="spec-c">Series &amp; Visual Storytelling</span>
   </a>
-  <a class="spec-row" href="lab/rahul.html" data-peek="assets/video/lab/rahul/rahul-01.mp4" data-peek-tag="RH · Rahul">
+  <a class="spec-row" href="lab/rahul.html" data-peek="assets/video/lab/rahul/rahul-07.mp4" data-peek-tag="RH · Rahul">
     <span class="spec-n">03</span>
     <span class="spec-t">Rahul</span>
     <span class="spec-c">Character &amp; Visual Effects</span>
@@ -232,22 +278,22 @@
     <span class="spec-t">The Witch</span>
     <span class="spec-c">Costume &amp; Iteration</span>
   </a>
-  <a class="spec-row" href="lab/minkerette.html" data-peek="assets/video/lab/minkerette/minkerette-01.mp4" data-peek-tag="MK · Minkerette">
+  <a class="spec-row" href="lab/minkerette.html" data-peek="assets/video/lab/minkerette/minkerette-07.mp4" data-peek-tag="MK · Minkerette">
     <span class="spec-n">06</span>
     <span class="spec-t">Minkerette</span>
     <span class="spec-c">Character Study</span>
   </a>
-  <a class="spec-row" href="lab/baron-costume.html" data-peek="assets/video/lab/baron-costume/baron-costume-01.mp4" data-peek-tag="BC · Baron Costume">
+  <a class="spec-row" href="lab/baron-costume.html" data-peek="assets/video/lab/baron-costume/baron-costume-05.mp4" data-peek-tag="BC · Baron Costume">
     <span class="spec-n">07</span>
     <span class="spec-t">Baron Costume</span>
     <span class="spec-c">Costume &amp; Puppetry</span>
   </a>
-  <a class="spec-row" href="lab/minker-toys.html" data-peek="assets/video/lab/minker-toys/minker-toys-01.mp4" data-peek-tag="MT · Minker Toys">
+  <a class="spec-row" href="lab/minker-toys.html" data-peek="assets/video/lab/minker-toys/minker-toys-09.mp4" data-peek-tag="MT · Minker Toys">
     <span class="spec-n">08</span>
     <span class="spec-t">Minker Toys</span>
     <span class="spec-c">Product &amp; Packaging</span>
   </a>
-  <a class="spec-row" href="lab/all-climate-air.html" data-peek="assets/video/lab/all-climate-air/all-climate-air-01.mp4" data-peek-tag="AC · All Climate Air">
+  <a class="spec-row" href="lab/all-climate-air.html" data-peek="assets/video/lab/all-climate-air/all-climate-air-10.mp4" data-peek-tag="AC · All Climate Air">
     <span class="spec-n">09</span>
     <span class="spec-t">All Climate Air</span>
     <span class="spec-c">Advertising &amp; Short Form</span>
