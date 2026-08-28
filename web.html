@@ -260,6 +260,20 @@
 .dovnav button:hover{color:var(--bone);border-color:rgba(228,224,212,.4)}
 .dovnav .cl{color:var(--bone);border-color:rgba(228,224,212,.4)}
 .dovnav .cl:hover{background:var(--rose);border-color:var(--rose)}
+/* The link, visible and selected. The clipboard API is refused often enough
+   (permission policy, Safari, embedded browsers) that the address itself has
+   to be on screen, so copying never depends on the write succeeding. */
+.dovshare{display:flex;align-items:center;gap:.6rem;padding:0 0 .85rem;flex-wrap:wrap}
+.dovshare[hidden]{display:none}
+.dovshare input{flex:1 1 22rem;min-width:0;font-family:var(--mono);font-size:.68rem;
+  color:var(--bone);background:rgba(228,224,212,.07);border:1px solid rgba(228,224,212,.24);
+  border-radius:3px;padding:.55rem .7rem}
+.dovshare input:focus{outline:none;border-color:var(--sun)}
+.dovshare .msg{font-family:var(--mono);font-size:.6rem;text-transform:uppercase;
+  letter-spacing:.12em;color:var(--sun);white-space:nowrap}
+.dovshare button{font-family:var(--mono);font-size:.7rem;color:rgba(228,224,212,.5);
+  background:none;border:0;cursor:pointer;padding:.3rem .4rem}
+.dovshare button:hover{color:var(--bone)}
 .dovhead{padding:clamp(2.2rem,5vh,4rem) 0 clamp(1.4rem,3vh,2.2rem)}
 .dovhead .ctx{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.2em;color:var(--sun)}
 .dovhead h2{font-weight:850;font-variation-settings:'wdth' 78;text-transform:uppercase;
@@ -398,6 +412,11 @@
   <div class="dovbar"><div class="dwrap"><div class="row">
     <div class="lf" id="ovlf"></div>
     <div class="dovnav" id="ovnav"></div>
+  </div>
+  <div class="dovshare" id="ovshare" hidden>
+    <input id="ovurl" type="text" readonly aria-label="Link to this project">
+    <span class="msg" id="ovmsg"></span>
+    <button type="button" data-shareclose aria-label="Hide the link">&#10005;</button>
   </div></div></div>
   <div id="ovbody"></div>
 </div>
@@ -755,7 +774,29 @@ function fill(seq,i){
   const b=$('#ovbody'); b.style.opacity=0;
   requestAnimationFrame(()=>{b.style.transition='opacity .4s';b.style.opacity=1;});
 }
-function closeP(){const ov=$('#ov');ov.classList.remove('open');ov.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+function closeP(){const ov=$('#ov');ov.classList.remove('open');ov.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';$('#ovshare').hidden=true;}
+
+/* Show the address, select it, and try to copy it. The selection is the part
+   that always works, so the button is useful even where the write is refused. */
+function share(){
+  const row=$('#ovshare'), input=$('#ovurl'), msg=$('#ovmsg');
+  const mac=/Mac|iPhone|iPad/.test(navigator.platform||navigator.userAgent);
+  row.hidden=false;
+  input.value=location.href;
+  input.focus();
+  input.setSelectionRange(0,input.value.length);
+  const say=t=>{msg.textContent=t;};
+  say(mac?'Selected, press \u2318C':'Selected, press Ctrl+C');
+  let done=false;
+  const ok=()=>{if(!done){done=true;say('Link copied');}};
+  try{
+    if(document.execCommand&&document.execCommand('copy')) ok();
+  }catch(err){}
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(input.value).then(ok,()=>{});
+  }
+}
 
 /* ---------------- events ---------------- */
 $('#lenses').addEventListener('click',e=>{
@@ -780,27 +821,16 @@ $('#ov').addEventListener('click',e=>{
     dots.forEach((d,k)=>d.classList.toggle('on',k===i));
     return;
   }
+  if(e.target.closest('[data-shareclose]')){ $('#ovshare').hidden=true; return; }
   const cp=e.target.closest('[data-copy]');
-  if(cp){
-    const flash=msg=>{cp.textContent=msg;setTimeout(()=>{cp.textContent='Copy link';},1700);};
-    const legacy=()=>{
-      const t=document.createElement('textarea');
-      t.value=location.href;t.setAttribute('readonly','');
-      t.style.cssText='position:fixed;top:0;left:-9999px';
-      document.body.appendChild(t);t.select();t.setSelectionRange(0,t.value.length);
-      let ok=false; try{ok=document.execCommand('copy');}catch(err){}
-      t.remove(); flash(ok?'Link copied':'Press \u2318C to copy');
-    };
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(location.href).then(()=>flash('Link copied'),legacy);
-    }else legacy();
-    return;
-  }
+  if(cp){ share(); return; }
   const n=e.target.closest('[data-nav]');
   if(n){const seq=lens==='all'?P:P.filter(p=>p.disc.includes(lens));
     const s2=seq.some(p=>p.id===n.dataset.nav)?seq:P;
     go(n.dataset.nav);
-    fill(s2,s2.findIndex(p=>p.id===n.dataset.nav)); $('#ov').scrollTop=0; return;}
+    fill(s2,s2.findIndex(p=>p.id===n.dataset.nav)); $('#ov').scrollTop=0;
+    if(!$('#ovshare').hidden) share();
+    return;}
   if(e.target.closest('[data-close]')){ go(null); closeP(); }
 });
 document.addEventListener('keydown',e=>{
