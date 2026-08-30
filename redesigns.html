@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage directions — DEF</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,400..900&family=Archivo:wdth,wght@62..125,400..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300..600;1,300..600&family=DM+Mono:wght@400&family=Darker+Grotesque:wght@300..700&family=Familjen+Grotesk:wght@400..600&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Host+Grotesk:wght@400..600&family=IBM+Plex+Mono:wght@400&family=Instrument+Sans:wght@400..600&family=Instrument+Serif:ital@0;1&family=Jost:wght@300..500&family=Martian+Mono:wght@400&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Public+Sans:wght@400..600&family=Schibsted+Grotesk:wght@400..600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{background:#0E0D0C;color:#E7E3D8;font-family:'Instrument Sans',system-ui,sans-serif;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .top{
+    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+    padding:clamp(1.3rem,4vw,2.4rem);border-bottom:1px solid rgba(231,227,216,.2);
+    font-family:'DM Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.18em;
+  }
+  .top b{font-weight:400}
+  .top span{color:rgba(231,227,216,.55)}
+  .grouphead{
+    display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;
+    padding:clamp(1.6rem,4vw,2.4rem) clamp(1.3rem,4vw,2.4rem) clamp(.8rem,2vw,1.1rem);
+    font-family:'DM Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.18em;
+  }
+  .grouphead span{color:rgba(231,227,216,.5);font-size:.62rem;letter-spacing:.12em;text-transform:none}
+
+  .band{
+    display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);
+    gap:clamp(1.1rem,4vw,3.2rem);align-items:center;
+    padding:clamp(2rem,5.5vw,3.8rem) clamp(1.3rem,4vw,2.4rem);
+    transition:filter .35s ease;
+  }
+  .band:hover{filter:brightness(1.03)}
+  .specimen{line-height:.9}
+  .meta{display:flex;flex-direction:column;gap:.7rem}
+  .tagline{font-size:clamp(.92rem,1.3vw,1.08rem);line-height:1.5;max-width:34em}
+  .stack{font-size:.7rem;line-height:1.9;letter-spacing:.02em;opacity:.78}
+  .stack b{font-weight:400;opacity:.6}
+  .go{
+    display:inline-flex;align-items:center;gap:.6rem;width:max-content;margin-top:.35rem;
+    font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;
+    padding:.7rem 1.1rem;border:1px solid currentColor;transition:gap .3s ease;
+  }
+  .go:hover{gap:1.05rem}
+  .no{font-size:.6rem;text-transform:uppercase;letter-spacing:.2em;opacity:.55}
+  .liked{
+    display:inline-block;margin-left:.7rem;padding:.2rem .5rem;
+    font-size:.55rem;letter-spacing:.16em;border:1px solid currentColor;opacity:.8;
+  }
+
+  /* --- B. ATELIER --- */
+  .b-atelier{background:#FBFAF7;color:#191713}
+  .b-atelier .specimen{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.5rem,8.5vw,7.4rem);letter-spacing:-.055em;text-transform:lowercase}
+  .b-atelier .specimen em{font-style:italic;font-weight:300;color:#9A6A44}
+  .b-atelier .no,.b-atelier .go,.b-atelier .liked{font-family:'Schibsted Grotesk',sans-serif;letter-spacing:.22em}
+  .b-atelier .stack,.b-atelier .tagline{font-family:'Schibsted Grotesk',sans-serif}
+  .b-atelier .tagline{color:rgba(25,23,19,.62)}
+  .b-atelier .go{border-radius:999px;border-color:rgba(25,23,19,.22)}
+  .b-atelier .go:hover{background:#191713;color:#FBFAF7;border-color:#191713}
+
+  /* --- D. SALON --- */
+  .b-salon{background:#F3EFE7;color:#1F1A14}
+  .b-salon .specimen{font-family:'Newsreader',serif;font-weight:300;font-size:clamp(2.6rem,9vw,7.8rem);letter-spacing:-.05em;text-transform:uppercase}
+  .b-salon .specimen em{font-style:italic;font-weight:300;text-transform:none;letter-spacing:-.02em;color:#8A5A3C}
+  .b-salon .no,.b-salon .go,.b-salon .liked{font-family:'Host Grotesk',sans-serif;letter-spacing:.19em}
+  .b-salon .stack,.b-salon .tagline{font-family:'Host Grotesk',sans-serif}
+  .b-salon .tagline{color:rgba(31,26,20,.64)}
+  .b-salon .no{color:#8A5A3C;opacity:1}
+  .b-salon .go{border-color:rgba(31,26,20,.24)}
+  .b-salon .go:hover{background:#8A5A3C;border-color:#8A5A3C;color:#F3EFE7}
+
+  /* --- E. VITRINE --- */
+  .b-vitrine{background:#F6F6F4;color:#15171A;position:relative}
+  .b-vitrine::before{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    margin:0 clamp(1.3rem,4vw,2.4rem);
+    background-image:repeating-linear-gradient(to right,rgba(21,23,26,.08) 0 1px,transparent 1px calc(100% / 12));
+  }
+  .b-vitrine>*{position:relative}
+  .b-vitrine .specimen{font-family:'Darker Grotesque',sans-serif;font-weight:400;font-size:clamp(3rem,11vw,9.5rem);letter-spacing:-.03em;text-transform:uppercase;line-height:.8}
+  .b-vitrine .specimen em{font-style:normal;font-weight:300;color:#565C64}
+  .b-vitrine .no,.b-vitrine .go,.b-vitrine .liked{font-family:'Public Sans',sans-serif;letter-spacing:.14em}
+  .b-vitrine .stack,.b-vitrine .tagline{font-family:'Public Sans',sans-serif}
+  .b-vitrine .tagline{color:rgba(21,23,26,.6)}
+  .b-vitrine .go{border-color:#15171A}
+  .b-vitrine .go:hover{background:#15171A;color:#F6F6F4}
+
+  /* --- F. PAPER --- */
+  .b-paper{background:#EFE9DD;color:#211D18}
+  .b-paper .specimen{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(2.4rem,8vw,7rem);letter-spacing:.06em;text-transform:uppercase;line-height:1.06}
+  .b-paper .specimen em{font-style:italic;font-weight:300;text-transform:none;letter-spacing:0;color:#8C7355}
+  .b-paper .no,.b-paper .go,.b-paper .liked{font-family:'Jost',sans-serif;letter-spacing:.28em}
+  .b-paper .stack,.b-paper .tagline{font-family:'Jost',sans-serif;font-weight:300}
+  .b-paper .tagline{color:rgba(33,29,24,.64)}
+  .b-paper .no{color:#8C7355;opacity:1}
+  .b-paper .go{border-color:rgba(33,29,24,.24)}
+  .b-paper .go:hover{background:#8C7355;border-color:#8C7355;color:#EFE9DD}
+
+  /* --- A. PRESS --- */
+  .b-press{background:#F4F1E8;color:#16130F}
+  .b-press .specimen{font-family:'Bodoni Moda',serif;font-weight:700;font-size:clamp(2.5rem,8vw,7rem);letter-spacing:-.035em}
+  .b-press .specimen em{font-style:italic;font-weight:400;color:#BF3320}
+  .b-press .no,.b-press .stack,.b-press .go,.b-press .liked{font-family:'DM Mono',monospace}
+  .b-press .no{color:#BF3320;opacity:1}
+  .b-press .go:hover{background:#BF3320;border-color:#BF3320;color:#F4F1E8}
+
+  /* --- C. FIELD --- */
+  .b-field{background:#1B32C8;color:#F0EDE3}
+  .b-field .specimen{font-family:'Anybody',sans-serif;font-weight:800;font-variation-settings:'wdth' 118;font-size:clamp(2.2rem,7.6vw,6.4rem);letter-spacing:-.035em;text-transform:uppercase}
+  .b-field .specimen em{font-style:normal;color:#E8A32C}
+  .b-field .no,.b-field .stack,.b-field .go,.b-field .liked{font-family:'Martian Mono',monospace;letter-spacing:.06em}
+  .b-field .no{color:#E8A32C;opacity:1}
+  .b-field .tagline{font-family:'Familjen Grotesk',sans-serif}
+  .b-field .go{background:#E8A32C;color:#0F0E12;border-color:#E8A32C}
+  .b-field .go:hover{background:#F0EDE3;border-color:#F0EDE3}
+
+  /* --- current --- */
+  .b-now{background:#141310;color:#E4E0D4}
+  .b-now .specimen{font-family:'Archivo',sans-serif;font-weight:900;font-variation-settings:'wdth' 68;font-size:clamp(2.2rem,7.6vw,6.2rem);text-transform:uppercase;letter-spacing:-.015em}
+  .b-now .specimen em{
+    font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;
+    background:linear-gradient(100deg,#ff8330,#ff4d8c);-webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .b-now .no,.b-now .stack,.b-now .go,.b-now .liked{font-family:'IBM Plex Mono',monospace}
+  .b-now .no{color:#ff8330;opacity:1}
+  .b-now .tagline{color:rgba(228,224,212,.72)}
+  .b-now .go:hover{background:#ff4d8c;border-color:#ff4d8c;color:#141310}
+
+  @media(max-width:820px){
+    .band{grid-template-columns:1fr;gap:1.3rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <b>Homepage — six directions</b>
+  <span>Same content, same functionality, six art directions</span>
+  <span>DEF Studios, Portland OR</span>
+</div>
+
+<div class="grouphead">
+  <b>The quiet family</b>
+  <span>Room to breathe, work does the talking</span>
+</div>
+
+<a class="band b-atelier" href="home-atelier.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction B — Atelier<span class="liked">your pick</span></div>
+    <p class="tagline">A white cube. Near-white ground, one clay accent, plates hung dead centre with a wall label beside them.</p>
+    <div class="stack"><b>Display</b> Fraunces<br><b>Text</b> Schibsted Grotesk</div>
+    <span class="go">Open direction B
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<a class="band b-salon" href="home-salon.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction D — Salon</div>
+    <p class="tagline">Atelier pulled warm and off-centre. Oat ground, burnt sienna, and a monograph grid: type hangs in a narrow left column while the images bleed off the right edge. The caption sticks as the plate scrolls past it.</p>
+    <div class="stack"><b>Display</b> Newsreader<br><b>Text</b> Host Grotesk</div>
+    <span class="go">Open direction D
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<a class="band b-vitrine" href="home-vitrine.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction E — Vitrine</div>
+    <p class="tagline">Atelier pulled cool and onto a drawn grid. No colour anywhere: images sit desaturated and come back to full colour on hover. Every plate runs full measure with its caption split across twelve columns underneath.</p>
+    <div class="stack"><b>Display</b> Darker Grotesque<br><b>Text</b> Public Sans</div>
+    <span class="go">Open direction E
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<a class="band b-paper" href="home-paper.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction F — Paper</div>
+    <p class="tagline">Atelier given tone and weight. A sand ground rather than a white one, a delicate high-contrast serif, and images that run edge to edge with small islands of type between them. Bleed, breath, bleed.</p>
+    <div class="stack"><b>Display</b> Cormorant Garamond<br><b>Text</b> Jost</div>
+    <span class="go">Open direction F
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<div class="grouphead">
+  <b>The louder two</b>
+  <span>From the first round</span>
+</div>
+
+<a class="band b-press" href="home-press.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction A — Press</div>
+    <p class="tagline">A broadsheet. Newsprint ground, one printer's red, a hairline grid that never breaks.</p>
+    <div class="stack"><b>Display</b> Bodoni Moda<br><b>Text</b> Instrument Sans<br><b>Labels</b> DM Mono</div>
+    <span class="go">Open direction A
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<a class="band b-field" href="home-field.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">Direction C — Field</div>
+    <p class="tagline">A poster wall. Flat fields of colour, two-pixel black rules, one wide variable grotesk pushed hard.</p>
+    <div class="stack"><b>Display</b> Anybody, variable width<br><b>Text</b> Familjen Grotesk<br><b>Labels</b> Martian Mono</div>
+    <span class="go">Open direction C
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+<div class="grouphead">
+  <b>Live now</b>
+  <span>For comparison</span>
+</div>
+
+<a class="band b-now" href="index.html">
+  <div class="specimen">Dane <em>Erik</em> Forst</div>
+  <div class="meta">
+    <div class="no">The site as it stands</div>
+    <p class="tagline">Soot and bone, a sunset-to-rose gradient, ultra-condensed caps over full-bleed video.</p>
+    <div class="stack"><b>Display</b> Archivo, variable width<br><b>Text</b> Archivo<br><b>Labels</b> IBM Plex Mono</div>
+    <span class="go">Open the live homepage
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+    </span>
+  </div>
+</a>
+
+</body>
+</html>

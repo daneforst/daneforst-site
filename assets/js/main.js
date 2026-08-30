@@ -116,6 +116,14 @@
     const trailTex = new THREE.CanvasTexture(trail);
     const mouse = {x:.5,y:.6,px:.5,py:.6,active:false};
 
+    // Ink palette comes from CSS so each art direction can retint the hero.
+    // Fallbacks are the original values, so pages that set nothing look the same.
+    const cs = getComputedStyle(document.documentElement);
+    const inkColor = (name, fallback) => {
+      const v = cs.getPropertyValue(name).trim();
+      try { return new THREE.Color(v || fallback); }
+      catch(e){ return new THREE.Color(fallback); }
+    };
     const uniforms = {
       uTime:{value:0},
       uTrail:{value:trailTex},
@@ -123,10 +131,10 @@
       uMask:{value:null},
       uMaskOn:{value:0},
       uMaskScale:{value:.72},
-      uSun:{value:new THREE.Color('#ff8330')},
-      uRose:{value:new THREE.Color('#ff4d8c')},
-      uBone:{value:new THREE.Color('#E4E0D4')},
-      uSoot:{value:new THREE.Color('#141310')}
+      uSun:{value:inkColor('--ink-sun','#ff8330')},
+      uRose:{value:inkColor('--ink-rose','#ff4d8c')},
+      uBone:{value:inkColor('--ink-bone','#E4E0D4')},
+      uSoot:{value:inkColor('--ink-soot','#141310')}
     };
     // Baron Minker serpent — smoke condenses into this shape
     const serpent = new Image();

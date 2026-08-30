@@ -1,7 +1,7 @@
 # Lab clip cut list
 #
-# Clips dropped from the Lab pages on 2026-08-25 as near-duplicates of a
-# better frame. Their encoded files were deleted; the ORIGINALS are untouched
+# Clips dropped from the Lab pages as near-duplicates of a better frame, or
+# pulled by Dane. Their encoded files were deleted; the ORIGINALS are untouched
 # in 'Ai Examples Portfolio/'. To bring one back:
 #   1. ./tools/lab-encode.sh "<source folder>" <slug>
 #      Numbering is stable and derives from sorted filenames, so clip NN
@@ -12,8 +12,8 @@
 # Hero clips are still in use and were never deleted.
 
 baron-minker
-  encoded 53, shown 28
-  cut: 02 03 07 10 13 16 19 20 21 23 24 25 26 28 29 30 32 33 34 36 41 44 45 49 53
+  encoded 53, shown 25
+  cut: 02 03 05 07 08 10 13 16 19 20 21 23 24 25 26 28 29 30 32 33 34 36 41 43 44 45 49 53
 
 space-cats
   encoded 29, shown 17, hero 04 (kept)
