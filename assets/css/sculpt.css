@@ -1,0 +1,163 @@
+/* ============================================================
+   SCULPTURE: the third wing of daneerikforst.com
+   Loaded AFTER style.css AND lab.css.
+
+   Why lab.css comes along: the Lab already owns the dark-wing
+   machinery this section needs, and none of it is Lab-specific.
+   The hero stage, the .mosaic, the .spec-index and its cursor
+   peek, and the dark corrections for .phero / .psec / .pmeta all
+   live there and all work here unchanged. So the sculpture pages
+   carry class="labbody sculptbody": labbody for the dark base,
+   sculptbody for everything below.
+
+   The one rule that separates this wing from the Lab: sculptures
+   are objects, and an object should never be cropped. Every clip
+   was shot centred on pure black, so tiles here letterbox with
+   object-fit:contain against black rather than filling with
+   cover. The bars are invisible and the piece stays whole.
+   ============================================================ */
+
+/* ---------- the shared "object on black" tile ----------
+   Used by the catalogue grid, the dossier mosaic and the home
+   page shelf. The box sets the shape; the clip sits inside it. */
+body.sculptbody .mo-item{background:#000}
+body.sculptbody .mo-item video,body.sculptbody .mo-item img{
+  object-fit:contain;background:#000;
+}
+/* real source shapes, written by tools/sculpt-build.py from the
+   encoded files. A tile whose box matches its clip shows no bars. */
+.mo-item.ar-43 video,.mo-item.ar-43 img{aspect-ratio:4/3}
+.mo-item.ar-34 video,.mo-item.ar-34 img{aspect-ratio:3/4}
+/* The ceiling. A 3:4 clip in a wide span computes a box taller than
+   the screen, which drags its whole grid row with it. Capping the
+   height turns that case into a wide black plate with the piece
+   centred in it, which is the museum read anyway, instead of a tile
+   nobody can see the top and bottom of at once. */
+body.sculptbody .mo-item video,body.sculptbody .mo-item img{
+  height:auto;max-height:min(74vh,720px);
+}
+body.sculptbody .mo-item{display:flex;align-items:center;justify-content:center}
+
+/* the mosaic's dim-the-others hover is built for cinematic frames.
+   On black-background objects it just makes them disappear, so the
+   sculpture pages lean on scale alone. */
+body.sculptbody .mosaic:hover .mo-item video,body.sculptbody .mosaic:hover .mo-item img{filter:none}
+body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:hover img{transform:scale(1.06)}
+
+/* ============================================================
+   1. CATALOGUE GRID
+   Seventeen pieces, one plinth each, on a six-column bed so the
+   last two can sit as a two-up instead of leaving a hole.
+   ============================================================ */
+.sc-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:3px;background:var(--line-light);
+  border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
+}
+.sc-tile{
+  grid-column:span 2;display:flex;flex-direction:column;
+  background:var(--soot);position:relative;
+  transition:background .4s ease;
+}
+/* the closing two-up: half again as wide, same height off the row */
+.sc-tile.pair{grid-column:span 3}
+.sc-tile:hover{background:var(--soot-2)}
+
+.sc-shot{position:relative;overflow:hidden;background:#000;aspect-ratio:4/3}
+.sc-tile.pair .sc-shot{aspect-ratio:2/1}
+.sc-shot video,.sc-shot img{
+  width:100%;height:100%;display:block;object-fit:contain;background:#000;
+  transition:transform .7s cubic-bezier(.6,0,.2,1),filter .5s ease;
+}
+.sc-tile:hover .sc-shot video,.sc-tile:hover .sc-shot img{transform:scale(1.05)}
+/* a hairline that draws itself under the piece on approach */
+.sc-shot::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,var(--sun),var(--rose));
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .55s cubic-bezier(.6,0,.2,1);
+}
+.sc-tile:hover .sc-shot::after{transform:scaleX(1)}
+
+/* the wall label. Deliberately a museum caption rather than an
+   overlay: you should be able to read the whole collection
+   without hovering anything. */
+.sc-label{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;
+  gap:.5rem .8rem;padding:.85rem clamp(.8rem,1.6vw,1.15rem) 1rem;
+}
+.sc-code{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
+  color:rgba(228,224,212,.4);transition:color .35s;
+}
+.sc-tile:hover .sc-code{color:var(--sun)}
+.sc-name{
+  grid-column:2;font-weight:850;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;letter-spacing:-.005em;line-height:1;
+  font-size:clamp(1rem,1.7vw,1.42rem);
+  transition:font-variation-settings .45s cubic-bezier(.6,0,.2,1);
+}
+.sc-tile:hover .sc-name{font-variation-settings:'wdth' 110}
+.sc-count{
+  grid-column:3;grid-row:1/span 2;align-self:center;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
+  color:rgba(228,224,212,.38);white-space:nowrap;
+}
+.sc-cat{
+  grid-column:2;font-family:var(--serif);font-style:italic;
+  font-size:.95rem;line-height:1.3;color:rgba(228,224,212,.6);
+}
+@media(max-width:900px){
+  .sc-tile{grid-column:span 3}
+  .sc-tile.pair{grid-column:span 3}
+  .sc-tile.pair .sc-shot{aspect-ratio:4/3}
+}
+@media(max-width:600px){
+  .sc-tile,.sc-tile.pair{grid-column:1/-1}
+  .sc-label{padding:.75rem .9rem .95rem}
+}
+
+/* ============================================================
+   2. COUNTER STRIP
+   The collection's own numbers, sitting between the argument and
+   the grid so the scale of it lands before the pictures do.
+   ============================================================ */
+.sc-tally{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
+}
+.sc-tally div{
+  padding:clamp(1.3rem,3vw,2.1rem) clamp(1rem,2.4vw,1.8rem);
+  border-right:1px solid var(--line-light);
+}
+.sc-tally div:last-child{border-right:0}
+.sc-tally b{
+  display:block;font-weight:900;font-variation-settings:'wdth' 70;
+  font-size:clamp(2rem,5.2vw,4rem);line-height:.9;letter-spacing:-.02em;
+}
+.sc-tally span{
+  display:block;margin-top:.55rem;font-family:var(--mono);font-size:.62rem;
+  text-transform:uppercase;letter-spacing:.18em;color:rgba(228,224,212,.5);
+}
+@media(max-width:720px){
+  .sc-tally{grid-template-columns:1fr 1fr}
+  .sc-tally div:nth-child(2n){border-right:0}
+  .sc-tally div:nth-child(-n+2){border-bottom:1px solid var(--line-light)}
+}
+
+/* ============================================================
+   3. DOSSIER TRIMMINGS
+   The per-piece pages reuse .phero / .psec / .pmeta wholesale.
+   These are the two things they need that the Lab does not.
+   ============================================================ */
+/* the hero clip is an object on black, so it must not be cropped
+   to fill the header the way a cinematic frame can be */
+body.sculptbody .phero video{object-fit:contain;background:#000}
+body.sculptbody .phero::after{
+  background:linear-gradient(180deg,rgba(20,19,16,.15),rgba(20,19,16,.1) 40%,rgba(20,19,16,.86));
+}
+/* the turn counter that runs down the side of the specimen wall */
+.sc-turn{
+  font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.18em;
+  color:rgba(228,224,212,.45);
+}

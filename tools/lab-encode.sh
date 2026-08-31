@@ -28,9 +28,9 @@ mkdir -p "$VDIR" "$IDIR"
 i=0
 find "$SRC" -type f \( -iname '*.mp4' -o -iname '*.mov' -o -iname '*.m4v' \) | sort | while IFS= read -r f; do
   i=$((i+1)); n=$(printf "%02d" $i)
-  read -r W H < <(ffprobe -v error -select_streams v:0 -show_entries stream=width,height \
-                   -of csv=p=0:s=' ' "$f" | head -1 | tr ',' ' ')
-  DUR=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$f")
+  W=$(ffprobe -v error -select_streams v:0 -show_entries stream=width  -of default=nw=1:nk=1 "$f" | head -1)
+  H=$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nw=1:nk=1 "$f" | head -1)
+  DUR=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$f")
   if [ "$W" -ge "$H" ]; then SCALE="scale=1280:-2:flags=lanczos"; SHAPE="ar-wide";
   else SCALE="scale=-2:1280:flags=lanczos"; SHAPE="ar-tall"; fi
 

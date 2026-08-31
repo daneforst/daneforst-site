@@ -6,3 +6,6 @@ _archivemap/
 
 # Local editor/agent config
 .claude/
+
+# Python bytecode from the one-off scaffolding scripts in tools/
+__pycache__/

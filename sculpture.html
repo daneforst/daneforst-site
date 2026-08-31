@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sculpture · Dane Erik Forst</title>
+<meta name="description" content="Seventeen sculpted pieces by art director Dane Erik Forst, each one turned in the round: original characters from the Baron Minker universe alongside studies of figures he grew up drawing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=11">
+<link rel="stylesheet" href="assets/css/def-quote.css?v=1">
+<link rel="stylesheet" href="assets/css/lab.css?v=3">
+<link rel="stylesheet" href="assets/css/sculpt.css?v=1">
+</head>
+<body class="labbody sculptbody">
+<!-- ============================================================
+     SCULPTURE: landing page for the sculpture wing.
+     Linked from the main navigation and from the home page.
+
+     TO ADD A PIECE:
+       1. Drop the clips in a folder and run
+          ./tools/sculpt-encode.sh "/path/to/folder" <slug>
+       2. Copy any sculpture/<slug>.html as your starting point
+       3. Add an .sc-tile below AND a .spec-row further down
+     The grid runs three across. The last two tiles carry class
+     "pair" so the final row sits as a two-up instead of leaving
+     a hole; if you add a piece, move "pair" to the new last two
+     (or drop it entirely when the count divides by three).
+
+     PLACEHOLDER COPY: every sentence on this page and on the
+     seventeen dossiers is written to be replaced. Search for
+     the word PLACEHOLDER to find each spot.
+     ============================================================ -->
+<div id="loader"><span class="count">00</span><span class="word">In <em>the round</em></span></div>
+
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Sculpture</span></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="branding.html">Branding</a></li>
+    <li><a href="web.html">Web</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
+    <li><a href="sculpture.html">Sculpture</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D &bull; Sculpture &bull; Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="branding.html">Branding</a>
+  <a href="web.html">Web</a>
+  <a href="packaging.html">Packaging</a>
+  <a href="sculpture.html">Sculpture</a>
+  <a href="galleries.html">Galleries</a>
+  <a href="contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+<header class="lab-hero">
+  <div class="lh-stage" data-clips='["assets/video/sculpture/baron-2-0/baron-2-0-01.mp4", "assets/video/sculpture/galactus/galactus-03.mp4", "assets/video/sculpture/the-thing/the-thing-02.mp4", "assets/video/sculpture/swamp-thing/swamp-thing-04.mp4", "assets/video/sculpture/minker-ship/minker-ship-01.mp4"]'>
+    <video class="a" muted loop playsinline preload="none" poster="assets/img/sculpture/baron-2-0/baron-2-0-01.jpg" aria-hidden="true"></video>
+    <video class="b" muted loop playsinline preload="none" aria-hidden="true"></video>
+  </div>
+  <div class="lh-in">
+    <div class="lh-eyebrow">
+      <span class="cat">DEF Studios · Sculpture</span>
+      <span>Portland, Oregon</span>
+    </div>
+    <h1 class="lh-type">
+      <span class="ln" data-k>Drawing has a front.</span>
+      <span class="ln soft">Sculpture has no such mercy.</span>
+    </h1>
+    <div class="lh-foot">
+      <p class="sub">Seventeen pieces, each one turned all the way around. PLACEHOLDER, replace with your own line.</p>
+      <span class="lh-scroll"><i></i>Scroll</span>
+    </div>
+  </div>
+</header>
+
+<!-- PLACEHOLDER: the argument for the section. Three paragraphs, yours. -->
+<section class="lab-sec">
+  <div class="lab-kicker">01 · Why sculpt at all</div>
+  <p class="lab-lede">A drawing only has to work <em>from one seat in the room.</em></p>
+  <div class="lab-body">
+    <p>I have spent eighteen years making flat things: marks, layouts, labels, posters, screens. All of it is composed for a single viewpoint, and a great deal of the craft is knowing which angle to compose for and then defending it.</p>
+    <p>Sculpture takes that away. There is no front, no chosen angle, no crop to hide behind. A shape that only works from three quarters is simply a shape that does not work. That is a slower and more honest way to find out whether an idea was ever any good.</p>
+    <p>Some of what follows is my own: characters and objects out of the Baron Minker universe that had nowhere else to exist. The rest are studies of figures I grew up drawing, made for no reason beyond wanting to find out whether I could get them to stand up.</p>
+  </div>
+</section>
+
+<div class="sc-tally">
+  <div><b>17</b><span>Pieces</span></div>
+  <div><b>165</b><span>Turns recorded</span></div>
+  <div><b>6</b><span>Original characters</span></div>
+  <div><b>11</b><span>Studies</span></div>
+</div>
+
+<section class="lab-sec tight">
+  <div class="lab-kicker">02 · The collection</div>
+  <p class="lab-lede" style="max-width:24em">Seventeen pieces. <em>Every one of them turns.</em></p>
+</section>
+<div class="sc-grid">
+  <a class="sc-tile" href="sculpture/baron-2-0.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/baron-2-0/baron-2-0-02.mp4" poster="assets/img/sculpture/baron-2-0/baron-2-0-02.jpg" muted loop playsinline preload="none" aria-label="Baron 2.0"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">BR</span>
+      <span class="sc-name">Baron 2.0</span>
+      <span class="sc-cat">Original character &middot; Rebuild</span>
+      <span class="sc-count">17 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/galactus.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/galactus/galactus-02.mp4" poster="assets/img/sculpture/galactus/galactus-02.jpg" muted loop playsinline preload="none" aria-label="Galactus"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">GX</span>
+      <span class="sc-name">Galactus</span>
+      <span class="sc-cat">Character study &middot; Scale</span>
+      <span class="sc-count">13 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/the-thing.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/the-thing/the-thing-02.mp4" poster="assets/img/sculpture/the-thing/the-thing-02.jpg" muted loop playsinline preload="none" aria-label="The Thing"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">TT</span>
+      <span class="sc-name">The Thing</span>
+      <span class="sc-cat">Character study &middot; Surface</span>
+      <span class="sc-count">13 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/swamp-thing.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/swamp-thing/swamp-thing-02.mp4" poster="assets/img/sculpture/swamp-thing/swamp-thing-02.jpg" muted loop playsinline preload="none" aria-label="Swamp Thing"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">SW</span>
+      <span class="sc-name">Swamp Thing</span>
+      <span class="sc-cat">Character study &middot; Mass</span>
+      <span class="sc-count">12 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/beast.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/beast/beast-02.mp4" poster="assets/img/sculpture/beast/beast-02.jpg" muted loop playsinline preload="none" aria-label="Beast"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">BE</span>
+      <span class="sc-name">Beast</span>
+      <span class="sc-cat">Character study &middot; Anatomy</span>
+      <span class="sc-count">15 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/nightcrawler.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/nightcrawler/nightcrawler-02.mp4" poster="assets/img/sculpture/nightcrawler/nightcrawler-02.jpg" muted loop playsinline preload="none" aria-label="Nightcrawler"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">NC</span>
+      <span class="sc-name">Nightcrawler</span>
+      <span class="sc-cat">Character study &middot; Pose</span>
+      <span class="sc-count">10 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/pinok.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/pinok/pinok-02.mp4" poster="assets/img/sculpture/pinok/pinok-02.jpg" muted loop playsinline preload="none" aria-label="Pinok"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">PK</span>
+      <span class="sc-name">Pinok</span>
+      <span class="sc-cat">Puppet &middot; Original character</span>
+      <span class="sc-count">11 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/magneto.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/magneto/magneto-02.mp4" poster="assets/img/sculpture/magneto/magneto-02.jpg" muted loop playsinline preload="none" aria-label="Magneto"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">MG</span>
+      <span class="sc-name">Magneto</span>
+      <span class="sc-cat">Character study &middot; Silhouette</span>
+      <span class="sc-count">12 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/gambit.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/gambit/gambit-02.mp4" poster="assets/img/sculpture/gambit/gambit-02.jpg" muted loop playsinline preload="none" aria-label="Gambit"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">GB</span>
+      <span class="sc-name">Gambit</span>
+      <span class="sc-cat">Character study &middot; Attitude</span>
+      <span class="sc-count">15 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/colossus.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/colossus/colossus-02.mp4" poster="assets/img/sculpture/colossus/colossus-02.jpg" muted loop playsinline preload="none" aria-label="Colossus"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">CS</span>
+      <span class="sc-name">Colossus</span>
+      <span class="sc-cat">Character study &middot; Metal</span>
+      <span class="sc-count">9 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/dharbe.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/dharbe/dharbe-02.mp4" poster="assets/img/sculpture/dharbe/dharbe-02.jpg" muted loop playsinline preload="none" aria-label="Dharbe"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">DH</span>
+      <span class="sc-name">Dharbe</span>
+      <span class="sc-cat">Original character</span>
+      <span class="sc-count">10 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/bretterling.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/bretterling/bretterling-02.mp4" poster="assets/img/sculpture/bretterling/bretterling-02.jpg" muted loop playsinline preload="none" aria-label="Bretterling"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">BT</span>
+      <span class="sc-name">Bretterling</span>
+      <span class="sc-cat">Original character</span>
+      <span class="sc-count">8 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/cyclops.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/cyclops/cyclops-02.mp4" poster="assets/img/sculpture/cyclops/cyclops-02.jpg" muted loop playsinline preload="none" aria-label="Cyclops"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">CY</span>
+      <span class="sc-name">Cyclops</span>
+      <span class="sc-cat">Character study &middot; Restraint</span>
+      <span class="sc-count">6 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/the-baron.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/the-baron/the-baron-02.mp4" poster="assets/img/sculpture/the-baron/the-baron-02.jpg" muted loop playsinline preload="none" aria-label="The Baron"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">TB</span>
+      <span class="sc-name">The Baron</span>
+      <span class="sc-cat">Original character &middot; First version</span>
+      <span class="sc-count">5 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile" href="sculpture/storm.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/storm/storm-02.mp4" poster="assets/img/sculpture/storm/storm-02.jpg" muted loop playsinline preload="none" aria-label="Storm"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">ST</span>
+      <span class="sc-name">Storm</span>
+      <span class="sc-cat">Character study &middot; Motion</span>
+      <span class="sc-count">2 turns</span>
+    </div>
+  </a>
+  <a class="sc-tile pair" href="sculpture/wolverine.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/wolverine/wolverine-01.mp4" poster="assets/img/sculpture/wolverine/wolverine-01.jpg" muted loop playsinline preload="none" aria-label="Wolverine"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">WV</span>
+      <span class="sc-name">Wolverine</span>
+      <span class="sc-cat">Character study</span>
+      <span class="sc-count">1 turn</span>
+    </div>
+  </a>
+  <a class="sc-tile pair" href="sculpture/minker-ship.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/minker-ship/minker-ship-02.mp4" poster="assets/img/sculpture/minker-ship/minker-ship-02.jpg" muted loop playsinline preload="none" aria-label="Minker Ship"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">MS</span>
+      <span class="sc-name">Minker Ship</span>
+      <span class="sc-cat">Vehicle &middot; Worldbuilding</span>
+      <span class="sc-count">6 turns</span>
+    </div>
+  </a>
+</div>
+
+<section class="lab-sec tight">
+  <div class="lab-kicker">03 · Index</div>
+</section>
+<div class="spec-index">
+  <a class="spec-row" href="sculpture/baron-2-0.html" data-peek="assets/video/sculpture/baron-2-0/baron-2-0-03.mp4" data-peek-tag="BR · Baron 2.0">
+    <span class="spec-n">01</span>
+    <span class="spec-t">Baron 2.0</span>
+    <span class="spec-c">Original character &middot; Rebuild</span>
+  </a>
+  <a class="spec-row" href="sculpture/galactus.html" data-peek="assets/video/sculpture/galactus/galactus-03.mp4" data-peek-tag="GX · Galactus">
+    <span class="spec-n">02</span>
+    <span class="spec-t">Galactus</span>
+    <span class="spec-c">Character study &middot; Scale</span>
+  </a>
+  <a class="spec-row" href="sculpture/the-thing.html" data-peek="assets/video/sculpture/the-thing/the-thing-03.mp4" data-peek-tag="TT · The Thing">
+    <span class="spec-n">03</span>
+    <span class="spec-t">The Thing</span>
+    <span class="spec-c">Character study &middot; Surface</span>
+  </a>
+  <a class="spec-row" href="sculpture/swamp-thing.html" data-peek="assets/video/sculpture/swamp-thing/swamp-thing-03.mp4" data-peek-tag="SW · Swamp Thing">
+    <span class="spec-n">04</span>
+    <span class="spec-t">Swamp Thing</span>
+    <span class="spec-c">Character study &middot; Mass</span>
+  </a>
+  <a class="spec-row" href="sculpture/beast.html" data-peek="assets/video/sculpture/beast/beast-03.mp4" data-peek-tag="BE · Beast">
+    <span class="spec-n">05</span>
+    <span class="spec-t">Beast</span>
+    <span class="spec-c">Character study &middot; Anatomy</span>
+  </a>
+  <a class="spec-row" href="sculpture/nightcrawler.html" data-peek="assets/video/sculpture/nightcrawler/nightcrawler-03.mp4" data-peek-tag="NC · Nightcrawler">
+    <span class="spec-n">06</span>
+    <span class="spec-t">Nightcrawler</span>
+    <span class="spec-c">Character study &middot; Pose</span>
+  </a>
+  <a class="spec-row" href="sculpture/pinok.html" data-peek="assets/video/sculpture/pinok/pinok-03.mp4" data-peek-tag="PK · Pinok">
+    <span class="spec-n">07</span>
+    <span class="spec-t">Pinok</span>
+    <span class="spec-c">Puppet &middot; Original character</span>
+  </a>
+  <a class="spec-row" href="sculpture/magneto.html" data-peek="assets/video/sculpture/magneto/magneto-03.mp4" data-peek-tag="MG · Magneto">
+    <span class="spec-n">08</span>
+    <span class="spec-t">Magneto</span>
+    <span class="spec-c">Character study &middot; Silhouette</span>
+  </a>
+  <a class="spec-row" href="sculpture/gambit.html" data-peek="assets/video/sculpture/gambit/gambit-03.mp4" data-peek-tag="GB · Gambit">
+    <span class="spec-n">09</span>
+    <span class="spec-t">Gambit</span>
+    <span class="spec-c">Character study &middot; Attitude</span>
+  </a>
+  <a class="spec-row" href="sculpture/colossus.html" data-peek="assets/video/sculpture/colossus/colossus-03.mp4" data-peek-tag="CS · Colossus">
+    <span class="spec-n">10</span>
+    <span class="spec-t">Colossus</span>
+    <span class="spec-c">Character study &middot; Metal</span>
+  </a>
+  <a class="spec-row" href="sculpture/dharbe.html" data-peek="assets/video/sculpture/dharbe/dharbe-03.mp4" data-peek-tag="DH · Dharbe">
+    <span class="spec-n">11</span>
+    <span class="spec-t">Dharbe</span>
+    <span class="spec-c">Original character</span>
+  </a>
+  <a class="spec-row" href="sculpture/bretterling.html" data-peek="assets/video/sculpture/bretterling/bretterling-03.mp4" data-peek-tag="BT · Bretterling">
+    <span class="spec-n">12</span>
+    <span class="spec-t">Bretterling</span>
+    <span class="spec-c">Original character</span>
+  </a>
+  <a class="spec-row" href="sculpture/cyclops.html" data-peek="assets/video/sculpture/cyclops/cyclops-03.mp4" data-peek-tag="CY · Cyclops">
+    <span class="spec-n">13</span>
+    <span class="spec-t">Cyclops</span>
+    <span class="spec-c">Character study &middot; Restraint</span>
+  </a>
+  <a class="spec-row" href="sculpture/the-baron.html" data-peek="assets/video/sculpture/the-baron/the-baron-03.mp4" data-peek-tag="TB · The Baron">
+    <span class="spec-n">14</span>
+    <span class="spec-t">The Baron</span>
+    <span class="spec-c">Original character &middot; First version</span>
+  </a>
+  <a class="spec-row" href="sculpture/storm.html" data-peek="assets/video/sculpture/storm/storm-01.mp4" data-peek-tag="ST · Storm">
+    <span class="spec-n">15</span>
+    <span class="spec-t">Storm</span>
+    <span class="spec-c">Character study &middot; Motion</span>
+  </a>
+  <a class="spec-row" href="sculpture/wolverine.html" data-peek="assets/video/sculpture/wolverine/wolverine-01.mp4" data-peek-tag="WV · Wolverine">
+    <span class="spec-n">16</span>
+    <span class="spec-t">Wolverine</span>
+    <span class="spec-c">Character study</span>
+  </a>
+  <a class="spec-row" href="sculpture/minker-ship.html" data-peek="assets/video/sculpture/minker-ship/minker-ship-03.mp4" data-peek-tag="MS · Minker Ship">
+    <span class="spec-n">17</span>
+    <span class="spec-t">Minker Ship</span>
+    <span class="spec-c">Vehicle &middot; Worldbuilding</span>
+  </a>
+</div>
+
+<!-- PLACEHOLDER: how the pieces actually get made. Your process, your tools. -->
+<section class="lab-sec">
+  <div class="lab-kicker">04 · How they get made</div>
+  <div class="tk-wrap">
+    <p class="tk-line">Sculpted digitally, <b>judged the old way.</b></p>
+    <div>
+      <p class="tk-note">Each piece is built in the round and then recorded turning, because a still image of a sculpture is just a drawing again and hides exactly the problems the sculpting was meant to expose. What you are looking at on every page here is the same footage I use to decide whether a piece is finished. PLACEHOLDER, replace with your real process and the tools you use.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lab-close">
+  <h2>Want something built <em>in three dimensions?</em></h2>
+  <p class="sub">Characters, objects, props, or a shape that only exists in your head so far.</p>
+  <div class="close-paths">
+    <a class="close-path" href="contact.html">
+      <span class="cp-k">01 · Character work</span>
+      <span class="cp-t">Design it and sculpt it</span>
+      <span class="cp-d">From a brief or a scribble through to a piece that holds up from every side.</span>
+    </a>
+    <a class="close-path" href="contact.html">
+      <span class="cp-k">02 · Objects and props</span>
+      <span class="cp-t">Build the thing itself</span>
+      <span class="cp-d">Products, vehicles, packaging forms, anything that needs to exist as an object first.</span>
+    </a>
+    <a class="close-path" href="lab.html">
+      <span class="cp-k">03 · See also</span>
+      <span class="cp-t">The Lab</span>
+      <span class="cp-d">Where several of these pieces end up once they start moving.</span>
+    </a>
+  </div>
+</section>
+
+<footer class="foot-slim">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
+  </linearGradient></defs>
+</svg>
+  <a href="index.html" aria-label="Back to home" style="display:block;width:max-content"><img class="sig" src="assets/img/def-logo.png" alt="Dane Erik Forst signature"></a>
+  <div class="socials">
+  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
+    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+</div>
+  <a class="dq-foot-link" href="contact.html" data-def-quote-open>Need a project quote?<svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  <div class="meta-row" style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.65)">
+    <span>© 2026 DEF Studios</span>
+    <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+    <a href="tel:6613033945">661·303·3945</a>
+    <span>Portland, Oregon</span>
+  </div>
+</footer>
+
+<div class="lab-grain" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/def-quote.js?v=1"></script>
+<script src="assets/js/lab.js?v=2"></script>
+</body>
+</html>
