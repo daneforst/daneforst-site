@@ -37,8 +37,48 @@ MANIFEST = os.path.join(ROOT, 'tools', 'sculpt-manifest.txt')
 # ALL PROSE HERE IS PLACEHOLDER.
 # ------------------------------------------------------------------
 PIECES = [
+  dict(slug='rahul-blundo', name='Rahul + Blundo', code='RB',
+      cat='Two-up',
+      tag='Two characters in one piece, which is not twice the problem.',
+      intro='A pair, sculpted as a pair. The composition has to work before either of them does, which makes this a different job from building two figures and standing them next to each other.',
+      s1=('Why it is harder than two',
+          'Alone, each of them can face wherever the best angle is. Together they have to agree on one, and the parasol has to sit somewhere it does not cut either head in half from any side.'),
+      s2=('Blundo',
+          'The smaller one, and the one who arrived second. He changed what Rahul was for.'),
+      tags=['Baron Minker', 'Original character', 'Two figures', 'Turntable']),
+
+ dict(slug='rahul', name='Rahul', code='RH',
+      cat='Character &middot; Also a puppet',
+      tag='The third time this character has been built from scratch.',
+      intro='Rahul already exists as a hand built puppet and as a boxed figure. Sculpting him again meant deciding, once more, which version of him is the real one.',
+      s1=('Building a character three times',
+          'Every medium argues for different proportions. The puppet needed a head you could get a hand into, the toy needed a silhouette that survives injection moulding, and this one only has to look right, which turns out to be its own kind of constraint.'),
+      s2=('The ribbons',
+          'They do most of the work. A static figure with something trailing off it reads as movement, and they let the piece fill space it does not actually occupy.'),
+      tags=['Baron Minker', 'Original character', 'Puppet', 'Turntable']),
+
+ dict(slug='guy-dynamo', name='Guy Dynamo', code='GD',
+      cat='Character',
+      tag='A name that turned up before the design did.',
+      intro='Occasionally the name arrives first and then insists on things. Guy Dynamo wanted a certain kind of jaw and would not be talked out of it.',
+      s1=('Designing backwards',
+          'Starting from a name rather than a shape sounds like a gimmick and mostly is, but it does close down options fast, and closing down options is most of what design actually is.'),
+      s2=('Where he fits',
+          'Somewhere in the Minker universe, in a role that has not been written yet.'),
+      tags=['Baron Minker', 'Original character', 'Concept', 'Turntable']),
+
+ dict(slug='sausage-man', name='Sausage Man', code='SM',
+      cat='Character',
+      tag='Exactly what it says on the tin.',
+      intro='Some ideas do not want developing. They want building, quickly, before you talk yourself out of them, and this is one of those.',
+      s1=('Not overthinking it',
+          'The whole piece took less deliberation than any other on this page and is not obviously the worse for it. Worth remembering the next time something takes fifteen passes.'),
+      s2=('Short set',
+          'Five turns. It said what it had to say.'),
+      tags=['Baron Minker', 'Original character', 'Quick build', 'Turntable']),
+
  dict(slug='baron-2-0', name='Baron 2.0', code='BR',
-      cat='Original character &middot; Rebuild',
+      cat='Rebuild',
       tag='The Baron, built a second time, and finally right.',
       intro='The second pass at a character who has been through several. This one got turned in the round until the silhouette read from every angle, not just the one it was drawn from.',
       s1=('Why there is a second version',
@@ -98,7 +138,7 @@ PIECES = [
       tags=['Character study', 'Pose', 'Silhouette', 'Turntable']),
 
  dict(slug='pinok', name='Pinok', code='PK',
-      cat='Puppet &middot; Original character',
+      cat='Puppet',
       tag='The rare piece with its reference sitting on the desk.',
       intro='Pinok exists as a physical puppet as well, which made this the one sculpt where the source material could be picked up and turned over by hand.',
       s1=('Working from a real object',
@@ -138,9 +178,9 @@ PIECES = [
       tags=['Character study', 'Metal', 'Surface', 'Turntable']),
 
  dict(slug='dharbe', name='Dharbe', code='DH',
-      cat='Original character',
+      cat='Character',
       tag='Started as a doodle, got out of hand.',
-      intro='An original, from the same shelf as the rest of the Minker material. No brief, no reference, no particular plan, which is how most of the good ones start.',
+      intro='From the same shelf as the rest of the Minker material. No brief, no reference, no particular plan, which is how most of the good ones start.',
       s1=('Where it came from',
           'A shape that would not go away. Some sculpts are solving a known character and some are finding out what the character is, and this one was firmly the second kind.'),
       s2=('Still open',
@@ -148,9 +188,9 @@ PIECES = [
       tags=['Original character', 'Baron Minker', 'Concept', 'Turntable']),
 
  dict(slug='bretterling', name='Bretterling', code='BT',
-      cat='Original character',
+      cat='Unaffiliated',
       tag='Somewhere between an insect and a piece of furniture.',
-      intro='Another original, and roughly where it was aiming. The appeal is that you cannot immediately name what you are looking at.',
+      intro='It belongs to nothing in particular, and roughly where it was aiming. The appeal is that you cannot immediately name what you are looking at.',
       s1=('The idea',
           'Take two categories that have nothing to do with each other and build the thing that would have to exist between them. The result is uncomfortable in a way that is hard to look away from.'),
       s2=('What I would change',
@@ -168,7 +208,7 @@ PIECES = [
       tags=['Character study', 'Restraint', 'Silhouette', 'Turntable']),
 
  dict(slug='minker-ship', name='Minker Ship', code='MS',
-      cat='Vehicle &middot; Worldbuilding',
+      cat='Vehicle',
       tag='Not a character. A place things happen in.',
       intro='The ship from the Baron Minker universe, turned slowly so the underside gets its moment. Hard surfaces after a shelf full of anatomy, which was the point.',
       s1=('Why a vehicle',
@@ -178,7 +218,7 @@ PIECES = [
       tags=['Baron Minker', 'Vehicle', 'Hard surface', 'Worldbuilding']),
 
  dict(slug='the-baron', name='The Baron', code='TB',
-      cat='Original character &middot; First version',
+      cat='First version',
       tag='The original, before the rebuild.',
       intro='Kept here because the first version of anything is usually where the idea is clearest, even when the execution is not.',
       s1=('Why keep it',
@@ -209,25 +249,60 @@ PIECES = [
 ]
 
 # ------------------------------------------------------------------
-# LANDING PAGE WEIGHTS. Uniform tiles read as a spreadsheet, so the
-# band runs three scales and the heaviest sets take the most room:
-#   feature  full width, media beside type (flip = media on the right)
-#   w6 / w4  a half or a third of the bed
-#   w3       a quarter, for the sets that are a turn or two long
-# Rows have to add up to 12, or the bed leaves a hole.
-#   feature | 6+6 | feature | 4+4+4 | feature | 6+6 | 4+4+4 | 3+3+3+3
+# THE LANDING PAGE, IN THREE CHAPTERS.
+#
+# Running all of it together was the real problem with the first
+# version, worse than the uniform tiles: a universe Dane invented and
+# a line of studies of other people's characters were reading as one
+# undifferentiated pile. Each chapter now opens with a magazine-style
+# masthead and then runs its own band.
+#
+# WEIGHTS, within a chapter:
+#   feature   full width, media beside type ("feature flip" = media right)
+#   w6        half the bed
+#   ''        a third (the default)
+#   w3        a quarter
+# EVERY CHAPTER'S ROWS MUST ADD UP TO 12 OR THE BED LEAVES A HOLE.
+# Order here is page order, so the fullest sets take the biggest slots.
 # ------------------------------------------------------------------
-WEIGHTS = {
-    'baron-2-0': 'feature', 'galactus': 'w6', 'the-thing': 'w6',
-    'beast': 'feature flip', 'swamp-thing': '', 'nightcrawler': '', 'pinok': '',
-    'gambit': 'feature', 'magneto': 'w6', 'colossus': 'w6',
-    'dharbe': '', 'bretterling': '', 'cyclops': '',
-    'minker-ship': 'w3', 'the-baron': 'w3', 'storm': 'w3', 'wolverine': 'w3',
-}
+CHAPTERS = [
+    dict(key='minker', num='01', title='Baron <em>Minker</em>',
+         desc='The universe. Characters, a vehicle, and whatever else the '
+              'story turned out to need. None of it borrowed, none of it '
+              'commissioned, and none of it finished.',
+         # feature / 6+6 / 4+4+4 / 6+6
+         pieces=[('baron-2-0', 'feature'), ('rahul-blundo', 'w6'), ('rahul', 'w6'),
+                 ('dharbe', ''), ('guy-dynamo', ''), ('minker-ship', ''),
+                 ('sausage-man', 'w6'), ('the-baron', 'w6')]),
+
+    dict(key='comics', num='02', title='Comic <em>Characters</em>',
+         desc='A line of studies of figures I grew up drawing. No brief, no '
+              'client, and no obligation to be reverent about any of them.',
+         # feature / 6+6 / 4+4+4 / feature / 3+3+3+3
+         pieces=[('beast', 'feature'), ('gambit', 'w6'), ('the-thing', 'w6'),
+                 ('galactus', ''), ('magneto', ''), ('swamp-thing', ''),
+                 ('nightcrawler', 'feature flip'),
+                 ('colossus', 'w3'), ('cyclops', 'w3'), ('storm', 'w3'), ('wolverine', 'w3')]),
+
+    dict(key='random', num='03', title='Random <em>Creations</em>',
+         desc='The ones that do not belong to anything yet. A puppet, and a '
+              'shape that is still arguing with itself.',
+         # 6+6
+         pieces=[('pinok', 'w6'), ('bretterling', 'w6')]),
+]
+
+WEIGHTS = {s: w for c in CHAPTERS for s, w in c['pieces']}
+ORDER = [s for c in CHAPTERS for s, _ in c['pieces']]
+
+# Page order IS chapter order. The dossiers number themselves and chain
+# prev/next off this list, so if it disagrees with the band the numbering
+# on the cards stops matching the numbering on the pages they open.
+PIECES.sort(key=lambda x: ORDER.index(x['slug']))
 
 # clips used in the landing page hero, in order
-HERO = ['baron-2-0/baron-2-0-01', 'galactus/galactus-03', 'the-thing/the-thing-02',
-        'swamp-thing/swamp-thing-04', 'minker-ship/minker-ship-01']
+HERO = ['baron-2-0/baron-2-0-01', 'rahul-blundo/rahul-blundo-04', 'galactus/galactus-03',
+        'the-thing/the-thing-02', 'rahul/rahul-03', 'swamp-thing/swamp-thing-04',
+        'minker-ship/minker-ship-01']
 
 NAV_ITEMS = [('about.html', 'About'), (None, 'Work'), ('branding.html', 'Branding'),
              ('web.html', 'Web'), ('packaging.html', 'Packaging'),
@@ -464,30 +539,27 @@ def mosaic(piece, clips, p, plinths):
 def build_landing(clips, plinths):
     p = ''
     total = sum(len(v) for v in clips.values())
-    originals = sum(1 for x in PIECES if 'Original' in x['cat'] or 'Baron Minker' in x['tags'])
-    studies = len(PIECES) - originals
+    minker = len(CHAPTERS[0]['pieces'])
+    studies = len(CHAPTERS[1]['pieces'])
 
     hero = ', '.join(f'"assets/video/sculpture/{h}.mp4"' for h in HERO)
     hero_poster = f'assets/img/sculpture/{HERO[0]}.jpg'
 
-    tiles = []
-    for i, x in enumerate(PIECES, 1):
-        cl = clips.get(x['slug'], [])
-        if not cl:
-            continue
+    by_slug = {x['slug']: (i, x) for i, x in enumerate(PIECES, 1)}
+
+    def card(i, x):
+        cl = clips[x['slug']]
         pick = cl[1] if len(cl) > 1 else cl[0]
         stem = f'{x["slug"]}-{pick["n"]}'
         base = f'assets/video/sculpture/{x["slug"]}/{stem}'
         pa, pb = plinths.get(stem, ('#000000', '#000000'))
         w = WEIGHTS.get(x['slug'], '')
-        cls = ('sc-item ' + w).strip()
         turns = f'{len(cl)} {"turn" if len(cl) == 1 else "turns"}'
         shot = (f'    <div class="sc-shot">\n'
                 f'      <video class="labvid" data-src="{base}.mp4" '
                 f'poster="{base.replace("/video/", "/img/")}.jpg" muted loop playsinline '
                 f'preload="none" aria-label="{x["name"]}"></video>\n'
                 f'    </div>')
-
         if 'feature' in w:
             body = f'''{shot}
     <div class="sc-face">
@@ -507,9 +579,29 @@ def build_landing(clips, plinths):
       <span class="sc-cat">{x['cat']}</span>
       <span class="sc-count">{turns}</span>
     </div>'''
+        return (f'  <a class="{("sc-item " + w).strip()}" style="--pa:{pa};--pb:{pb}" '
+                f'href="sculpture/{x["slug"]}.html">\n{body}\n  </a>')
 
-        tiles.append(f'  <a class="{cls}" style="--pa:{pa};--pb:{pb}" '
-                     f'href="sculpture/{x["slug"]}.html">\n{body}\n  </a>')
+    tiles = []
+    for ch in CHAPTERS:
+        got = [by_slug[s] for s, _ in ch['pieces'] if s in by_slug]
+        if not got:
+            continue
+        turns = sum(len(clips[x['slug']]) for _, x in got)
+        cards = chr(10).join(card(i, x) for i, x in got)
+        tiles.append(f'''<section class="sc-chapter" id="{ch['key']}">
+  <div>
+    <span class="sc-ch-k">{ch['num']} &middot; Collection</span>
+    <h2 class="sc-ch-t">{ch['title']}</h2>
+  </div>
+  <div>
+    <p class="sc-ch-d">{ch['desc']}</p>
+    <span class="sc-ch-c">{len(got)} pieces &middot; {turns} turns</span>
+  </div>
+</section>
+<div class="sc-band">
+{cards}
+</div>''')
 
     rows = []
     for i, x in enumerate(PIECES, 1):
@@ -524,7 +616,7 @@ def build_landing(clips, plinths):
   </a>''')
 
     return f'''{head(p, 'Sculpture · Dane Erik Forst',
-                     'Seventeen sculpted pieces by art director Dane Erik Forst, each one turned in the round: original characters from the Baron Minker universe alongside studies of figures he grew up drawing.')}
+                     'Sculpture by art director Dane Erik Forst, every piece turned in the round: the Baron Minker universe, a line of comic character studies, and the pieces that belong to neither.')}
 <body class="labbody sculptbody">
 <!-- ============================================================
      SCULPTURE: landing page for the sculpture wing.
@@ -573,7 +665,7 @@ def build_landing(clips, plinths):
       <span class="ln soft">Sculpture has no such mercy.</span>
     </h1>
     <div class="lh-foot">
-      <p class="sub">Seventeen pieces, each one turned all the way around, because a shape that only works from the front does not really work.</p>
+      <p class="sub">Twenty one pieces across three collections, each one turned all the way around, because a shape that only works from the front does not really work.</p>
       <span class="lh-scroll"><i></i>Scroll</span>
     </div>
   </div>
@@ -586,24 +678,22 @@ def build_landing(clips, plinths):
   <div class="lab-body">
     <p>I have spent eighteen years making flat things: marks, layouts, labels, posters, screens. All of it is composed for a single viewpoint, and a great deal of the craft is knowing which angle to compose for and then defending it.</p>
     <p>Sculpture takes that away. There is no front, no chosen angle, no crop to hide behind. A shape that only works from three quarters is simply a shape that does not work. That is a slower and more honest way to find out whether an idea was ever any good.</p>
-    <p>Some of what follows is my own: characters and objects out of the Baron Minker universe that had nowhere else to exist. The rest are studies of figures I grew up drawing, made for no reason beyond wanting to find out whether I could get them to stand up.</p>
+    <p>What follows is in three parts. The Baron Minker material is entirely mine: characters and objects out of a universe that had nowhere else to exist. The comic characters are studies of figures I grew up drawing, made for no reason beyond wanting to find out whether I could get them to stand up. The rest belong to nothing yet.</p>
   </div>
 </section>
 
 <div class="sc-tally">
   <div><b>{len(PIECES)}</b><span>Pieces</span></div>
   <div><b>{total}</b><span>Turns recorded</span></div>
-  <div><b>{originals}</b><span>Original characters</span></div>
+  <div><b>{minker}</b><span>Baron Minker</span></div>
   <div><b>{studies}</b><span>Studies</span></div>
 </div>
 
 <section class="lab-sec tight">
   <div class="lab-kicker">02 · The collection</div>
-  <p class="lab-lede" style="max-width:24em">Seventeen pieces. <em>Every one of them turns.</em></p>
+  <p class="lab-lede" style="max-width:26em">Three collections. <em>Every piece turns.</em></p>
 </section>
-<div class="sc-band">
 {chr(10).join(tiles)}
-</div>
 
 <section class="lab-sec tight">
   <div class="lab-kicker">03 · Index</div>
