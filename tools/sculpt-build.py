@@ -550,9 +550,9 @@ def build_landing(clips, plinths):
      colour, so a piece shot on pink does not sit in a black
      box. Re-sample with tools/sculpt-plinth.py.
 
-     PLACEHOLDER COPY: every sentence on this page and on the
-     seventeen dossiers is written to be replaced. Search for
-     the word PLACEHOLDER to find each spot.
+     EDITING THE COPY: every prose block on this page and on the
+     seventeen dossiers is marked with an HTML comment beginning
+     "copy:". Search for that to find each one.
      ============================================================ -->
 <div id="loader"><span class="count">00</span><span class="word">In <em>the round</em></span></div>
 
@@ -573,13 +573,13 @@ def build_landing(clips, plinths):
       <span class="ln soft">Sculpture has no such mercy.</span>
     </h1>
     <div class="lh-foot">
-      <p class="sub">Seventeen pieces, each one turned all the way around. PLACEHOLDER, replace with your own line.</p>
+      <p class="sub">Seventeen pieces, each one turned all the way around, because a shape that only works from the front does not really work.</p>
       <span class="lh-scroll"><i></i>Scroll</span>
     </div>
   </div>
 </header>
 
-<!-- PLACEHOLDER: the argument for the section. Three paragraphs, yours. -->
+<!-- copy: the argument for the section, three paragraphs -->
 <section class="lab-sec">
   <div class="lab-kicker">01 · Why sculpt at all</div>
   <p class="lab-lede">A drawing only has to work <em>from one seat in the room.</em></p>
@@ -612,13 +612,13 @@ def build_landing(clips, plinths):
 {chr(10).join(rows)}
 </div>
 
-<!-- PLACEHOLDER: how the pieces actually get made. Your process, your tools. -->
+<!-- copy: how the pieces get made, process and tools -->
 <section class="lab-sec">
   <div class="lab-kicker">04 · How they get made</div>
   <div class="tk-wrap">
     <p class="tk-line">Sculpted digitally, <b>judged the old way.</b></p>
     <div>
-      <p class="tk-note">Each piece is built in the round and then recorded turning, because a still image of a sculpture is just a drawing again and hides exactly the problems the sculpting was meant to expose. What you are looking at on every page here is the same footage I use to decide whether a piece is finished. PLACEHOLDER, replace with your real process and the tools you use.</p>
+      <p class="tk-note">Each piece is built in the round and then recorded turning, because a still image of a sculpture is just a drawing again and hides exactly the problems the sculpting was meant to expose. What you are looking at on every page here is the same footage I use to decide whether a piece is finished.</p>
     </div>
   </div>
 </section>
@@ -686,8 +686,8 @@ def build_piece(i, x, clips, plinths):
      Tiles letterbox on black rather than cropping, so no piece
      ever loses its silhouette to a tile shape.
 
-     PLACEHOLDER COPY: every sentence below is written to be
-     replaced with Dane's own.
+     EDITING THE COPY: each prose block below is marked with an
+     HTML comment beginning "copy:".
      ============================================================ -->
 {nav(p)}
 
@@ -696,7 +696,7 @@ def build_piece(i, x, clips, plinths):
   <div class="ph-in">
     <span class="idx">Sculpture · {i:02d} / {x['name']}</span>
     <h1>{x['name']}</h1>
-    <!-- PLACEHOLDER: one line, what this piece is -->
+    <!-- copy: the one-line description -->
     <p class="tag">{x['tag']}</p>
   </div>
 </header>
@@ -705,18 +705,16 @@ def build_piece(i, x, clips, plinths):
   <a class="back-lab" href="{p}sculpture.html">
     <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M13 1L1 13M1 13h9M1 13V4" stroke="currentColor" stroke-width="1.5"/></svg>
     All sculpture</a>
-  <!-- PLACEHOLDER: the intro paragraph -->
+  <!-- copy: the intro paragraph -->
   <p class="project-intro reveal">{x['intro']}</p>
 
-  <!-- PLACEHOLDER: fill in Year, and correct Medium if it is wrong -->
   <div class="pmeta reveal" style="margin-top:clamp(1.8rem,4vh,2.8rem)">
     <div><span>Role</span><b>Concept, Sculpt, Art Direction</b></div>
     <div><span>Medium</span><b>Digital sculpture</b></div>
     <div><span>Turns</span><b>{n} {'clip' if n == 1 else 'clips'}</b></div>
-    <div><span>Year</span><b>TBC</b></div>
   </div>
 
-  <!-- PLACEHOLDER: two sections, headings and all -->
+  <!-- copy: the two write-up sections, headings and all -->
   <div class="psec reveal">
     <h2>{x['s1'][0]}</h2>
     <p>{x['s1'][1]}</p>
