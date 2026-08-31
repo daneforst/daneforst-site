@@ -268,7 +268,7 @@ def head(p, title, desc):
 <link rel="stylesheet" href="{p}assets/css/style.css?v=11">
 <link rel="stylesheet" href="{p}assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="{p}assets/css/lab.css?v=3">
-<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=4">
+<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=6">
 </head>'''
 
 
@@ -425,7 +425,7 @@ def spans_for(count):
     return [SPAN[s] for row in rows_for(count) for s in row]
 
 
-def mosaic(piece, clips, p):
+def mosaic(piece, clips, p, plinths):
     """Clip order is interleaved so neighbouring tiles are not
     consecutive turns of the same angle. Within each row the widest
     span goes to the widest clip: a portrait turn in an 8- or
@@ -448,8 +448,10 @@ def mosaic(piece, clips, p):
 
     out = []
     for c, span in laid:
-        src = f'{p}assets/video/sculpture/{piece["slug"]}/{piece["slug"]}-{c["n"]}'
-        out.append(f'''    <figure class="mo-item {span} {c['shape']} reveal">
+        stem = f'{piece["slug"]}-{c["n"]}'
+        src = f'{p}assets/video/sculpture/{piece["slug"]}/{stem}'
+        pa, pb = plinths.get(stem, ('#000000', '#000000'))
+        out.append(f'''    <figure class="mo-item {span} {c['shape']} reveal" style="--pa:{pa};--pb:{pb}">
       <video class="labvid" data-src="{src}.mp4" poster="{src.replace('/video/', '/img/')}.jpg" muted loop playsinline preload="none" aria-label="{piece['code']} turn {c['n']}"></video>
       <figcaption class="mo-cap"><span class="n">{piece['code']}-{c['n']}</span><span>{c['dur']:.0f}s</span></figcaption>
     </figure>''')
@@ -459,7 +461,7 @@ def mosaic(piece, clips, p):
 # ------------------------------------------------------------------
 # landing page
 # ------------------------------------------------------------------
-def build_landing(clips):
+def build_landing(clips, plinths):
     p = ''
     total = sum(len(v) for v in clips.values())
     originals = sum(1 for x in PIECES if 'Original' in x['cat'] or 'Baron Minker' in x['tags'])
@@ -468,7 +470,6 @@ def build_landing(clips):
     hero = ', '.join(f'"assets/video/sculpture/{h}.mp4"' for h in HERO)
     hero_poster = f'assets/img/sculpture/{HERO[0]}.jpg'
 
-    plinths = read_plinths()
     tiles = []
     for i, x in enumerate(PIECES, 1):
         cl = clips.get(x['slug'], [])
@@ -657,7 +658,7 @@ def build_landing(clips):
 # ------------------------------------------------------------------
 # dossier pages
 # ------------------------------------------------------------------
-def build_piece(i, x, clips):
+def build_piece(i, x, clips, plinths):
     p = '../'
     cl = clips[x['slug']]
     n = len(cl)
@@ -731,7 +732,7 @@ def build_piece(i, x, clips):
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · {n} {'clip' if n == 1 else 'clips'}</div>
   <div class="mosaic">
-{mosaic(x, cl, p)}
+{mosaic(x, cl, p, plinths)}
   </div>
 </section>
 
@@ -759,18 +760,19 @@ def build_piece(i, x, clips):
 
 def main():
     clips = read_manifest()
+    plinths = read_plinths()
     missing = [x['slug'] for x in PIECES if x['slug'] not in clips]
     if missing:
         raise SystemExit('no clips encoded for: ' + ', '.join(missing))
 
     os.makedirs(os.path.join(ROOT, 'sculpture'), exist_ok=True)
     with open(os.path.join(ROOT, 'sculpture.html'), 'w') as f:
-        f.write(build_landing(clips))
+        f.write(build_landing(clips, plinths))
     print('wrote sculpture.html')
     for i, x in enumerate(PIECES, 1):
         path = os.path.join(ROOT, 'sculpture', x['slug'] + '.html')
         with open(path, 'w') as f:
-            f.write(build_piece(i, x, clips))
+            f.write(build_piece(i, x, clips, plinths))
         print('wrote sculpture/%s.html  (%d clips)' % (x['slug'], len(clips[x['slug']])))
 
 

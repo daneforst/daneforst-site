@@ -20,9 +20,12 @@
 /* ---------- the shared "object on black" tile ----------
    Used by the catalogue grid, the dossier mosaic and the home
    page shelf. The box sets the shape; the clip sits inside it. */
-body.sculptbody .mo-item{background:#000}
+/* Each tile carries the backdrop of its own clip, so wherever the
+   box and the clip disagree the bars are the piece's own colour
+   rather than black. See tools/sculpt-plinth.py. */
+body.sculptbody .mo-item{background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000))}
 body.sculptbody .mo-item video,body.sculptbody .mo-item img{
-  object-fit:contain;background:#000;
+  object-fit:contain;background:transparent;
 }
 /* real source shapes, written by tools/sculpt-build.py from the
    encoded files. A tile whose box matches its clip shows no bars. */
@@ -136,7 +139,9 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);
   align-items:stretch;
 }
-.sc-item.feature .sc-shot{aspect-ratio:auto;min-height:clamp(400px,46vw,700px)}
+/* scales with the viewport, or the halves catch up with it on a
+   wide screen and the hierarchy collapses */
+.sc-item.feature .sc-shot{aspect-ratio:auto;min-height:clamp(420px,46vw,820px)}
 .sc-item.feature.flip .sc-shot{order:2}
 .sc-face{
   display:flex;flex-direction:column;justify-content:center;gap:.7rem;
