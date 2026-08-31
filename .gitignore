@@ -9,3 +9,8 @@ _archivemap/
 
 # Python bytecode from the one-off scaffolding scripts in tools/
 __pycache__/
+
+# scratch files from the sculpture tools
+tools/.scd.tmp
+tools/.d.tmp
+tools/.sculpt-density.json

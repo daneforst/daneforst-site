@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="assets/css/style.css?v=11">
 <link rel="stylesheet" href="assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="assets/css/lab.css?v=3">
-<link rel="stylesheet" href="assets/css/sculpt.css?v=1">
+<link rel="stylesheet" href="assets/css/sculpt.css?v=4">
 </head>
 <body class="labbody sculptbody">
 <!-- ============================================================
@@ -21,12 +21,22 @@
      TO ADD A PIECE:
        1. Drop the clips in a folder and run
           ./tools/sculpt-encode.sh "/path/to/folder" <slug>
+          then ./tools/sculpt-detrail.py --apply to cut the
+          screen-recording tail off the new clips
        2. Copy any sculpture/<slug>.html as your starting point
-       3. Add an .sc-tile below AND a .spec-row further down
-     The grid runs three across. The last two tiles carry class
-     "pair" so the final row sits as a two-up instead of leaving
-     a hole; if you add a piece, move "pair" to the new last two
-     (or drop it entirely when the count divides by three).
+       3. Add an .sc-item below AND a .spec-row further down
+     THE BAND IS NOT UNIFORM, on purpose. Weights are:
+       feature      full width, media beside type
+       feature flip same, media on the right
+       w6           half the bed
+       (no class)   a third
+       w3           a quarter
+     Every row has to add up to twelve or the bed leaves a hole.
+     As it stands: feature / 6+6 / feature / 4+4+4 / feature /
+     6+6 / 4+4+4 / 3+3+3+3.
+     The --pa and --pb on each card are that clip's own backdrop
+     colour, so a piece shot on pink does not sit in a black
+     box. Re-sample with tools/sculpt-plinth.py.
 
      PLACEHOLDER COPY: every sentence on this page and on the
      seventeen dossiers is written to be replaced. Search for
@@ -121,19 +131,22 @@
   <div class="lab-kicker">02 · The collection</div>
   <p class="lab-lede" style="max-width:24em">Seventeen pieces. <em>Every one of them turns.</em></p>
 </section>
-<div class="sc-grid">
-  <a class="sc-tile" href="sculpture/baron-2-0.html">
+<div class="sc-band">
+  <a class="sc-item feature" style="--pa:#010101;--pb:#070405" href="sculpture/baron-2-0.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/baron-2-0/baron-2-0-02.mp4" poster="assets/img/sculpture/baron-2-0/baron-2-0-02.jpg" muted loop playsinline preload="none" aria-label="Baron 2.0"></video>
     </div>
-    <div class="sc-label">
-      <span class="sc-code">BR</span>
-      <span class="sc-name">Baron 2.0</span>
-      <span class="sc-cat">Original character &middot; Rebuild</span>
-      <span class="sc-count">17 turns</span>
+    <div class="sc-face">
+      <span class="scf-idx">01 &nbsp;/&nbsp; Original character &middot; Rebuild</span>
+      <h3 class="scf-name">Baron 2.0</h3>
+      <p class="scf-note">The Baron, built a second time, and finally right.</p>
+      <div class="scf-row">
+        <span class="scf-cue">Open the file <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span class="scf-count">17 turns</span>
+      </div>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/galactus.html">
+  <a class="sc-item w6" style="--pa:#120210;--pb:#050108" href="sculpture/galactus.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/galactus/galactus-02.mp4" poster="assets/img/sculpture/galactus/galactus-02.jpg" muted loop playsinline preload="none" aria-label="Galactus"></video>
     </div>
@@ -144,7 +157,7 @@
       <span class="sc-count">13 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/the-thing.html">
+  <a class="sc-item w6" style="--pa:#0d364d;--pb:#261f2f" href="sculpture/the-thing.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/the-thing/the-thing-02.mp4" poster="assets/img/sculpture/the-thing/the-thing-02.jpg" muted loop playsinline preload="none" aria-label="The Thing"></video>
     </div>
@@ -155,7 +168,21 @@
       <span class="sc-count">13 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/swamp-thing.html">
+  <a class="sc-item feature flip" style="--pa:#eb0d24;--pb:#ed1585" href="sculpture/beast.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/beast/beast-02.mp4" poster="assets/img/sculpture/beast/beast-02.jpg" muted loop playsinline preload="none" aria-label="Beast"></video>
+    </div>
+    <div class="sc-face">
+      <span class="scf-idx">04 &nbsp;/&nbsp; Character study &middot; Anatomy</span>
+      <h3 class="scf-name">Beast</h3>
+      <p class="scf-note">A scholar built like a wrecking ball.</p>
+      <div class="scf-row">
+        <span class="scf-cue">Open the file <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span class="scf-count">15 turns</span>
+      </div>
+    </div>
+  </a>
+  <a class="sc-item" style="--pa:#e5eca9;--pb:#7a7c57" href="sculpture/swamp-thing.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/swamp-thing/swamp-thing-02.mp4" poster="assets/img/sculpture/swamp-thing/swamp-thing-02.jpg" muted loop playsinline preload="none" aria-label="Swamp Thing"></video>
     </div>
@@ -166,18 +193,7 @@
       <span class="sc-count">12 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/beast.html">
-    <div class="sc-shot">
-      <video class="labvid" data-src="assets/video/sculpture/beast/beast-02.mp4" poster="assets/img/sculpture/beast/beast-02.jpg" muted loop playsinline preload="none" aria-label="Beast"></video>
-    </div>
-    <div class="sc-label">
-      <span class="sc-code">BE</span>
-      <span class="sc-name">Beast</span>
-      <span class="sc-cat">Character study &middot; Anatomy</span>
-      <span class="sc-count">15 turns</span>
-    </div>
-  </a>
-  <a class="sc-tile" href="sculpture/nightcrawler.html">
+  <a class="sc-item" style="--pa:#215863;--pb:#010101" href="sculpture/nightcrawler.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/nightcrawler/nightcrawler-02.mp4" poster="assets/img/sculpture/nightcrawler/nightcrawler-02.jpg" muted loop playsinline preload="none" aria-label="Nightcrawler"></video>
     </div>
@@ -188,7 +204,7 @@
       <span class="sc-count">10 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/pinok.html">
+  <a class="sc-item" style="--pa:#422d24;--pb:#080607" href="sculpture/pinok.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/pinok/pinok-02.mp4" poster="assets/img/sculpture/pinok/pinok-02.jpg" muted loop playsinline preload="none" aria-label="Pinok"></video>
     </div>
@@ -199,7 +215,21 @@
       <span class="sc-count">11 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/magneto.html">
+  <a class="sc-item feature" style="--pa:#0d0a13;--pb:#0d0a13" href="sculpture/gambit.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/gambit/gambit-02.mp4" poster="assets/img/sculpture/gambit/gambit-02.jpg" muted loop playsinline preload="none" aria-label="Gambit"></video>
+    </div>
+    <div class="sc-face">
+      <span class="scf-idx">08 &nbsp;/&nbsp; Character study &middot; Attitude</span>
+      <h3 class="scf-name">Gambit</h3>
+      <p class="scf-note">Mostly attitude, which is hard to sculpt.</p>
+      <div class="scf-row">
+        <span class="scf-cue">Open the file <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span class="scf-count">15 turns</span>
+      </div>
+    </div>
+  </a>
+  <a class="sc-item w6" style="--pa:#160610;--pb:#794d69" href="sculpture/magneto.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/magneto/magneto-02.mp4" poster="assets/img/sculpture/magneto/magneto-02.jpg" muted loop playsinline preload="none" aria-label="Magneto"></video>
     </div>
@@ -210,18 +240,7 @@
       <span class="sc-count">12 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/gambit.html">
-    <div class="sc-shot">
-      <video class="labvid" data-src="assets/video/sculpture/gambit/gambit-02.mp4" poster="assets/img/sculpture/gambit/gambit-02.jpg" muted loop playsinline preload="none" aria-label="Gambit"></video>
-    </div>
-    <div class="sc-label">
-      <span class="sc-code">GB</span>
-      <span class="sc-name">Gambit</span>
-      <span class="sc-cat">Character study &middot; Attitude</span>
-      <span class="sc-count">15 turns</span>
-    </div>
-  </a>
-  <a class="sc-tile" href="sculpture/colossus.html">
+  <a class="sc-item w6" style="--pa:#614c2d;--pb:#5b4026" href="sculpture/colossus.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/colossus/colossus-02.mp4" poster="assets/img/sculpture/colossus/colossus-02.jpg" muted loop playsinline preload="none" aria-label="Colossus"></video>
     </div>
@@ -232,7 +251,7 @@
       <span class="sc-count">9 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/dharbe.html">
+  <a class="sc-item" style="--pa:#f6a281;--pb:#f6a281" href="sculpture/dharbe.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/dharbe/dharbe-02.mp4" poster="assets/img/sculpture/dharbe/dharbe-02.jpg" muted loop playsinline preload="none" aria-label="Dharbe"></video>
     </div>
@@ -243,7 +262,7 @@
       <span class="sc-count">10 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/bretterling.html">
+  <a class="sc-item" style="--pa:#020002;--pb:#160015" href="sculpture/bretterling.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/bretterling/bretterling-02.mp4" poster="assets/img/sculpture/bretterling/bretterling-02.jpg" muted loop playsinline preload="none" aria-label="Bretterling"></video>
     </div>
@@ -254,7 +273,7 @@
       <span class="sc-count">8 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/cyclops.html">
+  <a class="sc-item" style="--pa:#010101;--pb:#080000" href="sculpture/cyclops.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/cyclops/cyclops-02.mp4" poster="assets/img/sculpture/cyclops/cyclops-02.jpg" muted loop playsinline preload="none" aria-label="Cyclops"></video>
     </div>
@@ -265,7 +284,18 @@
       <span class="sc-count">6 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/the-baron.html">
+  <a class="sc-item w3" style="--pa:#f03681;--pb:#f03681" href="sculpture/minker-ship.html">
+    <div class="sc-shot">
+      <video class="labvid" data-src="assets/video/sculpture/minker-ship/minker-ship-02.mp4" poster="assets/img/sculpture/minker-ship/minker-ship-02.jpg" muted loop playsinline preload="none" aria-label="Minker Ship"></video>
+    </div>
+    <div class="sc-label">
+      <span class="sc-code">MS</span>
+      <span class="sc-name">Minker Ship</span>
+      <span class="sc-cat">Vehicle &middot; Worldbuilding</span>
+      <span class="sc-count">6 turns</span>
+    </div>
+  </a>
+  <a class="sc-item w3" style="--pa:#545251;--pb:#28211a" href="sculpture/the-baron.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/the-baron/the-baron-02.mp4" poster="assets/img/sculpture/the-baron/the-baron-02.jpg" muted loop playsinline preload="none" aria-label="The Baron"></video>
     </div>
@@ -276,7 +306,7 @@
       <span class="sc-count">5 turns</span>
     </div>
   </a>
-  <a class="sc-tile" href="sculpture/storm.html">
+  <a class="sc-item w3" style="--pa:#070707;--pb:#462021" href="sculpture/storm.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/storm/storm-02.mp4" poster="assets/img/sculpture/storm/storm-02.jpg" muted loop playsinline preload="none" aria-label="Storm"></video>
     </div>
@@ -287,7 +317,7 @@
       <span class="sc-count">2 turns</span>
     </div>
   </a>
-  <a class="sc-tile pair" href="sculpture/wolverine.html">
+  <a class="sc-item w3" style="--pa:#070b18;--pb:#060606" href="sculpture/wolverine.html">
     <div class="sc-shot">
       <video class="labvid" data-src="assets/video/sculpture/wolverine/wolverine-01.mp4" poster="assets/img/sculpture/wolverine/wolverine-01.jpg" muted loop playsinline preload="none" aria-label="Wolverine"></video>
     </div>
@@ -296,17 +326,6 @@
       <span class="sc-name">Wolverine</span>
       <span class="sc-cat">Character study</span>
       <span class="sc-count">1 turn</span>
-    </div>
-  </a>
-  <a class="sc-tile pair" href="sculpture/minker-ship.html">
-    <div class="sc-shot">
-      <video class="labvid" data-src="assets/video/sculpture/minker-ship/minker-ship-02.mp4" poster="assets/img/sculpture/minker-ship/minker-ship-02.jpg" muted loop playsinline preload="none" aria-label="Minker Ship"></video>
-    </div>
-    <div class="sc-label">
-      <span class="sc-code">MS</span>
-      <span class="sc-name">Minker Ship</span>
-      <span class="sc-cat">Vehicle &middot; Worldbuilding</span>
-      <span class="sc-count">6 turns</span>
     </div>
   </a>
 </div>
@@ -330,15 +349,15 @@
     <span class="spec-t">The Thing</span>
     <span class="spec-c">Character study &middot; Surface</span>
   </a>
-  <a class="spec-row" href="sculpture/swamp-thing.html" data-peek="assets/video/sculpture/swamp-thing/swamp-thing-03.mp4" data-peek-tag="SW · Swamp Thing">
-    <span class="spec-n">04</span>
-    <span class="spec-t">Swamp Thing</span>
-    <span class="spec-c">Character study &middot; Mass</span>
-  </a>
   <a class="spec-row" href="sculpture/beast.html" data-peek="assets/video/sculpture/beast/beast-03.mp4" data-peek-tag="BE · Beast">
-    <span class="spec-n">05</span>
+    <span class="spec-n">04</span>
     <span class="spec-t">Beast</span>
     <span class="spec-c">Character study &middot; Anatomy</span>
+  </a>
+  <a class="spec-row" href="sculpture/swamp-thing.html" data-peek="assets/video/sculpture/swamp-thing/swamp-thing-03.mp4" data-peek-tag="SW · Swamp Thing">
+    <span class="spec-n">05</span>
+    <span class="spec-t">Swamp Thing</span>
+    <span class="spec-c">Character study &middot; Mass</span>
   </a>
   <a class="spec-row" href="sculpture/nightcrawler.html" data-peek="assets/video/sculpture/nightcrawler/nightcrawler-03.mp4" data-peek-tag="NC · Nightcrawler">
     <span class="spec-n">06</span>
@@ -350,15 +369,15 @@
     <span class="spec-t">Pinok</span>
     <span class="spec-c">Puppet &middot; Original character</span>
   </a>
-  <a class="spec-row" href="sculpture/magneto.html" data-peek="assets/video/sculpture/magneto/magneto-03.mp4" data-peek-tag="MG · Magneto">
-    <span class="spec-n">08</span>
-    <span class="spec-t">Magneto</span>
-    <span class="spec-c">Character study &middot; Silhouette</span>
-  </a>
   <a class="spec-row" href="sculpture/gambit.html" data-peek="assets/video/sculpture/gambit/gambit-03.mp4" data-peek-tag="GB · Gambit">
-    <span class="spec-n">09</span>
+    <span class="spec-n">08</span>
     <span class="spec-t">Gambit</span>
     <span class="spec-c">Character study &middot; Attitude</span>
+  </a>
+  <a class="spec-row" href="sculpture/magneto.html" data-peek="assets/video/sculpture/magneto/magneto-03.mp4" data-peek-tag="MG · Magneto">
+    <span class="spec-n">09</span>
+    <span class="spec-t">Magneto</span>
+    <span class="spec-c">Character study &middot; Silhouette</span>
   </a>
   <a class="spec-row" href="sculpture/colossus.html" data-peek="assets/video/sculpture/colossus/colossus-03.mp4" data-peek-tag="CS · Colossus">
     <span class="spec-n">10</span>
@@ -380,25 +399,25 @@
     <span class="spec-t">Cyclops</span>
     <span class="spec-c">Character study &middot; Restraint</span>
   </a>
-  <a class="spec-row" href="sculpture/the-baron.html" data-peek="assets/video/sculpture/the-baron/the-baron-03.mp4" data-peek-tag="TB · The Baron">
+  <a class="spec-row" href="sculpture/minker-ship.html" data-peek="assets/video/sculpture/minker-ship/minker-ship-03.mp4" data-peek-tag="MS · Minker Ship">
     <span class="spec-n">14</span>
+    <span class="spec-t">Minker Ship</span>
+    <span class="spec-c">Vehicle &middot; Worldbuilding</span>
+  </a>
+  <a class="spec-row" href="sculpture/the-baron.html" data-peek="assets/video/sculpture/the-baron/the-baron-03.mp4" data-peek-tag="TB · The Baron">
+    <span class="spec-n">15</span>
     <span class="spec-t">The Baron</span>
     <span class="spec-c">Original character &middot; First version</span>
   </a>
   <a class="spec-row" href="sculpture/storm.html" data-peek="assets/video/sculpture/storm/storm-01.mp4" data-peek-tag="ST · Storm">
-    <span class="spec-n">15</span>
+    <span class="spec-n">16</span>
     <span class="spec-t">Storm</span>
     <span class="spec-c">Character study &middot; Motion</span>
   </a>
   <a class="spec-row" href="sculpture/wolverine.html" data-peek="assets/video/sculpture/wolverine/wolverine-01.mp4" data-peek-tag="WV · Wolverine">
-    <span class="spec-n">16</span>
+    <span class="spec-n">17</span>
     <span class="spec-t">Wolverine</span>
     <span class="spec-c">Character study</span>
-  </a>
-  <a class="spec-row" href="sculpture/minker-ship.html" data-peek="assets/video/sculpture/minker-ship/minker-ship-03.mp4" data-peek-tag="MS · Minker Ship">
-    <span class="spec-n">17</span>
-    <span class="spec-t">Minker Ship</span>
-    <span class="spec-c">Vehicle &middot; Worldbuilding</span>
   </a>
 </div>
 

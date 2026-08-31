@@ -67,16 +67,6 @@ PIECES = [
           'The heaviest passes, and a couple of the ugly ones, because the ugly ones are where the surface language got worked out.'),
       tags=['Character study', 'Surface', 'Anatomy', 'Turntable']),
 
- dict(slug='swamp-thing', name='Swamp Thing', code='SW',
-      cat='Character study &middot; Mass',
-      tag='Vegetation, without sculpting every leaf.',
-      intro='Mass over detail. The trick with anything overgrown is convincing the eye it is looking at a thousand small things while only ever building a few dozen.',
-      s1=('The problem',
-          'Detail is a trap here. Sculpt every frond and you get a bush. The read has to come from the big silhouette first, with the surface doing far less work than it feels like it should.'),
-      s2=('What worked',
-          'Committing to the mass early and refusing to open it back up, no matter how tempting the close pass got.'),
-      tags=['Character study', 'Mass', 'Organic', 'Turntable']),
-
  dict(slug='beast', name='Beast', code='BE',
       cat='Character study &middot; Anatomy',
       tag='A scholar built like a wrecking ball.',
@@ -86,6 +76,16 @@ PIECES = [
       s2=('Fur',
           'Fur at this scale is a lighting problem more than a sculpting one, which is most of why this set has as many passes in it as it does.'),
       tags=['Character study', 'Anatomy', 'Fur', 'Turntable']),
+
+ dict(slug='swamp-thing', name='Swamp Thing', code='SW',
+      cat='Character study &middot; Mass',
+      tag='Vegetation, without sculpting every leaf.',
+      intro='Mass over detail. The trick with anything overgrown is convincing the eye it is looking at a thousand small things while only ever building a few dozen.',
+      s1=('The problem',
+          'Detail is a trap here. Sculpt every frond and you get a bush. The read has to come from the big silhouette first, with the surface doing far less work than it feels like it should.'),
+      s2=('What worked',
+          'Committing to the mass early and refusing to open it back up, no matter how tempting the close pass got.'),
+      tags=['Character study', 'Mass', 'Organic', 'Turntable']),
 
  dict(slug='nightcrawler', name='Nightcrawler', code='NC',
       cat='Character study &middot; Pose',
@@ -107,16 +107,6 @@ PIECES = [
           'There is a version of this that goes back to being a puppet again. That has not happened yet.'),
       tags=['Original character', 'Puppet', 'Baron Minker', 'Turntable']),
 
- dict(slug='magneto', name='Magneto', code='MG',
-      cat='Character study &middot; Silhouette',
-      tag='The helmet is the character.',
-      intro='Everything below the collar exists to make the helmet look inevitable. Once that shape is right the rest of the figure mostly falls into place.',
-      s1=('The problem',
-          'A famous silhouette leaves very little room to move. Get the helmet a few degrees off and it stops being him, so most of these turns are the same object with small corrections.'),
-      s2=('The cape',
-          'The cape is there to stop the figure reading as a column. It is doing structural work, not dramatic work.'),
-      tags=['Character study', 'Silhouette', 'Helmet', 'Turntable']),
-
  dict(slug='gambit', name='Gambit', code='GB',
       cat='Character study &middot; Attitude',
       tag='Mostly attitude, which is hard to sculpt.',
@@ -126,6 +116,16 @@ PIECES = [
       s2=('Why there are so many turns',
           'Because it kept being nearly right. That is usually the sign a piece is worth another pass.'),
       tags=['Character study', 'Costume', 'Pose', 'Turntable']),
+
+ dict(slug='magneto', name='Magneto', code='MG',
+      cat='Character study &middot; Silhouette',
+      tag='The helmet is the character.',
+      intro='Everything below the collar exists to make the helmet look inevitable. Once that shape is right the rest of the figure mostly falls into place.',
+      s1=('The problem',
+          'A famous silhouette leaves very little room to move. Get the helmet a few degrees off and it stops being him, so most of these turns are the same object with small corrections.'),
+      s2=('The cape',
+          'The cape is there to stop the figure reading as a column. It is doing structural work, not dramatic work.'),
+      tags=['Character study', 'Silhouette', 'Helmet', 'Turntable']),
 
  dict(slug='colossus', name='Colossus', code='CS',
       cat='Character study &middot; Metal',
@@ -167,6 +167,16 @@ PIECES = [
           'It arrived quickly and there was no reason to keep pushing it.'),
       tags=['Character study', 'Restraint', 'Silhouette', 'Turntable']),
 
+ dict(slug='minker-ship', name='Minker Ship', code='MS',
+      cat='Vehicle &middot; Worldbuilding',
+      tag='Not a character. A place things happen in.',
+      intro='The ship from the Baron Minker universe, turned slowly so the underside gets its moment. Hard surfaces after a shelf full of anatomy, which was the point.',
+      s1=('Why a vehicle',
+          'Worldbuilding needs objects as much as it needs people. A ship tells you how the world moves, what it is made of, and how much it cares about comfort.'),
+      s2=('The underside',
+          'It is the most interesting part and the part nobody ever builds, so it got the slow pass.'),
+      tags=['Baron Minker', 'Vehicle', 'Hard surface', 'Worldbuilding']),
+
  dict(slug='the-baron', name='The Baron', code='TB',
       cat='Original character &middot; First version',
       tag='The original, before the rebuild.',
@@ -196,17 +206,24 @@ PIECES = [
       s2=('Possibly later',
           'If it comes back it will come back as a full set, not as an extension of this.'),
       tags=['Character study', 'Single pass', 'Turntable']),
-
- dict(slug='minker-ship', name='Minker Ship', code='MS',
-      cat='Vehicle &middot; Worldbuilding',
-      tag='Not a character. A place things happen in.',
-      intro='The ship from the Baron Minker universe, turned slowly so the underside gets its moment. Hard surfaces after a shelf full of anatomy, which was the point.',
-      s1=('Why a vehicle',
-          'Worldbuilding needs objects as much as it needs people. A ship tells you how the world moves, what it is made of, and how much it cares about comfort.'),
-      s2=('The underside',
-          'It is the most interesting part and the part nobody ever builds, so it got the slow pass.'),
-      tags=['Baron Minker', 'Vehicle', 'Hard surface', 'Worldbuilding']),
 ]
+
+# ------------------------------------------------------------------
+# LANDING PAGE WEIGHTS. Uniform tiles read as a spreadsheet, so the
+# band runs three scales and the heaviest sets take the most room:
+#   feature  full width, media beside type (flip = media on the right)
+#   w6 / w4  a half or a third of the bed
+#   w3       a quarter, for the sets that are a turn or two long
+# Rows have to add up to 12, or the bed leaves a hole.
+#   feature | 6+6 | feature | 4+4+4 | feature | 6+6 | 4+4+4 | 3+3+3+3
+# ------------------------------------------------------------------
+WEIGHTS = {
+    'baron-2-0': 'feature', 'galactus': 'w6', 'the-thing': 'w6',
+    'beast': 'feature flip', 'swamp-thing': '', 'nightcrawler': '', 'pinok': '',
+    'gambit': 'feature', 'magneto': 'w6', 'colossus': 'w6',
+    'dharbe': '', 'bretterling': '', 'cyclops': '',
+    'minker-ship': 'w3', 'the-baron': 'w3', 'storm': 'w3', 'wolverine': 'w3',
+}
 
 # clips used in the landing page hero, in order
 HERO = ['baron-2-0/baron-2-0-01', 'galactus/galactus-03', 'the-thing/the-thing-02',
@@ -251,7 +268,7 @@ def head(p, title, desc):
 <link rel="stylesheet" href="{p}assets/css/style.css?v=11">
 <link rel="stylesheet" href="{p}assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="{p}assets/css/lab.css?v=3">
-<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=1">
+<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=4">
 </head>'''
 
 
@@ -356,6 +373,20 @@ def scripts(p):
 # ------------------------------------------------------------------
 # manifest
 # ------------------------------------------------------------------
+def read_plinths():
+    """Backdrop colour per clip, from tools/sculpt-plinth.py. Each tile
+    letterboxes onto its own clip's colour instead of a fixed black."""
+    out = {}
+    path = os.path.join(ROOT, 'tools', 'sculpt-plinths.txt')
+    if not os.path.exists(path):
+        return out
+    for line in open(path):
+        p = line.split()
+        if len(p) == 3:
+            out[p[0]] = (p[1], p[2])
+    return out
+
+
 def read_manifest():
     clips = OrderedDict()
     with open(MANIFEST) as f:
@@ -437,25 +468,47 @@ def build_landing(clips):
     hero = ', '.join(f'"assets/video/sculpture/{h}.mp4"' for h in HERO)
     hero_poster = f'assets/img/sculpture/{HERO[0]}.jpg'
 
+    plinths = read_plinths()
     tiles = []
     for i, x in enumerate(PIECES, 1):
         cl = clips.get(x['slug'], [])
         if not cl:
             continue
         pick = cl[1] if len(cl) > 1 else cl[0]
-        base = f'assets/video/sculpture/{x["slug"]}/{x["slug"]}-{pick["n"]}'
-        pair = ' pair' if i > len(PIECES) - 2 else ''
-        tiles.append(f'''  <a class="sc-tile{pair}" href="sculpture/{x['slug']}.html">
-    <div class="sc-shot">
-      <video class="labvid" data-src="{base}.mp4" poster="{base.replace('/video/', '/img/')}.jpg" muted loop playsinline preload="none" aria-label="{x['name']}"></video>
-    </div>
+        stem = f'{x["slug"]}-{pick["n"]}'
+        base = f'assets/video/sculpture/{x["slug"]}/{stem}'
+        pa, pb = plinths.get(stem, ('#000000', '#000000'))
+        w = WEIGHTS.get(x['slug'], '')
+        cls = ('sc-item ' + w).strip()
+        turns = f'{len(cl)} {"turn" if len(cl) == 1 else "turns"}'
+        shot = (f'    <div class="sc-shot">\n'
+                f'      <video class="labvid" data-src="{base}.mp4" '
+                f'poster="{base.replace("/video/", "/img/")}.jpg" muted loop playsinline '
+                f'preload="none" aria-label="{x["name"]}"></video>\n'
+                f'    </div>')
+
+        if 'feature' in w:
+            body = f'''{shot}
+    <div class="sc-face">
+      <span class="scf-idx">{i:02d} &nbsp;/&nbsp; {x['cat']}</span>
+      <h3 class="scf-name">{x['name']}</h3>
+      <p class="scf-note">{x['tag']}</p>
+      <div class="scf-row">
+        <span class="scf-cue">Open the file {ARROW}</span>
+        <span class="scf-count">{turns}</span>
+      </div>
+    </div>'''
+        else:
+            body = f'''{shot}
     <div class="sc-label">
       <span class="sc-code">{x['code']}</span>
       <span class="sc-name">{x['name']}</span>
       <span class="sc-cat">{x['cat']}</span>
-      <span class="sc-count">{len(cl)} {'turn' if len(cl) == 1 else 'turns'}</span>
-    </div>
-  </a>''')
+      <span class="sc-count">{turns}</span>
+    </div>'''
+
+        tiles.append(f'  <a class="{cls}" style="--pa:{pa};--pb:{pb}" '
+                     f'href="sculpture/{x["slug"]}.html">\n{body}\n  </a>')
 
     rows = []
     for i, x in enumerate(PIECES, 1):
@@ -479,12 +532,22 @@ def build_landing(clips):
      TO ADD A PIECE:
        1. Drop the clips in a folder and run
           ./tools/sculpt-encode.sh "/path/to/folder" <slug>
+          then ./tools/sculpt-detrail.py --apply to cut the
+          screen-recording tail off the new clips
        2. Copy any sculpture/<slug>.html as your starting point
-       3. Add an .sc-tile below AND a .spec-row further down
-     The grid runs three across. The last two tiles carry class
-     "pair" so the final row sits as a two-up instead of leaving
-     a hole; if you add a piece, move "pair" to the new last two
-     (or drop it entirely when the count divides by three).
+       3. Add an .sc-item below AND a .spec-row further down
+     THE BAND IS NOT UNIFORM, on purpose. Weights are:
+       feature      full width, media beside type
+       feature flip same, media on the right
+       w6           half the bed
+       (no class)   a third
+       w3           a quarter
+     Every row has to add up to twelve or the bed leaves a hole.
+     As it stands: feature / 6+6 / feature / 4+4+4 / feature /
+     6+6 / 4+4+4 / 3+3+3+3.
+     The --pa and --pb on each card are that clip's own backdrop
+     colour, so a piece shot on pink does not sit in a black
+     box. Re-sample with tools/sculpt-plinth.py.
 
      PLACEHOLDER COPY: every sentence on this page and on the
      seventeen dossiers is written to be replaced. Search for
@@ -537,7 +600,7 @@ def build_landing(clips):
   <div class="lab-kicker">02 · The collection</div>
   <p class="lab-lede" style="max-width:24em">Seventeen pieces. <em>Every one of them turns.</em></p>
 </section>
-<div class="sc-grid">
+<div class="sc-band">
 {chr(10).join(tiles)}
 </div>
 

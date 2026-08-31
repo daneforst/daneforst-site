@@ -45,31 +45,47 @@ body.sculptbody .mosaic:hover .mo-item video,body.sculptbody .mosaic:hover .mo-i
 body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:hover img{transform:scale(1.06)}
 
 /* ============================================================
-   1. CATALOGUE GRID
-   Seventeen pieces, one plinth each, on a six-column bed so the
-   last two can sit as a two-up instead of leaving a hole.
+   1. THE COLLECTION BAND
+   Seventeen pieces on a twelve-column bed, deliberately NOT
+   uniform. Three weights: a full-width feature that splits into
+   media and type, a mid card at a half or a third, and a small
+   card for the sets that are only a turn or two long. Weight
+   follows substance, so the pieces with the most footage take
+   the most room, and the eye gets a rhythm instead of a wall.
+
+   PLINTH COLOUR: every well carries the backdrop of its own
+   clip, sampled top and bottom by tools/sculpt-plinth.py and
+   passed in as --pa / --pb. These sculptures were not all shot
+   on black (they run pink, peach, tan, teal), so a fixed black
+   well would frame half of them in bars.
    ============================================================ */
-.sc-grid{
-  display:grid;grid-template-columns:repeat(6,1fr);
+.sc-band{
+  display:grid;grid-template-columns:repeat(12,1fr);
   gap:3px;background:var(--line-light);
   border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
 }
-.sc-tile{
-  grid-column:span 2;display:flex;flex-direction:column;
-  background:var(--soot);position:relative;
-  transition:background .4s ease;
+.sc-item{
+  grid-column:span 4;display:flex;flex-direction:column;
+  background:var(--soot);position:relative;transition:background .4s ease;
 }
-/* the closing two-up: half again as wide, same height off the row */
-.sc-tile.pair{grid-column:span 3}
-.sc-tile:hover{background:var(--soot-2)}
+.sc-item.w6{grid-column:span 6}
+.sc-item.w3{grid-column:span 3}
+.sc-item:hover{background:var(--soot-2)}
 
-.sc-shot{position:relative;overflow:hidden;background:#000;aspect-ratio:4/3}
-.sc-tile.pair .sc-shot{aspect-ratio:2/1}
-.sc-shot video,.sc-shot img{
-  width:100%;height:100%;display:block;object-fit:contain;background:#000;
-  transition:transform .7s cubic-bezier(.6,0,.2,1),filter .5s ease;
+/* ---- the media well ---- */
+.sc-shot{
+  position:relative;overflow:hidden;aspect-ratio:4/3;
+  background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000));
 }
-.sc-tile:hover .sc-shot video,.sc-tile:hover .sc-shot img{transform:scale(1.05)}
+/* the mid card runs wider and shorter than the third, and the
+   feature is taller than either: the weights have to be legible
+   as height, not only as width. */
+.sc-item.w6 .sc-shot{aspect-ratio:16/10}
+.sc-shot video,.sc-shot img{
+  width:100%;height:100%;display:block;object-fit:contain;
+  transition:transform .7s cubic-bezier(.6,0,.2,1);
+}
+.sc-item:hover .sc-shot video,.sc-item:hover .sc-shot img{transform:scale(1.05)}
 /* a hairline that draws itself under the piece on approach */
 .sc-shot::after{
   content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
@@ -77,27 +93,29 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   transform:scaleX(0);transform-origin:0 50%;
   transition:transform .55s cubic-bezier(.6,0,.2,1);
 }
-.sc-tile:hover .sc-shot::after{transform:scaleX(1)}
+.sc-item:hover .sc-shot::after{transform:scaleX(1)}
 
-/* the wall label. Deliberately a museum caption rather than an
-   overlay: you should be able to read the whole collection
-   without hovering anything. */
+/* ---- the wall label ----
+   A museum caption, not a hover overlay: the whole collection
+   should be readable without touching anything. */
 .sc-label{
   display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;
-  gap:.5rem .8rem;padding:.85rem clamp(.8rem,1.6vw,1.15rem) 1rem;
+  gap:.45rem .8rem;padding:.85rem clamp(.8rem,1.6vw,1.15rem) 1rem;
 }
 .sc-code{
   font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
   color:rgba(228,224,212,.4);transition:color .35s;
 }
-.sc-tile:hover .sc-code{color:var(--sun)}
+.sc-item:hover .sc-code{color:var(--sun)}
 .sc-name{
   grid-column:2;font-weight:850;font-variation-settings:'wdth' 82;
   text-transform:uppercase;letter-spacing:-.005em;line-height:1;
-  font-size:clamp(1rem,1.7vw,1.42rem);
+  font-size:clamp(1rem,1.6vw,1.35rem);
   transition:font-variation-settings .45s cubic-bezier(.6,0,.2,1);
 }
-.sc-tile:hover .sc-name{font-variation-settings:'wdth' 110}
+.sc-item:hover .sc-name{font-variation-settings:'wdth' 110}
+.sc-item.w6 .sc-name{font-size:clamp(1.15rem,2.1vw,1.75rem)}
+.sc-item.w3 .sc-name{font-size:clamp(.92rem,1.25vw,1.08rem)}
 .sc-count{
   grid-column:3;grid-row:1/span 2;align-self:center;
   font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
@@ -107,13 +125,53 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   grid-column:2;font-family:var(--serif);font-style:italic;
   font-size:.95rem;line-height:1.3;color:rgba(228,224,212,.6);
 }
-@media(max-width:900px){
-  .sc-tile{grid-column:span 3}
-  .sc-tile.pair{grid-column:span 3}
-  .sc-tile.pair .sc-shot{aspect-ratio:4/3}
+.sc-item.w3 .sc-cat{font-size:.85rem}
+
+/* ---- the feature: full width, media beside type ----
+   Three of these break up the run of cards. The media keeps its
+   own shape inside a tall well rather than being cropped to a
+   letterbox, and the type gets room to behave like a title. */
+.sc-item.feature{
+  grid-column:1/-1;display:grid;
+  grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);
+  align-items:stretch;
 }
-@media(max-width:600px){
-  .sc-tile,.sc-tile.pair{grid-column:1/-1}
+.sc-item.feature .sc-shot{aspect-ratio:auto;min-height:clamp(400px,46vw,700px)}
+.sc-item.feature.flip .sc-shot{order:2}
+.sc-face{
+  display:flex;flex-direction:column;justify-content:center;gap:.7rem;
+  padding:clamp(1.6rem,4vw,3.4rem);
+}
+.scf-idx{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.2em;color:var(--sun)}
+.scf-name{
+  font-weight:900;font-variation-settings:'wdth' 76;text-transform:uppercase;
+  letter-spacing:-.02em;line-height:.92;font-size:clamp(2rem,4.4vw,3.9rem);
+  transition:font-variation-settings .5s cubic-bezier(.6,0,.2,1);
+}
+.sc-item.feature:hover .scf-name{font-variation-settings:'wdth' 100}
+.scf-note{
+  font-family:var(--serif);font-style:italic;line-height:1.35;
+  font-size:clamp(1.02rem,1.7vw,1.42rem);color:rgba(228,224,212,.78);max-width:22em;
+}
+.scf-row{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;margin-top:.5rem}
+.scf-cue{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.16em;
+  border:1px solid var(--line-light);border-radius:999px;padding:.5rem 1rem;
+  transition:background .35s,color .35s,border-color .35s;
+}
+.sc-item.feature:hover .scf-cue{background:var(--bone);color:var(--soot);border-color:var(--bone)}
+.scf-count{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.16em;color:rgba(228,224,212,.5)}
+
+@media(max-width:1000px){
+  .sc-item,.sc-item.w6,.sc-item.w3{grid-column:span 6}
+  .sc-item.feature{grid-template-columns:1fr}
+  .sc-item.feature .sc-shot{aspect-ratio:4/3;min-height:0}
+  .sc-item.feature.flip .sc-shot{order:0}
+  .sc-item.w6 .sc-shot{aspect-ratio:4/3}
+}
+@media(max-width:620px){
+  .sc-item,.sc-item.w6,.sc-item.w3{grid-column:1/-1}
   .sc-label{padding:.75rem .9rem .95rem}
 }
 
