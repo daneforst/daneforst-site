@@ -282,7 +282,7 @@ CHAPTERS = [
               'client, and no obligation to be reverent about any of them.',
          pieces=[('galactus', 'feature'),
                  ('swamp-thing', 'w6'), ('colossus', 'w6'),
-                 ('gambit', 'feature flip'),
+                 ('gambit', 'feature'),
                  ('beast', 'w6'), ('nightcrawler', 'w6'),
                  ('cyclops', 'w6'), ('the-thing', 'w6'),
                  ('magneto', 'feature'),
@@ -305,6 +305,14 @@ ORDER = [s for c in CHAPTERS for s, _ in c['pieces']]
 # prev/next off this list, so if it disagrees with the band the numbering
 # on the cards stops matching the numbering on the pages they open.
 PIECES.sort(key=lambda x: ORDER.index(x['slug']))
+
+# A landing card shows one still out of a dozen, and "the second landscape
+# one" is an arbitrary way to choose it. Pin the good one here when the
+# automatic pick lands on a dud: Gambit's default was a near-black frame
+# with the figure cropped at the bottom.
+CARD_CLIP = {
+    'gambit': '04',
+}
 
 # clips used in the landing page hero, in order
 HERO = ['baron-2-0/baron-2-0-01', 'rahul-blundo/rahul-blundo-04', 'galactus/galactus-03',
@@ -350,7 +358,7 @@ def head(p, title, desc):
 <link rel="stylesheet" href="{p}assets/css/style.css?v=11">
 <link rel="stylesheet" href="{p}assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="{p}assets/css/lab.css?v=3">
-<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=9">
+<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=11">
 </head>'''
 
 
@@ -523,7 +531,10 @@ def build_landing(clips, plinths):
         # fall back and are the only two cards that letterbox.
         wide = [c for c in cl if c['w'] >= c['h']]
         pool = wide or cl
-        pick = pool[1] if len(pool) > 1 else pool[0]
+        pinned = CARD_CLIP.get(x['slug'])
+        pick = next((c for c in cl if c['n'] == pinned), None) if pinned else None
+        if pick is None:
+            pick = pool[1] if len(pool) > 1 else pool[0]
         stem = f'{x["slug"]}-{pick["n"]}'
         base = f'assets/video/sculpture/{x["slug"]}/{stem}'
         pa, pb = plinths.get(stem, ('#000000', '#000000'))

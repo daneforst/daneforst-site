@@ -151,6 +151,10 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   align-items:stretch;
 }
 .sc-item.feature .sc-shot{aspect-ratio:4/3}
+/* Flipping only reordered the children, so the media landed in the
+   narrow column and a flipped feature came out barely half the height
+   of an unflipped one. The columns have to swap with it. */
+.sc-item.feature.flip{grid-template-columns:minmax(0,1fr) minmax(0,1.8fr)}
 .sc-item.feature.flip .sc-shot{order:2}
 .sc-face{
   display:flex;flex-direction:column;justify-content:center;gap:.7rem;
@@ -179,7 +183,9 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
 
 @media(max-width:1000px){
   .sc-item,.sc-item.w6{grid-column:span 6}
-  .sc-item.feature{grid-template-columns:1fr}
+  /* .flip carries its own columns now, so it has to be unset by name
+     here or it outranks this rule and never stacks */
+  .sc-item.feature,.sc-item.feature.flip{grid-template-columns:1fr}
   .sc-item.feature.flip .sc-shot{order:0}
 }
 @media(max-width:620px){
