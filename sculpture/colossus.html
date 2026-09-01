@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-01.mp4" poster="../assets/img/sculpture/colossus/colossus-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 16 / Colossus</span>
+    <span class="idx">Sculpture · 12 / Colossus</span>
     <h1>Colossus</h1>
     <!-- copy: the one-line description -->
     <p class="tag">Steel that still has to read as skin.</p>
@@ -116,39 +118,39 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 9 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#614c2d;--pb:#604b2c">
-      <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-03.mp4" poster="../assets/img/sculpture/colossus/colossus-03.jpg" muted loop playsinline preload="none" aria-label="CS turn 03"></video>
-      <figcaption class="mo-cap"><span class="n">CS-03</span><span>12s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#614c2d;--pb:#43291a">
+    <figure class="mo-item ar-34 reveal" style="--pa:#614c2d;--pb:#43291a">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-01.mp4" poster="../assets/img/sculpture/colossus/colossus-01.jpg" muted loop playsinline preload="none" aria-label="CS turn 01"></video>
       <figcaption class="mo-cap"><span class="n">CS-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#614c2d;--pb:#5c3d25">
+    <figure class="mo-item ar-43 reveal" style="--pa:#614c2d;--pb:#604b2c">
+      <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-03.mp4" poster="../assets/img/sculpture/colossus/colossus-03.jpg" muted loop playsinline preload="none" aria-label="CS turn 03"></video>
+      <figcaption class="mo-cap"><span class="n">CS-03</span><span>12s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#614c2d;--pb:#5c3d25">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-05.mp4" poster="../assets/img/sculpture/colossus/colossus-05.jpg" muted loop playsinline preload="none" aria-label="CS turn 05"></video>
       <figcaption class="mo-cap"><span class="n">CS-05</span><span>6s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#614c2d;--pb:#5b4227">
+    <figure class="mo-item ar-34 reveal" style="--pa:#614c2d;--pb:#5b4227">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-07.mp4" poster="../assets/img/sculpture/colossus/colossus-07.jpg" muted loop playsinline preload="none" aria-label="CS turn 07"></video>
       <figcaption class="mo-cap"><span class="n">CS-07</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#6d5634;--pb:#7e6034">
+    <figure class="mo-item ar-34 reveal" style="--pa:#6d5634;--pb:#7e6034">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-09.mp4" poster="../assets/img/sculpture/colossus/colossus-09.jpg" muted loop playsinline preload="none" aria-label="CS turn 09"></video>
       <figcaption class="mo-cap"><span class="n">CS-09</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#614c2d;--pb:#604326">
-      <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-04.mp4" poster="../assets/img/sculpture/colossus/colossus-04.jpg" muted loop playsinline preload="none" aria-label="CS turn 04"></video>
-      <figcaption class="mo-cap"><span class="n">CS-04</span><span>6s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#614c2d;--pb:#5b4026">
+    <figure class="mo-item ar-43 reveal" style="--pa:#614c2d;--pb:#5b4026">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-02.mp4" poster="../assets/img/sculpture/colossus/colossus-02.jpg" muted loop playsinline preload="none" aria-label="CS turn 02"></video>
       <figcaption class="mo-cap"><span class="n">CS-02</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#614c2d;--pb:#553821">
+    <figure class="mo-item ar-34 reveal" style="--pa:#614c2d;--pb:#604326">
+      <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-04.mp4" poster="../assets/img/sculpture/colossus/colossus-04.jpg" muted loop playsinline preload="none" aria-label="CS turn 04"></video>
+      <figcaption class="mo-cap"><span class="n">CS-04</span><span>6s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#614c2d;--pb:#553821">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-06.mp4" poster="../assets/img/sculpture/colossus/colossus-06.jpg" muted loop playsinline preload="none" aria-label="CS turn 06"></video>
       <figcaption class="mo-cap"><span class="n">CS-06</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#604629;--pb:#4e3823">
+    <figure class="mo-item ar-34 reveal" style="--pa:#604629;--pb:#4e3823">
       <video class="labvid" data-src="../assets/video/sculpture/colossus/colossus-08.mp4" poster="../assets/img/sculpture/colossus/colossus-08.jpg" muted loop playsinline preload="none" aria-label="CS turn 08"></video>
       <figcaption class="mo-cap"><span class="n">CS-08</span><span>13s</span></figcaption>
     </figure>
@@ -156,8 +158,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="nightcrawler.html"><span class="dir">← Previous</span><span class="rt">Nightcrawler</span></a>
-  <a href="cyclops.html"><span class="dir">Next →</span><span class="rt">Cyclops</span></a>
+  <a href="swamp-thing.html"><span class="dir">← Previous</span><span class="rt">Swamp Thing</span></a>
+  <a href="gambit.html"><span class="dir">Next →</span><span class="rt">Gambit</span></a>
 </div>
 
 <section class="page-cta">

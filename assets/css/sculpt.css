@@ -17,44 +17,60 @@
    cover. The bars are invisible and the piece stays whole.
    ============================================================ */
 
-/* ---------- the shared "object on black" tile ----------
-   Used by the catalogue grid, the dossier mosaic and the home
-   page shelf. The box sets the shape; the clip sits inside it. */
-/* Each tile carries the backdrop of its own clip, so wherever the
-   box and the clip disagree the bars are the piece's own colour
-   rather than black. See tools/sculpt-plinth.py. */
-body.sculptbody .mo-item{background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000))}
-body.sculptbody .mo-item video,body.sculptbody .mo-item img{
-  object-fit:contain;background:transparent;
+/* ---------- the specimen wall, at native ratio ----------
+   The dossier mosaic was a twelve-column grid: every tile got a
+   span, the span set the box, and the clip was letterboxed into
+   whatever shape that produced. Two clips in three are portrait
+   and the spans were authored for landscape, so half the wall was
+   plinth, and a plinth is only invisible while it matches the clip
+   exactly, which across a re-encode it does not.
+
+   So the wall is a masonry flow instead. Two columns, each tile
+   the exact aspect of its own clip, nothing stretched to meet a
+   row. No letterbox, no crop, no seams, and the portrait pieces
+   finally read at the size they were shot.
+
+   The trade is reading order: columns fill top to bottom, then
+   across. For a gallery of turntables that is fine.
+   ============================================================ */
+body.sculptbody .mosaic{
+  display:block;
+  column-count:2;column-gap:clamp(.5rem,1.4vw,1.1rem);
+  padding-top:clamp(1.5rem,4vh,2.6rem);
 }
-/* real source shapes, written by tools/sculpt-build.py from the
-   encoded files. A tile whose box matches its clip shows no bars. */
+body.sculptbody .mo-item{
+  break-inside:avoid;display:block;width:100%;
+  margin:0 0 clamp(.5rem,1.4vw,1.1rem);
+  background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000));
+}
+/* the span classes are what the grid used; under columns they are
+   inert, and the shape classes now drive the box directly */
+body.sculptbody .mo-item video,body.sculptbody .mo-item img{
+  width:100%;height:auto;display:block;object-fit:cover;
+}
 .mo-item.ar-43 video,.mo-item.ar-43 img{aspect-ratio:4/3}
 .mo-item.ar-34 video,.mo-item.ar-34 img{aspect-ratio:3/4}
-/* The ceiling. A 3:4 clip in a wide span computes a box taller than
-   the screen, which drags its whole grid row with it. Capping the
-   height turns that case into a wide black plate with the piece
-   centred in it, which is the museum read anyway, instead of a tile
-   nobody can see the top and bottom of at once. */
-body.sculptbody .mo-item video,body.sculptbody .mo-item img{
-  height:auto;max-height:min(74vh,720px);
+
+@media(max-width:760px){
+  body.sculptbody .mosaic{column-count:1}
 }
-body.sculptbody .mo-item{display:flex;align-items:center;justify-content:center}
 
 /* the mosaic's dim-the-others hover is built for cinematic frames.
-   On black-background objects it just makes them disappear, so the
-   sculpture pages lean on scale alone. */
+   On these it just makes them disappear, so the wall leans on
+   scale alone. */
 body.sculptbody .mosaic:hover .mo-item video,body.sculptbody .mosaic:hover .mo-item img{filter:none}
-body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:hover img{transform:scale(1.06)}
+body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:hover img{transform:scale(1.04)}
 
 /* ============================================================
    1. THE COLLECTION BAND
-   Seventeen pieces on a twelve-column bed, deliberately NOT
-   uniform. Three weights: a full-width feature that splits into
-   media and type, a mid card at a half or a third, and a small
-   card for the sets that are only a turn or two long. Weight
-   follows substance, so the pieces with the most footage take
-   the most room, and the eye gets a rhythm instead of a wall.
+   Twenty one pieces on a twelve-column bed, in two weights only:
+   a full-width feature that splits into media and type, or a
+   pair. Dane's call, and right. Three or more across and the
+   pieces lose their size and get lost in the shuffle.
+
+   Cards pick a LANDSCAPE clip and every well is exactly 4:3, so
+   nothing letterboxes. The feature reads heavier because its
+   media column is wider, not because its box is a different shape.
 
    PLINTH COLOUR: every well carries the backdrop of its own
    clip, sampled top and bottom by tools/sculpt-plinth.py and
@@ -70,11 +86,10 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
 /* a band that follows its own chapter head already has a rule above it */
 .sc-chapter + .sc-band{border-top:0}
 .sc-item{
-  grid-column:span 4;display:flex;flex-direction:column;
+  grid-column:span 6;display:flex;flex-direction:column;
   background:var(--soot);position:relative;transition:background .4s ease;
 }
 .sc-item.w6{grid-column:span 6}
-.sc-item.w3{grid-column:span 3}
 .sc-item:hover{background:var(--soot-2)}
 
 /* ---- the media well ---- */
@@ -82,10 +97,6 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   position:relative;overflow:hidden;aspect-ratio:4/3;
   background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000));
 }
-/* the mid card runs wider and shorter than the third, and the
-   feature is taller than either: the weights have to be legible
-   as height, not only as width. */
-.sc-item.w6 .sc-shot{aspect-ratio:16/10}
 .sc-shot video,.sc-shot img{
   width:100%;height:100%;display:block;object-fit:contain;
   transition:transform .7s cubic-bezier(.6,0,.2,1);
@@ -120,7 +131,6 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
 }
 .sc-item:hover .sc-name{font-variation-settings:'wdth' 110}
 .sc-item.w6 .sc-name{font-size:clamp(1.15rem,2.1vw,1.75rem)}
-.sc-item.w3 .sc-name{font-size:clamp(.92rem,1.25vw,1.08rem)}
 .sc-count{
   grid-column:3;grid-row:1/span 2;align-self:center;
   font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;
@@ -130,7 +140,6 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   grid-column:2;font-family:var(--serif);font-style:italic;
   font-size:.95rem;line-height:1.3;color:rgba(228,224,212,.6);
 }
-.sc-item.w3 .sc-cat{font-size:.85rem}
 
 /* ---- the feature: full width, media beside type ----
    Three of these break up the run of cards. The media keeps its
@@ -138,12 +147,10 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
    letterbox, and the type gets room to behave like a title. */
 .sc-item.feature{
   grid-column:1/-1;display:grid;
-  grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);
+  grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);
   align-items:stretch;
 }
-/* scales with the viewport, or the halves catch up with it on a
-   wide screen and the hierarchy collapses */
-.sc-item.feature .sc-shot{aspect-ratio:auto;min-height:clamp(420px,46vw,820px)}
+.sc-item.feature .sc-shot{aspect-ratio:4/3}
 .sc-item.feature.flip .sc-shot{order:2}
 .sc-face{
   display:flex;flex-direction:column;justify-content:center;gap:.7rem;
@@ -171,14 +178,12 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
 .scf-count{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.16em;color:rgba(228,224,212,.5)}
 
 @media(max-width:1000px){
-  .sc-item,.sc-item.w6,.sc-item.w3{grid-column:span 6}
+  .sc-item,.sc-item.w6{grid-column:span 6}
   .sc-item.feature{grid-template-columns:1fr}
-  .sc-item.feature .sc-shot{aspect-ratio:4/3;min-height:0}
   .sc-item.feature.flip .sc-shot{order:0}
-  .sc-item.w6 .sc-shot{aspect-ratio:4/3}
 }
 @media(max-width:620px){
-  .sc-item,.sc-item.w6,.sc-item.w3{grid-column:1/-1}
+  .sc-item,.sc-item.w6{grid-column:1/-1}
   .sc-label{padding:.75rem .9rem .95rem}
 }
 

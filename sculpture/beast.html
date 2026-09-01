@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/beast/beast-01.mp4" poster="../assets/img/sculpture/beast/beast-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 09 / Beast</span>
+    <span class="idx">Sculpture · 14 / Beast</span>
     <h1>Beast</h1>
     <!-- copy: the one-line description -->
     <p class="tag">A scholar built like a wrecking ball.</p>
@@ -116,63 +118,63 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 15 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#eb0d24;--pb:#ed1485">
+    <figure class="mo-item ar-43 reveal" style="--pa:#eb0d24;--pb:#ed1485">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-01.mp4" poster="../assets/img/sculpture/beast/beast-01.jpg" muted loop playsinline preload="none" aria-label="BE turn 01"></video>
       <figcaption class="mo-cap"><span class="n">BE-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#eb0e24;--pb:#ed1485">
+    <figure class="mo-item ar-43 reveal" style="--pa:#eb0e24;--pb:#ed1485">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-03.mp4" poster="../assets/img/sculpture/beast/beast-03.jpg" muted loop playsinline preload="none" aria-label="BE turn 03"></video>
       <figcaption class="mo-cap"><span class="n">BE-03</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#eb0e24;--pb:#ed1485">
+    <figure class="mo-item ar-43 reveal" style="--pa:#eb0e24;--pb:#ed1485">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-05.mp4" poster="../assets/img/sculpture/beast/beast-05.jpg" muted loop playsinline preload="none" aria-label="BE turn 05"></video>
       <figcaption class="mo-cap"><span class="n">BE-05</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#ed1329;--pb:#ee1c8f">
+    <figure class="mo-item ar-34 reveal" style="--pa:#ed1329;--pb:#ee1c8f">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-07.mp4" poster="../assets/img/sculpture/beast/beast-07.jpg" muted loop playsinline preload="none" aria-label="BE turn 07"></video>
       <figcaption class="mo-cap"><span class="n">BE-07</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#eb0d24;--pb:#b00f54">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#b00f54">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-09.mp4" poster="../assets/img/sculpture/beast/beast-09.jpg" muted loop playsinline preload="none" aria-label="BE turn 09"></video>
       <figcaption class="mo-cap"><span class="n">BE-09</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
-      <video class="labvid" data-src="../assets/video/sculpture/beast/beast-13.mp4" poster="../assets/img/sculpture/beast/beast-13.jpg" muted loop playsinline preload="none" aria-label="BE turn 13"></video>
-      <figcaption class="mo-cap"><span class="n">BE-13</span><span>18s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#eb0d24;--pb:#a52588">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#a52588">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-11.mp4" poster="../assets/img/sculpture/beast/beast-11.jpg" muted loop playsinline preload="none" aria-label="BE turn 11"></video>
       <figcaption class="mo-cap"><span class="n">BE-11</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#eb0d24;--pb:#8c0e56">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
+      <video class="labvid" data-src="../assets/video/sculpture/beast/beast-13.mp4" poster="../assets/img/sculpture/beast/beast-13.jpg" muted loop playsinline preload="none" aria-label="BE turn 13"></video>
+      <figcaption class="mo-cap"><span class="n">BE-13</span><span>18s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#eb0d24;--pb:#8c0e56">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-15.mp4" poster="../assets/img/sculpture/beast/beast-15.jpg" muted loop playsinline preload="none" aria-label="BE turn 15"></video>
       <figcaption class="mo-cap"><span class="n">BE-15</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#eb0d24;--pb:#ed1585">
+    <figure class="mo-item ar-43 reveal" style="--pa:#eb0d24;--pb:#ed1585">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-02.mp4" poster="../assets/img/sculpture/beast/beast-02.jpg" muted loop playsinline preload="none" aria-label="BE turn 02"></video>
       <figcaption class="mo-cap"><span class="n">BE-02</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#cc0c20;--pb:#ed1485">
+    <figure class="mo-item ar-43 reveal" style="--pa:#cc0c20;--pb:#ed1485">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-04.mp4" poster="../assets/img/sculpture/beast/beast-04.jpg" muted loop playsinline preload="none" aria-label="BE turn 04"></video>
       <figcaption class="mo-cap"><span class="n">BE-04</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-06.mp4" poster="../assets/img/sculpture/beast/beast-06.jpg" muted loop playsinline preload="none" aria-label="BE turn 06"></video>
       <figcaption class="mo-cap"><span class="n">BE-06</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1584">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1584">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-08.mp4" poster="../assets/img/sculpture/beast/beast-08.jpg" muted loop playsinline preload="none" aria-label="BE turn 08"></video>
       <figcaption class="mo-cap"><span class="n">BE-08</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#eb0e24;--pb:#ed1484">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0e24;--pb:#ed1484">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-10.mp4" poster="../assets/img/sculpture/beast/beast-10.jpg" muted loop playsinline preload="none" aria-label="BE turn 10"></video>
       <figcaption class="mo-cap"><span class="n">BE-10</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#ed1484">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-12.mp4" poster="../assets/img/sculpture/beast/beast-12.jpg" muted loop playsinline preload="none" aria-label="BE turn 12"></video>
       <figcaption class="mo-cap"><span class="n">BE-12</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#eb0d24;--pb:#8a2669">
+    <figure class="mo-item ar-34 reveal" style="--pa:#eb0d24;--pb:#8a2669">
       <video class="labvid" data-src="../assets/video/sculpture/beast/beast-14.mp4" poster="../assets/img/sculpture/beast/beast-14.jpg" muted loop playsinline preload="none" aria-label="BE turn 14"></video>
       <figcaption class="mo-cap"><span class="n">BE-14</span><span>12s</span></figcaption>
     </figure>
@@ -180,8 +182,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="the-baron.html"><span class="dir">← Previous</span><span class="rt">The Baron</span></a>
-  <a href="gambit.html"><span class="dir">Next →</span><span class="rt">Gambit</span></a>
+  <a href="gambit.html"><span class="dir">← Previous</span><span class="rt">Gambit</span></a>
+  <a href="nightcrawler.html"><span class="dir">Next →</span><span class="rt">Nightcrawler</span></a>
 </div>
 
 <section class="page-cta">

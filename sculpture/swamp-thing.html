@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-01.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 14 / Swamp Thing</span>
+    <span class="idx">Sculpture · 11 / Swamp Thing</span>
     <h1>Swamp Thing</h1>
     <!-- copy: the one-line description -->
     <p class="tag">Vegetation, without sculpting every leaf.</p>
@@ -116,51 +118,51 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 12 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#e5eca9;--pb:#91976a">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#91976a">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-01.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-01.jpg" muted loop playsinline preload="none" aria-label="SW turn 01"></video>
       <figcaption class="mo-cap"><span class="n">SW-01</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#d3da99;--pb:#8f9a65">
+    <figure class="mo-item ar-34 reveal" style="--pa:#d3da99;--pb:#8f9a65">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-03.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-03.jpg" muted loop playsinline preload="none" aria-label="SW turn 03"></video>
       <figcaption class="mo-cap"><span class="n">SW-03</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#e5eca9;--pb:#171912">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#171912">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-05.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-05.jpg" muted loop playsinline preload="none" aria-label="SW turn 05"></video>
       <figcaption class="mo-cap"><span class="n">SW-05</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#e5eca9;--pb:#7d815d">
-      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-09.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-09.jpg" muted loop playsinline preload="none" aria-label="SW turn 09"></video>
-      <figcaption class="mo-cap"><span class="n">SW-09</span><span>10s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#e5eca9;--pb:#575d3f">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#575d3f">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-07.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-07.jpg" muted loop playsinline preload="none" aria-label="SW turn 07"></video>
       <figcaption class="mo-cap"><span class="n">SW-07</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#e5eca9;--pb:#7a7c57">
-      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-02.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-02.jpg" muted loop playsinline preload="none" aria-label="SW turn 02"></video>
-      <figcaption class="mo-cap"><span class="n">SW-02</span><span>12s</span></figcaption>
+    <figure class="mo-item ar-43 reveal" style="--pa:#e5eca9;--pb:#7d815d">
+      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-09.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-09.jpg" muted loop playsinline preload="none" aria-label="SW turn 09"></video>
+      <figcaption class="mo-cap"><span class="n">SW-09</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#e5eca9;--pb:#aeb77f">
+    <figure class="mo-item ar-43 reveal" style="--pa:#e5eca9;--pb:#aeb77f">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-11.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-11.jpg" muted loop playsinline preload="none" aria-label="SW turn 11"></video>
       <figcaption class="mo-cap"><span class="n">SW-11</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#e5eca9;--pb:#b6be85">
-      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-08.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-08.jpg" muted loop playsinline preload="none" aria-label="SW turn 08"></video>
-      <figcaption class="mo-cap"><span class="n">SW-08</span><span>16s</span></figcaption>
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#7a7c57">
+      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-02.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-02.jpg" muted loop playsinline preload="none" aria-label="SW turn 02"></video>
+      <figcaption class="mo-cap"><span class="n">SW-02</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#e5eca9;--pb:#858b61">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#858b61">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-04.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-04.jpg" muted loop playsinline preload="none" aria-label="SW turn 04"></video>
       <figcaption class="mo-cap"><span class="n">SW-04</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#e5eca9;--pb:#7c7f59">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#7c7f59">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-06.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-06.jpg" muted loop playsinline preload="none" aria-label="SW turn 06"></video>
       <figcaption class="mo-cap"><span class="n">SW-06</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#e5eca9;--pb:#bdc48a">
+    <figure class="mo-item ar-43 reveal" style="--pa:#e5eca9;--pb:#b6be85">
+      <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-08.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-08.jpg" muted loop playsinline preload="none" aria-label="SW turn 08"></video>
+      <figcaption class="mo-cap"><span class="n">SW-08</span><span>16s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#e5eca9;--pb:#bdc48a">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-10.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-10.jpg" muted loop playsinline preload="none" aria-label="SW turn 10"></video>
       <figcaption class="mo-cap"><span class="n">SW-10</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#e5eca9;--pb:#8a9368">
+    <figure class="mo-item ar-34 reveal" style="--pa:#e5eca9;--pb:#8a9368">
       <video class="labvid" data-src="../assets/video/sculpture/swamp-thing/swamp-thing-12.mp4" poster="../assets/img/sculpture/swamp-thing/swamp-thing-12.jpg" muted loop playsinline preload="none" aria-label="SW turn 12"></video>
       <figcaption class="mo-cap"><span class="n">SW-12</span><span>9s</span></figcaption>
     </figure>
@@ -168,8 +170,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="magneto.html"><span class="dir">← Previous</span><span class="rt">Magneto</span></a>
-  <a href="nightcrawler.html"><span class="dir">Next →</span><span class="rt">Nightcrawler</span></a>
+  <a href="galactus.html"><span class="dir">← Previous</span><span class="rt">Galactus</span></a>
+  <a href="colossus.html"><span class="dir">Next →</span><span class="rt">Colossus</span></a>
 </div>
 
 <section class="page-cta">

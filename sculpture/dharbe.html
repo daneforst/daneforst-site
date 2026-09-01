@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-01.mp4" poster="../assets/img/sculpture/dharbe/dharbe-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 04 / Dharbe</span>
+    <span class="idx">Sculpture · 05 / Dharbe</span>
     <h1>Dharbe</h1>
     <!-- copy: the one-line description -->
     <p class="tag">Started as a doodle, got out of hand.</p>
@@ -116,43 +118,43 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 10 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f6a280;--pb:#f6a281">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f6a280;--pb:#f6a281">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-01.mp4" poster="../assets/img/sculpture/dharbe/dharbe-01.jpg" muted loop playsinline preload="none" aria-label="DH turn 01"></video>
       <figcaption class="mo-cap"><span class="n">DH-01</span><span>11s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f6a280;--pb:#ef9b7b">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f6a280;--pb:#ef9b7b">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-03.mp4" poster="../assets/img/sculpture/dharbe/dharbe-03.jpg" muted loop playsinline preload="none" aria-label="DH turn 03"></video>
       <figcaption class="mo-cap"><span class="n">DH-03</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f6a281;--pb:#f6a280">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f6a281;--pb:#f6a280">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-05.mp4" poster="../assets/img/sculpture/dharbe/dharbe-05.jpg" muted loop playsinline preload="none" aria-label="DH turn 05"></video>
       <figcaption class="mo-cap"><span class="n">DH-05</span><span>7s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#f6a281;--pb:#f6a27f">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f6a281;--pb:#f6a27f">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-07.mp4" poster="../assets/img/sculpture/dharbe/dharbe-07.jpg" muted loop playsinline preload="none" aria-label="DH turn 07"></video>
       <figcaption class="mo-cap"><span class="n">DH-07</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#f6a381;--pb:#f6a280">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f6a381;--pb:#f6a280">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-09.mp4" poster="../assets/img/sculpture/dharbe/dharbe-09.jpg" muted loop playsinline preload="none" aria-label="DH turn 09"></video>
       <figcaption class="mo-cap"><span class="n">DH-09</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f6a281;--pb:#f6a281">
-      <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-04.mp4" poster="../assets/img/sculpture/dharbe/dharbe-04.jpg" muted loop playsinline preload="none" aria-label="DH turn 04"></video>
-      <figcaption class="mo-cap"><span class="n">DH-04</span><span>10s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#f6a281;--pb:#f6a281">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f6a281;--pb:#f6a281">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-02.mp4" poster="../assets/img/sculpture/dharbe/dharbe-02.jpg" muted loop playsinline preload="none" aria-label="DH turn 02"></video>
       <figcaption class="mo-cap"><span class="n">DH-02</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#f6a281;--pb:#f6a381">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f6a281;--pb:#f6a281">
+      <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-04.mp4" poster="../assets/img/sculpture/dharbe/dharbe-04.jpg" muted loop playsinline preload="none" aria-label="DH turn 04"></video>
+      <figcaption class="mo-cap"><span class="n">DH-04</span><span>10s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#f6a281;--pb:#f6a381">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-06.mp4" poster="../assets/img/sculpture/dharbe/dharbe-06.jpg" muted loop playsinline preload="none" aria-label="DH turn 06"></video>
       <figcaption class="mo-cap"><span class="n">DH-06</span><span>17s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#f6a281;--pb:#f6a281">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f6a281;--pb:#f6a281">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-08.mp4" poster="../assets/img/sculpture/dharbe/dharbe-08.jpg" muted loop playsinline preload="none" aria-label="DH turn 08"></video>
       <figcaption class="mo-cap"><span class="n">DH-08</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#f6a281;--pb:#f6a180">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f6a281;--pb:#f6a180">
       <video class="labvid" data-src="../assets/video/sculpture/dharbe/dharbe-10.mp4" poster="../assets/img/sculpture/dharbe/dharbe-10.jpg" muted loop playsinline preload="none" aria-label="DH turn 10"></video>
       <figcaption class="mo-cap"><span class="n">DH-10</span><span>9s</span></figcaption>
     </figure>
@@ -160,8 +162,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="rahul.html"><span class="dir">← Previous</span><span class="rt">Rahul</span></a>
-  <a href="guy-dynamo.html"><span class="dir">Next →</span><span class="rt">Guy Dynamo</span></a>
+  <a href="guy-dynamo.html"><span class="dir">← Previous</span><span class="rt">Guy Dynamo</span></a>
+  <a href="minker-ship.html"><span class="dir">Next →</span><span class="rt">Minker Ship</span></a>
 </div>
 
 <section class="page-cta">

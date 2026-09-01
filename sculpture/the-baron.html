@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-01.mp4" poster="../assets/img/sculpture/the-baron/the-baron-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 08 / The Baron</span>
+    <span class="idx">Sculpture · 09 / The Baron</span>
     <h1>The Baron</h1>
     <!-- copy: the one-line description -->
     <p class="tag">The original, before the rebuild.</p>
@@ -116,23 +118,23 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 5 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#555251;--pb:#55513e">
+    <figure class="mo-item ar-34 reveal" style="--pa:#555251;--pb:#55513e">
       <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-01.mp4" poster="../assets/img/sculpture/the-baron/the-baron-01.jpg" muted loop playsinline preload="none" aria-label="TB turn 01"></video>
       <figcaption class="mo-cap"><span class="n">TB-01</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#3a3430;--pb:#413a2d">
+    <figure class="mo-item ar-34 reveal" style="--pa:#3a3430;--pb:#413a2d">
       <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-03.mp4" poster="../assets/img/sculpture/the-baron/the-baron-03.jpg" muted loop playsinline preload="none" aria-label="TB turn 03"></video>
       <figcaption class="mo-cap"><span class="n">TB-03</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#555251;--pb:#3e3628">
+    <figure class="mo-item ar-34 reveal" style="--pa:#555251;--pb:#3e3628">
       <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-05.mp4" poster="../assets/img/sculpture/the-baron/the-baron-05.jpg" muted loop playsinline preload="none" aria-label="TB turn 05"></video>
       <figcaption class="mo-cap"><span class="n">TB-05</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#545251;--pb:#28211a">
+    <figure class="mo-item ar-34 reveal" style="--pa:#545251;--pb:#28211a">
       <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-02.mp4" poster="../assets/img/sculpture/the-baron/the-baron-02.jpg" muted loop playsinline preload="none" aria-label="TB turn 02"></video>
       <figcaption class="mo-cap"><span class="n">TB-02</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#555251;--pb:#1e1a1a">
+    <figure class="mo-item ar-34 reveal" style="--pa:#555251;--pb:#1e1a1a">
       <video class="labvid" data-src="../assets/video/sculpture/the-baron/the-baron-04.mp4" poster="../assets/img/sculpture/the-baron/the-baron-04.jpg" muted loop playsinline preload="none" aria-label="TB turn 04"></video>
       <figcaption class="mo-cap"><span class="n">TB-04</span><span>10s</span></figcaption>
     </figure>
@@ -141,7 +143,7 @@
 
 <div class="related" role="navigation" aria-label="More sculpture">
   <a href="sausage-man.html"><span class="dir">← Previous</span><span class="rt">Sausage Man</span></a>
-  <a href="beast.html"><span class="dir">Next →</span><span class="rt">Beast</span></a>
+  <a href="galactus.html"><span class="dir">Next →</span><span class="rt">Galactus</span></a>
 </div>
 
 <section class="page-cta">

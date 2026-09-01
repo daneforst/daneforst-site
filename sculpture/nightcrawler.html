@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -116,43 +118,43 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 10 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#215863;--pb:#010101">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-01.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-01.jpg" muted loop playsinline preload="none" aria-label="NC turn 01"></video>
       <figcaption class="mo-cap"><span class="n">NC-01</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#215863;--pb:#1e0316">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#1e0316">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-03.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-03.jpg" muted loop playsinline preload="none" aria-label="NC turn 03"></video>
       <figcaption class="mo-cap"><span class="n">NC-03</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#215863;--pb:#010101">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-05.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-05.jpg" muted loop playsinline preload="none" aria-label="NC turn 05"></video>
       <figcaption class="mo-cap"><span class="n">NC-05</span><span>17s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#215863;--pb:#020001">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#020001">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-07.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-07.jpg" muted loop playsinline preload="none" aria-label="NC turn 07"></video>
       <figcaption class="mo-cap"><span class="n">NC-07</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#215863;--pb:#010102">
+    <figure class="mo-item ar-34 reveal" style="--pa:#215863;--pb:#010102">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-09.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-09.jpg" muted loop playsinline preload="none" aria-label="NC turn 09"></video>
       <figcaption class="mo-cap"><span class="n">NC-09</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#215863;--pb:#010101">
-      <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-04.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-04.jpg" muted loop playsinline preload="none" aria-label="NC turn 04"></video>
-      <figcaption class="mo-cap"><span class="n">NC-04</span><span>18s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#215863;--pb:#010101">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-02.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-02.jpg" muted loop playsinline preload="none" aria-label="NC turn 02"></video>
       <figcaption class="mo-cap"><span class="n">NC-02</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#215863;--pb:#0f000b">
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#010101">
+      <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-04.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-04.jpg" muted loop playsinline preload="none" aria-label="NC turn 04"></video>
+      <figcaption class="mo-cap"><span class="n">NC-04</span><span>18s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#215863;--pb:#0f000b">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-06.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-06.jpg" muted loop playsinline preload="none" aria-label="NC turn 06"></video>
       <figcaption class="mo-cap"><span class="n">NC-06</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#215864;--pb:#010101">
+    <figure class="mo-item ar-34 reveal" style="--pa:#215864;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-08.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-08.jpg" muted loop playsinline preload="none" aria-label="NC turn 08"></video>
       <figcaption class="mo-cap"><span class="n">NC-08</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#215864;--pb:#010101">
+    <figure class="mo-item ar-34 reveal" style="--pa:#215864;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/nightcrawler/nightcrawler-10.mp4" poster="../assets/img/sculpture/nightcrawler/nightcrawler-10.jpg" muted loop playsinline preload="none" aria-label="NC turn 10"></video>
       <figcaption class="mo-cap"><span class="n">NC-10</span><span>14s</span></figcaption>
     </figure>
@@ -160,8 +162,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="swamp-thing.html"><span class="dir">← Previous</span><span class="rt">Swamp Thing</span></a>
-  <a href="colossus.html"><span class="dir">Next →</span><span class="rt">Colossus</span></a>
+  <a href="beast.html"><span class="dir">← Previous</span><span class="rt">Beast</span></a>
+  <a href="cyclops.html"><span class="dir">Next →</span><span class="rt">Cyclops</span></a>
 </div>
 
 <section class="page-cta">

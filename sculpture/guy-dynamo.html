@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-01.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 05 / Guy Dynamo</span>
+    <span class="idx">Sculpture · 04 / Guy Dynamo</span>
     <h1>Guy Dynamo</h1>
     <!-- copy: the one-line description -->
     <p class="tag">A name that turned up before the design did.</p>
@@ -116,39 +118,39 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 9 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-01.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-01.jpg" muted loop playsinline preload="none" aria-label="GD turn 01"></video>
       <figcaption class="mo-cap"><span class="n">GD-01</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-03.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-03.jpg" muted loop playsinline preload="none" aria-label="GD turn 03"></video>
       <figcaption class="mo-cap"><span class="n">GD-03</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-05.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-05.jpg" muted loop playsinline preload="none" aria-label="GD turn 05"></video>
       <figcaption class="mo-cap"><span class="n">GD-05</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-34 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-07.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-07.jpg" muted loop playsinline preload="none" aria-label="GD turn 07"></video>
       <figcaption class="mo-cap"><span class="n">GD-07</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#d03442;--pb:#8d255b">
+    <figure class="mo-item ar-34 reveal" style="--pa:#d03442;--pb:#8d255b">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-09.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-09.jpg" muted loop playsinline preload="none" aria-label="GD turn 09"></video>
       <figcaption class="mo-cap"><span class="n">GD-09</span><span>6s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#d03442;--pb:#bd2f43">
-      <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-04.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-04.jpg" muted loop playsinline preload="none" aria-label="GD turn 04"></video>
-      <figcaption class="mo-cap"><span class="n">GD-04</span><span>9s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-43 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-02.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-02.jpg" muted loop playsinline preload="none" aria-label="GD turn 02"></video>
       <figcaption class="mo-cap"><span class="n">GD-02</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#d03442;--pb:#d03442">
+    <figure class="mo-item ar-43 reveal" style="--pa:#d03442;--pb:#bd2f43">
+      <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-04.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-04.jpg" muted loop playsinline preload="none" aria-label="GD turn 04"></video>
+      <figcaption class="mo-cap"><span class="n">GD-04</span><span>9s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#d03442;--pb:#d03442">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-06.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-06.jpg" muted loop playsinline preload="none" aria-label="GD turn 06"></video>
       <figcaption class="mo-cap"><span class="n">GD-06</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#d03443;--pb:#cd3443">
+    <figure class="mo-item ar-34 reveal" style="--pa:#d03443;--pb:#cd3443">
       <video class="labvid" data-src="../assets/video/sculpture/guy-dynamo/guy-dynamo-08.mp4" poster="../assets/img/sculpture/guy-dynamo/guy-dynamo-08.jpg" muted loop playsinline preload="none" aria-label="GD turn 08"></video>
       <figcaption class="mo-cap"><span class="n">GD-08</span><span>9s</span></figcaption>
     </figure>
@@ -156,8 +158,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="dharbe.html"><span class="dir">← Previous</span><span class="rt">Dharbe</span></a>
-  <a href="minker-ship.html"><span class="dir">Next →</span><span class="rt">Minker Ship</span></a>
+  <a href="rahul.html"><span class="dir">← Previous</span><span class="rt">Rahul</span></a>
+  <a href="dharbe.html"><span class="dir">Next →</span><span class="rt">Dharbe</span></a>
 </div>
 
 <section class="page-cta">

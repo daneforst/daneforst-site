@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-01.mp4" poster="../assets/img/sculpture/galactus/galactus-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 12 / Galactus</span>
+    <span class="idx">Sculpture · 10 / Galactus</span>
     <h1>Galactus</h1>
     <!-- copy: the one-line description -->
     <p class="tag">A figure whose only real subject is size.</p>
@@ -116,51 +118,51 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 12 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#120210;--pb:#040108">
-      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-03.mp4" poster="../assets/img/sculpture/galactus/galactus-03.jpg" muted loop playsinline preload="none" aria-label="GX turn 03"></video>
-      <figcaption class="mo-cap"><span class="n">GX-03</span><span>15s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#120210;--pb:#040108">
-      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-05.mp4" poster="../assets/img/sculpture/galactus/galactus-05.jpg" muted loop playsinline preload="none" aria-label="GX turn 05"></video>
-      <figcaption class="mo-cap"><span class="n">GX-05</span><span>16s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#120210;--pb:#040108">
+    <figure class="mo-item ar-34 reveal" style="--pa:#120210;--pb:#040108">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-01.mp4" poster="../assets/img/sculpture/galactus/galactus-01.jpg" muted loop playsinline preload="none" aria-label="GX turn 01"></video>
       <figcaption class="mo-cap"><span class="n">GX-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#120210;--pb:#060008">
+    <figure class="mo-item ar-43 reveal" style="--pa:#120210;--pb:#040108">
+      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-03.mp4" poster="../assets/img/sculpture/galactus/galactus-03.jpg" muted loop playsinline preload="none" aria-label="GX turn 03"></video>
+      <figcaption class="mo-cap"><span class="n">GX-03</span><span>15s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#120210;--pb:#040108">
+      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-05.mp4" poster="../assets/img/sculpture/galactus/galactus-05.jpg" muted loop playsinline preload="none" aria-label="GX turn 05"></video>
+      <figcaption class="mo-cap"><span class="n">GX-05</span><span>16s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#120210;--pb:#060008">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-07.mp4" poster="../assets/img/sculpture/galactus/galactus-07.jpg" muted loop playsinline preload="none" aria-label="GX turn 07"></video>
       <figcaption class="mo-cap"><span class="n">GX-07</span><span>11s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#0b010a;--pb:#020105">
+    <figure class="mo-item ar-34 reveal" style="--pa:#0b010a;--pb:#020105">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-09.mp4" poster="../assets/img/sculpture/galactus/galactus-09.jpg" muted loop playsinline preload="none" aria-label="GX turn 09"></video>
       <figcaption class="mo-cap"><span class="n">GX-09</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#120210;--pb:#050108">
-      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-02.mp4" poster="../assets/img/sculpture/galactus/galactus-02.jpg" muted loop playsinline preload="none" aria-label="GX turn 02"></video>
-      <figcaption class="mo-cap"><span class="n">GX-02</span><span>16s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#120210;--pb:#040108">
+    <figure class="mo-item ar-34 reveal" style="--pa:#120210;--pb:#040108">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-12.mp4" poster="../assets/img/sculpture/galactus/galactus-12.jpg" muted loop playsinline preload="none" aria-label="GX turn 12"></video>
       <figcaption class="mo-cap"><span class="n">GX-12</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#120210;--pb:#050108">
+    <figure class="mo-item ar-34 reveal" style="--pa:#120210;--pb:#050108">
+      <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-02.mp4" poster="../assets/img/sculpture/galactus/galactus-02.jpg" muted loop playsinline preload="none" aria-label="GX turn 02"></video>
+      <figcaption class="mo-cap"><span class="n">GX-02</span><span>16s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#120210;--pb:#050108">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-04.mp4" poster="../assets/img/sculpture/galactus/galactus-04.jpg" muted loop playsinline preload="none" aria-label="GX turn 04"></video>
       <figcaption class="mo-cap"><span class="n">GX-04</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#120210;--pb:#040108">
+    <figure class="mo-item ar-43 reveal" style="--pa:#120210;--pb:#040108">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-06.mp4" poster="../assets/img/sculpture/galactus/galactus-06.jpg" muted loop playsinline preload="none" aria-label="GX turn 06"></video>
       <figcaption class="mo-cap"><span class="n">GX-06</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#120210;--pb:#050109">
+    <figure class="mo-item ar-34 reveal" style="--pa:#120210;--pb:#050109">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-08.mp4" poster="../assets/img/sculpture/galactus/galactus-08.jpg" muted loop playsinline preload="none" aria-label="GX turn 08"></video>
       <figcaption class="mo-cap"><span class="n">GX-08</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#120210;--pb:#040108">
+    <figure class="mo-item ar-34 reveal" style="--pa:#120210;--pb:#040108">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-11.mp4" poster="../assets/img/sculpture/galactus/galactus-11.jpg" muted loop playsinline preload="none" aria-label="GX turn 11"></video>
       <figcaption class="mo-cap"><span class="n">GX-11</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#090108;--pb:#040007">
+    <figure class="mo-item ar-34 reveal" style="--pa:#090108;--pb:#040007">
       <video class="labvid" data-src="../assets/video/sculpture/galactus/galactus-13.mp4" poster="../assets/img/sculpture/galactus/galactus-13.jpg" muted loop playsinline preload="none" aria-label="GX turn 13"></video>
       <figcaption class="mo-cap"><span class="n">GX-13</span><span>18s</span></figcaption>
     </figure>
@@ -168,8 +170,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="the-thing.html"><span class="dir">← Previous</span><span class="rt">The Thing</span></a>
-  <a href="magneto.html"><span class="dir">Next →</span><span class="rt">Magneto</span></a>
+  <a href="the-baron.html"><span class="dir">← Previous</span><span class="rt">The Baron</span></a>
+  <a href="swamp-thing.html"><span class="dir">Next →</span><span class="rt">Swamp Thing</span></a>
 </div>
 
 <section class="page-cta">

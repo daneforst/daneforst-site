@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -116,27 +118,27 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 6 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-01.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-01.jpg" muted loop playsinline preload="none" aria-label="MS turn 01"></video>
       <figcaption class="mo-cap"><span class="n">MS-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f03881;--pb:#f03781">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03881;--pb:#f03781">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-03.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-03.jpg" muted loop playsinline preload="none" aria-label="MS turn 03"></video>
       <figcaption class="mo-cap"><span class="n">MS-03</span><span>11s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-05.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-05.jpg" muted loop playsinline preload="none" aria-label="MS turn 05"></video>
       <figcaption class="mo-cap"><span class="n">MS-05</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-02.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-02.jpg" muted loop playsinline preload="none" aria-label="MS turn 02"></video>
       <figcaption class="mo-cap"><span class="n">MS-02</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-04.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-04.jpg" muted loop playsinline preload="none" aria-label="MS turn 04"></video>
       <figcaption class="mo-cap"><span class="n">MS-04</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f03681;--pb:#f03681">
       <video class="labvid" data-src="../assets/video/sculpture/minker-ship/minker-ship-06.mp4" poster="../assets/img/sculpture/minker-ship/minker-ship-06.jpg" muted loop playsinline preload="none" aria-label="MS turn 06"></video>
       <figcaption class="mo-cap"><span class="n">MS-06</span><span>14s</span></figcaption>
     </figure>
@@ -144,8 +146,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="guy-dynamo.html"><span class="dir">← Previous</span><span class="rt">Guy Dynamo</span></a>
-  <a href="sausage-man.html"><span class="dir">Next →</span><span class="rt">Sausage Man</span></a>
+  <a href="dharbe.html"><span class="dir">← Previous</span><span class="rt">Dharbe</span></a>
+  <a href="bretterling.html"><span class="dir">Next →</span><span class="rt">Bretterling</span></a>
 </div>
 
 <section class="page-cta">

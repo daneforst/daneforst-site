@@ -270,27 +270,34 @@ CHAPTERS = [
          desc='The universe. Characters, a vehicle, and whatever else the '
               'story turned out to need. None of it borrowed, none of it '
               'commissioned, and none of it finished.',
-         # feature / 6+6 / 4+4+4 / 6+6
-         pieces=[('baron-2-0', 'feature'), ('rahul-blundo', 'w6'), ('rahul', 'w6'),
-                 ('dharbe', ''), ('guy-dynamo', ''), ('minker-ship', ''),
+         pieces=[('baron-2-0', 'feature'),
+                 ('rahul-blundo', 'w6'), ('rahul', 'w6'),
+                 ('guy-dynamo', 'feature flip'),
+                 ('dharbe', 'w6'), ('minker-ship', 'w6'),
+                 ('bretterling', 'feature'),
                  ('sausage-man', 'w6'), ('the-baron', 'w6')]),
 
     dict(key='comics', num='02', title='Comic <em>Characters</em>',
          desc='A line of studies of figures I grew up drawing. No brief, no '
               'client, and no obligation to be reverent about any of them.',
-         # feature / 6+6 / 4+4+4 / feature / 3+3+3+3
-         pieces=[('beast', 'feature'), ('gambit', 'w6'), ('the-thing', 'w6'),
-                 ('galactus', ''), ('magneto', ''), ('swamp-thing', ''),
-                 ('nightcrawler', 'feature flip'),
-                 ('colossus', 'w3'), ('cyclops', 'w3'), ('storm', 'w3'), ('wolverine', 'w3')]),
+         pieces=[('galactus', 'feature'),
+                 ('swamp-thing', 'w6'), ('colossus', 'w6'),
+                 ('gambit', 'feature flip'),
+                 ('beast', 'w6'), ('nightcrawler', 'w6'),
+                 ('cyclops', 'w6'), ('the-thing', 'w6'),
+                 ('magneto', 'feature'),
+                 ('storm', 'w6'), ('wolverine', 'w6')]),
 
     dict(key='random', num='03', title='Random <em>Creations</em>',
-         desc='The ones that do not belong to anything yet. A puppet, and a '
-              'shape that is still arguing with itself.',
-         # 6+6
-         pieces=[('pinok', 'w6'), ('bretterling', 'w6')]),
+         desc='The one that belongs to nothing yet. It exists as a physical '
+              'puppet too, which makes it the odd one out twice over.',
+         pieces=[('pinok', 'feature')]),
 ]
 
+# Two weights only, by Dane's call: a full-width feature, or a pair. Three or
+# more across and the pieces lose their size and get lost in the shuffle.
+# Rows still have to add up to 12, which with only these two means every
+# chapter is (features) + (pairs) and the count works out.
 WEIGHTS = {s: w for c in CHAPTERS for s, w in c['pieces']}
 ORDER = [s for c in CHAPTERS for s, _ in c['pieces']]
 
@@ -343,7 +350,7 @@ def head(p, title, desc):
 <link rel="stylesheet" href="{p}assets/css/style.css?v=11">
 <link rel="stylesheet" href="{p}assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="{p}assets/css/lab.css?v=3">
-<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="{p}assets/css/sculpt.css?v=9">
 </head>'''
 
 
@@ -476,57 +483,18 @@ def read_manifest():
     return clips
 
 
-# Row patterns for the specimen wall, in twelfths. Cycled, so a long
-# set gets variety and a short one still fills its row.
-ROWS = [[4, 4, 4], [6, 6], [4, 8], [4, 4, 4], [12], [8, 4], [6, 6], [4, 4, 4]]
-SPAN = {12: 'm-full', 8: 'm-two', 6: 'm-half', 4: 'm-third', 3: 'm-quarter'}
-
-
-def rows_for(count):
-    """Row patterns, in twelfths, that always fill whole rows."""
-    out, i = [], 0
-    while sum(len(r) for r in out) < count:
-        row = ROWS[i % len(ROWS)]
-        i += 1
-        left = count - sum(len(r) for r in out)
-        if len(row) > left:                       # final, partial row
-            row = {1: [12], 2: [6, 6], 3: [4, 4, 4]}[left]
-        out.append(row)
-    return out
-
-
-def spans_for(count):
-    """Flat list of span classes, for tests and for reading."""
-    return [SPAN[s] for row in rows_for(count) for s in row]
-
-
+# The wall is a masonry flow now, not a grid, so a clip's box is its own
+# shape and nothing needs a span. The old twelfths tables are gone with it.
 def mosaic(piece, clips, p, plinths):
-    """Clip order is interleaved so neighbouring tiles are not
-    consecutive turns of the same angle. Within each row the widest
-    span goes to the widest clip: a portrait turn in an 8- or
-    12-column span is mostly black, and drags the row's height up
-    with it."""
+    """One figure per clip, each at its own aspect. Order is interleaved so
+    neighbouring tiles are not consecutive turns of the same angle."""
     order = clips[::2] + clips[1::2]
-    laid, i = [], 0
-    for row in rows_for(len(order)):
-        chunk = order[i:i + len(row)]
-        i += len(row)
-        pairs = sorted(zip(sorted(row, reverse=True),
-                           sorted(chunk, key=lambda c: -c['w'] / c['h'])),
-                       key=lambda pr: -pr[0])
-        # keep the authored left-to-right order of the row's spans
-        by_span = {}
-        for s, c in pairs:
-            by_span.setdefault(s, []).append(c)
-        for s in row:
-            laid.append((by_span[s].pop(0), SPAN[s]))
-
     out = []
-    for c, span in laid:
+    for c in order:
         stem = f'{piece["slug"]}-{c["n"]}'
         src = f'{p}assets/video/sculpture/{piece["slug"]}/{stem}'
         pa, pb = plinths.get(stem, ('#000000', '#000000'))
-        out.append(f'''    <figure class="mo-item {span} {c['shape']} reveal" style="--pa:{pa};--pb:{pb}">
+        out.append(f'''    <figure class="mo-item {c['shape']} reveal" style="--pa:{pa};--pb:{pb}">
       <video class="labvid" data-src="{src}.mp4" poster="{src.replace('/video/', '/img/')}.jpg" muted loop playsinline preload="none" aria-label="{piece['code']} turn {c['n']}"></video>
       <figcaption class="mo-cap"><span class="n">{piece['code']}-{c['n']}</span><span>{c['dur']:.0f}s</span></figcaption>
     </figure>''')
@@ -549,7 +517,13 @@ def build_landing(clips, plinths):
 
     def card(i, x):
         cl = clips[x['slug']]
-        pick = cl[1] if len(cl) > 1 else cl[0]
+        # Landing cards want LANDSCAPE. The band's boxes are 4:3, so a
+        # portrait clip in one is mostly plinth, and Dane called those out.
+        # The Baron and Wolverine have no landscape footage at all, so they
+        # fall back and are the only two cards that letterbox.
+        wide = [c for c in cl if c['w'] >= c['h']]
+        pool = wide or cl
+        pick = pool[1] if len(pool) > 1 else pool[0]
         stem = f'{x["slug"]}-{pick["n"]}'
         base = f'assets/video/sculpture/{x["slug"]}/{stem}'
         pa, pb = plinths.get(stem, ('#000000', '#000000'))
@@ -596,7 +570,7 @@ def build_landing(clips, plinths):
   </div>
   <div>
     <p class="sc-ch-d">{ch['desc']}</p>
-    <span class="sc-ch-c">{len(got)} pieces &middot; {turns} turns</span>
+    <span class="sc-ch-c">{len(got)} {"piece" if len(got) == 1 else "pieces"} &middot; {turns} turns</span>
   </div>
 </section>
 <div class="sc-band">
@@ -765,9 +739,11 @@ def build_piece(i, x, clips, plinths):
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>

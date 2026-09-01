@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -116,47 +118,47 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 11 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-01.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-01.jpg" muted loop playsinline preload="none" aria-label="RB turn 01"></video>
       <figcaption class="mo-cap"><span class="n">RB-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-03.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-03.jpg" muted loop playsinline preload="none" aria-label="RB turn 03"></video>
       <figcaption class="mo-cap"><span class="n">RB-03</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f26979;--pb:#f26979">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-05.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-05.jpg" muted loop playsinline preload="none" aria-label="RB turn 05"></video>
       <figcaption class="mo-cap"><span class="n">RB-05</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#f26979;--pb:#f26979">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f26979;--pb:#f26979">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-07.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-07.jpg" muted loop playsinline preload="none" aria-label="RB turn 07"></video>
       <figcaption class="mo-cap"><span class="n">RB-07</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#f26878;--pb:#9e4056">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f26878;--pb:#9e4056">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-09.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-09.jpg" muted loop playsinline preload="none" aria-label="RB turn 09"></video>
       <figcaption class="mo-cap"><span class="n">RB-09</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#f26979;--pb:#e36071">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f26979;--pb:#e36071">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-11.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-11.jpg" muted loop playsinline preload="none" aria-label="RB turn 11"></video>
       <figcaption class="mo-cap"><span class="n">RB-11</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#cb4f5b;--pb:#ec6475">
+    <figure class="mo-item ar-43 reveal" style="--pa:#cb4f5b;--pb:#ec6475">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-02.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-02.jpg" muted loop playsinline preload="none" aria-label="RB turn 02"></video>
       <figcaption class="mo-cap"><span class="n">RB-02</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f26979;--pb:#f26878">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f26979;--pb:#f26878">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-04.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-04.jpg" muted loop playsinline preload="none" aria-label="RB turn 04"></video>
       <figcaption class="mo-cap"><span class="n">RB-04</span><span>14s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#f26878;--pb:#ed6476">
+    <figure class="mo-item ar-43 reveal" style="--pa:#f26878;--pb:#ed6476">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-06.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-06.jpg" muted loop playsinline preload="none" aria-label="RB turn 06"></video>
       <figcaption class="mo-cap"><span class="n">RB-06</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#f26979;--pb:#dc5f70">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f26979;--pb:#dc5f70">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-08.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-08.jpg" muted loop playsinline preload="none" aria-label="RB turn 08"></video>
       <figcaption class="mo-cap"><span class="n">RB-08</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#f26979;--pb:#963b4d">
+    <figure class="mo-item ar-34 reveal" style="--pa:#f26979;--pb:#963b4d">
       <video class="labvid" data-src="../assets/video/sculpture/rahul-blundo/rahul-blundo-10.mp4" poster="../assets/img/sculpture/rahul-blundo/rahul-blundo-10.jpg" muted loop playsinline preload="none" aria-label="RB turn 10"></video>
       <figcaption class="mo-cap"><span class="n">RB-10</span><span>12s</span></figcaption>
     </figure>

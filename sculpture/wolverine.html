@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/wolverine/wolverine-01.mp4" poster="../assets/img/sculpture/wolverine/wolverine-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 19 / Wolverine</span>
+    <span class="idx">Sculpture · 20 / Wolverine</span>
     <h1>Wolverine</h1>
     <!-- copy: the one-line description -->
     <p class="tag">One pass, one angle.</p>
@@ -116,7 +118,7 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 1 clip</div>
   <div class="mosaic">
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#070b18;--pb:#060606">
+    <figure class="mo-item ar-34 reveal" style="--pa:#070b18;--pb:#060606">
       <video class="labvid" data-src="../assets/video/sculpture/wolverine/wolverine-01.mp4" poster="../assets/img/sculpture/wolverine/wolverine-01.jpg" muted loop playsinline preload="none" aria-label="WV turn 01"></video>
       <figcaption class="mo-cap"><span class="n">WV-01</span><span>7s</span></figcaption>
     </figure>

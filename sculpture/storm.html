@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/storm/storm-01.mp4" poster="../assets/img/sculpture/storm/storm-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 18 / Storm</span>
+    <span class="idx">Sculpture · 19 / Storm</span>
     <h1>Storm</h1>
     <!-- copy: the one-line description -->
     <p class="tag">The hair and the cape are the whole problem.</p>
@@ -116,11 +118,11 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 2 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#070707;--pb:#622e2f">
+    <figure class="mo-item ar-43 reveal" style="--pa:#070707;--pb:#622e2f">
       <video class="labvid" data-src="../assets/video/sculpture/storm/storm-01.mp4" poster="../assets/img/sculpture/storm/storm-01.jpg" muted loop playsinline preload="none" aria-label="ST turn 01"></video>
       <figcaption class="mo-cap"><span class="n">ST-01</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#070707;--pb:#462021">
+    <figure class="mo-item ar-34 reveal" style="--pa:#070707;--pb:#462021">
       <video class="labvid" data-src="../assets/video/sculpture/storm/storm-02.mp4" poster="../assets/img/sculpture/storm/storm-02.jpg" muted loop playsinline preload="none" aria-label="ST turn 02"></video>
       <figcaption class="mo-cap"><span class="n">ST-02</span><span>16s</span></figcaption>
     </figure>
@@ -128,7 +130,7 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="cyclops.html"><span class="dir">← Previous</span><span class="rt">Cyclops</span></a>
+  <a href="magneto.html"><span class="dir">← Previous</span><span class="rt">Magneto</span></a>
   <a href="wolverine.html"><span class="dir">Next →</span><span class="rt">Wolverine</span></a>
 </div>
 

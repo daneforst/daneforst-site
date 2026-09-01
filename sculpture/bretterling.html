@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-01.mp4" poster="../assets/img/sculpture/bretterling/bretterling-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 21 / Bretterling</span>
+    <span class="idx">Sculpture · 07 / Bretterling</span>
     <h1>Bretterling</h1>
     <!-- copy: the one-line description -->
     <p class="tag">Somewhere between an insect and a piece of furniture.</p>
@@ -116,35 +118,35 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 8 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#020002;--pb:#160015">
+    <figure class="mo-item ar-43 reveal" style="--pa:#020002;--pb:#160015">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-01.mp4" poster="../assets/img/sculpture/bretterling/bretterling-01.jpg" muted loop playsinline preload="none" aria-label="BT turn 01"></video>
       <figcaption class="mo-cap"><span class="n">BT-01</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#020002;--pb:#160015">
+    <figure class="mo-item ar-43 reveal" style="--pa:#020002;--pb:#160015">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-03.mp4" poster="../assets/img/sculpture/bretterling/bretterling-03.jpg" muted loop playsinline preload="none" aria-label="BT turn 03"></video>
       <figcaption class="mo-cap"><span class="n">BT-03</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#030103;--pb:#150014">
+    <figure class="mo-item ar-43 reveal" style="--pa:#030103;--pb:#150014">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-05.mp4" poster="../assets/img/sculpture/bretterling/bretterling-05.jpg" muted loop playsinline preload="none" aria-label="BT turn 05"></video>
       <figcaption class="mo-cap"><span class="n">BT-05</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#020002;--pb:#160015">
-      <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-02.mp4" poster="../assets/img/sculpture/bretterling/bretterling-02.jpg" muted loop playsinline preload="none" aria-label="BT turn 02"></video>
-      <figcaption class="mo-cap"><span class="n">BT-02</span><span>10s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#020102;--pb:#140114">
+    <figure class="mo-item ar-34 reveal" style="--pa:#020102;--pb:#140114">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-07.mp4" poster="../assets/img/sculpture/bretterling/bretterling-07.jpg" muted loop playsinline preload="none" aria-label="BT turn 07"></video>
       <figcaption class="mo-cap"><span class="n">BT-07</span><span>11s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#020002;--pb:#160015">
-      <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-06.mp4" poster="../assets/img/sculpture/bretterling/bretterling-06.jpg" muted loop playsinline preload="none" aria-label="BT turn 06"></video>
-      <figcaption class="mo-cap"><span class="n">BT-06</span><span>11s</span></figcaption>
+    <figure class="mo-item ar-43 reveal" style="--pa:#020002;--pb:#160015">
+      <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-02.mp4" poster="../assets/img/sculpture/bretterling/bretterling-02.jpg" muted loop playsinline preload="none" aria-label="BT turn 02"></video>
+      <figcaption class="mo-cap"><span class="n">BT-02</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#020002;--pb:#160015">
+    <figure class="mo-item ar-43 reveal" style="--pa:#020002;--pb:#160015">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-04.mp4" poster="../assets/img/sculpture/bretterling/bretterling-04.jpg" muted loop playsinline preload="none" aria-label="BT turn 04"></video>
       <figcaption class="mo-cap"><span class="n">BT-04</span><span>16s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#020102;--pb:#120011">
+    <figure class="mo-item ar-34 reveal" style="--pa:#020002;--pb:#160015">
+      <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-06.mp4" poster="../assets/img/sculpture/bretterling/bretterling-06.jpg" muted loop playsinline preload="none" aria-label="BT turn 06"></video>
+      <figcaption class="mo-cap"><span class="n">BT-06</span><span>11s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#020102;--pb:#120011">
       <video class="labvid" data-src="../assets/video/sculpture/bretterling/bretterling-08.mp4" poster="../assets/img/sculpture/bretterling/bretterling-08.jpg" muted loop playsinline preload="none" aria-label="BT turn 08"></video>
       <figcaption class="mo-cap"><span class="n">BT-08</span><span>10s</span></figcaption>
     </figure>
@@ -152,8 +154,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="pinok.html"><span class="dir">← Previous</span><span class="rt">Pinok</span></a>
-  <a href="baron-2-0.html"><span class="dir">Next →</span><span class="rt">Baron 2.0</span></a>
+  <a href="minker-ship.html"><span class="dir">← Previous</span><span class="rt">Minker Ship</span></a>
+  <a href="sausage-man.html"><span class="dir">Next →</span><span class="rt">Sausage Man</span></a>
 </div>
 
 <section class="page-cta">

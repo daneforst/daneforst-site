@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -97,7 +99,7 @@
   <div class="pmeta reveal" style="margin-top:clamp(1.8rem,4vh,2.8rem)">
     <div><span>Role</span><b>Concept, Sculpt, Art Direction</b></div>
     <div><span>Medium</span><b>Digital sculpture</b></div>
-    <div><span>Turns</span><b>16 clips</b></div>
+    <div><span>Turns</span><b>15 clips</b></div>
   </div>
 
   <!-- copy: the two write-up sections, headings and all -->
@@ -114,77 +116,73 @@
 </section>
 
 <section class="pad" style="padding-top:0">
-  <div class="lab-kicker">Turns · 16 clips</div>
+  <div class="lab-kicker">Turns · 15 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#010101;--pb:#010101">
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-01.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-01.jpg" muted loop playsinline preload="none" aria-label="BR turn 01"></video>
       <figcaption class="mo-cap"><span class="n">BR-01</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#010101;--pb:#0a0908">
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#0a0908">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-03.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-03.jpg" muted loop playsinline preload="none" aria-label="BR turn 03"></video>
       <figcaption class="mo-cap"><span class="n">BR-03</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#010101;--pb:#020202">
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#020202">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-05.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-05.jpg" muted loop playsinline preload="none" aria-label="BR turn 05"></video>
       <figcaption class="mo-cap"><span class="n">BR-05</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#010101;--pb:#0c0505">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#0c0505">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-07.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-07.jpg" muted loop playsinline preload="none" aria-label="BR turn 07"></video>
       <figcaption class="mo-cap"><span class="n">BR-07</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#010101;--pb:#160308">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#160308">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-09.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-09.jpg" muted loop playsinline preload="none" aria-label="BR turn 09"></video>
       <figcaption class="mo-cap"><span class="n">BR-09</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#010101;--pb:#010101">
-      <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-14.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-14.jpg" muted loop playsinline preload="none" aria-label="BR turn 14"></video>
-      <figcaption class="mo-cap"><span class="n">BR-14</span><span>17s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#010101;--pb:#020102">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#020102">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-11.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-11.jpg" muted loop playsinline preload="none" aria-label="BR turn 11"></video>
       <figcaption class="mo-cap"><span class="n">BR-11</span><span>7s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#010101;--pb:#070405">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#010101">
+      <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-14.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-14.jpg" muted loop playsinline preload="none" aria-label="BR turn 14"></video>
+      <figcaption class="mo-cap"><span class="n">BR-14</span><span>17s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#17040d">
+      <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-17.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-17.jpg" muted loop playsinline preload="none" aria-label="BR turn 17"></video>
+      <figcaption class="mo-cap"><span class="n">BR-17</span><span>14s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#070405">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-02.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-02.jpg" muted loop playsinline preload="none" aria-label="BR turn 02"></video>
       <figcaption class="mo-cap"><span class="n">BR-02</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#010101;--pb:#1d1013">
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#1d1013">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-04.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-04.jpg" muted loop playsinline preload="none" aria-label="BR turn 04"></video>
       <figcaption class="mo-cap"><span class="n">BR-04</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#010101;--pb:#1f0c0e">
-      <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-16.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-16.jpg" muted loop playsinline preload="none" aria-label="BR turn 16"></video>
-      <figcaption class="mo-cap"><span class="n">BR-16</span><span>2s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#010101;--pb:#070103">
+    <figure class="mo-item ar-43 reveal" style="--pa:#010101;--pb:#070103">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-06.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-06.jpg" muted loop playsinline preload="none" aria-label="BR turn 06"></video>
       <figcaption class="mo-cap"><span class="n">BR-06</span><span>7s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#010101;--pb:#010101">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#010101">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-08.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-08.jpg" muted loop playsinline preload="none" aria-label="BR turn 08"></video>
       <figcaption class="mo-cap"><span class="n">BR-08</span><span>6s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#010101;--pb:#1c0f11">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#1c0f11">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-10.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-10.jpg" muted loop playsinline preload="none" aria-label="BR turn 10"></video>
       <figcaption class="mo-cap"><span class="n">BR-10</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#010101;--pb:#020102">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#020102">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-12.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-12.jpg" muted loop playsinline preload="none" aria-label="BR turn 12"></video>
       <figcaption class="mo-cap"><span class="n">BR-12</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#010101;--pb:#070302">
+    <figure class="mo-item ar-34 reveal" style="--pa:#010101;--pb:#070302">
       <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-15.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-15.jpg" muted loop playsinline preload="none" aria-label="BR turn 15"></video>
       <figcaption class="mo-cap"><span class="n">BR-15</span><span>11s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-full ar-34 reveal" style="--pa:#010101;--pb:#17040d">
-      <video class="labvid" data-src="../assets/video/sculpture/baron-2-0/baron-2-0-17.mp4" poster="../assets/img/sculpture/baron-2-0/baron-2-0-17.jpg" muted loop playsinline preload="none" aria-label="BR turn 17"></video>
-      <figcaption class="mo-cap"><span class="n">BR-17</span><span>14s</span></figcaption>
     </figure>
   </div>
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="bretterling.html"><span class="dir">← Previous</span><span class="rt">Bretterling</span></a>
+  <a href="pinok.html"><span class="dir">← Previous</span><span class="rt">Pinok</span></a>
   <a href="rahul-blundo.html"><span class="dir">Next →</span><span class="rt">Rahul + Blundo</span></a>
 </div>
 

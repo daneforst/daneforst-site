@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-01.mp4" poster="../assets/img/sculpture/gambit/gambit-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 10 / Gambit</span>
+    <span class="idx">Sculpture · 13 / Gambit</span>
     <h1>Gambit</h1>
     <!-- copy: the one-line description -->
     <p class="tag">Mostly attitude, which is hard to sculpt.</p>
@@ -116,63 +118,63 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 15 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#0d0a13;--pb:#0d0a13">
+    <figure class="mo-item ar-43 reveal" style="--pa:#0d0a13;--pb:#0d0a13">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-01.mp4" poster="../assets/img/sculpture/gambit/gambit-01.jpg" muted loop playsinline preload="none" aria-label="GB turn 01"></video>
       <figcaption class="mo-cap"><span class="n">GB-01</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#0c0814;--pb:#0c0914">
+    <figure class="mo-item ar-43 reveal" style="--pa:#0c0814;--pb:#0c0914">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-03.mp4" poster="../assets/img/sculpture/gambit/gambit-03.jpg" muted loop playsinline preload="none" aria-label="GB turn 03"></video>
       <figcaption class="mo-cap"><span class="n">GB-03</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#0e0a13;--pb:#0c0910">
+    <figure class="mo-item ar-43 reveal" style="--pa:#0e0a13;--pb:#0c0910">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-05.mp4" poster="../assets/img/sculpture/gambit/gambit-05.jpg" muted loop playsinline preload="none" aria-label="GB turn 05"></video>
       <figcaption class="mo-cap"><span class="n">GB-05</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#290d29;--pb:#0e0a13">
+    <figure class="mo-item ar-43 reveal" style="--pa:#290d29;--pb:#0e0a13">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-07.mp4" poster="../assets/img/sculpture/gambit/gambit-07.jpg" muted loop playsinline preload="none" aria-label="GB turn 07"></video>
       <figcaption class="mo-cap"><span class="n">GB-07</span><span>5s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#0f0a14;--pb:#0d0a13">
+    <figure class="mo-item ar-34 reveal" style="--pa:#0f0a14;--pb:#0d0a13">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-09.mp4" poster="../assets/img/sculpture/gambit/gambit-09.jpg" muted loop playsinline preload="none" aria-label="GB turn 09"></video>
       <figcaption class="mo-cap"><span class="n">GB-09</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#0f0a14;--pb:#0e0913">
-      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-13.mp4" poster="../assets/img/sculpture/gambit/gambit-13.jpg" muted loop playsinline preload="none" aria-label="GB turn 13"></video>
-      <figcaption class="mo-cap"><span class="n">GB-13</span><span>13s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-34 reveal" style="--pa:#100a14;--pb:#100a14">
+    <figure class="mo-item ar-34 reveal" style="--pa:#100a14;--pb:#100a14">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-11.mp4" poster="../assets/img/sculpture/gambit/gambit-11.jpg" muted loop playsinline preload="none" aria-label="GB turn 11"></video>
       <figcaption class="mo-cap"><span class="n">GB-11</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#0d0a13;--pb:#0d0a13">
-      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-02.mp4" poster="../assets/img/sculpture/gambit/gambit-02.jpg" muted loop playsinline preload="none" aria-label="GB turn 02"></video>
-      <figcaption class="mo-cap"><span class="n">GB-02</span><span>9s</span></figcaption>
+    <figure class="mo-item ar-34 reveal" style="--pa:#0f0a14;--pb:#0e0913">
+      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-13.mp4" poster="../assets/img/sculpture/gambit/gambit-13.jpg" muted loop playsinline preload="none" aria-label="GB turn 13"></video>
+      <figcaption class="mo-cap"><span class="n">GB-13</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#160918;--pb:#270d28">
-      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-04.mp4" poster="../assets/img/sculpture/gambit/gambit-04.jpg" muted loop playsinline preload="none" aria-label="GB turn 04"></video>
-      <figcaption class="mo-cap"><span class="n">GB-04</span><span>14s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#0e0a13;--pb:#0d0913">
+    <figure class="mo-item ar-34 reveal" style="--pa:#0e0a13;--pb:#0d0913">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-15.mp4" poster="../assets/img/sculpture/gambit/gambit-15.jpg" muted loop playsinline preload="none" aria-label="GB turn 15"></video>
       <figcaption class="mo-cap"><span class="n">GB-15</span><span>18s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#0e0a13;--pb:#0d0a12">
+    <figure class="mo-item ar-43 reveal" style="--pa:#0d0a13;--pb:#0d0a13">
+      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-02.mp4" poster="../assets/img/sculpture/gambit/gambit-02.jpg" muted loop playsinline preload="none" aria-label="GB turn 02"></video>
+      <figcaption class="mo-cap"><span class="n">GB-02</span><span>9s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#160918;--pb:#270d28">
+      <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-04.mp4" poster="../assets/img/sculpture/gambit/gambit-04.jpg" muted loop playsinline preload="none" aria-label="GB turn 04"></video>
+      <figcaption class="mo-cap"><span class="n">GB-04</span><span>14s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#0e0a13;--pb:#0d0a12">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-06.mp4" poster="../assets/img/sculpture/gambit/gambit-06.jpg" muted loop playsinline preload="none" aria-label="GB turn 06"></video>
       <figcaption class="mo-cap"><span class="n">GB-06</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#0e0a13;--pb:#0d0a13">
+    <figure class="mo-item ar-43 reveal" style="--pa:#0e0a13;--pb:#0d0a13">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-08.mp4" poster="../assets/img/sculpture/gambit/gambit-08.jpg" muted loop playsinline preload="none" aria-label="GB turn 08"></video>
       <figcaption class="mo-cap"><span class="n">GB-08</span><span>15s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#100a14;--pb:#0e0910">
+    <figure class="mo-item ar-34 reveal" style="--pa:#100a14;--pb:#0e0910">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-10.mp4" poster="../assets/img/sculpture/gambit/gambit-10.jpg" muted loop playsinline preload="none" aria-label="GB turn 10"></video>
       <figcaption class="mo-cap"><span class="n">GB-10</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#100a14;--pb:#0f0913">
+    <figure class="mo-item ar-34 reveal" style="--pa:#100a14;--pb:#0f0913">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-12.mp4" poster="../assets/img/sculpture/gambit/gambit-12.jpg" muted loop playsinline preload="none" aria-label="GB turn 12"></video>
       <figcaption class="mo-cap"><span class="n">GB-12</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-34 reveal" style="--pa:#110a15;--pb:#0d0911">
+    <figure class="mo-item ar-34 reveal" style="--pa:#110a15;--pb:#0d0911">
       <video class="labvid" data-src="../assets/video/sculpture/gambit/gambit-14.mp4" poster="../assets/img/sculpture/gambit/gambit-14.jpg" muted loop playsinline preload="none" aria-label="GB turn 14"></video>
       <figcaption class="mo-cap"><span class="n">GB-14</span><span>6s</span></figcaption>
     </figure>
@@ -180,8 +182,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="beast.html"><span class="dir">← Previous</span><span class="rt">Beast</span></a>
-  <a href="the-thing.html"><span class="dir">Next →</span><span class="rt">The Thing</span></a>
+  <a href="colossus.html"><span class="dir">← Previous</span><span class="rt">Colossus</span></a>
+  <a href="beast.html"><span class="dir">Next →</span><span class="rt">Beast</span></a>
 </div>
 
 <section class="page-cta">

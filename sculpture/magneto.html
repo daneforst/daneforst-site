@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../assets/css/style.css?v=11">
 <link rel="stylesheet" href="../assets/css/def-quote.css?v=1">
 <link rel="stylesheet" href="../assets/css/lab.css?v=3">
-<link rel="stylesheet" href="../assets/css/sculpt.css?v=6">
+<link rel="stylesheet" href="../assets/css/sculpt.css?v=9">
 </head>
 <body class="labbody sculptbody pbody">
 <!-- ============================================================
@@ -19,9 +19,11 @@
      To add another piece: copy this file, then update
        1. <title>, meta description, .phero (idx / h1 / tag)
        2. .project-intro, .pmeta, the .psec blocks and .dossier-tags
-       3. the .mosaic, one <figure class="mo-item"> per clip
-          span:   m-full / m-two / m-half / m-third / m-quarter
-          shape:  ar-43 (landscape) / ar-34 (portrait)
+       3. the .mosaic, one <figure class="mo-item"> per clip.
+          The only class that matters is the shape, ar-43 for a
+          landscape clip or ar-34 for a portrait one, which sets
+          the tile to that clip's exact ratio. The wall is a
+          masonry flow, so nothing is cropped or letterboxed.
        4. the .related prev-next links at the bottom
        5. add an .sc-tile and a .spec-row on sculpture.html
      Clips are encoded by tools/sculpt-encode.sh. Every <video>
@@ -80,7 +82,7 @@
 <header class="phero">
   <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-01.mp4" poster="../assets/img/sculpture/magneto/magneto-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
   <div class="ph-in">
-    <span class="idx">Sculpture · 13 / Magneto</span>
+    <span class="idx">Sculpture · 18 / Magneto</span>
     <h1>Magneto</h1>
     <!-- copy: the one-line description -->
     <p class="tag">The helmet is the character.</p>
@@ -116,51 +118,51 @@
 <section class="pad" style="padding-top:0">
   <div class="lab-kicker">Turns · 12 clips</div>
   <div class="mosaic">
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160610;--pb:#160610">
+    <figure class="mo-item ar-34 reveal" style="--pa:#160610;--pb:#160610">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-01.mp4" poster="../assets/img/sculpture/magneto/magneto-01.jpg" muted loop playsinline preload="none" aria-label="MG turn 01"></video>
       <figcaption class="mo-cap"><span class="n">MG-01</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160610;--pb:#12070f">
+    <figure class="mo-item ar-34 reveal" style="--pa:#160610;--pb:#12070f">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-03.mp4" poster="../assets/img/sculpture/magneto/magneto-03.jpg" muted loop playsinline preload="none" aria-label="MG turn 03"></video>
       <figcaption class="mo-cap"><span class="n">MG-03</span><span>10s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160711;--pb:#0e090a">
+    <figure class="mo-item ar-34 reveal" style="--pa:#160711;--pb:#0e090a">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-05.mp4" poster="../assets/img/sculpture/magneto/magneto-05.jpg" muted loop playsinline preload="none" aria-label="MG turn 05"></video>
       <figcaption class="mo-cap"><span class="n">MG-05</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#160610;--pb:#160610">
+    <figure class="mo-item ar-43 reveal" style="--pa:#160610;--pb:#160610">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-07.mp4" poster="../assets/img/sculpture/magneto/magneto-07.jpg" muted loop playsinline preload="none" aria-label="MG turn 07"></video>
       <figcaption class="mo-cap"><span class="n">MG-07</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-half ar-43 reveal" style="--pa:#160610;--pb:#160610">
+    <figure class="mo-item ar-43 reveal" style="--pa:#160610;--pb:#160610">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-09.mp4" poster="../assets/img/sculpture/magneto/magneto-09.jpg" muted loop playsinline preload="none" aria-label="MG turn 09"></video>
       <figcaption class="mo-cap"><span class="n">MG-09</span><span>13s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160610;--pb:#794d69">
-      <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-02.mp4" poster="../assets/img/sculpture/magneto/magneto-02.jpg" muted loop playsinline preload="none" aria-label="MG turn 02"></video>
-      <figcaption class="mo-cap"><span class="n">MG-02</span><span>8s</span></figcaption>
-    </figure>
-    <figure class="mo-item m-two ar-43 reveal" style="--pa:#210a16;--pb:#0c060a">
+    <figure class="mo-item ar-43 reveal" style="--pa:#210a16;--pb:#0c060a">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-11.mp4" poster="../assets/img/sculpture/magneto/magneto-11.jpg" muted loop playsinline preload="none" aria-label="MG turn 11"></video>
       <figcaption class="mo-cap"><span class="n">MG-11</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-43 reveal" style="--pa:#160610;--pb:#160610">
-      <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-08.mp4" poster="../assets/img/sculpture/magneto/magneto-08.jpg" muted loop playsinline preload="none" aria-label="MG turn 08"></video>
-      <figcaption class="mo-cap"><span class="n">MG-08</span><span>15s</span></figcaption>
+    <figure class="mo-item ar-34 reveal" style="--pa:#160610;--pb:#794d69">
+      <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-02.mp4" poster="../assets/img/sculpture/magneto/magneto-02.jpg" muted loop playsinline preload="none" aria-label="MG turn 02"></video>
+      <figcaption class="mo-cap"><span class="n">MG-02</span><span>8s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160610;--pb:#160610">
+    <figure class="mo-item ar-34 reveal" style="--pa:#160610;--pb:#160610">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-04.mp4" poster="../assets/img/sculpture/magneto/magneto-04.jpg" muted loop playsinline preload="none" aria-label="MG turn 04"></video>
       <figcaption class="mo-cap"><span class="n">MG-04</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-third ar-34 reveal" style="--pa:#160610;--pb:#13070f">
+    <figure class="mo-item ar-34 reveal" style="--pa:#160610;--pb:#13070f">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-06.mp4" poster="../assets/img/sculpture/magneto/magneto-06.jpg" muted loop playsinline preload="none" aria-label="MG turn 06"></video>
       <figcaption class="mo-cap"><span class="n">MG-06</span><span>9s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#160610;--pb:#180810">
+    <figure class="mo-item ar-43 reveal" style="--pa:#160610;--pb:#160610">
+      <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-08.mp4" poster="../assets/img/sculpture/magneto/magneto-08.jpg" muted loop playsinline preload="none" aria-label="MG turn 08"></video>
+      <figcaption class="mo-cap"><span class="n">MG-08</span><span>15s</span></figcaption>
+    </figure>
+    <figure class="mo-item ar-43 reveal" style="--pa:#160610;--pb:#180810">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-10.mp4" poster="../assets/img/sculpture/magneto/magneto-10.jpg" muted loop playsinline preload="none" aria-label="MG turn 10"></video>
       <figcaption class="mo-cap"><span class="n">MG-10</span><span>12s</span></figcaption>
     </figure>
-    <figure class="mo-item m-full ar-43 reveal" style="--pa:#160610;--pb:#160610">
+    <figure class="mo-item ar-43 reveal" style="--pa:#160610;--pb:#160610">
       <video class="labvid" data-src="../assets/video/sculpture/magneto/magneto-12.mp4" poster="../assets/img/sculpture/magneto/magneto-12.jpg" muted loop playsinline preload="none" aria-label="MG turn 12"></video>
       <figcaption class="mo-cap"><span class="n">MG-12</span><span>10s</span></figcaption>
     </figure>
@@ -168,8 +170,8 @@
 </section>
 
 <div class="related" role="navigation" aria-label="More sculpture">
-  <a href="galactus.html"><span class="dir">← Previous</span><span class="rt">Galactus</span></a>
-  <a href="swamp-thing.html"><span class="dir">Next →</span><span class="rt">Swamp Thing</span></a>
+  <a href="the-thing.html"><span class="dir">← Previous</span><span class="rt">The Thing</span></a>
+  <a href="storm.html"><span class="dir">Next →</span><span class="rt">Storm</span></a>
 </div>
 
 <section class="page-cta">
