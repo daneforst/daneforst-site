@@ -754,26 +754,35 @@ body.gdark{background:var(--soot);color:var(--bone)}
    Web runs the full left column. Packaging and Art stack on the right.
    Brand runs as a short full-width band underneath. The AI panel sits
    dark until .ar-spread gets the class "ai-on", which splits that band. */
+/* Brand and Sculpture were thin bands under the Web/Packaging/Art
+   block, 178 and 196 pixels of a 1440 spread, and they read as
+   footnotes rather than as two of the five ways in. They are now
+   full-width bands with real height, top and bottom, and Brand
+   opens the spread. The whole thing is taller for it, which is
+   the trade Dane asked for. */
 .ar-spread{
   display:grid;
   grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);
-  grid-template-rows:1.05fr .95fr minmax(196px,.64fr) minmax(178px,.6fr);
+  grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr);
   gap:3px;background:var(--soot);
-  height:min(126svh,1440px);min-height:900px;
+  height:min(178svh,2000px);min-height:1250px;
 }
 .route{
   position:relative;display:block;overflow:hidden;isolation:isolate;
   background:var(--soot-2);color:var(--bone);
   transition:opacity .45s ease;
 }
-.route-web{grid-column:1;grid-row:1 / span 2}
-.route-pack{grid-column:2;grid-row:1}
-.route-art{grid-column:2;grid-row:2}
-.route-sculpt{grid-column:1 / -1;grid-row:3}
-.route-brand{grid-column:1 / -1;grid-row:4}
+.route-brand{grid-column:1 / -1;grid-row:1}
+.route-web{grid-column:1;grid-row:2 / span 2}
+.route-pack{grid-column:2;grid-row:2}
+.route-art{grid-column:2;grid-row:3}
+.route-sculpt{grid-column:1 / -1;grid-row:4}
 .route-ai{display:none}
-.ar-spread.ai-on .route-brand{grid-column:1 / 2;grid-row:4}
-.ar-spread.ai-on .route-ai{display:block;grid-column:2 / -1;grid-row:4}
+/* the AI panel, when it is switched on, takes a fifth band of its own
+   rather than halving Sculpture */
+.ar-spread.ai-on{grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr) minmax(320px,.62fr)}
+.ar-spread.ai-on{height:min(222svh,2500px);min-height:1560px}
+.ar-spread.ai-on .route-ai{display:block;grid-column:1 / -1;grid-row:5}
 
 .route::after{
   content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -850,7 +859,9 @@ body.gdark{background:var(--soot);color:var(--bone)}
 }
 .route-web h3{font-size:clamp(2.6rem,5.4vw,5.6rem)}
 .route-pack h3,.route-art h3{font-size:clamp(2rem,3.3vw,3.4rem)}
-.route-brand h3,.route-ai h3,.route-sculpt h3{font-size:clamp(1.7rem,2.6vw,2.7rem)}
+.route-ai h3{font-size:clamp(1.7rem,2.6vw,2.7rem)}
+/* full-width bands with room in them: the titles carry accordingly */
+.route-brand h3,.route-sculpt h3{font-size:clamp(2.1rem,4.2vw,4.2rem)}
 .ar-sub{
   font-family:var(--serif);font-style:italic;
   font-size:clamp(1rem,1.35vw,1.28rem);line-height:1.35;
@@ -926,7 +937,7 @@ body.gdark{background:var(--soot);color:var(--bone)}
 .ar-marks{position:absolute;inset:0;z-index:1;display:flex;align-items:center}
 .ar-mrow{display:flex;width:max-content;will-change:transform;animation:ar-left 88s linear infinite}
 .ar-mrow img{
-  height:clamp(96px,11vw,148px);width:auto;display:block;margin-right:12px;
+  height:clamp(120px,14vw,230px);width:auto;display:block;margin-right:12px;
   background:var(--soot-2);object-fit:cover;
 }
 
@@ -943,7 +954,8 @@ body.gdark{background:var(--soot);color:var(--bone)}
     linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.14)),
     linear-gradient(115deg,rgba(255,131,48,.12),rgba(255,77,140,.12));
 }
-.route-brand .ar-sub,.route-ai .ar-sub{font-size:clamp(.95rem,1.2vw,1.15rem)}
+.route-ai .ar-sub{font-size:clamp(.95rem,1.2vw,1.15rem)}
+.route-brand .ar-sub,.route-sculpt .ar-sub{font-size:clamp(1.02rem,1.6vw,1.42rem)}
 
 /* ============================================================
    4. HOME PAGE ROUTE
@@ -955,7 +967,7 @@ body.gdark{background:var(--soot);color:var(--bone)}
 .ar-shelf{position:absolute;inset:0;z-index:1;display:flex;align-items:center}
 .ar-srow{display:flex;width:max-content;will-change:transform;animation:ar-left 96s linear infinite}
 .ar-srow img{
-  height:clamp(110px,12.4vw,186px);width:auto;display:block;margin-right:10px;
+  height:clamp(130px,15vw,250px);width:auto;display:block;margin-right:10px;
   object-fit:contain;background:#000;
 }
 html.reduced .ar-srow{animation:none}
@@ -974,8 +986,6 @@ html.reduced .ar-srow{animation:none}
     linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.14)),
     linear-gradient(115deg,rgba(255,131,48,.12),rgba(255,77,140,.12));
 }
-.route-sculpt h3{font-size:clamp(1.7rem,2.6vw,2.7rem)}
-.route-sculpt .ar-sub{font-size:clamp(.95rem,1.2vw,1.15rem)}
 @media(max-width:860px){
   .route-sculpt .ar-face{max-width:none;justify-content:flex-end}
   .route-sculpt::after{
@@ -1001,13 +1011,14 @@ html.reduced .ar-srow{animation:none}
     height:auto;min-height:0;
   }
   .route-web,.route-pack,.route-art,.route-sculpt,.route-brand,.route-ai{grid-column:1;grid-row:auto}
-  .ar-spread.ai-on .route-brand,.ar-spread.ai-on .route-ai{grid-column:1}
+  .ar-spread.ai-on .route-ai{grid-column:1}
+  .route-brand{height:52svh;min-height:380px}
   .route-web{height:72svh;min-height:520px}
   .route-pack{height:52svh;min-height:380px}
   .route-art{height:44svh;min-height:320px}
-  .route-sculpt{height:46svh;min-height:340px}
-  .route-brand,.ar-spread.ai-on .route-ai{height:40svh;min-height:300px}
-  .route-brand .ar-face{max-width:none;justify-content:flex-end}
+  .route-sculpt{height:56svh;min-height:400px}
+  .ar-spread.ai-on .route-ai{height:40svh;min-height:300px}
+  .route-brand .ar-face,.route-sculpt .ar-face{max-width:none;justify-content:flex-end}
   .route-brand::after{
     background:
       linear-gradient(180deg,rgba(20,19,16,.34),rgba(20,19,16,.2) 34%,rgba(20,19,16,.72) 62%,rgba(20,19,16,.97)),
