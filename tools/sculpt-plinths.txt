@@ -77,7 +77,6 @@ gambit-01 #0d0a13 #0d0a13
 gambit-02 #0d0a13 #0d0a13
 gambit-03 #0c0814 #0c0914
 gambit-04 #160918 #270d28
-gambit-05 #0e0a13 #0c0910
 gambit-06 #0e0a13 #0d0a12
 gambit-07 #290d29 #0e0a13
 gambit-08 #0e0a13 #0d0a13

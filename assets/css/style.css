@@ -970,7 +970,12 @@ body.gdark{background:var(--soot);color:var(--bone)}
    wall and the galleries' rail.
    ============================================================ */
 .ar-shelf{position:absolute;inset:0;z-index:1;display:flex;align-items:stretch}
-.ar-srow{display:flex;height:100%;width:max-content;will-change:transform;animation:ar-left 96s linear infinite}
+/* 42s, not 96. Filling the band made each frame about 558px wide, so
+   at the old duration the strip crawled at 61px/s: barely two and a
+   half frames on screen, nine seconds for one to advance its own
+   width, and large flat backdrops with no detail to track. It read as
+   static even though it was running. */
+.ar-srow{display:flex;height:100%;width:max-content;will-change:transform;animation:ar-left 42s linear infinite}
 /* full band height for the same reason as the marks: a centred strip
    leaves bars. These frames carry their own backdrop, so at full
    height they run together with no seam. */
@@ -978,7 +983,7 @@ body.gdark{background:var(--soot);color:var(--bone)}
   height:100%;width:auto;display:block;margin-right:10px;
   object-fit:cover;background:#000;
 }
-html.reduced .ar-srow{animation:none}
+html.reduced .ar-srow,html.reduced .ar-mrow,html.reduced .ar-row,html.reduced .ar-col{animation:none}
 
 /* the sculpture band is short and wide like the brand band, so its
    type sits left of the shelf and the scrim is weighted that way */
