@@ -933,11 +933,16 @@ body.gdark{background:var(--soot);color:var(--bone)}
 @keyframes ar-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @keyframes ar-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 
-/* ---- media: a shelf of marks drifting past the title (brand) ---- */
-.ar-marks{position:absolute;inset:0;z-index:1;display:flex;align-items:center}
-.ar-mrow{display:flex;width:max-content;will-change:transform;animation:ar-left 88s linear infinite}
+/* ---- media: a shelf of marks drifting past the title (brand) ----
+   Full band height, not a centred strip. At a fixed pixel height the
+   row left dead space above and below it, which reads as black bars
+   across the top and bottom of the band. The marks are regenerated
+   from the 800px branding sources, so filling the band does not mean
+   upscaling a 320px crop. */
+.ar-marks{position:absolute;inset:0;z-index:1;display:flex;align-items:stretch}
+.ar-mrow{display:flex;height:100%;width:max-content;will-change:transform;animation:ar-left 88s linear infinite}
 .ar-mrow img{
-  height:clamp(120px,14vw,230px);width:auto;display:block;margin-right:12px;
+  height:100%;width:auto;display:block;margin-right:12px;
   background:var(--soot-2);object-fit:cover;
 }
 
@@ -964,11 +969,14 @@ body.gdark{background:var(--soot);color:var(--bone)}
    cropped imagery. Distinct on purpose from the digital panel's
    wall and the galleries' rail.
    ============================================================ */
-.ar-shelf{position:absolute;inset:0;z-index:1;display:flex;align-items:center}
-.ar-srow{display:flex;width:max-content;will-change:transform;animation:ar-left 96s linear infinite}
+.ar-shelf{position:absolute;inset:0;z-index:1;display:flex;align-items:stretch}
+.ar-srow{display:flex;height:100%;width:max-content;will-change:transform;animation:ar-left 96s linear infinite}
+/* full band height for the same reason as the marks: a centred strip
+   leaves bars. These frames carry their own backdrop, so at full
+   height they run together with no seam. */
 .ar-srow img{
-  height:clamp(130px,15vw,250px);width:auto;display:block;margin-right:10px;
-  object-fit:contain;background:#000;
+  height:100%;width:auto;display:block;margin-right:10px;
+  object-fit:cover;background:#000;
 }
 html.reduced .ar-srow{animation:none}
 

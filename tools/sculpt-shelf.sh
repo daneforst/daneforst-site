@@ -5,10 +5,11 @@
 #   ./tools/sculpt-shelf.sh
 #
 # Pulls one frame per piece out of the encoded turntables and
-# writes it to assets/img/arrival/sculpt/<slug>.jpg at 440px
-# tall, which is 2x the shelf's largest rendered height.
-# The shelf shows them contained on black, so each keeps its own
-# aspect and nothing is cropped.
+# writes it to assets/img/arrival/sculpt/<slug>.jpg at 840px
+# tall. The shelf fills the whole band now, about 420px, so this is
+# 2x that for retina.
+# The shelf runs them at full band height, so each keeps its own
+# aspect and they tile into a continuous strip.
 #
 # The frame chosen per piece is hand-picked: "<slug> <clip-nn>
 # <seconds-in>". Change a number here and re-run to swap a still.
@@ -24,7 +25,7 @@ while read -r slug clip at; do
   SRC="$ROOT/assets/video/sculpture/$slug/$slug-$clip.mp4"
   [ -f "$SRC" ] || { echo "missing $SRC" >&2; continue; }
   ffmpeg -nostdin -y -ss "$at" -i "$SRC" -frames:v 1 \
-    -vf "scale=-2:440:flags=lanczos" -q:v 4 "$OUT/$slug.jpg" >/dev/null 2>&1
+    -vf "scale=-2:840:flags=lanczos" -q:v 4 "$OUT/$slug.jpg" >/dev/null 2>&1
   echo "$slug.jpg"
 done <<'PICKS'
 baron-2-0 01 6
