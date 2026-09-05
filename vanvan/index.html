@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>VAN VAN Khmer Food Pop-Up</title>
+<meta name="description" content="Tonight's menu from the Van Van Khmer food pop-up, plus the arcade.">
+<meta name="theme-color" content="#211a1a">
+<link rel="icon" href="assets/img/seal.png">
+<link rel="apple-touch-icon" href="assets/img/seal.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body>
+
+<!-- ---------- splash ---------- -->
+<div id="splash">
+  <div class="sp-inner">
+    <img src="assets/img/stamp.png" alt="Van Van" class="sp-logo">
+    <p class="sp-kicker">Khmer food pop-up · one night only</p>
+    <div class="sp-when">
+      <span>MON JULY 27</span><i></i><span>7PM-9PM</span><i></i><span>SUN RICE</span>
+    </div>
+    <canvas id="walkCanvas" class="sp-walk" aria-hidden="true"></canvas>
+    <button id="enter" class="btn btn-primary btn-lg">Open the menu</button>
+    <p class="sp-fine">demo build · daneforst × van van</p>
+  </div>
+</div>
+
+<!-- ---------- shell ---------- -->
+<div class="app">
+
+  <header class="hdr">
+    <img src="assets/img/seal.png" alt="" class="hdr-seal">
+    <div class="hdr-mid">
+      <span class="hdr-name">VAN VAN</span>
+      <span class="hdr-sub">one night only</span>
+    </div>
+    <span class="hdr-live"><i></i>tonight</span>
+  </header>
+
+  <main>
+
+    <!-- MENU -->
+    <section class="view on" id="view-menu">
+      <div class="hero">
+        <h1>KHMER<br>FOOD</h1>
+        <p>Five plates, cooked once, gone when they’re gone. Tap any dish for how to say it and what’s in it.</p>
+      </div>
+      <div id="menuList"></div>
+      <div class="foot-note">
+        <p>Menu as printed for the July 27 pop-up. Dishes get 86’d as the night goes, and the list above updates live.</p>
+      </div>
+    </section>
+
+    <!-- TONIGHT -->
+    <section class="view" id="view-tonight">
+      <div class="hero">
+        <h1>TONIGHT</h1>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">where</span>
+        <p class="big">SUN RICE<br>4090 N WILLIAMS AVE</p>
+        <a class="btn btn-ghost" href="https://maps.apple.com/?q=4090+N+Williams+Ave,+Portland,+OR" target="_blank" rel="noopener">Open in maps</a>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">when</span>
+        <p class="big">MONDAY JULY 27<br>7PM-9PM</p>
+      </div>
+
+      <div class="card">
+        <span class="eyebrow">who</span>
+        <p class="big">CHEF VANNY AING</p>
+        <p class="body">Van Van is a Khmer food pop-up. One night, one menu, cooked in someone else’s kitchen and served until it runs out.</p>
+        <div class="links">
+          <a href="https://instagram.com/vanvan.cooks" target="_blank" rel="noopener">@vanvan.cooks</a>
+          <a href="https://instagram.com/sunricepdx" target="_blank" rel="noopener">@sunricepdx</a>
+        </div>
+      </div>
+
+      <div class="card card-kitchen">
+        <span class="eyebrow">kitchen view · demo</span>
+        <p class="body">This is the side the chef would see. Flip a dish and the guest menu updates instantly. No reprint, no crossing things out on a chalkboard.</p>
+        <div id="kitchenList"></div>
+      </div>
+    </section>
+
+    <!-- ARCADE -->
+    <section class="view" id="view-arcade">
+      <div class="hero hero-arcade">
+        <h1>THE PASS</h1>
+        <p>Climb the line, dodge the coconuts, get the last order off the pass. Grab a chili and the sword lights up.</p>
+      </div>
+
+      <div class="cab">
+        <div class="cab-screen">
+          <canvas id="gameCanvas" width="208" height="320"></canvas>
+          <div class="win" id="arcadeWin">
+            <p class="win-t">ORDER UP</p>
+            <p class="win-b">A free side just unlocked on your table ticket.</p>
+            <div class="win-btns">
+              <button class="btn btn-primary" id="arcadeTicket">See my ticket</button>
+              <button class="btn btn-ghost" id="arcadeReplay">Run it again</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pad" id="pad">
+          <div class="pad-dirs">
+            <button data-k="u" class="pk pk-u" aria-label="Up">▲</button>
+            <button data-k="l" class="pk pk-l" aria-label="Left">◀</button>
+            <button data-k="r" class="pk pk-r" aria-label="Right">▶</button>
+            <button data-k="d" class="pk pk-d" aria-label="Down">▼</button>
+          </div>
+          <button data-k="j" class="pk pk-jump" aria-label="Jump">JUMP</button>
+        </div>
+        <p class="cab-hint">Keyboard: arrows to move and climb, space to jump.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- table fab -->
+  <button id="tableFab" class="fab" aria-label="Open my table">
+    <span class="fab-l">MY TABLE</span>
+    <span id="fabCount" class="fab-c">0</span>
+  </button>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab on" data-view="menu" role="tab" aria-selected="true">Menu</button>
+    <button class="tab" data-view="tonight" role="tab" aria-selected="false">Tonight</button>
+    <button class="tab" data-view="arcade" role="tab" aria-selected="false">Arcade</button>
+  </nav>
+</div>
+
+<!-- ---------- sheets ---------- -->
+<div id="scrim"></div>
+
+<div id="sheet" class="sheet" role="dialog" aria-modal="true">
+  <button class="sheet-x" data-close aria-label="Close">✕</button>
+  <div id="sheetBody"></div>
+</div>
+
+<div id="ticket" class="sheet" role="dialog" aria-modal="true">
+  <button class="sheet-x" data-close aria-label="Close">✕</button>
+  <div id="ticketBody"></div>
+</div>
+
+<script src="assets/js/sprite.js"></script>
+<script src="assets/js/game.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
