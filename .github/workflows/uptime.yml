@@ -1,0 +1,95 @@
+name: Uptime check
+
+# Watches the live site and fails loudly if it stops responding.
+# A failed run sends email from GitHub, so no third-party monitor is needed.
+# Run it by hand any time from the Actions tab via "Run workflow".
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Every page responds
+        run: |
+          set -u
+          SITE="https://www.daneerikforst.com"
+          PAGES="/ /about.html /contact.html /web.html /branding.html /packaging.html /sculpture.html /galleries.html /lab.html /beer-runner.html /redesigns.html /vanvan/"
+          failed=0
+          for p in $PAGES; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -m 30 --retry 3 --retry-delay 5 --retry-all-errors "$SITE$p" || echo "000")
+            if [ "$code" = "200" ]; then
+              printf 'ok    %s  %s\n' "$code" "$p"
+            else
+              printf 'FAIL  %s  %s\n' "$code" "$p"
+              failed=1
+            fi
+          done
+          if [ "$failed" = "1" ]; then
+            cat <<'MSG'
+
+          The site is not serving correctly.
+
+          If EVERY page is a 404, GitHub Pages has been switched off. That is what
+          happens when the repo is flipped to private on a free account. Fix:
+            https://github.com/daneforst/daneforst-site/settings/pages
+          Set Source to "Deploy from a branch", branch main, folder / (root), Save,
+          and confirm the custom domain still reads www.daneerikforst.com.
+
+          If only SOME pages fail, a file was probably renamed or deleted.
+          MSG
+            exit 1
+          fi
+
+      - name: Homepage is the real homepage, not an error page
+        run: |
+          set -u
+          body=$(curl -sS -m 30 --retry 3 --retry-delay 5 --retry-all-errors https://www.daneerikforst.com/)
+          if printf '%s' "$body" | grep -q 'Dane Forst'; then
+            echo "ok    homepage content looks right"
+          else
+            echo "FAIL  homepage returned 200 but does not contain 'Dane Forst'"
+            echo "      Something is being served, but it is not the portfolio."
+            exit 1
+          fi
+
+      - name: Apex redirects to www
+        run: |
+          set -u
+          target=$(curl -sS -o /dev/null -w '%{redirect_url}' -m 30 https://daneerikforst.com || echo "")
+          case "$target" in
+            https://www.daneerikforst.com/*) echo "ok    apex redirects to $target" ;;
+            *) echo "FAIL  apex redirected to '$target', expected https://www.daneerikforst.com/"
+               echo "      Check the A records at https://manage.wix.com/account/domains"
+               echo "      They should be 185.199.108.153, .109.153, .110.153, .111.153"
+               exit 1 ;;
+          esac
+
+      - name: Certificate is not about to expire
+        run: |
+          set -u
+          end=$(echo | openssl s_client -servername www.daneerikforst.com \
+                  -connect www.daneerikforst.com:443 2>/dev/null \
+                | openssl x509 -noout -enddate | cut -d= -f2)
+          if [ -z "$end" ]; then
+            echo "FAIL  could not read the TLS certificate"
+            exit 1
+          fi
+          days=$(( ( $(date -d "$end" +%s) - $(date +%s) ) / 86400 ))
+          echo "certificate expires $end ($days days)"
+          if [ "$days" -lt 5 ]; then
+            echo "FAIL  certificate expires in under 5 days and has not renewed."
+            echo "      Untick and re-tick Enforce HTTPS in the repo's Pages settings."
+            exit 1
+          elif [ "$days" -lt 14 ]; then
+            echo "warning: under 14 days left. GitHub normally renews automatically."
+          else
+            echo "ok    plenty of time left"
+          fi
