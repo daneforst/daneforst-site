@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Royale &middot; 1991 Toyota TownAce 4WD</title>
+<meta name="description" content="A digital atlas of one 1991 Toyota TownAce 4WD. Exploded breakdown, road journal, and a working three-dimensional development model." />
+<meta name="theme-color" content="#0e0f11" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="./site.css" />
+<link rel="preload" as="image" href="./assets/renders/royale_hero_assembled.jpg" />
+</head>
+<body>
+
+<a class="skip" href="#breakdown">Skip to the breakdown</a>
+
+<!-- ============================================================ MASTHEAD -->
+<header class="mast" id="mast">
+  <div class="mast-in">
+    <a class="brand" href="#top">
+      <span class="brand-mark"><b>TOWNACE</b> ATLAS</span>
+      <span class="brand-rule"></span>
+      <span class="brand-sub">Explore <i>/</i> Learn <i>/</i> Preserve <i>/</i> Go further</span>
+    </a>
+
+    <nav class="mast-nav" aria-label="Sections">
+      <a href="#top" data-nav="top">Vehicle</a>
+      <a href="#prototype" data-nav="prototype">Model</a>
+      <a href="#breakdown" data-nav="breakdown">Breakdown</a>
+      <a href="#story" data-nav="story">Story</a>
+      <a href="#journal" data-nav="journal">Journal</a>
+    </nav>
+
+    <div class="mast-meta">
+      <p>Built for<br />a brighter route.</p>
+      <span class="coord">45.5231&deg; N<br />122.6755&deg; W</span>
+    </div>
+
+    <button class="mast-toggle" id="mastToggle" aria-expanded="false" aria-controls="mastDrawer">
+      <span></span><span></span><span class="sr">Menu</span>
+    </button>
+  </div>
+  <div class="mast-drawer" id="mastDrawer" hidden>
+    <a href="#top">Vehicle</a>
+    <a href="#prototype">Model</a>
+    <a href="#breakdown">Breakdown</a>
+    <a href="#story">Story</a>
+    <a href="#journal">Journal</a>
+  </div>
+</header>
+
+<!-- ================================================================ HERO -->
+<section class="hero" id="top">
+  <div class="hero-media">
+    <img src="./assets/renders/royale_hero_assembled.jpg"
+         alt="The Royale, a 1991 Toyota TownAce 4WD, on a gravel road beside a vineyard under a breaking sky." />
+    <div class="hero-scrim"></div>
+  </div>
+
+  <div class="hero-body">
+    <p class="eyebrow">Toyota <span class="rule"></span> Digital atlas no. 01</p>
+    <h1 class="hero-title">The Royale</h1>
+    <p class="hero-model">1991 Toyota TownAce 4WD</p>
+    <p class="hero-line">A small van for a bigger world.</p>
+  </div>
+
+  <ul class="hero-facts">
+    <li><b>3Y 2.0L EFI</b><span>Four cylinder, under the floor</span></li>
+    <li><b>Hi / Low 4WD</b><span>Part time, two speed transfer</span></li>
+    <li><b>7-Seat Modular Cabin</b><span>Royal Lounge swivel chairs</span></li>
+    <li><b>Skylite Roof</b><span>Four panes of glass overhead</span></li>
+  </ul>
+
+  <div class="hero-foot">
+    <span class="hero-plate">Oregon <i>Pacific Northwest</i></span>
+    <a class="hero-scroll" href="#prototype"><span>Drag it around</span><i></i></a>
+  </div>
+</section>
+
+<section class="section proto-sec" id="prototype">
+  <div class="sec-head sec-head--split">
+    <div>
+      <p class="eyebrow">Plate 01 <span class="rule"></span> Live model</p>
+      <h2 class="sec-title">Interactive<br />development model.</h2>
+    </div>
+    <div class="proto-note">
+      <p>Start here, and drag it around. A parametric reconstruction of the Royale built in
+        Blender, exported as a single glTF, and driven in the browser from the explode vectors and
+        system masks authored into the model itself. Six modes, seventy-seven named components.</p>
+      <p class="proto-caveat">Geometry is deliberately simplified at this stage. The interaction system
+        is the point.</p>
+      <a class="proto-full" href="./atlas.html" target="_blank" rel="noopener">Open full screen</a>
+    </div>
+  </div>
+
+  <div id="proto">
+    <div id="stage">
+      <canvas id="scene"></canvas>
+
+      <div id="loading"><span>Loading the Royale</span><i></i></div>
+
+      <div class="proto-gate" id="protoGate">
+        <button id="protoGo">Load the model</button>
+        <span>Three.js <i>&middot;</i> 860 KB glTF <i>&middot;</i> 77 named components</span>
+      </div>
+
+      <nav class="modes" aria-label="Presentation mode">
+        <button class="mode is-on" data-mode="assembled"><b>01</b><span>Assembled</span></button>
+        <button class="mode" data-mode="exploded"><b>02</b><span>Exploded</span></button>
+        <button class="mode" data-mode="interior"><b>03</b><span>Interior</span></button>
+        <button class="mode" data-mode="camping"><b>04</b><span>Camping</span></button>
+        <button class="mode" data-mode="drivetrain"><b>05</b><span>4WD Running Gear</span></button>
+        <button class="mode" data-mode="skylite"><b>06</b><span>Skylite Roof</span></button>
+      </nav>
+
+      <aside class="readout" id="readout" hidden>
+        <p class="eyebrow" id="ro-cat">Exterior</p>
+        <h2 id="ro-name">Body Shell</h2>
+        <dl>
+          <div><dt>Object</dt><dd id="ro-id">BODY_SHELL</dd></div>
+          <div><dt>Pivot</dt><dd id="ro-pivot">0.00, 0.00, 0.00</dd></div>
+          <div><dt>Travel</dt><dd id="ro-travel">0.00 m</dd></div>
+        </dl>
+      </aside>
+
+      <div class="controls">
+        <div class="explode">
+          <label for="explode">Separation</label>
+          <input id="explode" type="range" min="0" max="100" value="0" />
+          <output id="explodeVal">0%</output>
+        </div>
+        <div class="systems" role="group" aria-label="System filter">
+          <button class="sys is-on" data-sys="all">All systems</button>
+          <button class="sys" data-sys="exterior">Body</button>
+          <button class="sys" data-sys="roof">Roof</button>
+          <button class="sys" data-sys="cabin">Cabin</button>
+          <button class="sys" data-sys="chassis">Chassis</button>
+          <button class="sys" data-sys="powertrain">Powertrain</button>
+          <button class="sys" data-sys="electrical">Lighting</button>
+        </div>
+      </div>
+
+      <footer class="specs">
+        <div><span>Length</span><b id="sp-len">&middot;</b></div>
+        <div><span>Wheelbase</span><b id="sp-wb">&middot;</b></div>
+        <div><span>Height</span><b id="sp-ht">&middot;</b></div>
+        <div><span>Components</span><b id="sp-parts">&middot;</b></div>
+        <div><span>Triangles</span><b id="sp-tris">&middot;</b></div>
+      </footer>
+
+      <button class="reset" id="reset" title="Reset view">Reset view</button>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================== BREAKDOWN -->
+<section class="section breakdown" id="breakdown">
+  <div class="sec-head">
+    <p class="eyebrow">Plate 02 <span class="rule"></span> Breakdown</p>
+    <h2 class="sec-title">Seventy-seven parts,<br />one idea.</h2>
+    <p class="sec-lede">Six ways to look at the same machine. Every plate is drawn from the real
+      vehicle, and the component data underneath comes straight out of the model manifest.</p>
+  </div>
+
+  <div class="bv" id="bv">
+    <!-- left rail: modes -->
+    <nav class="bv-rail" id="bvRail" aria-label="Breakdown mode"></nav>
+
+    <!-- centre: the plate -->
+    <figure class="bv-plate">
+      <div class="bv-frame" id="bvFrame">
+        <div class="bv-layers" id="bvLayers"></div>
+        <div class="bv-pending" id="bvPending" hidden></div>
+        <div class="bv-notes" id="bvNotes"></div>
+        <span class="bv-src" id="bvSrc"></span>
+      </div>
+      <figcaption class="bv-cap">
+        <span class="bv-cap-idx" id="bvIdx">01</span>
+        <span class="bv-cap-txt" id="bvCap"></span>
+        <button class="bv-full" id="bvFull" title="Full plate"><span class="sr">Enlarge plate</span></button>
+      </figcaption>
+      <div class="bv-tabs" id="bvTabs" role="tablist" aria-label="Breakdown mode"></div>
+    </figure>
+
+    <!-- right rail: read -->
+    <div class="bv-read">
+      <h3 class="bv-head" id="bvHead"></h3>
+      <p class="bv-body" id="bvBody"></p>
+      <ul class="bv-facts" id="bvFacts"></ul>
+      <a class="bv-cta" href="#prototype">
+        <span>Back to the live model</span>
+        <svg viewBox="0 0 24 12" aria-hidden="true"><path d="M0 6h21M16 1l5 5-5 5"/></svg>
+      </a>
+      <p class="bv-cta-sub">Drag <i>&middot;</i> Rotate <i>&middot;</i> Explode</p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== STORY -->
+<section class="section story" id="story">
+  <figure class="story-media">
+    <img src="./assets/photos/coast_sunset.jpg" loading="lazy"
+         alt="The Royale parked on gravel at the edge of the Pacific, a sea stack offshore, the sky going gold." />
+  </figure>
+  <div class="story-body">
+    <p class="eyebrow">Plate 03 <span class="rule"></span> Character</p>
+    <h2 class="story-title">It has a personality.</h2>
+    <p class="story-lede">The part that is not in the spec sheet is the part people remember.</p>
+    <p>The Royale is less like owning an old vehicle and more like travelling around with a strange
+      little room that keeps changing what a trip can be. It turns parking lots into conversations.
+      Someone always walks over. They always ask the same three questions.</p>
+    <p>None of that is engineering. All of it is the reason it is still here.</p>
+    <dl class="story-notes">
+      <div><dt>Asked most</dt><dd>&ldquo;What is that?&rdquo;</dd></div>
+      <div><dt>Asked second</dt><dd>&ldquo;Is the steering wheel on the wrong side?&rdquo;</dd></div>
+      <div><dt>Asked third</dt><dd>&ldquo;Would you sell it?&rdquo;</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================================================= JOURNAL -->
+<section class="section journal" id="journal">
+  <div class="sec-head sec-head--wide">
+    <p class="eyebrow">Plate 04 <span class="rule"></span> Road journal</p>
+    <h2 class="sec-title">Same van.<br />Different worlds.</h2>
+    <p class="sec-lede">Transportation, room, shelter, camping space and road trip ritual, depending
+      entirely on where it is parked.</p>
+  </div>
+  <div class="jr-grid" id="jrGrid"></div>
+</section>
+
+<!-- =========================================================== PROTOTYPE -->
+
+<!-- ============================================================ COLOPHON -->
+<footer class="colo">
+  <div class="colo-in">
+    <div class="colo-col">
+      <p class="eyebrow">Colophon</p>
+      <p class="colo-txt">One 1991 Toyota TownAce 4WD, reconstructed from about 130 photographs.
+        Dimensions taken by measuring feature edges numerically against the published 2,235 mm
+        wheelbase rather than by eye.</p>
+    </div>
+    <div class="colo-col">
+      <p class="eyebrow">Build</p>
+      <dl class="colo-dl">
+        <div><dt>Model</dt><dd>Blender, parametric</dd></div>
+        <div><dt>Viewer</dt><dd>Three.js, vanilla JS</dd></div>
+        <div><dt>Plates</dt><dd>Photographic</dd></div>
+        <div><dt>Source</dt><dd>Single glTF</dd></div>
+      </dl>
+    </div>
+    <div class="colo-col colo-col--deck">
+      <p class="eyebrow">Now playing</p>
+      <!-- MASTER ACE: Toyota sold this van under a second name. -->
+      <button class="deck" id="deck" aria-pressed="false">
+        <span class="deck-slot">
+          <span class="deck-tape">
+            <span class="deck-reel"></span><span class="deck-reel"></span>
+            <span class="deck-label">Master Ace</span>
+          </span>
+        </span>
+        <span class="deck-read" id="deckRead">A / 000</span>
+      </button>
+      <p class="deck-note" id="deckNote" hidden>Toyota sold the same van as the MasterAce.
+        Same floor, same roof, different badge on the hatch.</p>
+    </div>
+  </div>
+  <p class="colo-foot"><span>The Royale <i>&middot;</i> Royal Lounge <i>&middot;</i> Skylite Roof</span>
+    <span>Digital atlas no. 01</span></p>
+</footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.164/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164/examples/jsm/"
+  }
+}
+</script>
+<script src="./site.js" type="module"></script>
+</body>
+</html>

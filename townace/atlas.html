@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Royale &middot; TownAce Atlas</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="./atlas.css" />
+</head>
+<body>
+
+<div id="stage">
+  <canvas id="scene"></canvas>
+
+  <div id="loading"><span>Loading the Royale</span><i></i></div>
+
+  <header class="plate">
+    <p class="eyebrow">Digital Atlas <span class="rule"></span> No. 01</p>
+    <h1>The Royale</h1>
+    <p class="sub">1991 Toyota TownAce 4WD <span class="dot">&middot;</span> Royal Lounge <span class="dot">&middot;</span> Skylite Roof</p>
+  </header>
+
+  <nav class="modes" aria-label="Presentation mode">
+    <button class="mode is-on" data-mode="assembled"><b>01</b><span>Assembled</span></button>
+    <button class="mode" data-mode="exploded"><b>02</b><span>Exploded</span></button>
+    <button class="mode" data-mode="interior"><b>03</b><span>Interior</span></button>
+    <button class="mode" data-mode="camping"><b>04</b><span>Camping</span></button>
+    <button class="mode" data-mode="drivetrain"><b>05</b><span>4WD Running Gear</span></button>
+    <button class="mode" data-mode="skylite"><b>06</b><span>Skylite Roof</span></button>
+  </nav>
+
+  <aside class="readout" id="readout" hidden>
+    <p class="eyebrow" id="ro-cat">Exterior</p>
+    <h2 id="ro-name">Body Shell</h2>
+    <dl>
+      <div><dt>Object</dt><dd id="ro-id">BODY_SHELL</dd></div>
+      <div><dt>Pivot</dt><dd id="ro-pivot">0.00, 0.00, 0.00</dd></div>
+      <div><dt>Travel</dt><dd id="ro-travel">0.00 m</dd></div>
+    </dl>
+  </aside>
+
+  <div class="controls">
+    <div class="explode">
+      <label for="explode">Separation</label>
+      <input id="explode" type="range" min="0" max="100" value="0" />
+      <output id="explodeVal">0%</output>
+    </div>
+    <div class="systems" role="group" aria-label="System filter">
+      <button class="sys is-on" data-sys="all">All systems</button>
+      <button class="sys" data-sys="exterior">Body</button>
+      <button class="sys" data-sys="roof">Roof</button>
+      <button class="sys" data-sys="cabin">Cabin</button>
+      <button class="sys" data-sys="chassis">Chassis</button>
+      <button class="sys" data-sys="powertrain">Powertrain</button>
+      <button class="sys" data-sys="electrical">Lighting</button>
+    </div>
+  </div>
+
+  <footer class="specs">
+    <div><span>Length</span><b id="sp-len">&middot;</b></div>
+    <div><span>Wheelbase</span><b id="sp-wb">&middot;</b></div>
+    <div><span>Height</span><b id="sp-ht">&middot;</b></div>
+    <div><span>Components</span><b id="sp-parts">&middot;</b></div>
+    <div><span>Triangles</span><b id="sp-tris">&middot;</b></div>
+  </footer>
+
+  <button class="reset" id="reset" title="Reset view">Reset view</button>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.164/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="./atlas.js"></script>
+</body>
+</html>

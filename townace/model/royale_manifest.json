@@ -1,0 +1,1582 @@
+{
+  "project": "The Royale - 1991 Toyota TownAce 4WD",
+  "units": "metres",
+  "up_axis_gltf": "Y",
+  "forward_gltf": "-Z (glTF) = +X (Blender, vehicle nose)",
+  "overall": {
+    "length": 4.066,
+    "width": 1.69,
+    "height": 1.87,
+    "wheelbase": 2.235,
+    "tyre_diameter": 0.782
+  },
+  "modes": [
+    "assembled",
+    "exploded",
+    "interior",
+    "camping",
+    "drivetrain",
+    "skylite"
+  ],
+  "triangles": 30577,
+  "components": [
+    {
+      "name": "CENTER_CONSOLE",
+      "label": "Centre Console + Shifter",
+      "category": "cabin",
+      "explode": [
+        0.55,
+        0.0,
+        -0.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        1.32,
+        0.0,
+        0.7035
+      ]
+    },
+    {
+      "name": "DASHBOARD",
+      "label": "Dashboard (RHD)",
+      "category": "cabin",
+      "explode": [
+        0.85,
+        0.0,
+        0.28
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        1.4175,
+        0.0,
+        1.0019
+      ]
+    },
+    {
+      "name": "DRIVER_SEAT",
+      "label": "Driver Seat",
+      "category": "cabin",
+      "explode": [
+        0.55,
+        -0.8,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        1.06,
+        -0.415,
+        0.936
+      ]
+    },
+    {
+      "name": "FLOOR_PAN",
+      "label": "Floor Pan",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        0.0,
+        -0.55
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        -0.085,
+        0.0,
+        0.463
+      ]
+    },
+    {
+      "name": "HEADLINER",
+      "label": "Headliner",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        0.0,
+        0.7
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.35,
+        0.0,
+        1.832
+      ]
+    },
+    {
+      "name": "INTERIOR_LEFT",
+      "label": "Interior Panel Left",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        0.8,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.24,
+        0.7705,
+        0.86
+      ]
+    },
+    {
+      "name": "INTERIOR_RIGHT",
+      "label": "Interior Panel Right",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.24,
+        -0.7705,
+        0.86
+      ]
+    },
+    {
+      "name": "PASSENGER_SEAT",
+      "label": "Passenger Seat",
+      "category": "cabin",
+      "explode": [
+        0.55,
+        0.8,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        1.06,
+        0.415,
+        0.936
+      ]
+    },
+    {
+      "name": "REAR_BENCH_OR_BED",
+      "label": "Rear Bench / Bed",
+      "category": "cabin",
+      "explode": [
+        -0.7,
+        0.0,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        -0.974,
+        0.0,
+        0.9112
+      ]
+    },
+    {
+      "name": "REAR_SEAT_01",
+      "label": "Royal Lounge Chair L",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        0.85,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        0.0963,
+        0.415,
+        0.9342
+      ]
+    },
+    {
+      "name": "REAR_SEAT_02",
+      "label": "Royal Lounge Chair R",
+      "category": "cabin",
+      "explode": [
+        0.0,
+        -0.85,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        0.0963,
+        -0.415,
+        0.9342
+      ]
+    },
+    {
+      "name": "STEERING_WHEEL",
+      "label": "Steering Wheel",
+      "category": "cabin",
+      "explode": [
+        0.9,
+        -0.45,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "interior",
+        "camping",
+        "skylite"
+      ],
+      "pivot": [
+        1.492,
+        -0.415,
+        1.048
+      ]
+    },
+    {
+      "name": "FRAME_OR_UNDERBODY",
+      "label": "Frame / Underbody",
+      "category": "chassis",
+      "explode": [
+        0.0,
+        0.0,
+        -0.75
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -0.07,
+        0.0,
+        0.39
+      ]
+    },
+    {
+      "name": "FRONT_AXLE",
+      "label": "Front Axle",
+      "category": "chassis",
+      "explode": [
+        0.3,
+        0.0,
+        -0.62
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        1.1175,
+        0.0,
+        0.391
+      ]
+    },
+    {
+      "name": "FRONT_SUSPENSION_L",
+      "label": "Front Suspension L",
+      "category": "chassis",
+      "explode": [
+        0.18,
+        0.72,
+        -0.42
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        1.0105,
+        0.51,
+        0.5735
+      ]
+    },
+    {
+      "name": "FRONT_SUSPENSION_R",
+      "label": "Front Suspension R",
+      "category": "chassis",
+      "explode": [
+        0.18,
+        -0.72,
+        -0.42
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        1.0105,
+        -0.51,
+        0.5735
+      ]
+    },
+    {
+      "name": "REAR_AXLE",
+      "label": "Rear Axle",
+      "category": "chassis",
+      "explode": [
+        -0.3,
+        0.0,
+        -0.62
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -1.1175,
+        0.0,
+        0.391
+      ]
+    },
+    {
+      "name": "REAR_SUSPENSION_L",
+      "label": "Rear Suspension L",
+      "category": "chassis",
+      "explode": [
+        -0.18,
+        0.72,
+        -0.42
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -1.2245,
+        0.51,
+        0.5735
+      ]
+    },
+    {
+      "name": "REAR_SUSPENSION_R",
+      "label": "Rear Suspension R",
+      "category": "chassis",
+      "explode": [
+        -0.18,
+        -0.72,
+        -0.42
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -1.2245,
+        -0.51,
+        0.5735
+      ]
+    },
+    {
+      "name": "WHEEL_FL",
+      "label": "Wheel FL",
+      "category": "chassis",
+      "explode": [
+        0.2,
+        0.62,
+        -0.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        1.1175,
+        0.745,
+        0.391
+      ]
+    },
+    {
+      "name": "WHEEL_FR",
+      "label": "Wheel FR",
+      "category": "chassis",
+      "explode": [
+        0.2,
+        -0.62,
+        -0.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        1.1175,
+        -0.745,
+        0.391
+      ]
+    },
+    {
+      "name": "WHEEL_RL",
+      "label": "Wheel RL",
+      "category": "chassis",
+      "explode": [
+        -0.2,
+        0.62,
+        -0.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -1.1175,
+        0.745,
+        0.391
+      ]
+    },
+    {
+      "name": "WHEEL_RR",
+      "label": "Wheel RR",
+      "category": "chassis",
+      "explode": [
+        -0.2,
+        -0.62,
+        -0.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -1.1175,
+        -0.745,
+        0.391
+      ]
+    },
+    {
+      "name": "WHEEL_WELL_LINERS",
+      "label": "Wheel Well Liners",
+      "category": "chassis",
+      "explode": [
+        0.0,
+        0.0,
+        -0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.0,
+        0.0,
+        0.391
+      ]
+    },
+    {
+      "name": "HEADLAMP_L",
+      "label": "Headlamp L",
+      "category": "electrical",
+      "explode": [
+        1.05,
+        0.3,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.178,
+        0.4425,
+        0.815
+      ]
+    },
+    {
+      "name": "HEADLAMP_R",
+      "label": "Headlamp R",
+      "category": "electrical",
+      "explode": [
+        1.05,
+        -0.3,
+        0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.178,
+        -0.4425,
+        0.815
+      ]
+    },
+    {
+      "name": "TAILLAMP_L",
+      "label": "Tail Lamp L",
+      "category": "electrical",
+      "explode": [
+        -1.05,
+        0.34,
+        0.06
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.891,
+        0.5325,
+        0.9345
+      ]
+    },
+    {
+      "name": "TAILLAMP_R",
+      "label": "Tail Lamp R",
+      "category": "electrical",
+      "explode": [
+        -1.05,
+        -0.34,
+        0.06
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.891,
+        -0.5325,
+        0.9345
+      ]
+    },
+    {
+      "name": "TURN_SIGNAL_L",
+      "label": "Turn Signal L",
+      "category": "electrical",
+      "explode": [
+        1.05,
+        0.42,
+        0.04
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.179,
+        0.5925,
+        0.727
+      ]
+    },
+    {
+      "name": "TURN_SIGNAL_R",
+      "label": "Turn Signal R",
+      "category": "electrical",
+      "explode": [
+        1.05,
+        -0.42,
+        0.04
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.179,
+        -0.5925,
+        0.727
+      ]
+    },
+    {
+      "name": "BADGE_4WD",
+      "label": "4WD Fender Badge",
+      "category": "exterior",
+      "explode": [
+        0.35,
+        0.3,
+        0.12
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.9646,
+        0.0,
+        1.1523
+      ]
+    },
+    {
+      "name": "BODY_SHELL",
+      "label": "Body Shell",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.0146,
+        0.0,
+        1.1404
+      ]
+    },
+    {
+      "name": "CHROME_MOULDING_L",
+      "label": "Chrome Moulding L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.38,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.06,
+        0.8429,
+        0.755
+      ]
+    },
+    {
+      "name": "CHROME_MOULDING_R",
+      "label": "Chrome Moulding R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.38,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.06,
+        -0.8429,
+        0.755
+      ]
+    },
+    {
+      "name": "DECAL_4WD_L",
+      "label": "4WD Decal L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.46,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.19,
+        0.8484,
+        0.9041
+      ]
+    },
+    {
+      "name": "DECAL_4WD_R",
+      "label": "4WD Decal R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.46,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.19,
+        -0.8484,
+        0.9041
+      ]
+    },
+    {
+      "name": "DECAL_TOWNACE_L",
+      "label": "TOWN ACE Decal L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.46,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.49,
+        0.8474,
+        0.8602
+      ]
+    },
+    {
+      "name": "DECAL_TOWNACE_R",
+      "label": "TOWN ACE Decal R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.46,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.49,
+        -0.8474,
+        0.8602
+      ]
+    },
+    {
+      "name": "DOOR_HANDLES",
+      "label": "Door Handles",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.0,
+        0.55
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.53,
+        0.001,
+        1.1175
+      ]
+    },
+    {
+      "name": "DRIVER_DOOR",
+      "label": "Driver Door (RHD)",
+      "category": "exterior",
+      "explode": [
+        0.1,
+        -0.85,
+        0.02
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.665,
+        -0.83,
+        1.15
+      ]
+    },
+    {
+      "name": "FRONT_BUMPER",
+      "label": "Front Bumper",
+      "category": "exterior",
+      "explode": [
+        1.3,
+        0.0,
+        -0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.1106,
+        0.0,
+        0.5535
+      ]
+    },
+    {
+      "name": "FRONT_CLIP",
+      "label": "Front Clip",
+      "category": "exterior",
+      "explode": [
+        0.95,
+        0.0,
+        0.08
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.24,
+        0.0,
+        0.9
+      ]
+    },
+    {
+      "name": "FUEL_FILLER",
+      "label": "Fuel Filler Flap",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.6475,
+        -0.849,
+        1.019
+      ]
+    },
+    {
+      "name": "GRILLE",
+      "label": "Grille",
+      "category": "exterior",
+      "explode": [
+        1.15,
+        0.0,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        2.178,
+        0.0,
+        0.797
+      ]
+    },
+    {
+      "name": "MIRROR_L",
+      "label": "Door Mirror L",
+      "category": "exterior",
+      "explode": [
+        0.3,
+        0.55,
+        0.22
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.419,
+        0.8975,
+        1.4465
+      ]
+    },
+    {
+      "name": "MIRROR_R",
+      "label": "Door Mirror R",
+      "category": "exterior",
+      "explode": [
+        0.3,
+        -0.55,
+        0.22
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.419,
+        -0.8975,
+        1.4465
+      ]
+    },
+    {
+      "name": "PASSENGER_DOOR",
+      "label": "Passenger Door",
+      "category": "exterior",
+      "explode": [
+        0.1,
+        0.85,
+        0.02
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.665,
+        0.83,
+        1.15
+      ]
+    },
+    {
+      "name": "PILLAR_TRIM_L",
+      "label": "Pillar Trim L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.4,
+        0.18
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.139,
+        0.7816,
+        1.5199
+      ]
+    },
+    {
+      "name": "PILLAR_TRIM_R",
+      "label": "Pillar Trim R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.4,
+        0.18
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.139,
+        -0.7816,
+        1.5199
+      ]
+    },
+    {
+      "name": "REAR_BUMPER",
+      "label": "Rear Bumper",
+      "category": "exterior",
+      "explode": [
+        -1.2,
+        0.0,
+        -0.1
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.8216,
+        0.0,
+        0.6175
+      ]
+    },
+    {
+      "name": "REAR_GLASS",
+      "label": "Rear Glass",
+      "category": "exterior",
+      "explode": [
+        -0.62,
+        0.0,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.86,
+        0.0,
+        1.4527
+      ]
+    },
+    {
+      "name": "REAR_HATCH",
+      "label": "Rear Hatch",
+      "category": "exterior",
+      "explode": [
+        -0.72,
+        0.0,
+        0.34
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.86,
+        0.0,
+        1.862
+      ]
+    },
+    {
+      "name": "REAR_PANEL",
+      "label": "Rear Lamp Panel",
+      "category": "exterior",
+      "explode": [
+        -1.02,
+        0.0,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.883,
+        0.0,
+        0.9345
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_FRONT_L",
+      "label": "Front Side Glass L",
+      "category": "exterior",
+      "explode": [
+        0.3,
+        0.62,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.2475,
+        0.7714,
+        1.5042
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_FRONT_R",
+      "label": "Front Side Glass R",
+      "category": "exterior",
+      "explode": [
+        0.3,
+        -0.62,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.2475,
+        -0.7714,
+        1.5042
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_MID_L",
+      "label": "Mid Side Glass L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.62,
+        0.34
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.1275,
+        0.7923,
+        1.529
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_MID_R",
+      "label": "Mid Side Glass R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.62,
+        0.34
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.1275,
+        -0.7923,
+        1.529
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_REAR_L",
+      "label": "Rear Side Glass L",
+      "category": "exterior",
+      "explode": [
+        -0.3,
+        0.62,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.19,
+        0.7879,
+        1.529
+      ]
+    },
+    {
+      "name": "SIDE_GLASS_REAR_R",
+      "label": "Rear Side Glass R",
+      "category": "exterior",
+      "explode": [
+        -0.3,
+        -0.62,
+        0.3
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -1.19,
+        -0.7879,
+        1.529
+      ]
+    },
+    {
+      "name": "SKYLITE_ROOF_BAND",
+      "label": "Skylite Roof Band",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.0,
+        0.42
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.345,
+        0.0,
+        1.81
+      ]
+    },
+    {
+      "name": "SLIDING_DOOR",
+      "label": "Sliding Door",
+      "category": "exterior",
+      "explode": [
+        -0.18,
+        0.95,
+        0.02
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.575,
+        0.83,
+        1.15
+      ]
+    },
+    {
+      "name": "STRIPE_BAND_L",
+      "label": "4WD Stripe Band L",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        0.42,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.0825,
+        0.8368,
+        0.8606
+      ]
+    },
+    {
+      "name": "STRIPE_BAND_R",
+      "label": "4WD Stripe Band R",
+      "category": "exterior",
+      "explode": [
+        0.0,
+        -0.42,
+        0.0
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.0825,
+        -0.8368,
+        0.8606
+      ]
+    },
+    {
+      "name": "WINDSHIELD",
+      "label": "Windshield",
+      "category": "exterior",
+      "explode": [
+        0.72,
+        0.0,
+        0.44
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        1.3922,
+        0.0,
+        1.546
+      ]
+    },
+    {
+      "name": "DRIVESHAFT",
+      "label": "Driveshafts (front + rear)",
+      "category": "powertrain",
+      "explode": [
+        0.0,
+        0.0,
+        -1.35
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        0.0,
+        0.0125,
+        0.33
+      ]
+    },
+    {
+      "name": "ENGINE_3Y",
+      "label": "3Y Engine",
+      "category": "powertrain",
+      "explode": [
+        0.45,
+        0.0,
+        -1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        0.9225,
+        0.01,
+        0.346
+      ]
+    },
+    {
+      "name": "EXHAUST",
+      "label": "Exhaust",
+      "category": "powertrain",
+      "explode": [
+        -0.3,
+        0.45,
+        -1.2
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -0.95,
+        0.325,
+        0.302
+      ]
+    },
+    {
+      "name": "TRANSFER_CASE",
+      "label": "Transfer Case",
+      "category": "powertrain",
+      "explode": [
+        -0.15,
+        0.3,
+        -1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        -0.05,
+        -0.0225,
+        0.32
+      ]
+    },
+    {
+      "name": "TRANSMISSION",
+      "label": "Transmission",
+      "category": "powertrain",
+      "explode": [
+        0.1,
+        0.0,
+        -1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "drivetrain"
+      ],
+      "pivot": [
+        0.29,
+        0.0,
+        0.33
+      ]
+    },
+    {
+      "name": "AWNING",
+      "label": "ARB Awning",
+      "category": "roof",
+      "explode": [
+        0.0,
+        0.75,
+        0.8
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.295,
+        0.726,
+        1.972
+      ]
+    },
+    {
+      "name": "CARGO_BOX",
+      "label": "Thule Cargo Box",
+      "category": "roof",
+      "explode": [
+        0.0,
+        0.0,
+        1.35
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.2475,
+        0.0,
+        2.1408
+      ]
+    },
+    {
+      "name": "ROOF_RACK",
+      "label": "Roof Rack",
+      "category": "roof",
+      "explode": [
+        0.0,
+        0.0,
+        0.95
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.37,
+        0.0,
+        1.9435
+      ]
+    },
+    {
+      "name": "ROOF_SHELL",
+      "label": "Roof Shell",
+      "category": "roof",
+      "explode": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.36,
+        0.0,
+        1.87
+      ]
+    },
+    {
+      "name": "SKYLITE_01",
+      "label": "Skylite Panel 01",
+      "category": "roof",
+      "explode": [
+        0.28,
+        0.42,
+        1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.64,
+        0.365,
+        1.883
+      ]
+    },
+    {
+      "name": "SKYLITE_02",
+      "label": "Skylite Panel 02",
+      "category": "roof",
+      "explode": [
+        0.28,
+        -0.42,
+        1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        0.64,
+        -0.365,
+        1.883
+      ]
+    },
+    {
+      "name": "SKYLITE_03",
+      "label": "Skylite Panel 03",
+      "category": "roof",
+      "explode": [
+        -0.28,
+        0.42,
+        1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.55,
+        0.375,
+        1.883
+      ]
+    },
+    {
+      "name": "SKYLITE_04",
+      "label": "Skylite Panel 04",
+      "category": "roof",
+      "explode": [
+        -0.28,
+        -0.42,
+        1.05
+      ],
+      "modes": [
+        "assembled",
+        "exploded",
+        "skylite"
+      ],
+      "pivot": [
+        -0.55,
+        -0.375,
+        1.883
+      ]
+    }
+  ]
+}
