@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaklyn Cher · Selected Work · Dane Erik Forst</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A private selection of work for Jaklyn Cher.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   JAKLYN, private mood board.
+   Unlinked from the site navigation on purpose. The only way in
+   is the direct URL, and the page is marked noindex.
+
+   TO ADD IMAGES:
+     1. sips -Z 2000 -s format jpeg -s formatOptions 74 src.png \
+          --out img/<slug>-f.jpg
+        sips -Z 1000 -s format jpeg -s formatOptions 68 src.png \
+          --out img/<slug>-t.jpg
+     2. Drop a <figure> into the right .bed below with a span
+        class (c3 / c4 / c6 / c12). Every row must add up to 12,
+        and frames sharing a row want the same aspect ratio.
+     3. Renumber the data-n counters, or leave them, they are only
+        the corner label and the lightbox caption.
+   TO ADD A SECTION: copy a <section class="set"> block, bump the
+   kicker number, and add it to the .toc list above.
+   ============================================================ */
+:root{
+  --soot:#141310;
+  --soot-2:#1c1a16;
+  --bone:#E4E0D4;
+  --sun:#ff8330;
+  --rose:#ff4d8c;
+  --line:rgba(228,224,212,.14);
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Instrument Serif',serif;
+  --sans:'Archivo',sans-serif;
+  --pad:clamp(1.2rem,4vw,3.5rem);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--soot);
+  color:var(--bone);
+  font-family:var(--sans);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--rose);color:var(--bone)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+/* ---------- masthead ---------- */
+.mast{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.1rem var(--pad);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:40;
+  background:rgba(20,19,16,.82);
+  backdrop-filter:blur(14px) saturate(1.06);
+  -webkit-backdrop-filter:blur(14px) saturate(1.06);
+}
+.mast .mark{display:flex;align-items:center;gap:.7rem}
+.mast .mark img{height:26px;width:auto;filter:invert(1) brightness(1.6)}
+.mast .mark span{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;opacity:.55;
+  padding-left:.7rem;border-left:1px solid var(--line);
+}
+.mast .priv{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;opacity:.4}
+@media(max-width:640px){.mast .mark span{display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(4rem,14vh,9rem) var(--pad) clamp(2.5rem,7vh,5rem)}
+.hero .eyebrow{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--sun);margin-bottom:1.6rem;
+}
+.hero h1{
+  font-weight:850;font-variation-settings:'wdth' 68;
+  font-size:clamp(2.6rem,8.5vw,7rem);line-height:.88;
+  text-transform:uppercase;letter-spacing:-.015em;
+  max-width:14ch;
+}
+.hero h1 em{
+  font-family:var(--serif);font-style:italic;font-weight:400;
+  text-transform:none;letter-spacing:0;
+}
+.hero .lede{
+  margin-top:clamp(1.6rem,4vh,2.8rem);
+  max-width:52ch;font-size:clamp(1rem,1.5vw,1.12rem);
+  line-height:1.55;opacity:.72;
+}
+.hero .meta{
+  margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:.5rem 2rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;opacity:.4;
+}
+
+/* ---------- index of sets ---------- */
+.toc{
+  padding:0 var(--pad) clamp(3rem,8vh,6rem);
+  display:flex;flex-wrap:wrap;gap:.45rem;
+}
+.toc a{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;padding:.5rem .85rem;
+  border:1px solid var(--line);border-radius:999px;
+  opacity:.6;transition:opacity .25s,border-color .25s,color .25s;
+}
+.toc a:hover{opacity:1;border-color:var(--sun);color:var(--sun)}
+.toc a i{font-style:normal;opacity:.45;margin-right:.45rem}
+
+/* ---------- a set ---------- */
+.set{padding:0 var(--pad) clamp(4rem,10vh,7rem);scroll-margin-top:5rem}
+.set-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+  gap:clamp(1rem,3vw,3rem);align-items:end;
+  padding:clamp(1.6rem,4vh,2.6rem) 0 clamp(1.4rem,3.5vh,2.2rem);
+  border-top:1px solid var(--line);
+}
+@media(max-width:760px){.set-head{grid-template-columns:1fr;align-items:start;gap:.9rem}}
+.set-head .kick{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;opacity:.4;display:block;margin-bottom:.7rem;
+}
+.set-head h2{
+  font-weight:800;font-variation-settings:'wdth' 74;
+  font-size:clamp(1.7rem,4vw,3rem);line-height:.95;
+  text-transform:uppercase;letter-spacing:-.01em;
+}
+.set-head p{font-size:.98rem;line-height:1.5;opacity:.6;max-width:44ch}
+.set-head .count{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;opacity:.35;margin-top:.8rem;display:block;
+}
+
+/* ---------- the bed ----------
+   Twelve column grid. Every row is laid out by hand so that the
+   frames sharing a row share an aspect ratio and line up top and
+   bottom. Spans are c3 (quarter), c4 (third), c6 (half), c12
+   (full). Each row has to add up to twelve.
+   Below 1000px it folds to two up, below 620px to one. */
+.bed{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:clamp(.6rem,1.4vw,1.1rem);align-items:start;
+}
+.bed .c3{grid-column:span 3}
+.bed .c4{grid-column:span 4}
+.bed .c6{grid-column:span 6}
+.bed .c12{grid-column:span 12}
+@media(max-width:1000px){
+  .bed{grid-template-columns:repeat(2,1fr)}
+  .bed .c3,.bed .c4,.bed .c6{grid-column:span 1}
+  .bed .c12{grid-column:span 2}
+}
+@media(max-width:620px){
+  .bed{grid-template-columns:1fr}
+  .bed .c3,.bed .c4,.bed .c6,.bed .c12{grid-column:span 1}
+}
+.bed figure{
+  margin:0;position:relative;background:var(--soot-2);
+  cursor:zoom-in;overflow:hidden;
+}
+.bed figure img{
+  width:100%;height:auto;
+  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .5s;
+}
+.bed figure:hover img{transform:scale(1.025)}
+.bed figure::after{
+  content:attr(data-n);position:absolute;left:.7rem;bottom:.6rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  color:var(--bone);opacity:0;transition:opacity .3s;
+  text-shadow:0 1px 6px rgba(0,0,0,.8);pointer-events:none;
+}
+.bed figure:hover::after{opacity:.85}
+
+/* ---------- footer ---------- */
+.foot{
+  padding:clamp(3rem,8vh,5rem) var(--pad);
+  border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.2rem;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;opacity:.45;
+}
+.foot a:hover{color:var(--sun);opacity:1}
+
+/* ---------- lightbox ---------- */
+.lb{
+  position:fixed;inset:0;z-index:100;display:none;
+  background:rgba(10,9,8,.96);
+  align-items:center;justify-content:center;
+  padding:clamp(1rem,4vw,3rem);
+}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.lb .bar{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem clamp(1rem,4vw,3rem);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;opacity:.5;pointer-events:none;
+}
+.lb button{
+  position:absolute;background:none;border:0;color:var(--bone);
+  font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;
+  cursor:pointer;padding:1rem;opacity:.55;transition:opacity .25s;
+  text-transform:uppercase;
+}
+.lb button:hover{opacity:1}
+.lb .x{top:.6rem;right:clamp(.4rem,2vw,1.6rem)}
+.lb .prev{left:clamp(.2rem,2vw,1.2rem);top:50%;transform:translateY(-50%);font-size:1.6rem}
+.lb .next{right:clamp(.2rem,2vw,1.2rem);top:50%;transform:translateY(-50%);font-size:1.6rem}
+
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms !important;scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <a class="mark" href="/">
+    <img src="../assets/img/def-logo.png" alt="DEF, Dane Erik Forst">
+    <span>Dane Erik Forst</span>
+  </a>
+  <span class="priv">Private link</span>
+</header>
+
+<!-- copy: hero -->
+<section class="hero">
+  <div class="eyebrow">Prepared for Jaklyn Cher</div>
+  <h1>Selected <em>work</em></h1>
+  <p class="lede">A working board, grouped by the look rather than the date. Six sets, thirty frames. Open any frame to see it large. More will be added as it comes out of the studio.</p>
+  <div class="meta">
+    <span>DEF Studios, Portland OR</span>
+    <span>30 frames · 6 sets</span>
+    <span>Not final</span>
+  </div>
+</section>
+
+<nav class="toc">
+  <a href="#gold"><i>01</i>Gold Mesh</a>
+  <a href="#velvet"><i>02</i>Velvet and Glass</a>
+  <a href="#regalia"><i>03</i>Regalia</a>
+  <a href="#scanline"><i>04</i>Scanline</a>
+  <a href="#separations"><i>05</i>Separations</a>
+  <a href="#signal"><i>06</i>Signal</a>
+</nav>
+
+<!-- ============ 01 GOLD MESH ============ -->
+<section class="set" id="gold">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 01</span>
+      <h2>Gold Mesh</h2>
+      <span class="count">Three frames · studio</span>
+    </div>
+    <!-- copy: set 01 -->
+    <p>White cyc, no set to hide behind. Gold chainmail against black leather, and a camera built with the weight of a weapon.</p>
+  </div>
+  <div class="bed">
+    <figure class="c12" data-n="01 / 30"><img src="img/goldmesh-01-t.jpg" data-full="img/goldmesh-01-f.jpg" width="1000" height="558" loading="lazy" alt="Figure in a gold chainmail halter on a white cyc, gold headpiece over one eye"></figure>
+    <figure class="c6" data-n="02 / 30"><img src="img/goldmesh-02-t.jpg" data-full="img/goldmesh-02-f.jpg" width="1000" height="558" loading="lazy" alt="Full length figure on white holding a brass camera rig like a rifle"></figure>
+    <figure class="c6" data-n="03 / 30"><img src="img/goldmesh-03-t.jpg" data-full="img/goldmesh-03-f.jpg" width="1000" height="558" loading="lazy" alt="Second angle on the brass camera rig, figure squared to the lens"></figure>
+  </div>
+</section>
+
+<!-- ============ 02 VELVET AND GLASS ============ -->
+<section class="set" id="velvet">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 02</span>
+      <h2>Velvet and Glass</h2>
+      <span class="count">Six frames · sets</span>
+    </div>
+    <!-- copy: set 02 -->
+    <p>Purple and pale pink rooms. Period furniture, black velvet, and blown glass forms that grow out of the frame rather than sit in it.</p>
+  </div>
+  <div class="bed">
+    <figure class="c6" data-n="04 / 30"><img src="img/velvet-03-t.jpg" data-full="img/velvet-03-f.jpg" width="1000" height="562" loading="lazy" alt="Wide frame of a figure lying along a purple velvet bed with lilies and a star flare"></figure>
+    <figure class="c6" data-n="05 / 30"><img src="img/velvet-04-t.jpg" data-full="img/velvet-04-f.jpg" width="1000" height="562" loading="lazy" alt="Wide pale pink frame, standing figure beside tall glass ribbon forms"></figure>
+    <figure class="c3" data-n="06 / 30"><img src="img/velvet-01-t.jpg" data-full="img/velvet-01-f.jpg" width="750" height="1000" loading="lazy" alt="Figure reclining on a carved chaise in black velvet against purple, iridescent glass fronds alongside"></figure>
+    <figure class="c3" data-n="07 / 30"><img src="img/velvet-05-t.jpg" data-full="img/velvet-05-f.jpg" width="750" height="1000" loading="lazy" alt="Seated figure on a pale pink set surrounded by clear glass ribbon sculpture"></figure>
+    <figure class="c3" data-n="08 / 30"><img src="img/velvet-02-t.jpg" data-full="img/velvet-02-f.jpg" width="750" height="1000" loading="lazy" alt="Pale framed plate, figure seated with clear glass ribbons crossing the image"></figure>
+    <figure class="c3" data-n="09 / 30"><img src="img/velvet-06-t.jpg" data-full="img/velvet-06-f.jpg" width="750" height="1000" loading="lazy" alt="Figure seated low in black velvet with glass ribbon shapes and a pale ground"></figure>
+  </div>
+</section>
+
+<!-- ============ 03 REGALIA ============ -->
+<section class="set" id="regalia">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 03</span>
+      <h2>Regalia</h2>
+      <span class="count">Six frames · headpieces</span>
+    </div>
+    <!-- copy: set 03 -->
+    <p>Cast gold headpieces, chainmail collars and cut prisms. Each one lit for its own world, from a shoreline to a room made of refraction.</p>
+  </div>
+  <div class="bed">
+    <figure class="c12" data-n="10 / 30"><img src="img/regalia-01-t.jpg" data-full="img/regalia-01-f.jpg" width="1000" height="562" loading="lazy" alt="Wide dark frame, gold headpiece and chainmail collar with pink blossoms floating"></figure>
+    <figure class="c4" data-n="11 / 30"><img src="img/regalia-03-t.jpg" data-full="img/regalia-03-f.jpg" width="750" height="1000" loading="lazy" alt="Seated figure in brown corduroy and knitwear, brass eye mask, prismatic streaks around"></figure>
+    <figure class="c4" data-n="12 / 30"><img src="img/regalia-02-t.jpg" data-full="img/regalia-02-f.jpg" width="750" height="1000" loading="lazy" alt="Figure seated inside a ring of cut crystal, gold mask, purple robe"></figure>
+    <figure class="c4" data-n="13 / 30"><img src="img/regalia-04-t.jpg" data-full="img/regalia-04-f.jpg" width="750" height="1000" loading="lazy" alt="Gold chainmail cape and crown against a teal ground"></figure>
+    <figure class="c6" data-n="14 / 30"><img src="img/regalia-05-t.jpg" data-full="img/regalia-05-f.jpg" width="750" height="1000" loading="lazy" alt="Figure mid gesture in gold headpiece with iridescent forms trailing"></figure>
+    <figure class="c6" data-n="15 / 30"><img src="img/regalia-06-t.jpg" data-full="img/regalia-06-f.jpg" width="750" height="1000" loading="lazy" alt="Figure on a stony shore in a black cape of metal discs, water behind"></figure>
+  </div>
+</section>
+
+<!-- ============ 04 SCANLINE ============ -->
+<section class="set" id="scanline">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 04</span>
+      <h2>Scanline</h2>
+      <span class="count">Five frames · process</span>
+    </div>
+    <!-- copy: set 04 -->
+    <p>Slit scan passes run over a still frame, the figure smeared along one axis while the room stays put. The plate keeps its own settings printed in the corner.</p>
+  </div>
+  <div class="bed">
+    <figure class="c6" data-n="16 / 30"><img src="img/scanline-01-t.jpg" data-full="img/scanline-01-f.jpg" width="800" height="1000" loading="lazy" alt="Figure reclining on a tiled floor, vertical scan pass tearing the edges of the frame"></figure>
+    <figure class="c6" data-n="17 / 30"><img src="img/scanline-02-t.jpg" data-full="img/scanline-02-f.jpg" width="800" height="1000" loading="lazy" alt="Figure leaning against a wall, horizontal scan smearing the lower half"></figure>
+    <figure class="c4" data-n="18 / 30"><img src="img/scanline-03-t.jpg" data-full="img/scanline-03-f.jpg" width="800" height="1000" loading="lazy" alt="Soft vertical scan over a standing figure in a mustard turtleneck"></figure>
+    <figure class="c4" data-n="19 / 30"><img src="img/scanline-04-t.jpg" data-full="img/scanline-04-f.jpg" width="800" height="1000" loading="lazy" alt="Heavier horizontal scan, the face pulled sideways into bands"></figure>
+    <figure class="c4" data-n="20 / 30"><img src="img/scanline-05-t.jpg" data-full="img/scanline-05-f.jpg" width="800" height="1000" loading="lazy" alt="Third pass of the standing figure, hair drawn out into ribbons"></figure>
+  </div>
+</section>
+
+<!-- ============ 05 SEPARATIONS ============ -->
+<section class="set" id="separations">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 05</span>
+      <h2>Separations</h2>
+      <span class="count">Seven frames · plates</span>
+    </div>
+    <!-- copy: set 05 -->
+    <p>The same passes pushed down to two and three colours and dithered, so the image reads as a printed plate rather than a photograph.</p>
+  </div>
+  <div class="bed">
+    <figure class="c3" data-n="21 / 30"><img src="img/sep-01-t.jpg" data-full="img/sep-01-f.jpg" width="800" height="1000" loading="lazy" alt="Magenta and oxblood separation of the floor recline, dithered"></figure>
+    <figure class="c3" data-n="22 / 30"><img src="img/sep-04-t.jpg" data-full="img/sep-04-f.jpg" width="800" height="1000" loading="lazy" alt="Pink and maroon plate, figure lying along a sofa edge"></figure>
+    <figure class="c3" data-n="23 / 30"><img src="img/sep-02-t.jpg" data-full="img/sep-02-f.jpg" width="800" height="1000" loading="lazy" alt="Orange and magenta separation of the leaning figure"></figure>
+    <figure class="c3" data-n="24 / 30"><img src="img/sep-05-t.jpg" data-full="img/sep-05-f.jpg" width="800" height="1000" loading="lazy" alt="Pink and orange plate, long horizontal tear across the frame"></figure>
+    <figure class="c4" data-n="25 / 30"><img src="img/sep-03-t.jpg" data-full="img/sep-03-f.jpg" width="800" height="1000" loading="lazy" alt="Greyscale separation of the leaning figure, heavy grain"></figure>
+    <figure class="c4" data-n="26 / 30"><img src="img/sep-06-t.jpg" data-full="img/sep-06-f.jpg" width="800" height="1000" loading="lazy" alt="Close pink and maroon plate, arm and shoulder filling the frame"></figure>
+    <figure class="c4" data-n="27 / 30"><img src="img/sep-07-t.jpg" data-full="img/sep-07-f.jpg" width="800" height="1000" loading="lazy" alt="Vertical orange and magenta raster, the face barely readable through the lines"></figure>
+  </div>
+</section>
+
+<!-- ============ 06 SIGNAL ============ -->
+<section class="set" id="signal">
+  <div class="set-head">
+    <div>
+      <span class="kick">Set 06</span>
+      <h2>Signal</h2>
+      <span class="count">Three frames · chroma</span>
+    </div>
+    <!-- copy: set 06 -->
+    <p>Channel split blown out against white, until the only thing holding the figure together is the colour fringe on its edges.</p>
+  </div>
+  <div class="bed">
+    <figure class="c12" data-n="28 / 30"><img src="img/signal-01-t.jpg" data-full="img/signal-01-f.jpg" width="1000" height="666" loading="lazy" alt="Figure dissolving into red and cyan fringes on a blown out white ground"></figure>
+    <figure class="c6" data-n="29 / 30"><img src="img/signal-02-t.jpg" data-full="img/signal-02-f.jpg" width="1000" height="666" loading="lazy" alt="Second channel split, the turn of the head doubled in colour"></figure>
+    <figure class="c6" data-n="30 / 30"><img src="img/signal-03-t.jpg" data-full="img/signal-03-f.jpg" width="1000" height="666" loading="lazy" alt="Third channel split, figure almost lost to the white"></figure>
+  </div>
+</section>
+
+<footer class="foot">
+  <span>Dane Erik Forst · DEF Studios</span>
+  <span>Private preview for Jaklyn Cher</span>
+  <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Full size image">
+  <img id="lbimg" alt="">
+  <button class="x" id="lbx" aria-label="Close">Close</button>
+  <button class="prev" id="lbp" aria-label="Previous">&#8592;</button>
+  <button class="next" id="lbn" aria-label="Next">&#8594;</button>
+  <div class="bar"><span id="lbcap"></span><span>Esc to close</span></div>
+</div>
+
+<script>
+(function(){
+  // Every thumbnail on the page, in document order. The lightbox walks
+  // this list so the arrows cross set boundaries rather than dead ending.
+  var shots = [].slice.call(document.querySelectorAll('.bed figure'));
+  var lb  = document.getElementById('lb');
+  var img = document.getElementById('lbimg');
+  var cap = document.getElementById('lbcap');
+  var at  = 0;
+
+  function show(i){
+    at = (i + shots.length) % shots.length;
+    var t = shots[at].querySelector('img');
+    img.src = t.dataset.full;
+    img.alt = t.alt;
+    cap.textContent = shots[at].dataset.n;
+    // Warm the neighbours so the arrows feel instant.
+    [1,-1].forEach(function(d){
+      var n = shots[(at + d + shots.length) % shots.length].querySelector('img');
+      new Image().src = n.dataset.full;
+    });
+  }
+  function open(i){ show(i); lb.classList.add('on'); document.body.style.overflow='hidden'; }
+  function close(){ lb.classList.remove('on'); document.body.style.overflow=''; img.src=''; }
+
+  shots.forEach(function(f,i){
+    f.addEventListener('click', function(){ open(i); });
+  });
+  document.getElementById('lbx').addEventListener('click', close);
+  document.getElementById('lbp').addEventListener('click', function(e){ e.stopPropagation(); show(at-1); });
+  document.getElementById('lbn').addEventListener('click', function(e){ e.stopPropagation(); show(at+1); });
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === img) close(); });
+  document.addEventListener('keydown', function(e){
+    if(!lb.classList.contains('on')) return;
+    if(e.key === 'Escape') close();
+    if(e.key === 'ArrowRight') show(at+1);
+    if(e.key === 'ArrowLeft')  show(at-1);
+  });
+
+  // Swipe on touch.
+  var x0 = null;
+  lb.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    if(x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if(Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
