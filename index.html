@@ -10,6 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=16">
 <link rel="stylesheet" href="assets/css/def-quote.css?v=1">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<!-- The scripts sit here, deferred, rather than at the foot of the body.
+     At the foot they were not discovered until the parser had walked
+     past a hundred and twenty images, so on a phone the preloader hung
+     around for seconds with nothing behind it. Deferred in the head they
+     download alongside the markup and still execute in order, after the
+     DOM is parsed, which is the same guarantee the old placement gave.
+     three.js is gone from this list on purpose: main.js fetches it once
+     the page has settled. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script defer src="assets/js/main.js?v=5"></script>
+<script defer src="assets/js/def-quote.js?v=1"></script>
 </head>
 <body>
 
@@ -17,6 +30,34 @@
   <div class="word">Dane <em>Erik</em> Forst</div>
   <div class="count">00</div>
 </div>
+<script>
+/* The count used to be a GSAP tween, which meant the one thing on
+   screen during the load sat frozen at 00 until a CDN had finished
+   handing over the animation library. It is the same 1.1s ease, done
+   here in nine lines of requestAnimationFrame so it begins at first
+   paint. main.js takes the handoff and runs the hero intro when this
+   promise settles. Anything that goes wrong here falls back to the
+   old tween, and the 3.5s safety net in main.js stands either way. */
+(function(){
+  var el = document.querySelector('#loader .count');
+  if(!el) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    el.textContent = '100';
+    window.__defCount = Promise.resolve();
+    return;
+  }
+  var t0 = performance.now(), D = 1100;
+  window.__defCount = new Promise(function(done){
+    setTimeout(done, D + 600);            // a backgrounded tab pauses rAF
+    (function step(now){
+      var p = Math.min((now - t0) / D, 1);
+      var e = p < .5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;   // power2.inOut
+      el.textContent = String(Math.round(e * 100)).padStart(2,'0');
+      if(p < 1) requestAnimationFrame(step); else done();
+    })(t0);
+  });
+})();
+</script>
 
 <nav>
   <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"></a>
@@ -27,6 +68,7 @@
     <li><a href="web.html">Web</a></li>
     <li><a href="packaging.html">Packaging</a></li>
     <li><a href="sculpture.html">Sculpture</a></li>
+    <li><a href="animation.html">Animation</a></li>
     <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -54,6 +96,7 @@
   <a href="web.html">Web</a>
   <a href="packaging.html">Packaging</a>
   <a href="sculpture.html">Sculpture</a>
+  <a href="animation.html">Animation</a>
   <a href="galleries.html">Galleries</a>
   <a href="contact.html">Contact</a>
   <div class="m-meta">
@@ -95,29 +138,30 @@
 </div>
 
 <!-- ============================================================
-     ARRIVAL — five ways in
-     One statement, then five full-bleed routes into the work.
+     ARRIVAL — six ways in
+     One statement, then six full-bleed routes into the work.
      Brand opens, then Web with Packaging and Art + Culture beside
-     it, then Sculpture. Brand and Sculpture are full-width bands
-     with real height at top and bottom: as thin strips under the
-     others they read as footnotes rather than as two of the five.
+     it, then Sculpture, then Animation. Brand, Sculpture and
+     Animation are full-width bands with real height rather than
+     thin strips under the others, which is how they read as
+     three of the six instead of as footnotes.
      Featured Work follows immediately below. Styles: style.css.
 
-     A sixth route (AI + Experiments) is built and sitting dark, and
-     points at /lab.html. To switch it on: add class "ai-on" to
-     .ar-spread below. The bottom band then splits in two and the AI
-     panel appears. If you do that, change the five counts above to
-     six, since there would then be six panels on screen.
+     A seventh route (AI + Experiments) is built and sitting dark,
+     and points at /lab.html. To switch it on: add class "ai-on" to
+     .ar-spread below. A seventh band opens at the bottom and the
+     AI panel appears. If you do that, change the six counts above
+     to seven, since there would then be seven panels on screen.
      ============================================================ -->
-<section class="arrival" id="arrival" aria-label="Five bodies of work">
+<section class="arrival" id="arrival" aria-label="Six bodies of work">
 
   <div class="ar-top">
-    <div class="sec-head"><span>01 &#8212; The Work</span><span>Five ways in</span></div>
+    <div class="sec-head"><span>01 &#8212; The Work</span><span>Six ways in</span></div>
     <div class="ar-say">
       <h2 class="reveal">Helping <em>ambitious</em><br>ideas find<br>their form.</h2>
       <div class="ar-lede reveal">
         <p>From brands and products to stories, experiences, and entirely fictional universes, I help turn abstract ideas into things people can see, feel, and remember.</p>
-        <p class="ar-note">One practice, five bodies of work. Start with the one you came for.</p>
+        <p class="ar-note">One practice, six bodies of work. Start with the one you came for.</p>
       </div>
     </div>
   </div>
@@ -280,7 +324,7 @@
 
     <!-- the shelf: a row of pieces drifting past the title. Contained on
          black rather than cropped, so each one reads as a whole object. -->
-    <a class="route route-sculpt" href="sculpture.html" aria-label="Sculpture, seventeen pieces turned in the round">
+    <a class="route route-sculpt" href="sculpture.html" aria-label="Sculpture, twenty one pieces turned in the round">
       <div class="ar-shelf" aria-hidden="true">
         <div class="ar-srow">
           <img src="assets/img/arrival/sculpt/baron-2-0.jpg" alt="" loading="lazy">
@@ -312,13 +356,35 @@
       <div class="ar-face">
         <span class="ar-kick">Characters &middot; Objects &middot; Turned in the round</span>
         <h3>Sculpture</h3>
-        <p class="ar-sub">Seventeen pieces with no front to hide behind.</p>
+        <p class="ar-sub">Twenty one things that only existed in my head.</p>
         <span class="ar-cue">Walk the collection
           <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
         </span>
       </div>
     </a>
 
+    <!-- the only panel on this page that actually moves, which for
+         the animation wing is the whole argument. The clip is cropped
+         to this band's ratio at encode time and capped hard, so it
+         costs about 330KB: see tools/anim-encode.sh and the ANIMATION
+         ROUTE block in style.css. The poster underneath is what shows
+         if autoplay is refused or motion is reduced. -->
+    <a class="route route-anim" href="animation.html" aria-label="Animation, music videos and loops drawn frame by frame">
+      <div class="ar-film" aria-hidden="true">
+        <img src="assets/img/arrival/anim/anim-poster.jpg" alt="" width="1280" height="548" loading="lazy">
+        <video autoplay muted loop playsinline preload="none" poster="assets/img/arrival/anim/anim-poster.jpg">
+          <source src="assets/video/arrival/arrival-anim.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="ar-face">
+        <span class="ar-kick">Music videos &middot; Loops &middot; Title work</span>
+        <h3>Animation</h3>
+        <p class="ar-sub">Illustration that has to survive being moved.</p>
+        <span class="ar-cue">Watch the work
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+        </span>
+      </div>
+    </a>
 
 
     <!-- dark until you say so: add "ai-on" to .ar-spread to light it up.
@@ -342,7 +408,7 @@
   </div>
 
   <div class="ar-foot">
-    <span>Same hand, five surfaces. The categories are for you, not for me.</span>
+    <span>Same hand, six surfaces. The categories are for you, not for me.</span>
   </div>
 
 </section>
@@ -351,7 +417,7 @@
       
       
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/dead-comics-society/dead-comics-society-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/dead-comics-society/dead-comics-society-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/dead-comics-society.html">
           <span class="idx">01 / 09 — Brand Identity + Event Identity</span>
           <h3>Dead Comics<br>Society</h3>
@@ -362,7 +428,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/club-tattoo/club-tattoo-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/club-tattoo/club-tattoo-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/club-tattoo.html">
           <span class="idx">02 / 09 — Illustration</span>
           <h3>Club<br>Tattoo</h3>
@@ -373,7 +439,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/haystack-wines/haystack-wines-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/haystack-wines/haystack-wines-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/haystack-wines.html">
           <span class="idx">03 / 09 — Brand Identity + Packaging</span>
           <h3>Haystack<br>Wines</h3>
@@ -384,7 +450,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/museum-of-failure/museum-of-failure-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/museum-of-failure/museum-of-failure-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/museum-of-failure.html">
           <span class="idx">04 / 09 — Exhibition Branding + Experiential</span>
           <h3>Museum<br>of Failure</h3>
@@ -395,7 +461,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/2b-farming/2b-farming-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/2b-farming/2b-farming-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/2b-farming.html">
           <span class="idx">05 / 09 — Brand Identity + Photography</span>
           <h3>2B<br>Farming</h3>
@@ -406,7 +472,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/rabbit-hole-wines/rabbit-hole-wines-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/rabbit-hole-wines/rabbit-hole-wines-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/rabbit-hole-wines.html">
           <span class="idx">06 / 09 — Brand Identity + Packaging</span>
           <h3>Rabbit Hole<br>Wines</h3>
@@ -417,7 +483,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/tame-impala/tame-impala-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/tame-impala/tame-impala-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/tame-impala.html">
           <span class="idx">07 / 09 — Poster Design + Illustration</span>
           <h3>Tame<br>Impala</h3>
@@ -428,7 +494,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/ashwood-tattoo-studios/ashwood-tattoo-studios-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/ashwood-tattoo-studios/ashwood-tattoo-studios-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/ashwood-tattoo-studios.html">
           <span class="idx">08 / 09 — Brand Identity</span>
           <h3>Ashwood<br>Tattoo Studio</h3>
@@ -439,7 +505,7 @@
         </a>
       </article>
       <article class="wpanel">
-        <div class="bg"><video autoplay muted loop playsinline><source src="assets/video/experiments/experiments-home.mp4" type="video/mp4"></video></div>
+        <div class="bg"><video class="lazyvid" muted loop playsinline preload="none"><source src="assets/video/experiments/experiments-home.mp4" type="video/mp4"></video></div>
         <a class="content" href="work/experiments.html">
           <span class="idx">09 / 09 — 3D • Sculpture • Fabrication</span>
           <h3>Selected<br>Experiments</h3>
@@ -487,7 +553,7 @@
   <div class="sec-head"><span>03 — Galleries</span><span>Moving image</span></div>
   <div class="gt-list">
     <a class="gt-feature reveal" href="galleries/album-art.html" aria-label="Album Art gallery">
-      <video autoplay muted loop playsinline poster="assets/img/galleries/album-art/album-art-teaser.jpg">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/album-art/album-art-teaser.jpg">
         <source src="assets/video/galleries/album-art/album-art-teaser.webm" type="video/webm">
         <source src="assets/video/galleries/album-art/album-art-teaser.mp4" type="video/mp4">
       </video>
@@ -501,7 +567,7 @@
       </div>
     </a>
     <a class="gt-feature reveal" href="galleries/key-art.html" aria-label="Key Art gallery">
-      <video autoplay muted loop playsinline poster="assets/img/galleries/key-art/key-art-teaser.jpg">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/key-art/key-art-teaser.jpg">
         <source src="assets/video/galleries/key-art/key-art-teaser.webm" type="video/webm">
         <source src="assets/video/galleries/key-art/key-art-teaser.mp4" type="video/mp4">
       </video>
@@ -515,7 +581,7 @@
       </div>
     </a>
     <a class="gt-feature reveal" href="galleries/show-posters.html" aria-label="Show Posters gallery">
-      <video autoplay muted loop playsinline poster="assets/img/galleries/show-posters/show-posters-teaser.jpg">
+      <video class="lazyvid" muted loop playsinline preload="none" poster="assets/img/galleries/show-posters/show-posters-teaser.jpg">
         <source src="assets/video/galleries/show-posters/show-posters-teaser.webm" type="video/webm">
         <source src="assets/video/galleries/show-posters/show-posters-teaser.mp4" type="video/mp4">
       </video>
@@ -583,11 +649,6 @@
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="assets/js/main.js?v=3"></script>
-<script src="assets/js/def-quote.js?v=1"></script>
 <script>
 /* arrival: crossfade the stills behind the packaging and lab panels */
 (function(){

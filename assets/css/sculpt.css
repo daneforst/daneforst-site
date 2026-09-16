@@ -92,12 +92,23 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
 .sc-item.w6{grid-column:span 6}
 .sc-item:hover{background:var(--soot-2)}
 
-/* ---- the media well ---- */
+/* ---- the media well ----
+   width:100% is not decoration. The well carries an aspect-ratio
+   and no width of its own, and inside a grid parent (which is what
+   .feature is) Safari will size a ratio box off its content rather
+   than stretching it to the column. On the phone that left every
+   feature card's clip sitting at about three quarters of the screen,
+   flush left, with a black margin down the right, while the paired
+   cards next to it went full width. Stating the width removes the
+   guess. The media is taken out of flow for the same reason: a
+   <video> with no src yet reports a default 300x150, and nothing
+   that has not loaded should get a vote on the layout. */
 .sc-shot{
-  position:relative;overflow:hidden;aspect-ratio:4/3;
+  position:relative;overflow:hidden;width:100%;aspect-ratio:4/3;
   background:linear-gradient(180deg,var(--pa,#000),var(--pb,#000));
 }
 .sc-shot video,.sc-shot img{
+  position:absolute;inset:0;
   width:100%;height:100%;display:block;object-fit:contain;
   transition:transform .7s cubic-bezier(.6,0,.2,1);
 }
@@ -236,6 +247,36 @@ body.sculptbody .mosaic .mo-item:hover video,body.sculptbody .mosaic .mo-item:ho
   font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.18em;
   color:rgba(228,224,212,.5);
 }
+/* The chapter opener carries the collection's own writing now, not just
+   a caption under the title. The lede keeps its display size, everything
+   below it steps down to reading size so the opener does not turn into a
+   wall of type before you have seen a single piece. */
+.sc-ch-body{margin-top:1.1rem;display:grid;gap:.85rem;max-width:34em}
+.sc-ch-body p{font-size:.95rem;line-height:1.62;color:rgba(228,224,212,.62)}
+/* one line per collection gets lifted back up, because in each case there
+   is a single sentence the rest of the section is really about */
+.sc-ch-body p.lift{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.4;
+  color:rgba(228,224,212,.86);
+}
+
+/* Progressive disclosure instead of a shorter piece of writing. Native
+   <details>, so it needs no JS, it opens on a phone the same way it opens
+   anywhere else, and the text is in the page for anything reading it
+   without opening the toggle. */
+.sc-more{margin-top:.3rem}
+.sc-more > summary{
+  cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--mono);font-size:.62rem;text-transform:uppercase;letter-spacing:.18em;
+  color:rgba(228,224,212,.55);transition:color .3s ease;
+}
+.sc-more > summary::-webkit-details-marker{display:none}
+.sc-more > summary::after{content:'+';font-size:.95rem;line-height:1}
+.sc-more[open] > summary::after{content:'\2212'}
+.sc-more > summary:hover{color:var(--sun)}
+.sc-more[open] > summary{margin-bottom:.2rem}
+
 @media(max-width:860px){
   .sc-chapter{grid-template-columns:1fr;gap:clamp(1rem,3vh,1.6rem);align-items:start}
 }

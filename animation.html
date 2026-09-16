@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation · Dane Erik Forst</title>
+<meta name="description" content="Animation by art director Dane Erik Forst: music videos, loops, and title work, drawn frame by frame in Portland, Oregon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=16">
+<link rel="stylesheet" href="assets/css/def-quote.css?v=1">
+<link rel="stylesheet" href="assets/css/lab.css?v=3">
+<link rel="stylesheet" href="assets/css/anim.css?v=1">
+</head>
+<body class="labbody animbody">
+<!-- ============================================================
+     ANIMATION: landing page for the animation wing.
+     Linked from the main navigation and from the home page.
+
+     TO ADD A PIECE:
+       1. Encode the media:
+            ./tools/anim-encode.sh clip   <slug> hero      <file>
+            ./tools/anim-encode.sh clip   <slug> vertical  <file>
+            ./tools/anim-encode.sh film   <slug> timelapse <file>
+            ./tools/anim-encode.sh stills <slug> <folder>
+       2. Copy animation/riley-geare-ygdf.html as the starting
+          point for the new case study
+       3. Swap one of the RESERVED slots in the band below for a
+          real <a class="an-item ...">, and bump the tally
+
+     THE BAND IS NOT UNIFORM, on purpose. Weights are:
+       feature      full width, media beside type
+       feature flip same, media on the right
+       w6           half the bed
+       w4           a third
+     Every row has to add up to twelve or the bed leaves a hole.
+     As it stands: feature / 6+6 / 4+4+4.
+     The --ka and --kb on each card are that piece's own key
+     colours, top and bottom, so a frame never flashes black
+     before its poster paints.
+
+     EDITING THE COPY: every prose block on this page is marked
+     with an HTML comment beginning "copy:". Search for that to
+     find each one. All of it is written to be replaced.
+     ============================================================ -->
+<div id="loader"><span class="count">00</span><span class="word">Frame <em>by frame</em></span></div>
+
+<nav>
+  <a class="logo" href="index.html"><img src="assets/img/def-logo.png" alt="DEF — Dane Erik Forst signature logo"><span class="lab-mark"><span class="bl"></span>Animation</span></a>
+  <ul>
+    <li><a href="about.html">About</a></li>
+    <li><a class="wd-trigger" href="index.html#work" aria-expanded="false" aria-controls="wd">Work</a></li>
+    <li><a href="branding.html">Branding</a></li>
+    <li><a href="web.html">Web</a></li>
+    <li><a href="packaging.html">Packaging</a></li>
+    <li><a href="sculpture.html">Sculpture</a></li>
+    <li><a href="animation.html">Animation</a></li>
+    <li><a class="wd-trigger" href="galleries.html" aria-expanded="false" aria-controls="gd">Galleries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="avail"><span class="dot"></span>Open for work</div>
+  <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="wd" id="wd">
+<a class="wd-row" href="work/dead-comics-society.html"><span class="n">01</span><span class="t">Dead Comics Society</span><span class="c">Brand Identity + Event Identity</span></a><a class="wd-row" href="work/club-tattoo.html"><span class="n">02</span><span class="t">Club Tattoo</span><span class="c">Illustration</span></a><a class="wd-row" href="work/haystack-wines.html"><span class="n">03</span><span class="t">Haystack Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/museum-of-failure.html"><span class="n">04</span><span class="t">Museum of Failure</span><span class="c">Exhibition Branding + Experiential</span></a><a class="wd-row" href="work/2b-farming.html"><span class="n">05</span><span class="t">2B Farming</span><span class="c">Brand Identity + Photography</span></a><a class="wd-row" href="work/rabbit-hole-wines.html"><span class="n">06</span><span class="t">Rabbit Hole Wines</span><span class="c">Brand Identity + Packaging</span></a><a class="wd-row" href="work/tame-impala.html"><span class="n">07</span><span class="t">Tame Impala</span><span class="c">Poster Design + Illustration</span></a><a class="wd-row" href="work/ashwood-tattoo-studios.html"><span class="n">08</span><span class="t">Ashwood Tattoo Studio</span><span class="c">Brand Identity</span></a><a class="wd-row" href="work/experiments.html"><span class="n">09</span><span class="t">Selected Experiments</span><span class="c">3D &bull; Sculpture &bull; Fabrication</span></a>
+  <div class="wd-foot"><span>Index — Selected Work</span><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="wd" id="gd">
+<a class="wd-row" href="galleries/album-art.html"><span class="n">01</span><span class="t">Album Art</span><span class="c">Covers in motion</span></a><a class="wd-row" href="galleries/key-art.html"><span class="n">02</span><span class="t">Key Art</span><span class="c">Campaign key frames</span></a><a class="wd-row" href="galleries/show-posters.html"><span class="n">03</span><span class="t">Show Posters</span><span class="c">Gig + event prints</span></a>
+  <div class="wd-foot"><a href="galleries.html">Index — All Galleries</a><span>DEF Studios, Portland OR</span></div>
+</div>
+
+<div class="mnav" id="mnav">
+  <a href="about.html">About</a>
+  <div class="mlabel">Work — Index</div>
+  <div class="msub"><a href="work/dead-comics-society.html"><i>01</i>Dead Comics Society</a><a href="work/club-tattoo.html"><i>02</i>Club Tattoo</a><a href="work/haystack-wines.html"><i>03</i>Haystack Wines</a><a href="work/museum-of-failure.html"><i>04</i>Museum of Failure</a><a href="work/2b-farming.html"><i>05</i>2B Farming</a><a href="work/rabbit-hole-wines.html"><i>06</i>Rabbit Hole Wines</a><a href="work/tame-impala.html"><i>07</i>Tame Impala</a><a href="work/ashwood-tattoo-studios.html"><i>08</i>Ashwood Tattoo Studio</a><a href="work/experiments.html"><i>09</i>Selected Experiments</a></div>
+  <a href="branding.html">Branding</a>
+  <a href="web.html">Web</a>
+  <a href="packaging.html">Packaging</a>
+  <a href="sculpture.html">Sculpture</a>
+  <a href="animation.html">Animation</a>
+  <a href="galleries.html">Galleries</a>
+  <a href="contact.html">Contact</a>
+  <div class="m-meta">
+    <span class="avail-m"><span class="dot"></span>Open for work</span>
+    <span>Portland, Oregon</span>
+  </div>
+</div>
+
+<header class="lab-hero">
+  <div class="lh-stage" data-clips='["assets/video/animation/riley-geare-ygdf/riley-geare-ygdf-hero.mp4", "assets/video/animation/riley-geare-ygdf/riley-geare-ygdf-draw.mp4", "assets/video/animation/riley-geare-ygdf/riley-geare-ygdf-vertical.mp4"]'>
+    <video class="a" muted loop playsinline preload="none" poster="assets/img/animation/riley-geare-ygdf/riley-geare-ygdf-hero.jpg" aria-hidden="true"></video>
+    <video class="b" muted loop playsinline preload="none" aria-hidden="true"></video>
+  </div>
+  <div class="lh-in">
+    <div class="lh-eyebrow">
+      <span class="cat">DEF Studios &middot; Animation</span>
+      <span>Portland, Oregon</span>
+    </div>
+    <!-- copy: the hero, two lines -->
+    <h1 class="lh-type">
+      <span class="ln" data-k>A single frame can hide.</span>
+      <span class="ln soft">Twenty four a second cannot.</span>
+    </h1>
+    <div class="lh-foot">
+      <!-- copy: hero sub, one sentence -->
+      <p class="sub">Music videos, loops, and title work, drawn rather than tweened. One piece on the wall so far, with the rest close behind it.</p>
+      <span class="lh-scroll"><i></i>Scroll</span>
+    </div>
+  </div>
+</header>
+
+<!-- copy: the argument for the section, three paragraphs -->
+<section class="lab-sec">
+  <div class="lab-kicker">01 &middot; Why animate</div>
+  <p class="lab-lede">Illustration that has to <em>survive being moved.</em></p>
+  <div class="lab-body">
+    <p>A still image gets to choose its one good moment. It holds that pose for as long as anybody looks at it, and every decision in it was made in service of that single instant.</p>
+    <p>Animation takes the pose away. The drawing has to keep working through every frame on either side of the one you would have picked, which means the parts that were only ever holding still for the camera get found out immediately.</p>
+    <p>What is here is the work that earns its motion: pieces where moving is the idea rather than a finish applied to something that was already done.</p>
+  </div>
+</section>
+
+<!-- Counts have to match what is actually in the band below.
+     When a reserved frame gets filled, move one from the queue
+     to the wall. -->
+<div class="an-tally">
+  <div><b>01</b><span>On the wall</span></div>
+  <div><b>05</b><span>In the queue</span></div>
+  <div><b>24</b><span>Frames per second</span></div>
+  <div><b>2:19</b><span>Longest timelapse</span></div>
+</div>
+
+<section class="lab-sec tight">
+  <div class="lab-kicker">02 &middot; The work</div>
+  <!-- copy: band intro, one line -->
+  <p class="lab-lede" style="max-width:26em">Finished pieces, <em>and the drawing of them.</em></p>
+</section>
+
+<div class="an-band">
+
+  <!-- ============ 01 · Riley Geare + Great Vacation ============ -->
+  <a class="an-item feature" style="--ka:#e3a936;--kb:#422438" href="animation/riley-geare-ygdf.html">
+    <div class="an-frame">
+      <video class="labvid" data-src="assets/video/animation/riley-geare-ygdf/riley-geare-ygdf-hero.mp4" poster="assets/img/animation/riley-geare-ygdf/riley-geare-ygdf-hero.jpg" muted loop playsinline preload="none" aria-label="Yellow Gold Diamond Fire, desert highway at sunset"></video>
+      <!-- no .an-run chip on a feature: the type column beside it
+           already says "01 / Music video" in letters twice the size -->
+    </div>
+    <div class="an-face">
+      <span class="anf-idx">01 &nbsp;/&nbsp; Music video</span>
+      <!-- copy: feature name and note -->
+      <h3 class="anf-name">Yellow Gold<br>Diamond Fire</h3>
+      <p class="anf-note">A long car, a long road, and a sun that never quite finishes going down.</p>
+      <div class="anf-row">
+        <span class="anf-cue">Open the case study <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <span class="anf-count">Riley Geare &middot; Great Vacation</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- ============ RESERVED FRAMES ============
+       Five pieces still to come. To fill one, replace the whole
+       <div class="an-item slot ..."> with this shape:
+
+       <a class="an-item w6" style="--ka:#hex;--kb:#hex" href="animation/<slug>.html">
+         <div class="an-frame">
+           <video class="labvid" data-src="assets/video/animation/<slug>/<slug>-hero.mp4"
+                  poster="assets/img/animation/<slug>/<slug>-hero.jpg"
+                  muted loop playsinline preload="none" aria-label="<name>"></video>
+           <span class="an-run">1:48</span>
+         </div>
+         <div class="an-label">
+           <span class="an-tc">02</span>
+           <span class="an-name">Name</span>
+           <span class="an-cat">Client &middot; Format</span>
+           <span class="an-meta">2025</span>
+         </div>
+       </a>
+       ========================================== -->
+
+  <div class="an-item slot w6" aria-hidden="true">
+    <div class="an-frame"><span class="slot-n">Frame 02</span></div>
+    <div class="an-label">
+      <span class="an-tc">02</span>
+      <span class="an-name">Reserved</span>
+      <span class="an-cat">In the queue</span>
+    </div>
+  </div>
+
+  <div class="an-item slot w6" aria-hidden="true">
+    <div class="an-frame"><span class="slot-n">Frame 03</span></div>
+    <div class="an-label">
+      <span class="an-tc">03</span>
+      <span class="an-name">Reserved</span>
+      <span class="an-cat">In the queue</span>
+    </div>
+  </div>
+
+  <div class="an-item slot w4" aria-hidden="true">
+    <div class="an-frame"><span class="slot-n">Frame 04</span></div>
+    <div class="an-label">
+      <span class="an-tc">04</span>
+      <span class="an-name">Reserved</span>
+      <span class="an-cat">In the queue</span>
+    </div>
+  </div>
+
+  <div class="an-item slot w4" aria-hidden="true">
+    <div class="an-frame"><span class="slot-n">Frame 05</span></div>
+    <div class="an-label">
+      <span class="an-tc">05</span>
+      <span class="an-name">Reserved</span>
+      <span class="an-cat">In the queue</span>
+    </div>
+  </div>
+
+  <div class="an-item slot w4" aria-hidden="true">
+    <div class="an-frame"><span class="slot-n">Frame 06</span></div>
+    <div class="an-label">
+      <span class="an-tc">06</span>
+      <span class="an-name">Reserved</span>
+      <span class="an-cat">In the queue</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- copy: the process section, two paragraphs -->
+<section class="lab-sec">
+  <div class="lab-kicker">03 &middot; How it gets made</div>
+  <p class="lab-lede">Nothing here was <em>generated.</em></p>
+  <div class="lab-body">
+    <p>Every frame in this wing was drawn, which is slower than the alternative and is the entire point. The timelapse on the Yellow Gold Diamond Fire page is the whole build, start to finish, at speed, and it is there because a finished piece never shows you where the work actually went.</p>
+    <p>If you want the short version: it is the same hand that does the branding and the posters, holding still for a lot longer.</p>
+  </div>
+</section>
+
+<section class="page-cta">
+  <h2>Got something that should move?</h2>
+  <a class="cta" href="contact.html">Let's chat!
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg>
+  </a>
+</section>
+
+<footer class="foot-slim">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="sgrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#ff8330"/><stop offset="1" stop-color="#ff4d8c"/>
+  </linearGradient></defs>
+</svg>
+  <a href="index.html" aria-label="Back to home" style="display:block;width:max-content"><img class="sig" src="assets/img/def-logo.png" alt="Dane Erik Forst signature"></a>
+  <div class="socials">
+  <a href="https://www.linkedin.com/in/daneforst" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.4 8.2h4.2V23H.4V8.2zm7.1 0h4v2h.06c.56-1.06 1.93-2.18 3.97-2.18 4.25 0 5.03 2.8 5.03 6.44V23h-4.2v-7.4c0-1.77-.03-4.05-2.47-4.05-2.47 0-2.85 1.93-2.85 3.92V23H7.5V8.2z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/dan3_4st" target="_blank" rel="noopener" aria-label="Instagram @dan3_4st">
+    <svg viewBox="0 0 24 24" fill="none" stroke="url(#sgrad)" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.4" fill="url(#sgrad)" stroke="none"/></svg>
+  </a>
+  <a href="https://www.youtube.com/@baronminker656" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="url(#sgrad)"><path d="M23.5 7.2a3 3 0 0 0-2.1-2.1C19.5 4.5 12 4.5 12 4.5s-7.5 0-9.4.6A3 3 0 0 0 .5 7.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 4.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-4.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+  </a>
+</div>
+  <a class="dq-foot-link" href="contact.html" data-def-quote-open>Need a project quote?<svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 13L13 1M13 1H4M13 1v9" stroke="currentColor" stroke-width="1.5"/></svg></a>
+  <div class="meta-row" style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(228,224,212,.65)">
+    <span>© 2026 DEF Studios</span>
+    <a href="mailto:daneforst@gmail.com">daneforst@gmail.com</a>
+    <a href="tel:6613033945">661·303·3945</a>
+    <span>Portland, Oregon</span>
+  </div>
+</footer>
+
+<div class="lab-grain" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="assets/js/main.js?v=5"></script>
+<script src="assets/js/def-quote.js?v=1"></script>
+<script src="assets/js/lab.js?v=2"></script>
+<script src="assets/js/anim.js?v=1"></script>
+</body>
+</html>

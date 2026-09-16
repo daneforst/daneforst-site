@@ -78,10 +78,17 @@
     gsap.from('.hero-eyebrow, .hero-foot, .hero .role',{opacity:0,y:14,duration:.8,stagger:.07,delay:.7,ease:'power2.out'});
   }
   if(loader && hasGSAP && !reduced){
-    const o={v:0};
-    gsap.to(o,{v:100,duration:1.1,ease:'power2.inOut',
-      onUpdate:()=>count.textContent=String(Math.round(o.v)).padStart(2,'0'),
-      onComplete:heroIntro});
+    // The homepage starts its own counter inline, at first paint, and
+    // hands us a promise when it lands. Everywhere else the tween below
+    // is still the counter.
+    if(window.__defCount && typeof window.__defCount.then === 'function'){
+      window.__defCount.then(heroIntro);
+    } else {
+      const o={v:0};
+      gsap.to(o,{v:100,duration:1.1,ease:'power2.inOut',
+        onUpdate:()=>count.textContent=String(Math.round(o.v)).padStart(2,'0'),
+        onComplete:heroIntro});
+    }
   } else if(loader){ loader.style.display='none'; }
   // safety: never strand the loader
   if(loader) setTimeout(()=>{ const l=document.getElementById('loader'); if(l){ l.remove(); if(hasGSAP&&!reduced) heroIntro(); } },3500);
@@ -96,8 +103,16 @@
     });
   }
 
-  /* ---------- Three.js ink-smear hero ---------- */
-  (function(){
+  /* ---------- Three.js ink-smear hero ----------
+     This used to run inline off a blocking <script> tag for three.js
+     at the foot of the page, which meant the preloader could not lift
+     until 600KB of WebGL library had come down a phone connection. It
+     is the same hero, only now the library is fetched after the page
+     has settled and the smear fades in when it arrives. Pages that
+     still carry their own three.js tag are unaffected: THREE is
+     already defined by the time this runs, so it starts immediately.
+     ------------------------------------------------------------- */
+  function initInk(){
     if(typeof THREE === 'undefined') return;
     const canvas = document.getElementById('ink');
     if(!canvas) return;
@@ -266,6 +281,27 @@
         else cancelAnimationFrame(raf);
       }).observe(hero);
     } else raf=requestAnimationFrame(tick);
+  }
+
+  /* Fetch three.js only where the hero canvas actually exists, and
+     only once the browser has nothing better to do. A flat soot
+     canvas is what the page shows in the meantime, which is what the
+     shader's own background colour is anyway. */
+  (function(){
+    if(typeof THREE !== 'undefined'){ initInk(); return; }
+    if(!document.getElementById('ink')) return;
+    const go = () => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+      s.async = true;
+      s.onload = initInk;
+      document.head.appendChild(s);
+    };
+    const idle = () => ('requestIdleCallback' in window)
+      ? requestIdleCallback(go,{timeout:2500})
+      : setTimeout(go,600);
+    if(document.readyState === 'complete') idle();
+    else addEventListener('load', idle, {once:true});
   })();
 
   /* ---------- GSAP scroll work ---------- */
@@ -324,20 +360,48 @@
   }
 })();
 
-/* ---------- lazy autoplay videos (load + play only when scrolled into view) ---------- */
+/* ---------- lazy autoplay videos ----------
+   Two observers, the same contract the Lab and Sculpture wings use.
+   The outer one attaches the file a screen ahead of arrival so the
+   first frame is ready by the time you get there; the inner one only
+   plays what is genuinely on screen. The point is the download, not
+   the playback: a dozen autoplay clips below the fold will all start
+   pulling at once while the page is still trying to paint, and on a
+   phone that is the difference between a hero that appears and a
+   hero that arrives four seconds late. They carry preload="none" in
+   the markup so nothing moves until this says so. */
 (function(){
   const vids = document.querySelectorAll('video.lazyvid');
   if(!vids.length) return;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const hydrate = v => { if(!v.dataset.hydrated){ v.dataset.hydrated='1'; v.load(); } };
+
   if(!('IntersectionObserver' in window)){
-    vids.forEach(v=>{ v.play().catch(()=>{}); });
+    vids.forEach(v=>{ hydrate(v); if(!reduced) v.play().catch(()=>{}); });
     return;
   }
-  const io = new IntersectionObserver((entries)=>{
+
+  const near = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) hydrate(e.target); });
+  }, {rootMargin:'400px 0px'});
+
+  const live = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       const v = e.target;
-      if(e.isIntersecting){ v.play().catch(()=>{}); }
-      else { v.pause(); }
+      if(e.isIntersecting){ hydrate(v); v.play().catch(()=>{}); }
+      else if(!v.paused) v.pause();
     });
   }, {threshold:0.2});
-  vids.forEach(v=>io.observe(v));
+
+  vids.forEach(v=>{
+    v.muted = true;                 // autoplay is refused otherwise
+    near.observe(v);
+    if(reduced) hydrate(v);         // a still frame, no motion
+    else live.observe(v);
+  });
+
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden) vids.forEach(v=>{ if(!v.paused) v.pause(); });
+  });
 })();

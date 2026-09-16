@@ -760,12 +760,15 @@ body.gdark{background:var(--soot);color:var(--bone)}
    full-width bands with real height, top and bottom, and Brand
    opens the spread. The whole thing is taller for it, which is
    the trade Dane asked for. */
+/* Animation joined as a fifth band at the bottom. It is full width
+   for the same reason Brand and Sculpture are: it carries a moving
+   picture, and a moving picture in a quarter-panel is a thumbnail. */
 .ar-spread{
   display:grid;
   grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);
-  grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr);
+  grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr) minmax(340px,.68fr);
   gap:3px;background:var(--soot);
-  height:min(178svh,2000px);min-height:1250px;
+  height:min(224svh,2520px);min-height:1600px;
 }
 .route{
   position:relative;display:block;overflow:hidden;isolation:isolate;
@@ -777,12 +780,13 @@ body.gdark{background:var(--soot);color:var(--bone)}
 .route-pack{grid-column:2;grid-row:2}
 .route-art{grid-column:2;grid-row:3}
 .route-sculpt{grid-column:1 / -1;grid-row:4}
+.route-anim{grid-column:1 / -1;grid-row:5}
 .route-ai{display:none}
-/* the AI panel, when it is switched on, takes a fifth band of its own
-   rather than halving Sculpture */
-.ar-spread.ai-on{grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr) minmax(320px,.62fr)}
-.ar-spread.ai-on{height:min(222svh,2500px);min-height:1560px}
-.ar-spread.ai-on .route-ai{display:block;grid-column:1 / -1;grid-row:5}
+/* the AI panel, when it is switched on, takes a sixth band of its own
+   rather than halving Animation */
+.ar-spread.ai-on{grid-template-rows:minmax(360px,.72fr) .68fr .62fr minmax(360px,.72fr) minmax(340px,.68fr) minmax(320px,.62fr)}
+.ar-spread.ai-on{height:min(268svh,3020px);min-height:1910px}
+.ar-spread.ai-on .route-ai{display:block;grid-column:1 / -1;grid-row:6}
 
 .route::after{
   content:'';position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -1006,6 +1010,54 @@ html.reduced .ar-srow,html.reduced .ar-mrow,html.reduced .ar-row,html.reduced .a
   }
 }
 
+/* ============================================================
+   5. ANIMATION ROUTE
+   The only panel on this page that runs a clip rather than a
+   marquee of stills, and the reason is not decoration: every
+   other route can be represented by a frame of itself, and this
+   one cannot. A still of an animation is the one thing an
+   animation is not.
+
+   The cost is kept honest. assets/video/arrival/arrival-anim.mp4
+   is cropped to the band's ratio at encode time and capped hard,
+   which lands it around 330KB: lighter than several of the
+   stills already on this page, and a fifth of what the case
+   study's own hero clip costs. A poster stands in wherever
+   autoplay is refused, and reduced-motion gets the poster alone.
+   ============================================================ */
+.ar-film{position:absolute;inset:0;z-index:1;background:var(--soot-2)}
+.ar-film video,.ar-film img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:filter .7s ease;
+}
+.ar-film img{z-index:0}
+.ar-film video{z-index:1}
+.route-anim:hover .ar-film video{filter:saturate(1.08) brightness(1.04)}
+html.reduced .ar-film video{display:none}
+
+/* wide and short like the brand and sculpture bands, so the type
+   sits left of the picture and the scrim is weighted that way */
+.route-anim .ar-face{justify-content:center;gap:.4rem;max-width:min(46%,620px)}
+.route-anim h3{font-size:clamp(2.1rem,4.2vw,4.2rem)}
+.route-anim .ar-sub{font-size:clamp(1.02rem,1.6vw,1.42rem)}
+.route-anim::after{
+  background:
+    linear-gradient(90deg,rgba(20,19,16,.97),rgba(20,19,16,.9) 34%,rgba(20,19,16,.34) 58%,rgba(20,19,16,.2)),
+    linear-gradient(180deg,rgba(20,19,16,.3),rgba(20,19,16,.22));
+}
+.route-anim:hover::after{
+  background:
+    linear-gradient(90deg,rgba(20,19,16,.96),rgba(20,19,16,.88) 34%,rgba(20,19,16,.26) 58%,rgba(20,19,16,.1)),
+    linear-gradient(180deg,rgba(20,19,16,.24),rgba(20,19,16,.14)),
+    linear-gradient(115deg,rgba(255,131,48,.12),rgba(255,77,140,.12));
+}
+@media(max-width:860px){
+  .route-anim .ar-face{max-width:none;justify-content:flex-end}
+  .route-anim::after{
+    background:linear-gradient(180deg,rgba(20,19,16,.3),rgba(20,19,16,.12) 30%,rgba(20,19,16,.5) 60%,rgba(20,19,16,.95));
+  }
+}
+
 /* ---- the closing line ---- */
 .ar-foot{
   background:var(--soot);color:rgba(228,224,212,.6);
@@ -1023,13 +1075,14 @@ html.reduced .ar-srow,html.reduced .ar-mrow,html.reduced .ar-row,html.reduced .a
     grid-template-columns:1fr;grid-template-rows:none;
     height:auto;min-height:0;
   }
-  .route-web,.route-pack,.route-art,.route-sculpt,.route-brand,.route-ai{grid-column:1;grid-row:auto}
+  .route-web,.route-pack,.route-art,.route-sculpt,.route-brand,.route-anim,.route-ai{grid-column:1;grid-row:auto}
   .ar-spread.ai-on .route-ai{grid-column:1}
   .route-brand{height:52svh;min-height:380px}
   .route-web{height:72svh;min-height:520px}
   .route-pack{height:52svh;min-height:380px}
   .route-art{height:44svh;min-height:320px}
   .route-sculpt{height:56svh;min-height:400px}
+  .route-anim{height:52svh;min-height:380px}
   .ar-spread.ai-on .route-ai{height:40svh;min-height:300px}
   .route-brand .ar-face,.route-sculpt .ar-face{max-width:none;justify-content:flex-end}
   .route-brand::after{

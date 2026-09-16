@@ -1,0 +1,413 @@
+/* ============================================================
+   ANIMATION: the fourth wing of daneerikforst.com
+   Loaded AFTER style.css AND lab.css.
+
+   Why lab.css comes along, same reason Sculpture takes it: the
+   Lab owns the dark-wing chassis and none of it is Lab-specific.
+   The hero stage (.lab-hero / .lh-stage), the section rhythm
+   (.lab-sec / .lab-kicker / .lab-lede / .lab-body), the grain,
+   the nav chip, and the dark corrections for .phero / .psec /
+   .pmeta all live there and all work here untouched. So these
+   pages carry class="labbody animbody".
+
+   THE RULE THAT SEPARATES THIS WING FROM SCULPTURE.
+   Sculpture's rule is that an object must never be cropped, so
+   every tile there letterboxes with object-fit:contain. The
+   opposite is true here. These are composed frames. Somebody
+   already decided where the edge goes, and a frame that sits in
+   a letterbox is a frame apologising for itself. So every well
+   in this wing is a true window at a real film ratio and the
+   media FILLS it. 16:9 for the landscape work, 9:16 for the
+   vertical cuts, and nothing in between.
+
+   The second idea is the strip. Sculpture is a shelf of objects;
+   animation is a length of film. So the labels read as a timecode
+   ruler rather than a museum caption: mono, ticked, runtime on
+   the right. That is the whole decorative budget. No sprocket
+   holes, no film-reel icons, no countdown leader. The work is
+   already loud enough.
+   ============================================================ */
+
+/* ---------- reserve room for the wing chip ----------
+   lab.css hides .lab-mark under 1020px because eight nav items
+   plus a chip will not fit. This wing adds a ninth item, so the
+   chip has to go a little earlier here. */
+@media(max-width:1120px){body.animbody .lab-mark{display:none}}
+
+/* ============================================================
+   1. THE BAND
+   Every piece sits on a twelve-column bed in one of three
+   weights:
+     feature  full width, media beside the type
+     w6       half the bed
+     w4       a third
+   Every row has to add up to twelve or the bed leaves a hole.
+   As it stands: feature / 6+6 / 4+4+4.
+
+   When a piece is added, it goes in as a w6 or a w4 and the row
+   it lands in gets rebalanced. Do not leave a row short.
+   ============================================================ */
+.an-band{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  gap:3px;background:var(--line-light);
+  border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
+}
+.an-item{
+  grid-column:span 6;display:flex;flex-direction:column;
+  background:var(--soot);position:relative;transition:background .4s ease;
+}
+.an-item.w6{grid-column:span 6}
+.an-item.w4{grid-column:span 4}
+.an-item.feature{
+  grid-column:1 / -1;
+  display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);align-items:stretch;
+}
+.an-item.feature.flip{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
+.an-item.feature.flip .an-frame{order:2}
+.an-item.feature.flip .an-face{order:1}
+a.an-item:hover{background:var(--soot-2)}
+
+/* ---- the window ----
+   16:9, filled, never letterboxed. The well carries the clip's
+   own key colour as --ka / --kb so the poster's first paint and
+   any brief gap during a seek land on the right hue instead of
+   on a black hole. These films run magenta and gold; a black
+   well would read as a dropout. */
+.an-frame{
+  position:relative;overflow:hidden;aspect-ratio:16/9;
+  background:linear-gradient(140deg,var(--ka,#1c1a16),var(--kb,#0c0a09));
+}
+.an-item.feature .an-frame{aspect-ratio:auto;min-height:clamp(280px,42svh,560px)}
+.an-frame video,.an-frame img{
+  width:100%;height:100%;display:block;object-fit:cover;
+  transition:transform .7s cubic-bezier(.6,0,.2,1);
+}
+a.an-item:hover .an-frame video,a.an-item:hover .an-frame img{transform:scale(1.04)}
+/* portrait pieces: the vertical cuts get a real 9:16 window
+   rather than a landscape box with the sides thrown away */
+.an-item.tall .an-frame{aspect-ratio:9/16}
+
+/* the hairline that draws itself under the frame on approach.
+   Lifted straight from .sc-shot::after so the two wings agree
+   about what a hover feels like. */
+.an-frame::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;z-index:3;
+  background:linear-gradient(90deg,var(--sun),var(--rose));
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .55s cubic-bezier(.6,0,.2,1);
+}
+a.an-item:hover .an-frame::after{transform:scaleX(1)}
+
+/* runtime chip, top right of the window.
+   A scrim box behind it showed its own edges against these flat
+   skies, which put a grey rectangle in the corner of every frame.
+   A text shadow does the same job and has no edges. */
+.an-run{
+  position:absolute;top:0;right:0;z-index:2;
+  padding:.55rem .75rem;
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(228,224,212,.82);
+  text-shadow:0 1px 10px rgba(20,19,16,.95),0 0 3px rgba(20,19,16,.8);
+  pointer-events:none;
+}
+
+/* ---- the strip label ----
+   A timecode ruler, not a caption. Readable without touching
+   anything, because the whole band should scan in one pass. */
+.an-label{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;
+  gap:.45rem .8rem;padding:.85rem clamp(.8rem,1.6vw,1.15rem) 1rem;
+}
+.an-tc{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;
+  color:rgba(228,224,212,.4);transition:color .35s;
+}
+a.an-item:hover .an-tc{color:var(--sun)}
+.an-name{
+  grid-column:2;font-weight:850;font-variation-settings:'wdth' 82;
+  text-transform:uppercase;letter-spacing:-.005em;line-height:1.05;
+  font-size:clamp(1rem,1.6vw,1.35rem);
+  transition:font-variation-settings .45s cubic-bezier(.6,0,.2,1);
+}
+a.an-item:hover .an-name{font-variation-settings:'wdth' 96}
+.an-cat{
+  grid-column:2;font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(228,224,212,.45);
+}
+.an-meta{
+  grid-column:3;grid-row:1 / span 2;align-self:center;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;
+  color:rgba(228,224,212,.35);text-align:right;
+}
+
+/* ---- the feature's type column ---- */
+.an-face{
+  display:flex;flex-direction:column;justify-content:center;gap:.55rem;
+  padding:clamp(1.6rem,4vw,3.2rem);
+}
+.anf-idx{
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--sun);
+}
+.anf-name{
+  font-weight:900;font-variation-settings:'wdth' 72;text-transform:uppercase;
+  font-size:clamp(1.9rem,4vw,3.6rem);line-height:.92;letter-spacing:-.015em;
+}
+.anf-note{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.02rem,1.5vw,1.35rem);line-height:1.35;
+  color:rgba(228,224,212,.8);max-width:22em;
+}
+.anf-row{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  margin-top:.7rem;padding-top:.9rem;border-top:1px solid var(--line-light);
+}
+.anf-cue{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  transition:gap .35s ease,color .35s ease;
+}
+a.an-item:hover .anf-cue{gap:.85rem;color:var(--sun)}
+.anf-count{font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;color:rgba(228,224,212,.4)}
+
+@media(max-width:900px){
+  .an-item.feature,.an-item.feature.flip{grid-template-columns:1fr}
+  .an-item.feature.flip .an-frame{order:1}
+  .an-item.feature.flip .an-face{order:2}
+  .an-item.feature .an-frame{aspect-ratio:16/9;min-height:0}
+}
+@media(max-width:760px){
+  .an-item,.an-item.w6,.an-item.w4{grid-column:1 / -1}
+}
+
+/* ============================================================
+   2. THE RESERVED FRAMES
+   Slots for pieces that are coming. They are not links and not
+   an apology: a contact sheet with frames still to shoot is a
+   perfectly honest thing for a working studio to show.
+
+   TO FILL ONE: swap the <div class="an-item slot"> for an
+   <a class="an-item w6" href="animation/<slug>.html"> with a
+   real .an-frame and .an-label. Nothing else changes.
+   ============================================================ */
+.an-item.slot{background:var(--soot);cursor:default}
+/* Squat, not 16:9. At the real frame ratio five of these ran to
+   about a screen and a half of empty dashed boxes, which stops
+   reading as "more coming" and starts reading as "unfinished".
+   A third of the height says the same thing and takes up a
+   third of the room. Filled cards go back to 16:9. */
+.an-item.slot .an-frame{
+  aspect-ratio:auto;min-height:clamp(112px,13vw,168px);
+  background:var(--soot);
+  display:flex;align-items:center;justify-content:center;
+}
+/* the dashed rule is inset rather than on the box itself, so it
+   reads as a frame waiting to be filled and not as a broken
+   border on the tile */
+.an-item.slot .an-frame::before{
+  content:'';position:absolute;inset:clamp(.7rem,1.6vw,1.2rem);
+  border:1px dashed rgba(228,224,212,.16);
+}
+.an-item.slot .an-frame::after{display:none}
+.slot-n{
+  position:relative;z-index:1;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.24em;
+  text-transform:uppercase;color:rgba(228,224,212,.28);
+}
+.an-item.slot .an-label{opacity:.38}
+
+/* ============================================================
+   3. THE TALLY
+   Same shape as Sculpture's, redeclared rather than shared
+   because sculpt.css is not loaded in this wing and one wing
+   should never have to carry another's stylesheet to get a rule.
+   ============================================================ */
+.an-tally{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-light);border-bottom:1px solid var(--line-light);
+}
+.an-tally div{
+  padding:clamp(1.3rem,3vw,2.1rem) clamp(1rem,2.4vw,1.8rem);
+  border-right:1px solid var(--line-light);
+}
+.an-tally div:last-child{border-right:0}
+.an-tally b{
+  display:block;font-weight:900;font-variation-settings:'wdth' 70;
+  font-size:clamp(2rem,5.2vw,4rem);line-height:.9;letter-spacing:-.02em;
+}
+.an-tally span{
+  display:block;margin-top:.55rem;font-family:var(--mono);font-size:.62rem;
+  text-transform:uppercase;letter-spacing:.18em;color:rgba(228,224,212,.5);
+}
+@media(max-width:720px){
+  .an-tally{grid-template-columns:1fr 1fr}
+  .an-tally div:nth-child(2n){border-right:0}
+  .an-tally div:nth-child(-n+2){border-bottom:1px solid var(--line-light)}
+}
+
+/* ============================================================
+   4. THE PLAYERS
+   Two of them, and they are deliberately different objects.
+
+   .an-film is the finished piece, which lives on YouTube. It
+   loads as a still with a play control and does not touch
+   youtube.com until somebody presses it: no third-party script,
+   no cookie, and no 1.2MB of player on a page nobody asked to
+   watch yet. On press it swaps in a nocookie iframe.
+
+   .an-player is a film we host ourselves, the timelapse. It is a
+   real <video controls preload="none">, so it also costs nothing
+   until pressed. The overlay is only an affordance over the top
+   of the native controls and gets out of the way on play.
+   ============================================================ */
+.an-stage{
+  position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;
+  background:linear-gradient(140deg,var(--ka,#1c1a16),var(--kb,#0c0a09));
+}
+/* A 4:3 stage run full bleed is 1080px tall on a 1440 screen,
+   which is taller than the window it is being watched in. The
+   timelapse gets a sane reading width instead and stays centred. */
+.an-stage.ar-43{aspect-ratio:4/3;max-width:min(1040px,100%);margin-inline:auto}
+
+/* ---- a vertical cut ----
+   No aspect-ratio box. "Vertical" is not one shape: this cut is
+   2:3, the next one will be 9:16 or 4:5, and a fixed box put
+   black bars above and below a clip it did not happen to match.
+   The clip sets its own height and the container follows, so a
+   letterbox here is not possible rather than merely unlikely. */
+.an-vert{
+  max-width:min(460px,78vw);margin-inline:auto;
+  background:linear-gradient(140deg,var(--ka,#1c1a16),var(--kb,#0c0a09));
+}
+.an-vert video{width:100%;height:auto;display:block}
+.an-stage>img,.an-stage>video,.an-stage>iframe{
+  position:absolute;inset:0;width:100%;height:100%;display:block;border:0;
+  object-fit:cover;
+}
+/* a hosted film letterboxes rather than crops: the timelapse is
+   4:3 screen capture and cropping it cuts the drawing in half */
+.an-stage>video{object-fit:contain;background:#000}
+
+.an-play{
+  position:absolute;inset:0;z-index:2;display:flex;
+  align-items:center;justify-content:center;flex-direction:column;gap:1rem;
+  border:0;width:100%;cursor:pointer;color:var(--bone);
+  /* a radial behind the disc as well as the vertical scrim: the
+     caption sits in the middle of the frame, and on a bright
+     poster a top-to-bottom gradient alone leaves it unreadable
+     exactly where it lands */
+  background:
+    radial-gradient(ellipse 46% 38% at 50% 54%,rgba(20,19,16,.62),rgba(20,19,16,0) 70%),
+    linear-gradient(180deg,rgba(20,19,16,.34),rgba(20,19,16,.14) 45%,rgba(20,19,16,.6));
+  transition:background .4s ease;
+}
+.an-play:hover{
+  background:
+    radial-gradient(ellipse 46% 38% at 50% 54%,rgba(20,19,16,.5),rgba(20,19,16,0) 70%),
+    linear-gradient(180deg,rgba(20,19,16,.2),rgba(20,19,16,0) 45%,rgba(20,19,16,.5));
+}
+.an-play .disc{
+  width:clamp(62px,7vw,88px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  border:1px solid rgba(228,224,212,.55);
+  background:rgba(20,19,16,.32);
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+  transition:transform .4s cubic-bezier(.6,0,.2,1),border-color .4s,background .4s;
+}
+.an-play:hover .disc{transform:scale(1.07);border-color:var(--sun);background:rgba(20,19,16,.5)}
+.an-play .disc svg{margin-left:.18em}
+.an-play .cap{
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  text-shadow:0 1px 14px rgba(20,19,16,.9);
+}
+.an-play[hidden]{display:none}
+
+/* the caption strip under a player */
+.an-cap{
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  padding-top:.85rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(228,224,212,.5);
+}
+.an-cap b{color:rgba(228,224,212,.82);font-weight:500}
+
+/* ---- buy the track ----
+   Sits in the caption strip under the film rather than in a band
+   of its own. The visitor has just watched the thing; that is the
+   one moment they might want to own the song, and it is also the
+   only moment where sending them off the page costs nothing. The
+   underline is on the text rather than a button, because this is
+   a courtesy to the artist, not a call to action for the studio. */
+.an-buy{
+  display:inline-flex;align-items:center;gap:.5rem;
+  color:var(--sun);border-bottom:1px solid rgba(255,131,48,.45);
+  padding-bottom:.15rem;
+  transition:color .3s ease,border-color .3s ease,gap .3s ease;
+}
+.an-buy:hover{color:var(--rose);border-bottom-color:var(--rose);gap:.75rem}
+
+/* a player that should break the text column and run full bleed */
+.an-bleed{
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  width:100vw;max-width:100vw;
+}
+
+/* ============================================================
+   5. CASE-STUDY ODDS AND ENDS
+   .pgallery from style.css does most of the work. These are the
+   two things it has no opinion about: a 16:9 cell for the wide
+   film stills, and a portrait cell for a vertical cut.
+   ============================================================ */
+.pgallery .an-16{grid-column:1 / -1}
+.pgallery .an-16 img{aspect-ratio:16/9}
+.pgallery .an-916 img{aspect-ratio:9/16}
+
+/* ---- section head inside a case study, for the film blocks ----
+   Stacked and left aligned, not a kicker on one edge with the
+   heading pushed to the other. Split across the full width the
+   heading read as a stray word floating off in the right margin,
+   with nothing under it to anchor to. The rule runs on from the
+   kicker exactly as .lab-kicker does elsewhere in the wing. */
+.an-head{
+  padding-top:clamp(1.8rem,5vh,3rem);
+  margin-bottom:clamp(1.1rem,3vh,1.8rem);
+}
+.an-head .k{
+  display:flex;align-items:center;gap:.9rem;margin-bottom:.85rem;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--rose);
+}
+.an-head .k::after{content:'';flex:1;height:1px;background:var(--line-light)}
+.an-head h2{
+  font-weight:900;font-variation-settings:'wdth' 72;text-transform:uppercase;
+  font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:.95;letter-spacing:-.015em;
+}
+
+/* ---- three up ----
+   For a set that belongs together. This piece is one locked
+   camera for its whole length, so its frames differ only in what
+   the sun is doing. Shown two at a time they look like the same
+   picture printed twice; shown as a row of three they read as
+   what they are, which is the light moving. */
+.pgallery.an-three{grid-template-columns:repeat(3,1fr)}
+.pgallery.an-three img{aspect-ratio:4/3}
+@media(max-width:720px){.pgallery.an-three{grid-template-columns:1fr}}
+/* caption under a gallery row */
+.an-note{
+  padding-top:.85rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(228,224,212,.45);
+}
+
+/* ---- hero scrim ----
+   The phero scrim in style.css thins out to 8% at the top third,
+   which is built for the dark cinematic stills the rest of the
+   site runs. These films open on a full gold sky, and against
+   that the eyebrow line all but vanished. Heavier through the
+   middle and bottom, where the type actually sits. */
+body.animbody .phero::after{
+  background:
+    linear-gradient(180deg,rgba(20,19,16,.42),rgba(20,19,16,.06) 32%,rgba(20,19,16,.6) 62%,rgba(20,19,16,.95)),
+    linear-gradient(115deg,rgba(255,131,48,.1),rgba(255,77,140,.1));
+}
