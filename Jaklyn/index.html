@@ -213,7 +213,7 @@ img{display:block;max-width:100%}
 }
 .jrow figure:hover img,.jrow figure:hover video{transform:scale(1.025)}
 .jrow figure.clip{cursor:default}
-.jrow figure.clip .tag{
+.jrow figure .tag{
   position:absolute;right:.7rem;top:.6rem;
   font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;
   text-transform:uppercase;padding:.3rem .55rem;
@@ -221,6 +221,30 @@ img{display:block;max-width:100%}
   -webkit-backdrop-filter:blur(6px);
   opacity:.8;pointer-events:none;
 }
+
+/* ---------- the social reels ----------
+   The only clips on the page that carry audio, so they do not autoplay.
+   A poster and a play button, native controls once it is running, and
+   starting one stops the others so her music never doubles up. */
+.jrow figure.reel{background:#000;cursor:default}
+.jrow figure.reel video{display:block;width:100%;height:auto;background:#000}
+.jrow figure.reel .play{
+  position:absolute;inset:0;display:grid;place-items:center;
+  border:0;background:none;padding:0;cursor:pointer;
+  transition:opacity .3s;
+}
+.jrow figure.reel .play svg{width:clamp(44px,22%,76px);height:auto}
+.jrow figure.reel .play circle{
+  fill:rgba(10,9,8,.42);stroke:rgba(228,224,212,.55);stroke-width:1.5;
+  transition:fill .25s,stroke .25s;
+}
+.jrow figure.reel .play path{fill:var(--bone)}
+.jrow figure.reel:hover .play circle{fill:rgba(10,9,8,.72);stroke:var(--sun)}
+.jrow figure.reel.on .play{opacity:0;pointer-events:none}
+.jrow figure.reel.on .tag{opacity:0}
+/* a running reel should not creep under the hover zoom */
+.jrow figure.reel:hover video{transform:none}
+
 @media(max-width:900px){.jrow figure{min-width:calc(50% - var(--gut))}}
 @media(max-width:620px){.jrow figure{min-width:100%}}
 
@@ -321,24 +345,123 @@ img{display:block;max-width:100%}
 <!-- copy: hero -->
 <section class="hero">
   <div class="eyebrow">Prepared for Jaklyn Cher</div>
-  <h1>Photography <em>and</em> concept work</h1>
-  <p class="lede">Part one is my own photography all of it shot by me. Part two is the concept work. Click any frame to see it large.</p>
+  <h1>Out of <em>Time</em></h1>
+  <p class="lede">Part one is the new work for the record. Part two is my own photography all of it shot by me. Part three is the concept work. Click any frame to see it large, and the reels play with sound.</p>
   <div class="meta">
     <span>DEF Studios, Portland OR</span>
+    <span>26 new pieces · 3 sets</span>
     <span>59 photographs · 10 sets</span>
     <span>29 concept frames · 6 sets</span>
     <span>Not final</span>
   </div>
+  <a class="jump" href="#photography">Skip to the photography</a>
   <a class="jump" href="#concept">Skip to the concept work</a>
 </section>
 
 
 <!-- ============================================================
-     PART ONE, PHOTOGRAPHY
+     PART ONE, THE OUT OF TIME WORK
+     ============================================================ -->
+<section class="part" id="outoftime">
+  <div class="rule"></div>
+  <span class="kick">Part one</span>
+  <h2>The <em>new</em> work</h2>
+  <!-- copy: part one -->
+  <p>Artwork directions for the record, reels for the run up to release, and some ideas for what else the photography we already have could be doing.</p>
+</section>
+
+<!-- ============ 01 ALBUM ARTWORK ============ -->
+<section class="set" id="album">
+  <div class="set-head">
+    <div>
+      <span class="kick">01</span>
+      <h2>Album Artwork</h2>
+    </div>
+    <!-- copy: album -->
+    <p>Multiple treatments and directions for the Out of Time album artwork.</p>
+  </div>
+    <div class="jrow">
+      <figure style="--r:1.3333" data-n="01 / 5" data-set="Album Artwork"><img src="photo/album-01-t.jpg" data-full="photo/album-01-f.jpg" width="1100" height="825" loading="lazy" decoding="async" alt="Gatefold spread open, both records out, front and back sleeve below"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:0.8000" data-n="02 / 5" data-set="Album Artwork"><img src="photo/album-02-t.jpg" data-full="photo/album-02-f.jpg" width="880" height="1100" loading="lazy" decoding="async" alt="Sleeve propped on a wood sideboard with an orange record alongside"></figure>
+      <figure style="--r:0.7500" data-n="03 / 5" data-set="Album Artwork"><img src="photo/album-03-t.jpg" data-full="photo/album-03-f.jpg" width="825" height="1100" loading="lazy" decoding="async" alt="Sleeve and an orange record lying on a patterned rug"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:1.5193" data-n="04 / 5" data-set="Album Artwork"><img src="photo/album-04-t.jpg" data-full="photo/album-04-f.jpg" width="1100" height="724" loading="lazy" decoding="async" alt="Sleeve on a sideboard with a green marbled record leaning against it"></figure>
+      <figure style="--r:1.3333" data-n="05 / 5" data-set="Album Artwork"><img src="photo/album-05-t.jpg" data-full="photo/album-05-f.jpg" width="1100" height="825" loading="lazy" decoding="async" alt="Gatefold open on a pale ground, green record on the inner spread"></figure>
+    </div>
+</section>
+
+<!-- ============ 02 SOCIAL REELS ============ -->
+<section class="set" id="reels">
+  <div class="set-head">
+    <div>
+      <span class="kick">02</span>
+      <h2>Social Reels</h2>
+    </div>
+    <!-- copy: reels -->
+    <p>Ideas for social reels leading up to release.</p>
+  </div>
+    <div class="jrow">
+      <figure class="reel" style="--r:0.5625" data-n="01 / 9"><video src="photo/reel-01.mp4" poster="photo/reel-01-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, window light into a close portrait and a black and white frame"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+      <figure class="reel" style="--r:0.5625" data-n="02 / 9"><video src="photo/reel-02.mp4" poster="photo/reel-02-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, the studded door scene in red and green light"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+      <figure class="reel" style="--r:0.5625" data-n="03 / 9"><video src="photo/reel-03.mp4" poster="photo/reel-03-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, close portraits under hard gold and purple light"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+    </div>
+    <div class="jrow">
+      <figure class="reel" style="--r:0.5625" data-n="04 / 9"><video src="photo/reel-04.mp4" poster="photo/reel-04-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, black and white frames stacked into panels"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+      <figure class="reel" style="--r:0.5625" data-n="05 / 9"><video src="photo/reel-05.mp4" poster="photo/reel-05-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, colour frames stacked into panels"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+      <figure class="reel" style="--r:0.5625" data-n="06 / 9"><video src="photo/reel-06.mp4" poster="photo/reel-06-poster.jpg" width="720" height="1280" playsinline preload="none" aria-label="Reel, the red lit scene with handwriting over the frame"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button><span class="tag">Sound</span></figure>
+    </div>
+    <div class="jrow">
+      <figure class="reel" style="--r:0.6719" data-n="07 / 9"><video src="photo/reel-07.mp4" poster="photo/reel-07-poster.jpg" width="860" height="1280" playsinline preload="none" aria-label="Screen capture, layered multiple exposure treatment running"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button></figure>
+      <figure class="reel" style="--r:0.8156" data-n="08 / 9"><video src="photo/reel-08.mp4" poster="photo/reel-08-poster.jpg" width="1044" height="1280" playsinline preload="none" aria-label="Screen capture, dark portrait with colour fringing"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button></figure>
+      <figure class="reel" style="--r:0.5609" data-n="09 / 9"><video src="photo/reel-09.mp4" poster="photo/reel-09-poster.jpg" width="718" height="1280" playsinline preload="none" aria-label="Screen capture, purple refraction pass"></video><button class="play" aria-label="Play with sound"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30.5"/><path d="M26 19.5 47 32 26 44.5Z"/></svg></button></figure>
+    </div>
+</section>
+
+<!-- ============ 03 PHOTOGRAPHY EXPERIMENTS ============ -->
+<section class="set" id="experiments">
+  <div class="set-head">
+    <div>
+      <span class="kick">03</span>
+      <h2>Photography Experiments</h2>
+    </div>
+    <!-- copy: experiments -->
+    <p>Ideas for using the existing photography.</p>
+  </div>
+    <div class="jrow">
+      <figure style="--r:0.8100" data-n="01 / 12" data-set="Photography Experiments"><img src="photo/exp-01-t.jpg" data-full="photo/exp-01-f.jpg" width="891" height="1100" loading="lazy" decoding="async" alt="Print treatment, figure at a curtained window in warm light"></figure>
+      <figure style="--r:0.6700" data-n="02 / 12" data-set="Photography Experiments"><img src="photo/exp-02-t.jpg" data-full="photo/exp-02-f.jpg" width="737" height="1100" loading="lazy" decoding="async" alt="Print treatment, red room with a wall sconce burning out"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:0.6291" data-n="03 / 12" data-set="Photography Experiments"><img src="photo/exp-03-t.jpg" data-full="photo/exp-03-f.jpg" width="692" height="1100" loading="lazy" decoding="async" alt="Print treatment, figure holding a doorway, cool cast"></figure>
+      <figure style="--r:0.6291" data-n="04 / 12" data-set="Photography Experiments"><img src="photo/exp-04-t.jpg" data-full="photo/exp-04-f.jpg" width="692" height="1100" loading="lazy" decoding="async" alt="The same doorway frame pushed warmer"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:0.6664" data-n="05 / 12" data-set="Photography Experiments"><img src="photo/exp-05-t.jpg" data-full="photo/exp-05-f.jpg" width="733" height="1100" loading="lazy" decoding="async" alt="Mirrored triple exposure, the figure repeated across the frame"></figure>
+      <figure style="--r:0.6664" data-n="06 / 12" data-set="Photography Experiments"><img src="photo/exp-06-t.jpg" data-full="photo/exp-06-f.jpg" width="733" height="1100" loading="lazy" decoding="async" alt="Long smear in green and red, the figure pulled sideways"></figure>
+      <figure style="--r:0.6700" data-n="07 / 12" data-set="Photography Experiments"><img src="photo/exp-07-t.jpg" data-full="photo/exp-07-f.jpg" width="737" height="1100" loading="lazy" decoding="async" alt="Dark pass, the figure smeared almost to abstraction"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:0.7609" data-n="08 / 12" data-set="Photography Experiments"><img src="photo/exp-08-t.jpg" data-full="photo/exp-08-f.jpg" width="837" height="1100" loading="lazy" decoding="async" alt="Magenta and cyan prism breaking across the figure"></figure>
+      <figure style="--r:0.8100" data-n="09 / 12" data-set="Photography Experiments"><img src="photo/exp-09-t.jpg" data-full="photo/exp-09-f.jpg" width="891" height="1100" loading="lazy" decoding="async" alt="Full abstraction, rainbow refraction with no figure left to read"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:1.5007" data-n="10 / 12" data-set="Photography Experiments"><img src="photo/exp-10-t.jpg" data-full="photo/exp-10-f.jpg" width="1100" height="733" loading="lazy" decoding="async" alt="High key pass, vertical smear with the figure doubled"></figure>
+      <figure style="--r:1.5007" data-n="11 / 12" data-set="Photography Experiments"><img src="photo/exp-11-t.jpg" data-full="photo/exp-11-f.jpg" width="1100" height="733" loading="lazy" decoding="async" alt="Mirrored high key abstraction, blown to white"></figure>
+    </div>
+    <div class="jrow">
+      <figure style="--r:1.5007" data-n="12 / 12" data-set="Photography Experiments"><img src="photo/exp-12-t.jpg" data-full="photo/exp-12-f.jpg" width="1100" height="733" loading="lazy" decoding="async" alt="Black and white mirrored pass, heavy vertical banding"></figure>
+    </div>
+</section>
+
+<!-- ============================================================
+     PART TWO, PHOTOGRAPHY
      ============================================================ -->
 <section class="part" id="photography">
   <div class="rule"></div>
-  <span class="kick">Part one</span>
+  <span class="kick">Part two</span>
   <h2>Photography</h2>
   <!-- copy: part one -->
   <p>Live music, studio and outdoor work, lifestyle, weddings and more, all of it shot by me for a lot of different clients over the years. Small businesses, editorial, models, artists and entertainers, or just a wedding. Whatever the job, I try and bring some artistry to the equation.</p>
@@ -513,11 +636,11 @@ img{display:block;max-width:100%}
 </section>
 
 <!-- ============================================================
-     PART TWO, THE ORIGINAL CONCEPT BOARD
+     PART THREE, THE ORIGINAL CONCEPT BOARD
      ============================================================ -->
 <section class="part" id="concept">
   <div class="rule"></div>
-  <span class="kick">Part two</span>
+  <span class="kick">Part three</span>
   <h2>Concept <em>work</em></h2>
   <!-- copy: part two -->
   <p>A working board, grouped by the look. Click any frame to see it large. Please do not share any of these conceptual works.</p>
@@ -670,7 +793,7 @@ img{display:block;max-width:100%}
 (function(){
   // Every still on the page, in document order, across both parts.
   // The clips are skipped, they are not lightbox material.
-  var shots = [].slice.call(document.querySelectorAll('.bed figure, .jrow figure:not(.clip)'));
+  var shots = [].slice.call(document.querySelectorAll('.bed figure, .jrow figure:not(.clip):not(.reel)'));
   var lb  = document.getElementById('lb');
   var img = document.getElementById('lbimg');
   var cap = document.getElementById('lbcap');
@@ -722,6 +845,30 @@ img{display:block;max-width:100%}
   // until they scroll into view. Play them there, pause them on the
   // way out, and leave them alone entirely if the visitor has asked
   // for reduced motion.
+  // The reels carry Jaklyn's music, so they wait for a real click. That
+  // click is also what lets them start unmuted at all, since no browser
+  // will autoplay audio on its own.
+  var reels = [].slice.call(document.querySelectorAll('.jrow figure.reel'));
+  reels.forEach(function(fig){
+    var v   = fig.querySelector('video');
+    var btn = fig.querySelector('.play');
+    function stop(){ fig.classList.remove('on'); v.removeAttribute('controls'); }
+    btn.addEventListener('click', function(){
+      reels.forEach(function(o){
+        if(o === fig) return;
+        var ov = o.querySelector('video');
+        ov.pause(); o.classList.remove('on'); ov.removeAttribute('controls');
+      });
+      v.muted = false;
+      v.setAttribute('controls','');
+      fig.classList.add('on');
+      // If sound is refused for any reason, fall back to a muted play
+      // rather than leaving her looking at a dead poster.
+      v.play().catch(function(){ v.muted = true; v.play().catch(stop); });
+    });
+    v.addEventListener('ended', function(){ v.currentTime = 0; stop(); });
+  });
+
   var calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var clips = [].slice.call(document.querySelectorAll('.jrow figure.clip video'));
   if(clips.length && !calm && 'IntersectionObserver' in window){
