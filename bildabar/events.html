@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Day &middot; Bildabar</title>
+<!-- Concept preview for a partner. Kept out of search so it never competes with daneerikforst.com. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Poll your guests before the event, then run live QR drink ordering on the day of, with Bildabar's Event Hub.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Jost:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/bildabar.css">
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<defs>
+
+<symbol id="icon-vodka" viewBox="0 0 48 48">
+  <path d="M19 6h10v6l3 4v26a2 2 0 0 1-2 2H18a2 2 0 0 1-2-2V16l3-4V6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M19 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M16 23h16" stroke="currentColor" stroke-width="2"/>
+  <path d="M21 29h6M21 34h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-tequila" viewBox="0 0 48 48">
+  <path d="M17 9h14l2 6-3 3v22a2 2 0 0 1-2 2H20a2 2 0 0 1-2-2V18l-3-3 2-6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 18h18" stroke="currentColor" stroke-width="2"/>
+  <path d="M24 9V4M24 4l-3 3M24 4l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M20 28h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-gin" viewBox="0 0 48 48">
+  <path d="M20 7h8v5l2.5 3.5V38a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2V15.5L20 12V7Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 24h18" stroke="currentColor" stroke-width="2"/>
+  <circle cx="33" cy="12" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+  <circle cx="37" cy="17" r="1.8" stroke="currentColor" stroke-width="1.4"/>
+  <path d="M35 8c-2 2-2 5 0 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-bourbon" viewBox="0 0 48 48">
+  <path d="M15 11h18v6l-2 2v18a2 2 0 0 1-2 2H19a2 2 0 0 1-2-2V19l-2-2v-6Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 11h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <rect x="19" y="24" width="10" height="9" stroke="currentColor" stroke-width="1.4"/>
+</symbol>
+
+<symbol id="icon-rum" viewBox="0 0 48 48">
+  <path d="M18 8h12v5c3 2 4 5 4 9v16a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V22c0-4 1-7 4-9V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M18 8h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M14 27c3 2 17 2 20 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-shaker" viewBox="0 0 48 48">
+  <path d="M19 6h10l2 5-2 2v2h-10v-2l-2-2 2-5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M15 15h18l-2 23a2 2 0 0 1-2 2H19a2 2 0 0 1-2-2L15 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16.3 24h15.4" stroke="currentColor" stroke-width="1.4"/>
+</symbol>
+
+<symbol id="icon-mule" viewBox="0 0 48 48">
+  <path d="M15 17h16l-1.4 20a2 2 0 0 1-2 1.8H18.4a2 2 0 0 1-2-1.8L15 17Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M31 21c3 0 5 2 5 5s-2 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M16 21h16M16.6 29h14.8" stroke="currentColor" stroke-width="1.2"/>
+  <path d="M19 13c1.5-2 2-4 1-6M23 12c.6-2.4.2-4.4-1-6M27 13c-1-2.4-1-4.4 0-6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-vodkatonic" viewBox="0 0 48 48">
+  <path d="M16 14h16l-1.6 23.6a2 2 0 0 1-2 1.9H19.6a2 2 0 0 1-2-1.9L16 14Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16 14h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="22" cy="21" r="1" fill="currentColor"/>
+  <circle cx="26" cy="26" r="1" fill="currentColor"/>
+  <circle cx="21" cy="30" r="1" fill="currentColor"/>
+  <path d="M30 10.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M30 10.5v7M26.5 14h7" stroke="currentColor" stroke-width="1.2"/>
+</symbol>
+
+<symbol id="icon-oldfashioned" viewBox="0 0 48 48">
+  <path d="M14 15h20l-1.7 21.7a2 2 0 0 1-2 1.8H17.7a2 2 0 0 1-2-1.8L14 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M14 15h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <rect x="19" y="21" width="9" height="9" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M30 13c3-1 5-3.3 4.6-6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-rumcoke" viewBox="0 0 48 48">
+  <path d="M16 14h16l-1.6 23.6a2 2 0 0 1-2 1.9H19.6a2 2 0 0 1-2-1.9L16 14Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M16 14h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M27 9 25 39" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="21" cy="22" r="1" fill="currentColor"/>
+  <circle cx="23" cy="28" r="1" fill="currentColor"/>
+  <circle cx="20" cy="33" r="1" fill="currentColor"/>
+</symbol>
+
+<symbol id="icon-martini" viewBox="0 0 48 48">
+  <path d="M10 10h28l-12.5 14.5V38" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M17.5 38h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <path d="M25.5 24.5 30 19" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="31" cy="17.5" r="2.1" fill="none" stroke="currentColor" stroke-width="1.6"/>
+</symbol>
+
+<symbol id="icon-check" viewBox="0 0 24 24">
+  <path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="icon-calendar" viewBox="0 0 24 24">
+  <rect x="3.5" y="5" width="17" height="15.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
+  <path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-phone" viewBox="0 0 24 24">
+  <path d="M6.6 3.5h3l1.6 4.4-2.2 2.1a13 13 0 0 0 5.4 5.4l2.1-2.2 4.4 1.6v3a1.6 1.6 0 0 1-1.7 1.6C11.6 19 5 12.4 4.5 5.7a1.6 1.6 0 0 1 2.1-2.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="icon-qr" viewBox="0 0 24 24">
+  <rect x="3.5" y="3.5" width="6" height="6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+  <rect x="14.5" y="3.5" width="6" height="6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+  <rect x="3.5" y="14.5" width="6" height="6" stroke="currentColor" stroke-width="1.6" fill="none"/>
+  <path d="M14.5 14.5h3v3h-3zM20.5 14.5v2M17.5 20.5h3M14.5 20.5v-2.5" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<symbol id="icon-poll" viewBox="0 0 24 24">
+  <path d="M5 19V9M12 19V4M19 19v-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+</symbol>
+
+<symbol id="icon-live" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="3" fill="currentColor"/>
+  <path d="M7 7a7 7 0 0 0 0 10M17 7a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+</symbol>
+
+</defs>
+</svg>
+
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="nav-logo" href="index.html" aria-label="Bildabar home">
+      <svg viewBox="0 0 311.3 136.1" fill="currentColor" aria-hidden="true">
+        <path d="M61.9,68.9c3.3,2.2,5.2,6,5.2,10.6v9.1c0,7.6-5.3,12.8-12.8,12.8h-14.7s0-62.1,0-62.1h14.7c7.6,0,12.8,5.3,12.8,12.8v6.2c0,4.6-2,8.4-5.2,10.6ZM49,64.9h2.9c3.3,0,5.9-2.7,5.9-5.9v-6.5c0-3.3-2.7-5.9-5.9-5.9h-2.9v18.4ZM49,94.2h2.9c3.3,0,5.9-2.7,5.9-5.9v-9.5c0-3.3-2.7-5.9-5.9-5.9h-2.9v21.4Z"/>
+        <path d="M82.5,101.2h-9.3s0-62.1,0-62.1h9.3s0,62.1,0,62.1Z"/>
+        <path d="M88.6,101.2v-62.1s9.3,0,9.3,0c0,18.3,0,36.6,0,54.9h2.6s7.5-.8,7.5-.8l-.2,8h-19.3Z"/>
+        <path d="M141.6,88.4c0,7.6-5.3,12.8-12.8,12.8h-14.7s0-62.1,0-62.1h14.7c7.7,0,12.8,5.3,12.8,13.2v36.1ZM132.3,52.3c0-3.3-2.7-5.9-5.9-5.9h-2.9s0,47.7,0,47.7h2.9c3.3,0,5.9-2.7,5.9-5.9v-35.8Z"/>
+        <path d="M157,101.2h-9.3s0-35.7,0-35.7c0-6.5,2.3-12.4,6.2-17.1h-6.2s0-9.3,0-9.3h28s0,62.1,0,62.1h-9.3s0-22.4,0-22.4h-9.3s0,22.4,0,22.4ZM157,70.9h9.3s0-20.7,0-20.7c-1.2.6-2.3,1.3-3.3,2.2-3.8,3.3-6,8-6,13v5.4Z"/>
+        <path d="M204,68.9c3.3,2.2,5.2,6,5.2,10.6v9.1c0,7.6-5.3,12.8-12.8,12.8h-14.7s0-62.1,0-62.1h14.7c7.6,0,12.8,5.3,12.8,12.8v6.2c0,4.6-2,8.4-5.2,10.6ZM191.1,64.9h2.9c3.3,0,5.9-2.7,5.9-5.9v-6.5c0-3.3-2.7-5.9-5.9-5.9h-2.9v18.4ZM191.1,94.2h2.9c3.3,0,5.9-2.7,5.9-5.9v-9.5c0-3.3-2.7-5.9-5.9-5.9h-2.9v21.4Z"/>
+        <path d="M224.7,101.2h-9.3s0-35.7,0-35.7c0-6.5,2.3-12.4,6.2-17.1h-6.2s0-9.3,0-9.3h28s0,62.1,0,62.1h-9.3s0-22.4,0-22.4h-9.3s0,22.4,0,22.4ZM224.7,70.9h9.3s0-20.7,0-20.7c-1.2.6-2.3,1.3-3.3,2.2-3.8,3.3-6,8-6,13v5.4Z"/>
+        <path d="M249.4,56.6h0s0-17.5,0-17.5h14.7c7.7,0,12.8,5.3,12.8,13.2v4.4h0s0,2.5,0,2.5c0,8.2-3.2,12.7-8.3,15.6l8.3,26.4h-9.5s-7.2-23.1-7.2-23.1c-.5.1-1,.3-1.5.4v22.7s-9.3,0-9.3,0v-44.6ZM267.6,52.3c0-3.3-2.7-5.9-5.9-5.9h-2.9v10.3h0s0,13.6,0,13.6c5.8-1.8,8.3-4.7,8.8-10.9v-2.7s0-4.4,0-4.4Z"/>
+        <path d="M295.5,120.5H17.6s0-101,0-101h277.9s0,101,0,101ZM25,113.1h263.1s0-86.2,0-86.2H25s0,86.2,0,86.2Z"/>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#packages">Packages</a></li>
+      <li><a href="build.html">Build Your Bar</a></li>
+      <li><a href="events.html" class="is-active">Event Day</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="tel:+15035550199">Call The Hotline</a>
+      <a class="btn btn-primary" href="build.html">Build Your Bar</a>
+    </div>
+    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
+  </div>
+</nav>
+
+<div class="mnav" id="mnav">
+  <a href="index.html#packages">Packages</a>
+  <a href="build.html">Build Your Bar</a>
+  <a href="events.html">Event Day</a>
+  <a href="index.html#about">About</a>
+  <a class="btn btn-primary" href="tel:+15035550199">Call The Hotline</a>
+</div>
+
+<header class="hero-sm">
+  <div class="wrap">
+    <span class="eyebrow">For Booked Clients</span>
+    <h1>Your event gets its own hub.</h1>
+    <p class="lede">Once you're booked, we open a private page just for your event: poll your guests ahead of time, then run live QR ordering while we pour.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="https://claude.ai/code/artifact/a223e4d4-8ab6-4237-8687-af691ac5d37c" target="_blank" rel="noopener">Try The Live Demo</a>
+      <a class="btn btn-ghost" href="build.html">Build Your Bar</a>
+    </div>
+  </div>
+</header>
+
+<section class="package">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>How it runs, start to finish.</h2>
+    </div>
+    <div class="flow-steps reveal">
+      <div class="fs">
+        <div class="num">Before</div>
+        <h3>Poll your guests</h3>
+        <p>We send a short link to your guest list. They tap through your menu and tell us what they're most excited to drink, plus any notes on allergies or requests.</p>
+      </div>
+      <div class="fs">
+        <div class="num">Day Of</div>
+        <h3>They scan, they order</h3>
+        <p>We post a QR code at the bar. Guests scan it on their own phone, pick a drink from your menu, and send it straight to us. No app to download.</p>
+      </div>
+      <div class="fs">
+        <div class="num">Behind The Bar</div>
+        <h3>We work the live queue</h3>
+        <p>Every order lands on our dashboard in real time. We call names, mark drinks as made, and keep the line moving without guests having to flag us down.</p>
+      </div>
+    </div>
+
+    <div class="hub-flow reveal" style="margin-bottom:40px;">
+      <div class="row">
+        <div class="ico"><svg width="18" height="18"><use href="#icon-poll"/></svg></div>
+        <div class="tx"><b>No app required</b><span>Everything runs in a browser, on whatever phone a guest already has in their pocket.</span></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="18" height="18"><use href="#icon-qr"/></svg></div>
+        <div class="tx"><b>One code per event</b><span>Your event gets its own private link and QR code, separate from every other client's.</span></div>
+      </div>
+      <div class="row">
+        <div class="ico"><svg width="18" height="18"><use href="#icon-live"/></svg></div>
+        <div class="tx"><b>Built on request</b><span>We set this up once you're booked, matched to the exact menu from your Build Your Bar quote.</span></div>
+      </div>
+    </div>
+
+    <div class="cta-split reveal">
+      <div>
+        <h3>Want to see it running?</h3>
+        <p>We put up a live, working version you can click through yourself, poll, order, and the staff dashboard included.</p>
+      </div>
+      <a class="btn btn-primary" href="https://claude.ai/code/artifact/a223e4d4-8ab6-4237-8687-af691ac5d37c" target="_blank" rel="noopener">Open The Demo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 311.3 136.1" fill="currentColor" aria-hidden="true"><use href="#" /></svg>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="index.html#packages">Packages</a>
+        <a href="build.html">Build Your Bar</a>
+        <a href="events.html">Event Day</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Portland, OR</p>
+        <a href="tel:+15035550199">(503) 555-0199 <span style="opacity:.5">&mdash; placeholder, swap for real line</span></a>
+        <a href="mailto:hello@bildabar.com">hello@bildabar.com <span style="opacity:.5">&mdash; placeholder</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="yr"></span> Bildabar Mobile Bar</span>
+      <span>Portland, Oregon</span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();
+document.querySelector('.footer-logo svg').innerHTML = document.querySelector('.nav-logo svg').innerHTML;</script>
+<script src="assets/js/bildabar.js"></script>
+</body>
+</html>
