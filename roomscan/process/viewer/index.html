@@ -25,7 +25,7 @@
     background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   }
-  #hud { top: 14px; left: 14px; width: 260px; }
+  #hud { top: calc(14px + env(safe-area-inset-top, 0px)); left: calc(14px + env(safe-area-inset-left, 0px)); width: 260px; }
   h1 { margin: 0 0 2px; font-size: 15px; font-weight: 650; }
   #stats { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
   .seg { display: flex; padding: 3px; margin-bottom: 10px; border-radius: 8px; background: rgba(255, 255, 255, .06); }
@@ -40,9 +40,14 @@
   .row select { background: #222327; color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 3px 4px; font: inherit; }
   .row[hidden] { display: none; }
   .hint { margin-top: 10px; color: var(--muted); font-size: 11px; }
-  #photo { top: 14px; right: 14px; width: 340px; display: none; }
+  summary { color: var(--muted); font-size: 12px; cursor: pointer; }
+  details[open] summary { margin-bottom: 4px; }
+  #photo {
+    top: calc(14px + env(safe-area-inset-top, 0px)); right: calc(14px + env(safe-area-inset-right, 0px));
+    width: 340px; max-height: calc(100% - 28px); overflow: auto; display: none;
+  }
   #photo.open { display: block; }
-  #photo canvas { display: block; width: 100%; border-radius: 6px; background: #000; }
+  #photo canvas { display: block; width: auto; height: auto; max-width: 100%; max-height: 42vh; margin: 0 auto; border-radius: 6px; background: #000; }
   #photo h2 { margin: 0 0 8px; font-size: 13px; font-weight: 600; }
   #photo table { width: 100%; margin-top: 10px; border-collapse: collapse; font: 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
   #photo td { padding: 3px 0; border-bottom: 1px solid var(--line); }
@@ -57,14 +62,17 @@
   }
   #message { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; color: var(--muted); text-align: center; pointer-events: none; }
   @media (max-width: 720px) {
-    #hud { right: 14px; width: auto; }
-    #photo { top: auto; bottom: 14px; left: 14px; width: auto; }
+    #hud { right: calc(14px + env(safe-area-inset-right, 0px)); width: auto; }
+    #photo {
+      top: auto; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); left: calc(14px + env(safe-area-inset-left, 0px));
+      width: auto; max-height: 55%;
+    }
   }
 </style>
 </head>
 <body>
 <div id="stage"></div>
-<div id="message">Loading scan…</div>
+<div id="message">Loading scan&hellip;</div>
 
 <div id="hud" class="panel">
   <h1 id="title">RoomScan</h1>
@@ -73,16 +81,19 @@
     <button id="roomMode" class="on">Room</button>
     <button id="knollMode" disabled title="Run roomscan.py locate to find objects">Knolled</button>
   </div>
+  <details id="options" open>
+  <summary>View options</summary>
   <div class="row"><span>Surface</span><select id="surface"></select></div>
   <div class="row"><span>Ceiling cut</span><input id="cut" type="range" min="0" max="1" step="0.01" value="0.75"></div>
   <div class="row" id="sizeRow"><span>Point size</span><input id="pointSize" type="range" min="1" max="8" step="0.5" value="3"></div>
   <div class="row"><label><input id="showCams" type="checkbox" checked> Camera path</label></div>
   <div class="row"><label><input id="showLabels" type="checkbox" checked> Object labels</label></div>
   <div class="hint">Drag to orbit, right-drag to pan, scroll to zoom. Click a camera to see the photo it took. K toggles knolling.</div>
+  </details>
 </div>
 
 <div id="photo" class="panel">
-  <button id="closePhoto" aria-label="Close">×</button>
+  <button id="closePhoto" aria-label="Close">&times;</button>
   <h2 id="photoTitle"></h2>
   <canvas id="photoCanvas"></canvas>
   <table id="photoData"></table>
@@ -101,6 +112,7 @@ import { PLYLoader } from 'three/addons/loaders/PLYLoader.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const SCAN = '/scan/';
 const DARK = new THREE.Color(0x121315);
@@ -130,7 +142,11 @@ const camera = new THREE.PerspectiveCamera(ROOM_FOV, 1, 0.01, 500);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8170, 1.2));
+// Soft studio reflections. Generated models are PBR, and many come out fully metallic,
+// which renders near-black with lights alone.
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.8;
+scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8170, 0.6));
 const sun = new THREE.DirectionalLight(0xffffff, 1.7);
 sun.castShadow = true;
 sun.shadow.mapSize.set(2048, 2048);
@@ -232,7 +248,7 @@ function setRoomOpacity(opacity) {
 }
 
 async function showSurface(url) {
-  message('Loading ' + url.split('/').pop() + '…');
+  message('Loading ' + url.split('/').pop() + '\u2026');
   if (!loaded.has(url)) loaded.set(url, await loadSurface(url));
   if (surface) room.remove(surface);
   surface = loaded.get(url);
@@ -301,7 +317,7 @@ async function showPhoto(i) {
   $('photoData').innerHTML = [
     ['rgb', f.rgb], ['depth', f.depth],
     ['position x', fmt(x) + ' m'], ['position y', fmt(y) + ' m'], ['position z', fmt(z) + ' m'],
-    ['heading', heading.toFixed(0) + '°'], ['focal length', f.intrinsics.fx.toFixed(0) + ' px'],
+    ['heading', heading.toFixed(0) + '\u00b0'], ['focal length', f.intrinsics.fx.toFixed(0) + ' px'],
   ].map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
   $('photo').classList.add('open');
 
@@ -519,9 +535,10 @@ function updateStats() {
   const parts = [`${frames.length} photos`];
   if (surface?.isPoints) parts.push(`${(pointCount / 1e6).toFixed(pointCount > 1e6 ? 1 : 2)}M points`);
   if (items.length) parts.push(`${items.length} objects`);
-  $('stats').textContent = parts.join(' · ');
+  $('stats').textContent = parts.join(' \u00b7 ');
 }
 
+if (matchMedia('(max-width: 720px)').matches) $('options').open = false;  // keep the room visible on phones
 $('roomMode').onclick = () => setMode('room');
 $('knollMode').onclick = () => setMode('knoll');
 addEventListener('keydown', e => {
