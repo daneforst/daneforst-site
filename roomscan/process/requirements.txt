@@ -1,0 +1,4 @@
+numpy>=1.24
+pillow>=10.0
+# Only for `roomscan.py mesh`. If pip can't find a wheel for your Python, use Python 3.12.
+# open3d>=0.19

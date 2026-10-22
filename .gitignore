@@ -14,3 +14,8 @@ __pycache__/
 tools/.scd.tmp
 tools/.d.tmp
 tools/.sculpt-density.json
+
+# RoomScan: scans are photos of the house and stay local
+roomscan/scans/
+roomscan/**/out/
+xcuserdata/
